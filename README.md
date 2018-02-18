@@ -107,7 +107,7 @@ forward till I illustrate things on Jupyter notebooks.
     and also learn a subset of the markdown language (usable to
     create documentation within Jupyter notebooks.
 
-  * The associated Jupyter notebook is
+  >* The associated Jupyter notebook is
     *Module1_Computability.ipynb*
         
 ## Strings, Languages, and Language Operations
@@ -126,7 +126,7 @@ forward till I illustrate things on Jupyter notebooks.
   * DFA definition and operations on DFA are presented in
    [THIS YOUTUBE VIDEO](https://youtu.be/Bdr926TeQyQ)
 
-  * The associated Jupyter notebooks are *Def_DFA.ipynb* and
+  >* The associated Jupyter notebooks are *Def_DFA.ipynb* and
     *Drive_DFA_Unit1.ipynb* go with the above video.
 
   * These notebooks introduce the
@@ -153,45 +153,45 @@ forward till I illustrate things on Jupyter notebooks.
     are shown in [THIS YOUTUBE VIDEO](https://youtu.be/xjFtLF95uBc)
     and also [THIS YOUTUBE VIDEO](https://youtu.be/T-akdMIXOGY)
 
-  * The associated Jupyter notebook is *Drive_NFA.ipynb*.
+  >* The associated Jupyter notebook is *Drive_NFA.ipynb*.
 
 ## NFA to RE Conversion
   * [THIS YOUTUBE VIDEO](https://youtu.be/jqdz5s6VWWY) describes the material.
 
-  * The associated Jupyter notebook is *Drive_NFA_9_26_17_Class.ipynb*
+  >* The associated Jupyter notebook is *Drive_NFA_9_26_17_Class.ipynb*
   
 ## Solving the Postage-Stamp Problem using Minimal DFA, and also DFA Minimization using Brzozowski's algorithm
   * These two neat topics are presented in
     [THIS YOUTUBE VIDEO](https://youtu.be/L6l3c17mpi4)
 
-  * The associated Jupyter notebook is *Drive_NFA_9_28_17_Class.ipynb*
+  >* The associated Jupyter notebook is *Drive_NFA_9_28_17_Class.ipynb*
 
 ## Derivative-based Parsing (Brzozowski's Derivatives)
 
   * [THIS YOUTUBE VIDEO](https://youtu.be/xGvCjoWemWg) presents the
     basics
 
-  * The associated Jupyter notebooks are *A4J.ipynb* and *A4JSoln.ipynb*
+  >* The associated Jupyter notebooks are *A4J.ipynb* and *A4JSoln.ipynb*
 
 ## Pushdown Automata
 
   * Pushdown Automata (with a CFG-parsing perspective) are explained here in
     [THIS YOUTUBE VIDEO](https://youtu.be/cvVl1lQ4agU)
 
-  * The associated Jupyter notebook is *Drive_PDA_Ch12_Recording.ipynb*
+  >* The associated Jupyter notebook is *Drive_PDA_Ch12_Recording.ipynb*
   
   * PDA design with acceptance of various inputs (by empty stack or final
     state) are explained in
     [THIS YOUTUBE VIDEO](https://youtu.be/zKeHDwKXF7E)
 
-  * The associated Jupyter notebook is *Drive_PDA_w_asg5_possibilities_emptystk_a1b2.ipynb*
+  >* The associated Jupyter notebook is *Drive_PDA_w_asg5_possibilities_emptystk_a1b2.ipynb*
 
 ## Turing Machines
 
   * Turing Machines are explained in
     [THIS YOUTUBE VIDEO](https://youtu.be/E1X8OTWUxJ0)
 
-  * The associated Jupyter Notebook is *Ch13_Recording.ipynb*
+  >* The associated Jupyter Notebook is *Ch13_Recording.ipynb*
 
 # Jove Reference Manual
 
