@@ -90,7 +90,8 @@ forward till I illustrate things on Jupyter notebooks.
     and also learn a subset of the markdown language (usable to
     create documentation within Jupyter notebooks.
 
-    Kindly refer to *Module1_Computability.ipynb* and practice using it.
+  * The associated Jupyter notebook is
+    *Module1_Computability.ipynb*
         
 ## Strings, Languages, and Language Operations
 
@@ -106,37 +107,46 @@ forward till I illustrate things on Jupyter notebooks.
 ## Basic DFA definitions and operations
 
   * DFA definition and operations on DFA are presented in
-   [THIS YOUTUBE VIDEO](https://www.youtube.com/watch?v=Bdr926TeQyQ&feature=youtu.be)
-   and the Jupyter files *Def_DFA.ipynb* and
-   *Drive_DFA_Unit1.ipynb*. This introduces the
-   markdown syntax, how to build a DFA, etc. Testing DFAs can be achieved
-   by introducing a way to generate strings as per the _numeric order_.
-   This ensures that all short strings are exhaustively tested before
-   longer strings are tried.
+   [THIS YOUTUBE VIDEO](https://www.youtube.com/watch?v=Bdr926TeQyQ&feature=youtu.be).
+
+  * The associated Jupyter notebooks are *Def_DFA.ipynb* and
+    *Drive_DFA_Unit1.ipynb* go with the above video.
+
+  * These notebooks introduce the
+    markdown syntax, how to build a DFA, etc. Testing DFAs can be achieved
+    by introducing a way to generate strings as per the _numeric order_.
+    This ensures that all short strings are exhaustively tested before
+    longer strings are tried.
 
   * Another useful Youtube that introduces DFA is in
    [THIS YOUTUBE VIDEO](https://www.youtube.com/watch?v=dGcLHtYLgDU&feature=youtu.be)
-   and the Jupyter file *DFAUnit2.ipynb*. This covers more DFA
+
+  * The Jupyter file *DFAUnit2.ipynb* goes with this video. This covers more DFA
    operations.
 
 ## The Pumping Lemma illustrated using cellphone word completion (courtesy Prof. Suresh Venkat)
-  [THIS YOUTUBE VIDEO](https://www.youtube.com/watch?v=7U5iQGnCKN4&t=0s&list=PLlaRdRPgwnW8Biv0Orn74Q5VR32ES3lFl&index=2)
-  demonstrates that hidden in most products today is an automaton, and it shows its true color when pushed :)
+
+  * [THIS YOUTUBE VIDEO](https://www.youtube.com/watch?v=7U5iQGnCKN4&t=0s&list=PLlaRdRPgwnW8Biv0Orn74Q5VR32ES3lFl&index=2)
+  demonstrates that hidden in most products today is an automaton,
+  and it shows its true color when pushed :)
 
 ## NFA operations, EClosure, etc
 
   * NFA operations, including using Jupyter widgets to show EClosure
     are shown in [THIS YOUTUBE VIDEO](https://www.youtube.com/watch?v=xjFtLF95uBc&feature=youtu.be)
-    The corresponding Jupyter notebook to exercise is *Drive_NFA.ipynb*.
+
+  * The associated Jupyter notebook is *Drive_NFA.ipynb*.
 
 ## NFA to RE Conversion
-  * [THIS YOUTUBE VIDEO](https://youtu.be/jqdz5s6VWWY) describes the material. The Jupyter notebook
-    that goes with this material is *Drive_NFA_9_26_17_Class.ipynb*
+  * [THIS YOUTUBE VIDEO](https://youtu.be/jqdz5s6VWWY) describes the material.
+
+  * The associated Jupyter notebook is *Drive_NFA_9_26_17_Class.ipynb*
   
 ## Solving the Postage-Stamp Problem using Minimal DFA, and also DFA Minimization using Brzozowski's algorithm
   * These two neat topics are presented in
     [THIS YOUTUBE VIDEO](https://www.youtube.com/watch?v=L6l3c17mpi4&feature=youtu.be)
-    with the Jupyter notebook being *Drive_NFA_9_28_17_Class.ipynb*
+
+  * The associated Jupyter notebook is *Drive_NFA_9_28_17_Class.ipynb*
     
 # Jove Reference Manual
 
