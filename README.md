@@ -1,9 +1,5 @@
- ---
- title: Test
- numbersections: true
- ---
- 
 # Introduction
+===============
 
 This git project presents the Jupyter notebooks that go with
 Ganesh Gopalakrishnan's book 
