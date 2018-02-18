@@ -1,5 +1,4 @@
-# Introduction
-===============
+# Introduction to Jove
 
 This git project presents the Jupyter notebooks that go with
 Ganesh Gopalakrishnan's book 
@@ -194,7 +193,5 @@ forward till I illustrate things on Jupyter notebooks.
 
   * The associated Jupyter Notebook is *Ch13_Recording.ipynb*
 
-# A Tutorial Introduction to Jove  
-  
 # Jove Reference Manual
 
