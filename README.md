@@ -76,17 +76,28 @@ set up Jupyter notebooks, you can still experience Jove.
 * Strings, Languages, and Language Operations
 
   > [This Youtube video]
-  (https://www.youtube.com/watch?v=gaWmjvJ-mP4&feature=youtu.be)
-  demonstrates how to define strings and languages in Jove. It
-  also describes how one can perform language operations, including
-  union, intersection, and Kleene-star.
+    (https://www.youtube.com/watch?v=gaWmjvJ-mP4&feature=youtu.be)
+    demonstrates how to define strings and languages in Jove. 
+    It also describes how one can perform language operations, including
+    union, intersection, and Kleene-star.
 
   > The Jupyter notebook to practice these ideas is
-  Module2_LanguageOps.ipynb
-
+    *Module2_LanguageOps.ipynb*
   
-  
+* Basic DFA definitions and operations
 
+  > DFA definition and operations on DFA are presented in
+   [this video](https://www.youtube.com/watch?v=Bdr926TeQyQ&feature=youtu.be)
+   and the Jupyter file *Drive_DFA_Unit1.ipynb*. This introduces the
+   markdown syntax, how to build a DFA, etc. Testing DFAs can be achieved
+   by introducing a way to generate strings as per the _numeric order_.
+   This ensures that all short strings are exhaustively tested before
+   longer strings are tried.
+
+  > Another useful Youtube that introduces DFA is in
+   [this video](https://www.youtube.com/watch?v=dGcLHtYLgDU&feature=youtu.be)
+   and the Jupyter file *DFAUnit2.ipynb*. This covers more DFA
+   operations. 
 
 
 # Jove Reference Manual
