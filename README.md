@@ -59,6 +59,9 @@ the "Drive_..." files. While the direct importing of Jupyter notebooks
 into other notebooks is supported, we once ran into bugs, and felt
 that this arrangement was more foolproof.
 
+A key requirement is to have **lex.py** and **yacc.py** in the top-level
+directory. This will be invoked during parsing.
+
 All automata are displayed using Graphiviz for which your Jupyter
 notebook must have Graphiviz installed.
 
@@ -77,6 +80,20 @@ mention the names of the [.ipynb] files below, and in case they are
 backed by a Youtube video, then mention that video's link as well.
 We mention the youtube links because in case you have not successfully
 set up Jupyter notebooks, you can still experience Jove.
+
+## Prerequisites to running the Jove code
+
+There are no prerequisites. Once you follow the instructions
+listed under
+[Obtaining and Setting up Jupyter for running Jove]
+(#obtaining-and-setting-up-jupyter-for-running-jove), 
+you should be able to run _any_ file under Jupyter.
+You can run the Jupyter file [.ipynb] either cell by cell
+or by the ``run all cells'' command. All that is needed is:
+
+ * The lex.py and yacc.py files
+
+ * The Imports/ directory
 
 **Please note:** Some of the Youtubes are live class-lecture recordings,
 and may contain material that you do not care about. Feel free to zoom
@@ -150,6 +167,34 @@ forward till I illustrate things on Jupyter notebooks.
 
   * The associated Jupyter notebook is *Drive_NFA_9_28_17_Class.ipynb*
 
+## Derivative-based Parsing (Brzozowski's Derivatives)
+
+  * [THIS YOUTUBE VIDEO](https://youtu.be/xGvCjoWemWg) presents the
+    basics
+
+  * The associated Jupyter notebooks are *A4J.ipynb* and *A4JSoln.ipynb*
+
+## Pushdown Automata
+
+  * Pushdown Automata (with a CFG-parsing perspective) are explained here in
+    [THIS YOUTUBE VIDEO](https://youtu.be/cvVl1lQ4agU)
+
+  * The associated Jupyter notebook is *Drive_PDA_Ch12_Recording.ipynb*
+  
+  * PDA design with acceptance of various inputs (by empty stack or final
+    state) are explained in
+    [THIS YOUTUBE VIDEO](https://youtu.be/zKeHDwKXF7E)
+
+  * The associated Jupyter notebook is *Drive_PDA_w_asg5_possibilities_emptystk_a1b2.ipynb*
+
+## Turing Machines
+
+  * Turing Machines are explained in
+    [THIS YOUTUBE VIDEO](https://youtu.be/E1X8OTWUxJ0)
+
+  * The associated Jupyter Notebook is *Ch13_Recording.ipynb*
+
+# A Tutorial Introduction to Jove  
   
 # Jove Reference Manual
 
