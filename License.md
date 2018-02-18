@@ -23,11 +23,11 @@ Jove was written by Ganesh Gopalakrishnan as part of his forthcoming
 book ``Automata and Computability: Programmer's Perspective'' (hereafter
 abbreviated as ACPP).
 
-Some of the Jove models for Turing machines were written by Ian Briggs,
+Some of the example Turing machines used in Jove were written by Ian Briggs,
 University of Utah. The section on Lambda Calculus was written entirely by
-Ian Briggs. Jove also benefited from Michael Bentley and Heath French,
-University of Utah, who contributed to the use of Jupyter widgets, and also
-helped test the software.
+Ian Briggs, including the Python code. Jove also benefited from Michael Bentley
+and Heath French, University of Utah, who contributed to the use of Jupyter widgets,
+and also helped test the software.
 
 Other acknowledgements, either for the ACPP book or the Jove software include:
 Prof. John Brzozowski, University of Waterloo, Canada (proof-reading the ACPP

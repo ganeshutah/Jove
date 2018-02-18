@@ -4,6 +4,8 @@ This git project presents the Jupyter notebooks that go with
 Ganesh Gopalakrishnan's book 
 
  _Automata and Computability: Programmer's Perspective_
+
+We may abbreviate this book's title by ``ACPP''
  
 The code collection is called "Jove" (which the reader may
 recognize as another name for planet Jupiter). We will refer
@@ -13,7 +15,6 @@ individual notebooks).
 
 Jove is a collection of Jupyter notebooks illustrating many
 principles:
-
 * Sets, strings and languages
 * Language operations
 * Construction of and operations on DFA and NFA
@@ -76,39 +77,66 @@ backed by a Youtube video, then mention that video's link as well.
 We mention the youtube links because in case you have not successfully
 set up Jupyter notebooks, you can still experience Jove.
 
-* Strings, Languages, and Language Operations
+**Please note:** Some of the Youtubes are live class-lecture recordings,
+and may contain material that you do not care about. Feel free to zoom
+forward till I illustrate things on Jupyter notebooks.
 
-  > [THIS YOUTUBE VIDEO]
+## Basics of Computability
+
+  * [THIS YOUTUBE VIDEO]
+    (https://www.youtube.com/watch?v=FQJ4qN44Syg&feature=youtu.be)
+    sets the stage for the ACPP book, and introduces some basics,
+    including how you can become proficient in Jupyter notebooks
+    and also learn a subset of the markdown language (usable to
+    create documentation within Jupyter notebooks.
+
+    Kindly refer to *Module1_Computability.ipynb* and practice using it.
+        
+## Strings, Languages, and Language Operations
+
+  * [THIS YOUTUBE VIDEO]
     (https://www.youtube.com/watch?v=gaWmjvJ-mP4&feature=youtu.be)
     demonstrates how to define strings and languages in Jove. 
     It also describes how one can perform language operations, including
     union, intersection, and Kleene-star.
 
-  > The Jupyter notebook to practice these ideas is
+  * The Jupyter notebook to practice these ideas is
     *Module2_LanguageOps.ipynb*
   
-* Basic DFA definitions and operations
+## Basic DFA definitions and operations
 
-  > DFA definition and operations on DFA are presented in
+  * DFA definition and operations on DFA are presented in
    [THIS YOUTUBE VIDEO](https://www.youtube.com/watch?v=Bdr926TeQyQ&feature=youtu.be)
-   and the Jupyter file *Drive_DFA_Unit1.ipynb*. This introduces the
+   and the Jupyter files *Def_DFA.ipynb* and
+   *Drive_DFA_Unit1.ipynb*. This introduces the
    markdown syntax, how to build a DFA, etc. Testing DFAs can be achieved
    by introducing a way to generate strings as per the _numeric order_.
    This ensures that all short strings are exhaustively tested before
    longer strings are tried.
 
-  > Another useful Youtube that introduces DFA is in
+  * Another useful Youtube that introduces DFA is in
    [THIS YOUTUBE VIDEO](https://www.youtube.com/watch?v=dGcLHtYLgDU&feature=youtu.be)
    and the Jupyter file *DFAUnit2.ipynb*. This covers more DFA
    operations.
 
+## The Pumping Lemma illustrated using cellphone word completion (courtesy Prof. Suresh Venkat)
+  [THIS YOUTUBE VIDEO](https://www.youtube.com/watch?v=7U5iQGnCKN4&t=0s&list=PLlaRdRPgwnW8Biv0Orn74Q5VR32ES3lFl&index=2)
+  demonstrates that hidden in most products today is an automaton, and it shows its true color when pushed :)
 
-* NFA operations, EClosure, etc
+## NFA operations, EClosure, etc
 
-  > NFA operations, including using Jupyter widgets to show EClosure
+  * NFA operations, including using Jupyter widgets to show EClosure
     are shown in [THIS YOUTUBE VIDEO](https://www.youtube.com/watch?v=xjFtLF95uBc&feature=youtu.be)
     The corresponding Jupyter notebook to exercise is *Drive_NFA.ipynb*.
 
-
+## NFA to RE Conversion
+  * [THIS YOUTUBE VIDEO](https://youtu.be/jqdz5s6VWWY) describes the material. The Jupyter notebook
+    that goes with this material is *Drive_NFA_9_26_17_Class.ipynb*
+  
+## Solving the Postage-Stamp Problem using Minimal DFA, and also DFA Minimization using Brzozowski's algorithm
+  * These two neat topics are presented in
+    [THIS YOUTUBE VIDEO](https://www.youtube.com/watch?v=L6l3c17mpi4&feature=youtu.be)
+    with the Jupyter notebook being *Drive_NFA_9_28_17_Class.ipynb*
+    
 # Jove Reference Manual
 
