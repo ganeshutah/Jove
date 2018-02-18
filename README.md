@@ -100,7 +100,14 @@ set up Jupyter notebooks, you can still experience Jove.
   > Another useful Youtube that introduces DFA is in
    [THIS YOUTUBE VIDEO](https://www.youtube.com/watch?v=dGcLHtYLgDU&feature=youtu.be)
    and the Jupyter file *DFAUnit2.ipynb*. This covers more DFA
-   operations. 
+   operations.
+
+
+* NFA operations, EClosure, etc
+
+  > NFA operations, including using Jupyter widgets to show EClosure
+    are shown in [THIS YOUTUBE VIDEO](https://www.youtube.com/watch?v=xjFtLF95uBc&feature=youtu.be)
+    The corresponding Jupyter notebook to exercise is *Drive_NFA.ipynb*.
 
 
 # Jove Reference Manual
