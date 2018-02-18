@@ -21,10 +21,11 @@ principles:
 * Studies of parsing: ambiguity, associativity, precedence
 * Turing machines
 
-Many of the Jove notebooks start with a Youtube video link
+Some of the Jupyter notebooks start with a Youtube video link
 describing the notebook's content and operation. This can serve
-as a handy ``self-tutorial'' of the notebook. All notebooks
-are documented to some extent as are the functions introduced.
+as a handy ``self-tutorial'' of the notebook. Even without such
+a video, all notebooks are documented to some extent as are the
+functions introduced.
 
 This README also contains a mini
 [Jove Reference Manual](#jove-reference-manual).
@@ -61,6 +62,16 @@ notebook must have Graphiviz installed.
 In order to run Jove, you need to set up Jupyter on your machine.
 Detailed instructions for setting up Jupyter are provided
 [in this Overleaf document.](https://www.overleaf.com/read/zbdvqwxmcknm).
+
+# A Tutorial Introduction to Jove
+
+We now provide a tutorial introduction to Jove. We encourage you to
+load-up these [.ipynb] files, watch the Youtube video at its beginning
+(assuming it has one), and then experiment with its contents.
+
+In case you have not successfully set up Jupyter notebooks, we still
+want you to have the experience of seeing what Jove is. For that purpose,
+we also provide these Youtube video links separately.
 
 # Jove Reference Manual
 
