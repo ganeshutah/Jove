@@ -5,8 +5,11 @@ Ganesh Gopalakrishnan's book
 
  _Automata and Computability: Programmer's Perspective_
  
-The code collection is called "Jove" which the reader may
-recognize as another name for planet Jupiter.
+The code collection is called "Jove" (which the reader may
+recognize as another name for planet Jupiter). We will refer
+to the software offering as a whole as "Jove notebooks" but
+sometimes also as Jupyter notebooks (when referring to the
+individual notebooks).
 
 Jove is a collection of Jupyter notebooks illustrating many
 principles:
@@ -61,7 +64,7 @@ notebook must have Graphiviz installed.
 
 In order to run Jove, you need to set up Jupyter on your machine.
 Detailed instructions for setting up Jupyter are provided
-[in this Overleaf document.](https://www.overleaf.com/read/zbdvqwxmcknm).
+[IN THIS OVERLEAF DOCUMENT.](https://www.overleaf.com/read/zbdvqwxmcknm).
 
 # A Tutorial Introduction to Jove
 
@@ -75,7 +78,7 @@ set up Jupyter notebooks, you can still experience Jove.
 
 * Strings, Languages, and Language Operations
 
-  > [This Youtube video]
+  > [THIS YOUTUBE VIDEO]
     (https://www.youtube.com/watch?v=gaWmjvJ-mP4&feature=youtu.be)
     demonstrates how to define strings and languages in Jove. 
     It also describes how one can perform language operations, including
@@ -87,7 +90,7 @@ set up Jupyter notebooks, you can still experience Jove.
 * Basic DFA definitions and operations
 
   > DFA definition and operations on DFA are presented in
-   [this video](https://www.youtube.com/watch?v=Bdr926TeQyQ&feature=youtu.be)
+   [THIS YOUTUBE VIDEO](https://www.youtube.com/watch?v=Bdr926TeQyQ&feature=youtu.be)
    and the Jupyter file *Drive_DFA_Unit1.ipynb*. This introduces the
    markdown syntax, how to build a DFA, etc. Testing DFAs can be achieved
    by introducing a way to generate strings as per the _numeric order_.
@@ -95,7 +98,7 @@ set up Jupyter notebooks, you can still experience Jove.
    longer strings are tried.
 
   > Another useful Youtube that introduces DFA is in
-   [this video](https://www.youtube.com/watch?v=dGcLHtYLgDU&feature=youtu.be)
+   [THIS YOUTUBE VIDEO](https://www.youtube.com/watch?v=dGcLHtYLgDU&feature=youtu.be)
    and the Jupyter file *DFAUnit2.ipynb*. This covers more DFA
    operations. 
 
