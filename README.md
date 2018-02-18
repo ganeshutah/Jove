@@ -1,3 +1,8 @@
+ ---
+ title: Test
+ numbersections: true
+ ---
+ 
 # Introduction
 
 This git project presents the Jupyter notebooks that go with
@@ -84,7 +89,7 @@ forward till I illustrate things on Jupyter notebooks.
 ## Basics of Computability
 
   * [THIS YOUTUBE VIDEO]
-    (https://www.youtube.com/watch?v=FQJ4qN44Syg&feature=youtu.be)
+    (https://youtu.be/FQJ4qN44Syg)
     sets the stage for the ACPP book, and introduces some basics,
     including how you can become proficient in Jupyter notebooks
     and also learn a subset of the markdown language (usable to
@@ -96,7 +101,7 @@ forward till I illustrate things on Jupyter notebooks.
 ## Strings, Languages, and Language Operations
 
   * [THIS YOUTUBE VIDEO]
-    (https://www.youtube.com/watch?v=gaWmjvJ-mP4&feature=youtu.be)
+    (https://youtu.be/gaWmjvJ-mP4)
     demonstrates how to define strings and languages in Jove. 
     It also describes how one can perform language operations, including
     union, intersection, and Kleene-star.
@@ -107,7 +112,7 @@ forward till I illustrate things on Jupyter notebooks.
 ## Basic DFA definitions and operations
 
   * DFA definition and operations on DFA are presented in
-   [THIS YOUTUBE VIDEO](https://www.youtube.com/watch?v=Bdr926TeQyQ&feature=youtu.be).
+   [THIS YOUTUBE VIDEO](https://youtu.be/Bdr926TeQyQ)
 
   * The associated Jupyter notebooks are *Def_DFA.ipynb* and
     *Drive_DFA_Unit1.ipynb* go with the above video.
@@ -119,21 +124,22 @@ forward till I illustrate things on Jupyter notebooks.
     longer strings are tried.
 
   * Another useful Youtube that introduces DFA is in
-   [THIS YOUTUBE VIDEO](https://www.youtube.com/watch?v=dGcLHtYLgDU&feature=youtu.be)
+   [THIS YOUTUBE VIDEO](https://youtu.be/dGcLHtYLgDU)
 
   * The Jupyter file *DFAUnit2.ipynb* goes with this video. This covers more DFA
    operations.
 
 ## The Pumping Lemma illustrated using cellphone word completion (courtesy Prof. Suresh Venkat)
 
-  * [THIS YOUTUBE VIDEO](https://www.youtube.com/watch?v=7U5iQGnCKN4&t=0s&list=PLlaRdRPgwnW8Biv0Orn74Q5VR32ES3lFl&index=2)
+  * [THIS YOUTUBE VIDEO](https://youtu.be/7U5iQGnCKN4)
   demonstrates that hidden in most products today is an automaton,
   and it shows its true color when pushed :)
 
 ## NFA operations, EClosure, etc
 
   * NFA operations, including using Jupyter widgets to show EClosure
-    are shown in [THIS YOUTUBE VIDEO](https://www.youtube.com/watch?v=xjFtLF95uBc&feature=youtu.be)
+    are shown in [THIS YOUTUBE VIDEO](https://youtu.be/xjFtLF95uBc)
+    and also [THIS YOUTUBE VIDEO](https://youtu.be/T-akdMIXOGY)
 
   * The associated Jupyter notebook is *Drive_NFA.ipynb*.
 
@@ -144,9 +150,10 @@ forward till I illustrate things on Jupyter notebooks.
   
 ## Solving the Postage-Stamp Problem using Minimal DFA, and also DFA Minimization using Brzozowski's algorithm
   * These two neat topics are presented in
-    [THIS YOUTUBE VIDEO](https://www.youtube.com/watch?v=L6l3c17mpi4&feature=youtu.be)
+    [THIS YOUTUBE VIDEO](https://youtu.be/L6l3c17mpi4)
 
   * The associated Jupyter notebook is *Drive_NFA_9_28_17_Class.ipynb*
-    
+
+  
 # Jove Reference Manual
 
