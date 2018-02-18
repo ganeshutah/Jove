@@ -1,0 +1,56 @@
+NFA
+!!---------------------------------------------------------------------------
+!! This NFA looks for patterns of the form ....1..
+!! i.e., the third-last (counting from the end-point) is a 1
+!!
+!! NFAs find such patterns "very easy to handle", as they are inherently
+!! capable of taking guesses. The 'are we there yet?' questions pertaining
+!! to whether an NFA is looking at the third-last input is naturally handled:
+!! keep one transition progressing along "yes we are there" and another
+!! progressing along "no we aren't there".
+!!
+!! This example provides an excellent illustration of the power of
+!! non-determinism. This power is demonstrated by these facts:
+!!
+!! * We take 4 states in the NFA solution.
+!! * But during execution, the NFA
+!!   manifests all the token combinations
+!! * This shows how burden is shifted from the
+!!   human to the computer doing the NFA simulation.
+!!---------------------------------------------------------------------------
+!! State : in ->  tostates !! comment
+!!---------------------------------------------------------------------------
+
+
+!!---------------------------------------------------------------------------
+
+I : 0|1 -> I    !! On input 0 in the init state I, stay in I
+                !! On input 1, fork two paths, one staying in I
+		!! ("no, we are not seeing the third-last 1")
+		!! and the other going to state A ("yes, we are
+		!! guessing to be seeing the third-last 1"). Thus, a
+		!! "speculative token" advances to state A.
+		
+I : 1   -> A    !! Threads that land in state A must enter the final
+A : 0|1 -> B    !! state in two more steps. Any extension of such inputs
+B : 0|1 -> F    !! kills this speculative token -- but, do recall that
+                !! more speculative input tokens are coming right behind.
+		!! The coding finishes in four states.
+
+!!---------------------------------------------------------------------------
+!! You may use the line below as an empty shell to populate for your purposes
+!! Also serves as a syntax reminder for entering DFAs.
+!!
+!! State : i1 | i2 -> s1, s2   !! comment
+!!
+!! ..    : .. | .. -> .. , ..  !!  ..
+!!---------------------------------------------------------------------------
+!!
+!! Good commenting and software-engineering methods, good clean indentation,
+!! grouping of similar states, columnar alignment, etc etc. are HUGELY
+!! important in any programming endeavor -- especially while programming
+!! automata. Otherwise, you can easily make a mistake in your automaton
+!! code. Besides, you cannot rely upon others to find your mistakes, as
+!! they will find your automaton code impossible to read!
+!!
+!!---------------------------------------------------------------------------

@@ -1,0 +1,87 @@
+!!---------------------------------------------------------------------------
+!! This DFA looks for patterns of the form ....1..
+!! i.e., the third-last (counting from the end-point) is a 1
+!!
+!! DFAs find such patterns "very stressful to handle", as they are kept
+!! guessing of the form  'are we there yet?' 'are we seeing the third-last' ?
+!! They must keep all the failure options at hand. Even after a
+!! 'fleeting glimpse' of the third-last, more inputs can come barreling-in
+!! to make that "lucky 1" a non-third-last.
+!!
+!! We take 15 states in the DFA solution.
+!!---------------------------------------------------------------------------
+
+DFA
+!!---------------------------------------------------------------------------
+!! State : in ->  tostate !! comment
+!!---------------------------------------------------------------------------
+I       :  0 ->  S0      !! Enter at init state I
+I       :  1 ->  S1      !! Record bit seen in state letter
+                         !! i.e., S0 means "state after seeing a 0"
+			 
+S0      :  0 ->  S00     !! continue recording input seen
+S0      :  1 ->  S01     !! in state-letter. This is just a problem-specific
+                         !! way of compressing the input seen so far.
+
+S1      :  0 ->  S10     !! We still don't have a "third last" available.
+S1      :  1 ->  S11     !! 
+                         !! - The semantics are: "third-last available, + it is 1".
+			 !! - and not this:      "if third-last available, then 1".
+
+S00     :  0 ->  S000    !! Aha, we now have seen 3 characters. Still no 
+S00     :  1 ->  S001    !! third-last being a 1.
+
+S01     :  0 ->  S010    !! We keep updating a window of the past three inputs
+S01     :  1 ->  S011    !! in the state letter. 
+
+S10     :  0 ->  F100    !! Aha, notice that S10, upon seeing a 0, becomes F100
+S10     :  1 ->  F101    !! This is because the "1" gets pushed to the third-last
+                         !! position! The same is true of S10 upon seeing a 1.
+			 
+S11     :  0 ->  F110    !! The DFA is exponential in size, as can be seen
+S11     :  1 ->  F111    !! by studying the remainder of this file. We will explain
+                         !! selected aspects.
+S000    :  0 ->  S000 
+S000    :  1 ->  S001
+
+S001    :  0 ->  S010 
+S001    :  1 ->  S011
+
+S010    :  0 ->  F100 
+S010    :  1 ->  F101
+
+S011    :  0 ->  F110 
+S011    :  1 ->  F111
+
+F100    :  0 ->  S000 
+F100    :  1 ->  S001
+
+F101    :  0 ->  S010    !! Now see that F101 gets demoted to state S010
+F101    :  1 ->  S011    !! upon seeing a 0 or a 1. This is because the
+                         !! third-last position now has a 0 in both cases.
+
+F110    :  0 ->  F100    !! See for instance that F110 goes to F100
+F110    :  1 ->  F101
+
+F111    :  0 ->  F110 
+F111    :  1 ->  F111 
+
+!!---------------------------------------------------------------------------
+!! You may use the line below as an empty shell to populate for your purposes
+!! Also serves as a syntax reminder for entering DFAs.
+!!
+!! State : i1 | i2 -> tos !! comment
+!!
+!! ..    : .. | .. -> ..  !!  ..
+!!---------------------------------------------------------------------------
+!!
+!! Good commenting and software-engineering methods, good clean indentation,
+!! grouping of similar states, columnar alignment, etc etc. are HUGELY
+!! important in any programming endeavor -- especially while programming
+!! automata. Otherwise, you can easily make a mistake in your automaton
+!! code. Besides, you cannot rely upon others to find your mistakes, as
+!! they will find your automaton code impossible to read!
+!!
+!!---------------------------------------------------------------------------
+
+
