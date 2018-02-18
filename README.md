@@ -70,6 +70,38 @@ In order to run Jove, you need to set up Jupyter on your machine.
 Detailed instructions for setting up Jupyter are provided
 [IN THIS OVERLEAF DOCUMENT.](https://www.overleaf.com/read/zbdvqwxmcknm).
 
+# Overall Contents of this directory
+
+  This directory contains a plethora of files whose types are now briefly
+  described
+
+  * Module_... :
+
+  >* These files were created before we designed Jove's input markdown
+     language. They are still valuable illustrations.
+
+     Notice that some of the very well-coded Turing machines (by Ian
+     Briggs) are available only in the ``low-level'' form (specifically
+     inside *Module10_TM.ipynb*) -- and **not** in the markdown form yet.
+
+  * The four directories dfafiles, nfafiles, pdafiles, tmfiles
+
+  >* These are directories containing DFA, NFA, PDA, and TM defined
+     according to Jove's markdown syntax
+
+  * Def_..
+
+  >* This is a directory containing Jove definitions. We exported
+     these Jupyter notebooks into [.py] and stuck them within the
+     Imports/ directory
+
+  * Drive_...
+
+  >* This is a directory containing many useful illustrations of Jove.
+     Some are called out in the Jove tutorial to follow in the next
+     section. All these Drive_... files have a fairly high pedagogical
+     value (in our estimate, anyway)
+
 # A Tutorial Introduction to Jove
 
 We now provide a tutorial introduction to Jove. We encourage you to
@@ -193,5 +225,44 @@ forward till I illustrate things on Jupyter notebooks.
 
   >* The associated Jupyter Notebook is *Ch13_Recording.ipynb*
 
-# Jove Reference Manual
+  
+# How to read and extend the code of Jove
+
+## Understanding and extending Jove's markdown processing
+
+   * Much of the convenience of defining machines stems from Jove's
+     ability to handle machines described via a markdown syntax.
+   
+   >* Please peruse *Def_md2mc.ipynb* and *Drive_md2mc.ipynb* to
+      fully appreciate how Jove's own markdown processing works.
+      In a sense, this is a _mini compiler_ that takes Jove's markdown
+      and produces the ``machine'' (hash-table) version of Jove's code
+
+      Code written prior to this markdown facility being developed
+      is in ModuleN_... files
+   
+## Extending the Dot display routines
+
+   * We perform all the processing of ``machine'' (hash-table) descriptions
+     and convert them into Graphviz objects.
+
+   >* File DotBashers.ipynb is the heart of this markdown processing.
+      This file also checks for the well-formedness of machines.
+      It also has utilities such as __fuse-edges__ to collapse
+      multiple machine-edges into one
+
+## Extending other aspects of Jove's functionality
+
+   * For all aspects of Jove's functionality, refer to the Def_... files.
+     If/when you change the functionality of any of the Def_... files,
+     kindly generate a [.py] file and deposit that into the Imports/
+     directory
+
+# END
+
+   
+
+
+
+
 
