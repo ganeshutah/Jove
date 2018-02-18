@@ -75,13 +75,13 @@ set up Jupyter notebooks, you can still experience Jove.
 
 * Strings, Languages, and Language Operations
 
-  [This Youtube video]
+  > [This Youtube video]
   (https://www.youtube.com/watch?v=gaWmjvJ-mP4&feature=youtu.be)
   demonstrates how to define strings and languages in Jove. It
   also describes how one can perform language operations, including
   union, intersection, and Kleene-star.
 
-  The Jupyter notebook to practice these ideas is
+  > The Jupyter notebook to practice these ideas is
   Module2_LanguageOps.ipynb
 
   
