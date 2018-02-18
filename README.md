@@ -67,11 +67,27 @@ Detailed instructions for setting up Jupyter are provided
 
 We now provide a tutorial introduction to Jove. We encourage you to
 load-up these [.ipynb] files, watch the Youtube video at its beginning
-(assuming it has one), and then experiment with its contents.
+(assuming it has one), and then experiment with its contents. We will
+mention the names of the [.ipynb] files below, and in case they are
+backed by a Youtube video, then mention that video's link as well.
+We mention the youtube links because in case you have not successfully
+set up Jupyter notebooks, you can still experience Jove.
 
-In case you have not successfully set up Jupyter notebooks, we still
-want you to have the experience of seeing what Jove is. For that purpose,
-we also provide these Youtube video links separately.
+* Strings, Languages, and Language Operations
+
+  [This Youtube video]
+  (https://www.youtube.com/watch?v=gaWmjvJ-mP4&feature=youtu.be)
+  demonstrates how to define strings and languages in Jove. It
+  also describes how one can perform language operations, including
+  union, intersection, and Kleene-star.
+
+  The Jupyter notebook to practice these ideas is
+  Module2_LanguageOps.ipynb
+
+  
+  
+
+
 
 # Jove Reference Manual
 
