@@ -5,8 +5,8 @@
 
 from lex import lex
 from yacc import yacc
-from Imports.StateNameSanitizers import ResetStNum, NxtStateStr
-from Imports.SystemImports       import *
+from jove.StateNameSanitizers import ResetStNum, NxtStateStr
+from jove.SystemImports       import *
 
 
 # In[2]:

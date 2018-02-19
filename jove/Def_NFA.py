@@ -3,12 +3,12 @@
 
 # In[1]:
 
-from Imports.DotBashers import is_consistent_nfa
-from Imports.TransitionSelectors import *
-from Imports.SysConsts import *
-from Imports.SystemImports import *
-from Imports.ShrinkStates import *
-from Imports.Def_DFA import mk_dfa  # used in nfa2dfa
+from jove.DotBashers import is_consistent_nfa
+from jove.TransitionSelectors import *
+from jove.SysConsts import *
+from jove.SystemImports import *
+from jove.ShrinkStates import *
+from jove.Def_DFA import mk_dfa  # used in nfa2dfa
 
 
 # # Definitions of NFA routines

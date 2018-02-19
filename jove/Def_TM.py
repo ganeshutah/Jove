@@ -15,8 +15,8 @@
 
 # In[1]:
 
-from Imports.SystemImports       import *
-from Imports.TransitionSelectors import *
+from jove.SystemImports       import *
+from jove.TransitionSelectors import *
 
 
 # ## Basic Definitions

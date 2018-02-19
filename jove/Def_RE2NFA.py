@@ -8,10 +8,10 @@
 
 # In[1]:
 
-from Imports.Def_NFA import mk_nfa
-from lex                 import lex
-from yacc                import yacc
-from Imports.StateNameSanitizers import ResetStNum, NxtStateStr
+from jove.Def_NFA import mk_nfa
+from lex          import lex
+from yacc         import yacc
+from jove.StateNameSanitizers import ResetStNum, NxtStateStr
 
 
 # # Parsing regular expressions : ReParse

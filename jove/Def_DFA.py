@@ -3,11 +3,11 @@
 
 # In[1]:
 
-from Imports.DotBashers import is_partially_consistent_dfa
-from Imports.DotBashers import is_consistent_dfa
-from Imports.TransitionSelectors import *
-from Imports.SysConsts import *
-from Imports.SystemImports import *
+from jove.DotBashers import is_partially_consistent_dfa
+from jove.DotBashers import is_consistent_dfa
+from jove.TransitionSelectors import *
+from jove.SysConsts import *
+from jove.SystemImports import *
 
 
 # # DFA

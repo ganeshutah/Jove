@@ -5,9 +5,9 @@
 
 # In[ ]:
 
-from Imports.SysConsts           import STATENAME_MAXSIZE, STATENAME_NFAMAX
-from Imports.StateNameSanitizers import isNotBH
-from Imports.TransitionSelectors import fn_trans
+from jove.SysConsts           import STATENAME_MAXSIZE, STATENAME_NFAMAX
+from jove.StateNameSanitizers import isNotBH
+from jove.TransitionSelectors import fn_trans
 
 
 # In[1]:

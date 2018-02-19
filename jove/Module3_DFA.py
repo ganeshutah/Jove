@@ -3,9 +3,9 @@
 
 # In[1]:
 
-from Imports.DotBashers          import *
-from Imports.TransitionSelectors import *
-from Imports.SystemImports       import *
+from jove.DotBashers          import *
+from jove.TransitionSelectors import *
+from jove.SystemImports       import *
 
 
 # # Top-level functions in this module

@@ -3,9 +3,9 @@
 
 # In[5]:
 
-from Imports.SysConsts import STATENAME_MAXSIZE
-from Imports.SysConsts import STATENAME_NFAMAX
-from Imports.SysConsts import NXTSTATENUM  
+from jove.SysConsts import STATENAME_MAXSIZE
+from jove.SysConsts import STATENAME_NFAMAX
+from jove.SysConsts import NXTSTATENUM
 
 def ResetStNum():
     """Reset the state numbering counter.

@@ -22,8 +22,8 @@
 
 # In[1]:
 
-from Imports.SystemImports import *    
-from Imports.DotBashers  import *
+from jove.SystemImports import *
+from jove.DotBashers  import *
 
 
 # ## Algorithm

@@ -20,12 +20,12 @@
 
 # In[ ]:
 
-from Imports.SysConsts           import *
-from Imports.StateNameSanitizers import *
-from Imports.SystemImports       import *
-from Imports.TransitionSelectors import *
-from Imports.ShrinkStates        import shrink_dfastates
-from Imports.ShrinkStates        import shrink_nfastates
+from jove.SysConsts           import *
+from jove.StateNameSanitizers import *
+from jove.SystemImports       import *
+from jove.TransitionSelectors import *
+from jove.ShrinkStates        import shrink_dfastates
+from jove.ShrinkStates        import shrink_nfastates
 
 #=== Consistency Checkers : do that before generating dot! ===
 

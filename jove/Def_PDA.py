@@ -3,9 +3,9 @@
 
 # In[1]:
 
-from Imports.SystemImports       import *
-from Imports.TransitionSelectors import *
-from Imports.DotBashers          import chk_consistent_pda
+from jove.SystemImports       import *
+from jove.TransitionSelectors import *
+from jove.DotBashers          import chk_consistent_pda
 
 
 # # Pushdown Automata (PDA)

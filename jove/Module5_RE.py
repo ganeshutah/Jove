@@ -23,13 +23,13 @@
 
 # Fix import paths later to exact low-level module
 
-from Imports.DotBashers  import dotObj_dfa
-from Imports.DotBashers  import dotObj_nfa
+from jove.DotBashers  import dotObj_dfa
+from jove.DotBashers  import dotObj_nfa
 
-from Imports.Module4_NFA import nfa2dfa
-from Imports.Module4_NFA import rev_dfa
-from Imports.Module4_NFA import mk_nfa
-from Imports.Module4_NFA import min_dfa_brz
+from jove.Module4_NFA import nfa2dfa
+from jove.Module4_NFA import rev_dfa
+from jove.Module4_NFA import mk_nfa
+from jove.Module4_NFA import min_dfa_brz
 
 from lex                 import lex
 from yacc                import yacc

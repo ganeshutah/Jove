@@ -40,15 +40,15 @@
 # In[1]:
 
 # Make imports better (narrower) eventually
-from Imports.ShrinkStates import shrink_dfastates
-from Imports.ShrinkStates import shrink_nfastates
-from Imports.ShrinkStates import mkSSnam
+from jove.ShrinkStates import shrink_dfastates
+from jove.ShrinkStates import shrink_nfastates
+from jove.ShrinkStates import mkSSnam
 
-from Imports.Module3_DFA  import mk_dfa
+from jove.Module3_DFA  import mk_dfa
 
-from Imports.DotBashers          import *
-from Imports.TransitionSelectors import *
-from Imports.SystemImports       import *
+from jove.DotBashers          import *
+from jove.TransitionSelectors import *
+from jove.SystemImports       import *
 
 
 # # Chapter-4: Nondeterministic Finite Automata
