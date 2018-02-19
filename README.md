@@ -84,7 +84,8 @@ Detailed instructions for setting up Jupyter are provided
      Briggs) are available only in the ``low-level'' form (specifically
      inside *Module10_TM.ipynb*) -- and **not** in the markdown form yet.
 
-  * The four directories dfafiles, nfafiles, pdafiles, tmfiles
+  * The four directories dfafiles, nfafiles, pdafiles, tmfiles within the
+    machines directory
 
   >* These are directories containing DFA, NFA, PDA, and TM defined
      according to Jove's markdown syntax
