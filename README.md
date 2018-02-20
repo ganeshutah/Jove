@@ -311,7 +311,7 @@ forward till I illustrate things on Jupyter notebooks.
          PATH as you.  Or you can install graphviz into only your home directory
 	 as follows: 'pip install --user graphviz'
 
-   10. Go to [Make sure the install works](Make sure the install works) section at the
+   10. Go to [Make sure the install works](make-sure-the-install-works) section at the
        end to verify correct installation.
 
        
@@ -326,7 +326,7 @@ forward till I illustrate things on Jupyter notebooks.
 
       - pip install graphviz
 
-   2. Go to [Make sure the install works](Make sure the install works) section at the
+   2. Go to [Make sure the install works](make-sure-the-install-works) section at the
       end to verify correct installation.
 
 ## Make sure the install works
