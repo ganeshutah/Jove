@@ -1,1 +1,1 @@
-../../3rdpary/lex.py
+../../3rdparty/lex.py
