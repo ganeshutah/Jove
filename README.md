@@ -72,7 +72,25 @@ Detailed instructions for setting up Jupyter are provided
 (which will be kept updated) and also in [THIS SECTION](#installing-jupyter-and-jove)
 (which may become obsolete; hopefully not)
 
-# Overall Contents of this directory
+# CONTENTS
+
+Salient contents of this git directory are now described:
+
+'''
+├── 3rdparty -- contains 3rd-party stuff (lex.py and yacc.py for now)
+├── jove     -- all the key Jove include files [.py]
+├── machines -- examples of machines in Jove markdown syntax you can study
+├── tools    -- a Python script to clear output cells before you save [.ipynb]
+└── notebooks
+  ├── tutorial -- Jupyter notebooks you can run and study (has Youtube videos)
+  ├── module   -- More Jupyter notebooks you can run and study (some Youtube)
+  ├── src      -- These are the Def_*.ipynb from which "jove" files obtained
+  └── driver   -- These are still more Jupyter notebooks to run and study 'src'
+'''
+
+## Take a few tutorials
+
+
 
   This directory contains a plethora of files whose types are now briefly
   described
