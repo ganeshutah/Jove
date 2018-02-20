@@ -357,9 +357,8 @@ forward till I illustrate things on Jupyter notebooks.
          account'.
        - Double click on ``Path'' in the top half of the window.  Add the
          path for graphviz, which should be something like this:
-	 
-	 >   C:\$Users\username>\Anaconda3\Library\bin\graphviz
-         >   Close all command prompts and open them again to have updated PATH variables
+	    C:\$Users\username>\Anaconda3\Library\bin\graphviz
+       - Close all command prompts and open them again to have updated PATH variables
 
     7. The second is to replace 'dot' with 'dot.bat' in the graphviz python module.
        - Navigate to the graphviz python module directory, for example
