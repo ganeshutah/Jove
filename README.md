@@ -31,6 +31,11 @@ as a handy ``self-tutorial'' of the notebook. Even without such
 a video, all notebooks are documented to some extent as are the
 functions introduced.
 
+**PLEASE NOTE: The Youtube videos often contain class lecture
+screen recordings. Feel free to scroll around in these videos
+to locate Jove (Jupyter notebook) sessions, and follow those.**
+
+
 
 # Jove's Design and Code Organization
 
@@ -43,6 +48,9 @@ We often prefer a side-effect-free functional/recursive/higher-order
 style of coding to make the logic of the function stand out.
 When iteration makes sense (e.g. NFA to RE conversion) we do employ
 the more familiar iterative style.
+
+[The section contents](#contents) specifies how we offer all the
+files belonging to Jove.
 
 Most automata (NFA, DFA, PDA, and Turing machines) have "Def_..."
 files that define basic operations on these machine-types. We then
@@ -60,9 +68,11 @@ A key requirement is to have **lex.py** and **yacc.py** in the top-level
 directory. This will be invoked during parsing.
 
 All automata are displayed using Graphiviz for which your Jupyter
-notebook must have Graphiviz installed.
+notebook must have Graphiviz installed; we provide
+[complete instructions in this section.]
+(#obtaining-and-setting-up-jupyter-for-running-jove).
 
-# Obtaining and Setting up Jupyter (including plug-ins) for running Jove
+# Obtaining and Setting up Jupyter for running Jove
 
 In order to run Jove, you need to set up Jupyter on your machine.
 Detailed instructions for setting up Jupyter are provided 
@@ -75,13 +85,13 @@ Detailed instructions for setting up Jupyter are provided
 Salient contents of this git directory are now described:
 
 * 3rdparty -- contains 3rd-party stuff (lex.py and yacc.py for now)
-* jove     -- all the key Jove include files [.py]
+* **jove**     -- all the key Jove include files [.py]
 * machines -- examples of machines in Jove markdown syntax you can study
 * tools    -- a Python script to clear output cells before you save [.ipynb]
 * notebooks
   - **tutorial** -- Jupyter notebooks you can run and study (has Youtube videos)
   - module   -- More Jupyter notebooks you can run and study (some Youtube)
-  - src      -- These are the Def_*.ipynb from which "jove" files obtained
+  - src      -- These are the Def_*.ipynb from which the aforesaid **jove** [.py] files obtained
   - driver   -- These are still more Jupyter notebooks to run and study 'src'
 
 
@@ -91,7 +101,9 @@ Salient contents of this git directory are now described:
  This directory contains [.ipynb] notebooks that have embedded
  Youtube links. The 
  [Jove Tutorials are described in detail here]
- (#jove-tutorials-are-described-in-detail-here)
+ (#jove-tutorials-are-described-in-detail-here).
+ Just go to this directory and type 'jupyter notebook'
+ and execute the cells in tutorial notebooks you see here.
 
 ## Other Directory Contents
 
@@ -100,7 +112,7 @@ Salient contents of this git directory are now described:
   >* These files were created before we designed Jove's input markdown
      language. They are still valuable illustrations.
 
-     Notice that some of the very well-coded Turing machines (by Ian
+  *  Notice that some of the very well-coded Turing machines (by Ian
      Briggs) are available only in the ``low-level'' form (specifically
      inside *Module10_TM.ipynb*) -- and **not** in the markdown form yet.
      Thus, this **module** directory has great value for studying some
