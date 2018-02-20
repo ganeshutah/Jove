@@ -53,7 +53,7 @@ the use of the functions.
 
 In order to include the "Def_..." files into the "Drive_..." files,
 we prefer to generate Python [.py] files from the former, store these
-files into an Imports/ directory, and include those [.py] files into
+files into an jove/ directory, and include those [.py] files into
 the "Drive_..." files. While the direct importing of Jupyter notebooks
 into other notebooks is supported, we once ran into bugs, and felt
 that this arrangement was more foolproof.
@@ -84,7 +84,8 @@ Detailed instructions for setting up Jupyter are provided
      Briggs) are available only in the ``low-level'' form (specifically
      inside *Module10_TM.ipynb*) -- and **not** in the markdown form yet.
 
-  * The four directories dfafiles, nfafiles, pdafiles, tmfiles
+  * The four directories dfafiles, nfafiles, pdafiles, tmfiles within the
+    machines directory
 
   >* These are directories containing DFA, NFA, PDA, and TM defined
      according to Jove's markdown syntax
@@ -93,7 +94,7 @@ Detailed instructions for setting up Jupyter are provided
 
   >* This is a directory containing Jove definitions. We exported
      these Jupyter notebooks into [.py] and stuck them within the
-     Imports/ directory
+     jove/ directory
 
   * Drive_...
 
@@ -124,7 +125,7 @@ or by the ``run all cells'' command. All that is needed is:
 
  * The lex.py and yacc.py files
 
- * The Imports/ directory
+ * The jove/ directory
 
 **Please note:** Some of the Youtubes are live class-lecture recordings,
 and may contain material that you do not care about. Feel free to zoom
@@ -255,7 +256,7 @@ forward till I illustrate things on Jupyter notebooks.
 
    * For all aspects of Jove's functionality, refer to the Def_... files.
      If/when you change the functionality of any of the Def_... files,
-     kindly generate a [.py] file and deposit that into the Imports/
+     kindly generate a [.py] file and deposit that into the jove/
      directory
 
 # END

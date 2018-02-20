@@ -1,0 +1,8 @@
+*.pyc
+*~
+.*.swo
+.*.swp
+.ipynb_checkpoints
+__pycache__
+parser.out
+parsetab.py
