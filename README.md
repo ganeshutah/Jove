@@ -150,24 +150,18 @@ backed by a Youtube video, then mention that video's link as well.
 We mention the youtube links because in case you have not successfully
 set up Jupyter notebooks, you can still experience Jove.
 
-## Prerequisites to running the Jove code
-
-There are no prerequisites. Once you follow the instructions
+Once you follow the instructions
 listed under
 [Obtaining and Setting up Jupyter for running Jove]
 (#obtaining-and-setting-up-jupyter-for-running-jove), 
-you should be able to run _any_ file under Jupyter.
-You can run the Jupyter file [.ipynb] either cell by cell
-or by the ``run all cells'' command. All that is needed is:
-
- * The lex.py and yacc.py files
-
- * The jove/ directory
+you can run the Jupyter file [.ipynb] either cell by cell
+or by the ``run all cells'' command. 
 
 **PLEASE NOTE:** Some of the Youtubes are live class-lecture recordings,
 and may contain material that you do not care about. Feel free to zoom
-forward till I illustrate things on Jupyter notebooks. Also these videos
-are not fully edited -- pardon the real-life class-room stuff!
+forward till I illustrate things on Jupyter notebooks.
+
+We now describe the tutorials provided.
 
 ## Basics of Computability
 
