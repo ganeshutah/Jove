@@ -31,8 +31,6 @@ as a handy ``self-tutorial'' of the notebook. Even without such
 a video, all notebooks are documented to some extent as are the
 functions introduced.
 
-This README also contains a mini
-[Jove Reference Manual](#jove-reference-manual).
 
 # Jove's Design and Code Organization
 
