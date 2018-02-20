@@ -319,11 +319,9 @@ forward till I illustrate things on Jupyter notebooks.
 
    1. Run the installer installing into your home directory.  Open a terminal.
       Install the graphviz command-line tools.
-
       - conda install graphviz
 
    2. Now install the graphviz python module
-
       - pip install graphviz
 
    2. Go to [Make sure the install works](#make-sure-the-install-works) section at the
@@ -335,9 +333,11 @@ forward till I illustrate things on Jupyter notebooks.
       You do not need to add the Anaconda 3 directories to your system PATH.
 
    2. After the install, open an Anaconda Prompt (go to the start menu and search
-      ``Anaconda Prompt'').  Note that if you ignored the advise to install in your
-      home directory, you will want to right-click on the Anaconda Prompt icon and
-      select ``Run as Administrator''.
+      ``Anaconda Prompt'').
+
+      - Note that if you ignored the advise to install in your
+        home directory, you will want to right-click on the Anaconda Prompt icon and
+        select ``Run as Administrator''.
 
    3. In this prompt, install graphviz
       - conda install graphviz
@@ -348,14 +348,11 @@ forward till I illustrate things on Jupyter notebooks.
 
    5. Now the graphviz module (or arguably the subprocess module) has a bug that we
       will need to work around.
-      
       Basically, calling subprocess.check_call(['dot'])
       doesn't match with dot.bat that is in the system PATH.
-
       There are two fixes for this. Choose whichever one you want.
 
     6. The first is to add the graphviz command-line tool directory to your system path
-	 
        - Open the control panel
        - Search for ``environment'' and click on ``Edit environment variables for your
          account''.
@@ -366,7 +363,6 @@ forward till I illustrate things on Jupyter notebooks.
        - Close all command prompts and open them again to have updated PATH variables
 
     7. The second is to replace 'dot' with 'dot.bat' in the graphviz python module.
-    
        - Navigate to the graphviz python module directory, for example
        - C:\Users\<Username>\Anaconda3\Lib\site-packages\graphviz
        - Open in a text editor files.py and backend.py
