@@ -212,8 +212,9 @@ are not fully edited -- pardon the real-life class-room stuff!
 ## The Pumping Lemma illustrated using cellphone word completion (courtesy Prof. Suresh Venkat)
 
   * [THIS YOUTUBE VIDEO](https://youtu.be/7U5iQGnCKN4)
-  demonstrates that hidden in most products today is an automaton,
-  and it shows its true color when pushed :)
+  demonstrates that the word-completion automaton
+  hidden in cellphones gets trapped in a cycle when
+  given a huge succession of words to complete.
 
 ## NFA operations, EClosure, etc
 
