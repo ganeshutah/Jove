@@ -76,26 +76,28 @@ Detailed instructions for setting up Jupyter are provided
 
 Salient contents of this git directory are now described:
 
-
 * 3rdparty -- contains 3rd-party stuff (lex.py and yacc.py for now)
 * jove     -- all the key Jove include files [.py]
 * machines -- examples of machines in Jove markdown syntax you can study
 * tools    -- a Python script to clear output cells before you save [.ipynb]
 * notebooks
-  - tutorial -- Jupyter notebooks you can run and study (has Youtube videos)
+  - **tutorial** -- Jupyter notebooks you can run and study (has Youtube videos)
   - module   -- More Jupyter notebooks you can run and study (some Youtube)
   - src      -- These are the Def_*.ipynb from which "jove" files obtained
   - driver   -- These are still more Jupyter notebooks to run and study 'src'
 
 
-## Take a few tutorials
+## Begin by taking a few tutorials
 
+ Begin by taking tutorials from the **tutorials** directory.
+ This directory contains [.ipynb] notebooks that have embedded
+ Youtube links. The 
+ [Jove Tutorials are described in detail here]
+ (#jove-tutorials-are-described-in-detail-here)
 
+## Other Directory Contents
 
-  This directory contains a plethora of files whose types are now briefly
-  described
-
-  * Module_... :
+  * Module_... contained in the **notebooks/modules** directory:
 
   >* These files were created before we designed Jove's input markdown
      language. They are still valuable illustrations.
@@ -103,27 +105,29 @@ Salient contents of this git directory are now described:
      Notice that some of the very well-coded Turing machines (by Ian
      Briggs) are available only in the ``low-level'' form (specifically
      inside *Module10_TM.ipynb*) -- and **not** in the markdown form yet.
+     Thus, this **module** directory has great value for studying some
+     non-trivial TMs.
 
-  * The four directories dfafiles, nfafiles, pdafiles, tmfiles within the
-    machines directory
+  * The **machines** directory contains
+    four directories dfafiles, nfafiles, pdafiles, and tmfiles that
+    contain examples of Jove markdown files. This is how you can
+    build machines using an editor and load into Jove via the
+    command **md2mc**. 
 
-  >* These are directories containing DFA, NFA, PDA, and TM defined
-     according to Jove's markdown syntax
-
-  * Def_..
+  * Def_.. files contained in **notebooks/src** directory
 
   >* This is a directory containing Jove definitions. We exported
      these Jupyter notebooks into [.py] and stuck them within the
-     jove/ directory
+     **jove** directory
 
-  * Drive_...
+  * Drive_... files contained in the **notebooks/driver**
 
   >* This is a directory containing many useful illustrations of Jove.
      Some are called out in the Jove tutorial to follow in the next
      section. All these Drive_... files have a fairly high pedagogical
      value (in our estimate, anyway)
 
-# A Tutorial Introduction to Jove
+# Jove Tutorials are described in detail here
 
 We now provide a tutorial introduction to Jove. We encourage you to
 load-up these [.ipynb] files, watch the Youtube video at its beginning
@@ -147,9 +151,10 @@ or by the ``run all cells'' command. All that is needed is:
 
  * The jove/ directory
 
-**Please note:** Some of the Youtubes are live class-lecture recordings,
+**PLEASE NOTE:** Some of the Youtubes are live class-lecture recordings,
 and may contain material that you do not care about. Feel free to zoom
-forward till I illustrate things on Jupyter notebooks.
+forward till I illustrate things on Jupyter notebooks. Also these videos
+are not fully edited -- pardon the real-life class-room stuff!
 
 ## Basics of Computability
 
