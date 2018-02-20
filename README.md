@@ -64,11 +64,65 @@ directory. This will be invoked during parsing.
 All automata are displayed using Graphiviz for which your Jupyter
 notebook must have Graphiviz installed.
 
-# Obtaining and Setting up Jupyter for running Jove
+# Obtaining and Setting up Jupyter (including plug-ins) for running Jove
 
 In order to run Jove, you need to set up Jupyter on your machine.
-Detailed instructions for setting up Jupyter are provided
-[IN THIS OVERLEAF DOCUMENT.](https://www.overleaf.com/read/zbdvqwxmcknm).
+Detailed instructions for setting up Jupyter are provided 
+[IN THIS OVERLEAF DOCUMENT](https://www.overleaf.com/read/zbdvqwxmcknm).
+(which will be kept updated) and also below (which may become obsolete;
+hopefully not):
+
+## Download Anaconda for Python 3
+
+   * Linux: 64-bit or 32-bit
+   * Mac:   64-bit
+   * Windows: 64-bit or 32-bit 
+
+## Linux Install
+
+   1. Start the installer (instructions assume 64-bit)
+
+   2. To install system-wide:
+      >- sudo -H bash Anaconda3-4.4.0-Linux-x86_64.sh
+
+   3. To install only for your user:
+      >- bash Anaconda3-4.4.0-Linux-x86_64.sh
+
+   4. In the installer, do the following:
+      >- View the license and accept it
+       - Choose where to install (you can press enter for the default)
+       - Answer ``yes'' to having the Anaconda path prepended to your PATH
+
+   5. Exit that terminal and open a new one.  Make sure that the
+      >- `jupyter` found is the one you installed
+       - which jupyter
+       - This should return a path in the directory where you
+         installed Anaconda 3.
+       - It will be similar to /home/username/anaconda3/bin/jupyter
+
+   6. Install the graphviz command-line module (use
+      'sudo -H' if you installed Anaconda 3 system-wide)
+      >- conda install graphviz
+
+   7. Now install the python module for using graphviz.  First, make sure the 'pip'
+      tool used is the one from the Anaconda 3 install.
+      >- which pip
+
+   8. Now for the installing of the graphviz python module.  If you installed
+      Anaconda 3 into your home directory, then do the following:
+      >- pip install graphviz
+
+   9. If you installed Anaconda 3 system-wide, you can install the graphviz module
+      system-wide:
+      >- sudo -H $(which pip) install graphviz
+       - Notice the '$(which pip)' since the root account may not have the same
+         PATH as you.  Or you can install graphviz into only your home directory:
+         >- pip install --user graphviz
+
+   10. Go to [Make sure the install works](Make sure the install works) section at the
+       end to verify correct installation.
+
+
 
 # Overall Contents of this directory
 
