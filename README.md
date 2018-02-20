@@ -107,6 +107,9 @@ Salient contents of this git directory are now described:
 
 ## Other Directory Contents
 
+You may descend into any of these directories and execute the
+Jupyter notebooks you find there. Here are more specifics:
+
   * Module_... contained in the **notebooks/modules** directory:
 
   >* These files were created before we designed Jove's input markdown
