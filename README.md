@@ -285,9 +285,9 @@ forward till I illustrate things on Jupyter notebooks.
        - Choose where to install (you can press enter for the default)
        - Answer ``yes'' to having the Anaconda path prepended to your PATH
 
-   5. Exit that terminal and open a new one.  Make sure that the
-       - 'jupyter' found is the one you installed
-       - which jupyter
+   5. Exit that terminal and open a new one.
+       - Make sure that the
+         'jupyter' found is the one you installed, via command 'which jupyter'.
        - This should return a path in the directory where you
          installed Anaconda 3.
        - It will be similar to /home/username/anaconda3/bin/jupyter
@@ -314,8 +314,38 @@ forward till I illustrate things on Jupyter notebooks.
    10. Go to [Make sure the install works](Make sure the install works) section at the
        end to verify correct installation.
 
+       
+## Mac Install
 
-     
+   1. Run the installer installing into your home directory.  Open a terminal.
+      Install the graphviz command-line tools.
+
+      - conda install graphviz
+
+   2. Now install the graphviz python module
+
+      - pip install graphviz
+
+   2. Go to [Make sure the install works](Make sure the install works) section at the
+      end to verify correct installation.
+
+## Make sure the install works
+
+   1. Now, start the Jupyter notebook
+
+   2. jupyter notebook
+
+   3. If this doesn't open a browser to your notebook, it should print instructions
+      on what to do.  Primarily it should give you something to copy and paste into a
+      browser.
+      
+   4. Try out some graph generation in your Jupyter notebook.
+      Enter the following in the first cell and press Shift-Enter.
+
+      - import graphviz
+      - g = graphviz.Graph()
+      - g.edges(['AB', 'BC', 'CD', 'DA'])
+      - g
 
 # END
 
