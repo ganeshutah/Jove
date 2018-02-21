@@ -74,6 +74,8 @@ notebook must have Graphiviz installed; we provide
 
 # Obtaining and Setting up Jupyter for running Jove
 
+**Please consider installing Jupyter Lab after you setup Jupyter. It makes Jove shine! Here is info on the just-released [Jupyter Lab](https://blog.jupyter.org/jupyterlab-is-ready-for-users-5a6f039b8906)**
+
 In order to run Jove, you need to set up Jupyter on your machine.
 Detailed instructions for setting up Jupyter are provided 
 [IN THIS OVERLEAF DOCUMENT](https://www.overleaf.com/read/zbdvqwxmcknm).
