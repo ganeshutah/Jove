@@ -1,7 +1,7 @@
 # Introduction to Jove
 
 This git project presents the Jupyter notebooks that go with
-Ganesh Gopalakrishnan's book 
+Ganesh L. Gopalakrishnan's book 
 
  _Automata and Computability: Programmer's Perspective_
 
