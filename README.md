@@ -21,9 +21,10 @@ principles:
 * Regular expression parsing and automata inter-conversion
 * Derivate-based parsing
 * Pushdown automata
-* The construction of parsers using context-free productions
+* The construction of parsers using context-free productions, including
+  a full lexer/parser for Jove's own markdown syntax
 * Studies of parsing: ambiguity, associativity, precedence
-* Turing machines
+* Turing machines (including one for the Collatz problem)
 
 Some of the Jupyter notebooks start with a Youtube video link
 describing the notebook's content and operation. This can serve
@@ -107,6 +108,19 @@ Salient contents of this git directory are now described:
  Just go to this directory and type 'jupyter notebook'
  and execute the cells in tutorial notebooks you see here.
 
+## Learn Jove's markdown syntax for creating well-documented machines
+
+While drawing is a good way to create small machines, larger machines
+are like assembly code: you must create them with good documentation
+and well-chosen state names. For this, we provide a convenient markdown
+syntax.
+* Learn this syntax by running notebooks/driver/Drive_md2mc.ipynb
+* Learn the construction of a mini-compiler including lexer and parser
+  for parsing the markdown syntax and turning them into Jove's
+  internal representation (structs) by a parser present in
+  notebooks/src/Def_md2mc.ipynb. This is what is driven by
+  notebooks/driver/Drive_md2mc.ipynb.
+ 
 ## Other Directory Contents
 
 You may descend into any of these directories and execute the
