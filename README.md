@@ -7,7 +7,7 @@ Ganesh L. Gopalakrishnan's book
 
 We may abbreviate this book's title by ``ACPP''
 
-The Gitlab URL for this README.md is https://github.com/ganeshutah/Jove.git
+The Github URL for this README.md is https://github.com/ganeshutah/Jove.git
  
 The code collection is called "Jove" (which the reader may
 recognize as another name for planet Jupiter). We will refer
