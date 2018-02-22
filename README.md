@@ -1,3 +1,9 @@
+<header> 
+    <font size="6">
+    Jove: Jupyter Notebooks for Automata and Computability 
+    </font>
+</header>
+
 # Introduction to Jove
 
 This git project presents the Jupyter notebooks that go with
