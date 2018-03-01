@@ -14,7 +14,7 @@ Ganesh L. Gopalakrishnan's book
 We may abbreviate this book's title by ``ACPP''
 
 The Github URL for this README.md is https://github.com/ganeshutah/Jove.git
- 
+
 The code collection is called "Jove" (which the reader may
 recognize as another name for planet Jupiter). We will refer
 to the software offering as a whole as "Jove notebooks" but
@@ -44,7 +44,7 @@ functions introduced.
 screen recordings. Feel free to scroll around in these videos
 to locate Jove (Jupyter notebook) sessions, and follow those.**
 
-
+Read [a newly added note to Windows users](#note-to-windows-users)
 
 # Jove's Design and Code Organization
 
@@ -105,6 +105,23 @@ Salient contents of this git directory are now described:
   - src      -- These are the Def_*.ipynb from which the aforesaid **jove** [.py] files obtained
   - driver   -- These are still more Jupyter notebooks to run and study 'src'
 
+## NOTE TO WINDOWS USERS
+
+ Please adjust symlinks to the windows-style as follows:
+
+ 1. Go to the jove folder
+    - remove the Unix-style symlinks lex.py and yacc.py  
+    - and run these commands:
+     > * mklink lex.py ..\3rdparty\lex.py
+       * mklink yacc.py ..\3rdparty\yacc.py
+
+ 2. Go to **EACH** of these folders: driver, module, src, tutorial:
+    - remove the Unix-style symlinks jove, machines, lex.py and yacc.py
+    - and run these commands:
+    > * mklink jove ..\..\jove
+      * mklink machines ..\..\machines
+      * mklink lex.py ..\..\3rdparty\lex.py
+      * mklink yacc.py ..\..\3rdparty\yacc.py    
 
 ## Begin by taking a few tutorials
 
