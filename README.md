@@ -107,21 +107,22 @@ Salient contents of this git directory are now described:
 
 ## NOTE TO WINDOWS USERS
 
- Please adjust symlinks to the windows-style as follows:
+ Please adjust symlinks to the windows-style as follows (I added blanks below
+ in the paths for extra legibility and to prevent markdown eating back-slashes):
 
  1. Go to the jove folder
     - remove the Unix-style symlinks lex.py and yacc.py  
     - and run these commands:
-       * mklink lex.py ..\3rdparty\lex.py
-       * mklink yacc.py ..\3rdparty\yacc.py
+       * mklink lex.py .. \ 3rdparty \ lex.py
+       * mklink yacc.py .. \ 3rdparty \ yacc.py
 
  2. Go to **EACH** of these folders: driver, module, src, tutorial:
     - remove the Unix-style symlinks jove, machines, lex.py and yacc.py
     - and run these commands:
-       * mklink jove .. \ .. \jove
-       * mklink machines .. \ .. \machines
-       * mklink lex.py .. \ .. \3rdparty\lex.py
-       * mklink yacc.py .. \ .. \3rdparty\yacc.py    
+       * mklink jove .. \ .. \ jove
+       * mklink machines .. \ .. \ machines
+       * mklink lex.py .. \ .. \ 3rdparty \ lex.py
+       * mklink yacc.py .. \ .. \ 3rdparty \ yacc.py    
 
 ## Begin by taking a few tutorials
 
