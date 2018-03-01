@@ -1,1 +1,1 @@
-../3rdpary/yacc.py
+../3rdparty/yacc.py
