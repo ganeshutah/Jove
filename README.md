@@ -113,16 +113,17 @@ Salient contents of this git directory are now described:
  1. Go to the jove folder
     - remove the Unix-style symlinks lex.py and yacc.py  
     - and run these commands:
-       * mklink lex.py .. \ 3rdparty \ lex.py
-       * mklink yacc.py .. \ 3rdparty \ yacc.py
+       * mklink lex.py .. \ 3rdparty \ lex.py (symlink works apparently)
+       * mklink yacc.py .. \ 3rdparty \ yacc.py (symlink works apparently)
 
  2. Go to **EACH** of these folders: driver, module, src, tutorial:
     - remove the Unix-style symlinks jove, machines, lex.py and yacc.py
     - and run these commands:
-       * mklink jove .. \ .. \ jove
-       * mklink machines .. \ .. \ machines
-       * mklink lex.py .. \ .. \ 3rdparty \ lex.py
-       * mklink yacc.py .. \ .. \ 3rdparty \ yacc.py    
+       * mklink lex.py .. \ .. \ 3rdparty \ lex.py (symlink works apparently)
+       * mklink yacc.py .. \ .. \ 3rdparty \ yacc.py (symlink works apparently)
+       * copy over the folder jove from .. \ .. \ jove (symlink does not work)
+       * copy over the folder machines from .. \ .. \ machines (symlink does not work)
+       
 
 ## Begin by taking a few tutorials
 
