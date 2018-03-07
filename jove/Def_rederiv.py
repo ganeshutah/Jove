@@ -1,7 +1,8 @@
 
 # coding: utf-8
 
-# In[1]:
+# In[ ]:
+
 
 from lex import lex
 from yacc import yacc
@@ -9,7 +10,8 @@ from jove.StateNameSanitizers import ResetStNum, NxtStateStr
 from jove.SystemImports       import *
 
 
-# In[2]:
+# In[ ]:
+
 
 tokens = ('EPS','STR','LPAREN','RPAREN','PLUS','STAR', 'NOT', 'AND')
 
@@ -208,7 +210,7 @@ def attrDyadicInfix(op, attr1, attr3):
 #===
 
 def re2ast(s):
-    """This turns a regular expression (passed in as a string s)
+    """This function turns a regular expression (passed in as a string s)
        into an abstract syntax tree, and returns the tree (encoded in Python)
     """
     mylexer  = lex()
@@ -217,7 +219,8 @@ def re2ast(s):
     return (pt['ast'], pt['dig']['nl'], pt['dig']['el'])
 
 
-# In[3]:
+# In[ ]:
+
 
 def drawPT(nl, el, comment="PT"):
     """Given a node list nl and edge-list el,
@@ -232,4 +235,13 @@ def drawPT(nl, el, comment="PT"):
     for e in el:
         dopt.edge(e[0], e[1])
     return dopt
+
+
+# In[ ]:
+
+
+print('''You may use any of these help commands:
+help(re2ast)
+help(drawPT)
+''')
 
