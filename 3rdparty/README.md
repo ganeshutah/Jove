@@ -22,6 +22,17 @@ To make the Jove version complete, I've put in the "pcp" executable
 compiled for Macs in this directory. You may need to change this for
 other machines.
 
+Each run of the PCP solver will produce these files (that are put in
+.gitignore so you won't accidentally commit them):
+
+sol.txt
+temp.txt
+unsol.txt
+nosol.txt
+
+See the documentation of Zhao's solver to know what these files contain
+(you may also guess their contents somewhat easily after each PCP session)
+
 # END
 
    

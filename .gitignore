@@ -1,3 +1,7 @@
+sol.txt
+temp.txt
+unsol.txt
+nosol.txt
 *.pyc
 *~
 .*.swo
