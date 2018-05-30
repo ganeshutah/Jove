@@ -18,6 +18,10 @@ https://github.com/chrozz/PCPSolver.git and you are requested to
 clone it somewhere, build it, and move the executable, namely "pcp",
 to the directory where Drive_pcp.ipynb lives.
 
+To make the Jove version complete, I've put in the "pcp" executable
+compiled for Macs in this directory. You may need to change this for
+other machines.
+
 # END
 
    
