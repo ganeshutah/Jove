@@ -33,6 +33,8 @@ principles:
   a full lexer/parser for Jove's own markdown syntax
 * Studies of parsing: ambiguity, associativity, precedence
 * Turing machines (including one for the Collatz problem)
+* Solver for the Post Correspondence Problem (Ling Zhao's PCP
+  solver made available through a convenient Jupyter notebook)
 
 Some of the Jupyter notebooks start with a Youtube video link
 describing the notebook's content and operation. This can serve
@@ -301,6 +303,17 @@ We now describe the tutorials provided.
     [THIS YOUTUBE VIDEO](https://youtu.be/E1X8OTWUxJ0)
 
   >* The associated Jupyter Notebook is *Ch13_Recording.ipynb*
+
+## Post Correspondence Problem (PCP) solver
+
+  * Since this requires a third-party software system, namely
+    Ling Zhao's PCP solver, kindly read the README.md file in
+    the 3rdparty directory.
+  
+  >* The associated Jupyter Notebook is *Drive_pcp.ipynb*
+
+  
+  
 
   
 # How to read and extend the code of Jove
