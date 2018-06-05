@@ -7,11 +7,11 @@ from jove.SysConsts import STATENAME_MAXSIZE
 from jove.SysConsts import STATENAME_NFAMAX
 from jove.SysConsts import NXTSTATENUM
 
-def ResetStNum():
+def ResetStNum(N=0):
     """Reset the state numbering counter.
     """
     global NXTSTATENUM
-    NXTSTATENUM = 0
+    NXTSTATENUM = N
     
 def NxtStateStr(prefix="St"):
     global NXTSTATENUM
