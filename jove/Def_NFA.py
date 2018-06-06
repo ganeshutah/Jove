@@ -322,13 +322,13 @@ def nfa2dfa(N, STATENAME_MAXSIZE=20): #--default state size kept
     # EClose the starting state of the NFA
     EC = Eclosure(N, N["Q0"])
     return n2d(Frontier=[EC], Visited=[EC], Delta=dict({}), Nfa=N,
-                STATENAME_MAXSIZE)
+                STATENAME_MAXSIZE=STATENAME_MAXSIZE)
 
 
 # In[ ]:
 
 
-def n2d(Frontier, Visited, Delta, Nfa, STATENAME_MAXSIZE):
+def n2d(Frontier, Visited, Delta, Nfa, STATENAME_MAXSIZE=20):
     """Helper for nfa2dfa.
        ---
        In : Frontier (list of state sets; initially Eclosed Q0)
@@ -380,7 +380,8 @@ def n2d(Frontier, Visited, Delta, Nfa, STATENAME_MAXSIZE):
                                        DFA_Sigma, 
                                        DFA_Delta, 
                                        DFA_q0, 
-                                       DFA_F))
+                                       DFA_F),
+                               STATENAME_MAXSIZE=STATENAME_MAXSIZE)
     else:
         newFrontier = list(map(lambda QcQ: trTrg(QcQ), New_c_Moves)) 
         newVisited = Visited + newFrontier
@@ -392,7 +393,8 @@ def n2d(Frontier, Visited, Delta, Nfa, STATENAME_MAXSIZE):
         NewMovesDelta = dict([ ((mkSSnam(Qfrom),c),mkSSnam(Qto)) 
                               for ((Qfrom, c), Qto) in All_c_Moves ]) 
         Delta.update(NewMovesDelta)
-        return n2d(newFrontier, newVisited, Delta, Nfa)
+        return n2d(newFrontier, newVisited, Delta, Nfa,
+                  STATENAME_MAXSIZE=STATENAME_MAXSIZE)
                                   
 #---NFA to DFA
 
