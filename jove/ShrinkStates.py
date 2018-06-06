@@ -5,14 +5,14 @@
 
 # In[ ]:
 
-from jove.SysConsts           import STATENAME_MAXSIZE, STATENAME_NFAMAX
+from jove.SysConsts           import STATENAME_NFAMAX #--gone: STATENAME_MAXSIZE
 from jove.StateNameSanitizers import isNotBH
 from jove.TransitionSelectors import fn_trans
 
 
 # In[1]:
 
-def shrink_dfastates(D):
+def shrink_dfastates(D, STATENAME_MAXSIZE=20): # Made default param now!
    """In : D (DFA : partially consistent)
       Out: A DFA quintuple (Q,Sigma,Delta,q0,F).
       

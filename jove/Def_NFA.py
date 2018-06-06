@@ -1,7 +1,8 @@
 
 # coding: utf-8
 
-# In[1]:
+# In[ ]:
+
 
 from jove.DotBashers import is_consistent_nfa
 from jove.TransitionSelectors import *
@@ -74,7 +75,8 @@ from jove.Def_DFA import mk_dfa  # used in nfa2dfa
 
 # # Making NFA
 
-# In[2]:
+# In[ ]:
+
 
 def mk_nfa(Q, Sigma, Delta, Q0, F):
     """Check for structural consistency of the given NFA traits.
@@ -87,7 +89,8 @@ def mk_nfa(Q, Sigma, Delta, Q0, F):
     return(newNFA)
 
 
-# In[3]:
+# In[ ]:
+
 
 
 def totalize_nfa(N):
@@ -118,6 +121,7 @@ def totalize_nfa(N):
 
 # In[ ]:
 
+
 def apply_h_dfa(D, h):
     """Given a DFA D and a homomorphism h on Sigma* (as a lambda from chars to
        chars) where Sigma is D's alphabet, return an NFA with the homomorphism
@@ -142,7 +146,8 @@ def apply_h_dfa(D, h):
 # * How the state transition function $\delta$ "works"
 #   - captured in step_nfa
 
-# In[4]:
+# In[ ]:
+
 
 def step_nfa(N, q, c):
     """In : N (consistent NFA)
@@ -184,7 +189,8 @@ def step_nfa(N, q, c):
 #          - If given string s is "", we are done (retn Eclosed set of states)
 #          - Else take step via s[0]; Eclose it to get S'; run s[1:] on S'
 
-# In[5]:
+# In[ ]:
+
 
 def run_nfa(N, S, s, chatty=False):
     """In : N (consistent NFA)
@@ -204,7 +210,8 @@ def run_nfa(N, S, s, chatty=False):
         return run_nfa(N, ec_step_nfa(N, S, s[0], chatty), s[1:], chatty)
 
 
-# In[6]:
+# In[ ]:
+
 
 def ec_step_nfa(N, S, c, chatty=False):
     """Helper for run_nfa
@@ -272,7 +279,8 @@ def Echelp(Nfa, Allsofar, Previous):
 
 # Now we define NFA acceptance. We provide a silent version and a chatty (verbose) version called accepts_nfav that tells you HOW the acceptance was concluded.
 
-# In[7]:
+# In[ ]:
+
 
 def accepts_nfa(N, s, chatty=False):
     """NFA acceptance.
@@ -300,10 +308,12 @@ def accepts_nfa(N, s, chatty=False):
 # 
 # 
 
-# In[8]:
+# In[ ]:
 
-def nfa2dfa(N):
-    """In : N (consistent NFA)
+
+def nfa2dfa(N, STATENAME_MAXSIZE=20): #--default state size kept
+    """In : N (consistent NFA), and optional STATENAME_MAXSIZE
+            for the generated DFA states
        Out: A consistent DFA that is language-equivalent to N.
     """
     assert(
@@ -311,18 +321,21 @@ def nfa2dfa(N):
     ), "nfa2dfa was given an inconsistent NFA."
     # EClose the starting state of the NFA
     EC = Eclosure(N, N["Q0"])
-    return n2d(Frontier=[EC], Visited=[EC], Delta=dict({}), Nfa=N)
+    return n2d(Frontier=[EC], Visited=[EC], Delta=dict({}), Nfa=N,
+                STATENAME_MAXSIZE)
 
 
-# In[9]:
+# In[ ]:
 
-def n2d(Frontier, Visited, Delta, Nfa):
+
+def n2d(Frontier, Visited, Delta, Nfa, STATENAME_MAXSIZE):
     """Helper for nfa2dfa.
        ---
        In : Frontier (list of state sets; initially Eclosed Q0)
             Visited  (list of visited state sets; initially Eclosed Q0)
             Delta    (the DFA transition function being formed)
             Nfa      (the NFA being converted)
+            STATENAME_MAXSIZE : number
        Helper to nfa2dfa. Given a (BFS) frontier, a Visited
        set of states, the Delta being formed, and NFA Nfa, see
        if all new moves are in Visited: 
@@ -400,7 +413,8 @@ def n2d(Frontier, Visited, Delta, Nfa):
 
 # ## DFA reversal
 
-# In[10]:
+# In[ ]:
+
 
 def inSets(D,trg,ch):
     """Helper for rev_dfa
@@ -430,7 +444,8 @@ def rev_dfa(D):
     return mk_nfa(D["Q"], D["Sigma"], NDict, D["F"], {D["q0"]})
 
 
-# In[11]:
+# In[ ]:
+
 
 def min_dfa_brz(D):
     """Minimize a DFA as per Brzozowski's algorithm.
@@ -438,7 +453,8 @@ def min_dfa_brz(D):
     return nfa2dfa(rev_dfa(nfa2dfa(rev_dfa(D))))
 
 
-# In[12]:
+# In[ ]:
+
 
 print('''You may use any of these help commands:
 help(mk_nfa)

@@ -20,6 +20,7 @@
 
 # In[ ]:
 
+
 from jove.SysConsts           import *
 from jove.StateNameSanitizers import *
 from jove.SystemImports       import *
@@ -210,14 +211,15 @@ def chk_consistent_tm(T):
             
 #=== DFA-related dot bashers ===
 
-def dot_dfa(D):
+def dot_dfa(D, STATENAME_MAXSIZE=20):
     """In : D (DFA : partially consistent)
+            STATENAME_MAXSIZE : number
        Out: dot representation (string)
        Generate a dot string representing the automaton. 
        Suppress "black-hole states". 
     """
     assert(is_partially_consistent_dfa(D))
-    D           = shrink_dfastates(D)
+    D           = shrink_dfastates(D, STATENAME_MAXSIZE)
     hdr         = prDotHeader()
     nodeDefs    = prNodeDefs(D, isNotBH) # Show isNotBH states
     orientation = prOrientation()
@@ -226,15 +228,16 @@ def dot_dfa(D):
     closing     = prClosing()
     return hdr + nodeDefs + orientation + edges + closing
 
-def dotObj_dfa(D, FuseEdges = False, dfaName='do_'):
+def dotObj_dfa(D, FuseEdges = False, dfaName='do_', STATENAME_MAXSIZE=20):
     """In : D1 (DFA : partially consistent)
             dfaName (string)
+            STATENAME_MAXSIZE : number
        Out: A dot object. 
        Generate a dot object representing the automaton. 
        Suppress "black-hole states".       
     """
     assert(is_partially_consistent_dfa(D))
-    D           = shrink_dfastates(D)
+    D           = shrink_dfastates(D, STATENAME_MAXSIZE)
     if dfaName == 'do_':
         dfaName = dfaName + NxtStateStr()
     dotObj1     = Digraph(comment=dfaName)  
@@ -245,14 +248,15 @@ def dotObj_dfa(D, FuseEdges = False, dfaName='do_'):
     dotObj3     = addEdges(D, dotObj2, FuseEdges, isNotBH)          
     return dotObj3
 
-def dot_dfa_w_bh(D):
+def dot_dfa_w_bh(D, STATENAME_MAXSIZE=20):
     """In : D (DFA : partially consistent)
+            STATENAME_MAXSIZE : number
        Out: dot representation (string)
        Generate a dot string representing the automaton. 
        Do not suppress "black-hole states". 
     """ 
     assert(is_partially_consistent_dfa(D))
-    D           = shrink_dfastates(D)
+    D           = shrink_dfastates(D, STATENAME_MAXSIZE)
     hdr         = prDotHeader()
     nodeDefs    = prNodeDefs(D, lambda x: True) # Show all nodes
     orientation = prOrientation()
@@ -260,15 +264,16 @@ def dot_dfa_w_bh(D):
     closing     = prClosing() 
     return hdr + nodeDefs + orientation + edges + closing
 
-def dotObj_dfa_w_bh(D, FuseEdges = False, dfaName='do_'):
+def dotObj_dfa_w_bh(D, FuseEdges = False, dfaName='do_', STATENAME_MAXSIZE=20):
     """In : D (DFA : partially consistent, states shrunk)
             dfaName (string)
+            STATENAME_MAXSIZE : number
        Out: A dot object. 
        Generate a dot object representing the automaton. 
        Do not suppress "black-hole states".       
     """
     assert(is_partially_consistent_dfa(D))
-    D       = shrink_dfastates(D)
+    D       = shrink_dfastates(D, STATENAME_MAXSIZE)
     if dfaName == 'do_':
         dfaName = dfaName + NxtStateStr()
     dotObj1 = Digraph(comment=dfaName)   
@@ -719,11 +724,6 @@ def addTMNodeDefs(T, dotObj):
                     peripheries = "2")
     return dotObj
 
-
-
-
-
-# In[ ]:
 
 
 

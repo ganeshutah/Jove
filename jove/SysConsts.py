@@ -6,7 +6,9 @@
 # In[1]:
 
 
-STATENAME_MAXSIZE = 20
+#--trying to eliminate this and make it a default parameter
+#--STATENAME_MAXSIZE = 20
+
 STATENAME_NFAMAX  = 8
 NXTSTATENUM       = 0
 DEFAULT_Z         = 'z' # for PDA
