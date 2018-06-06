@@ -9,10 +9,10 @@
 # D : DFA
 # N : NFA
 # 
-# def dot_dfa(D):
-# def dotObj_dfa(D, dfaName='do_'):
-# def dot_dfa_w_bh(D):
-# def dotObj_dfa_w_bh(D, dfaName='do_'):
+# def dot_dfa(D, STATENAME_MAXSIZE):
+# def dotObj_dfa(D, dfaName='do_', STATENAME_MAXSIZE):
+# def dot_dfa_w_bh(D, STATENAME_MAXSIZE):
+# def dotObj_dfa_w_bh(D, dfaName='do_', STATENAME_MAXSIZE):
 # def dot_nfa(N):
 # def dotObj_nfa(N, nfaName = 'NO_'):
 # 

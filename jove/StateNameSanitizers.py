@@ -3,7 +3,6 @@
 
 # In[5]:
 
-from jove.SysConsts import STATENAME_MAXSIZE
 from jove.SysConsts import STATENAME_NFAMAX
 from jove.SysConsts import NXTSTATENUM
 
