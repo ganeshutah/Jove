@@ -12,6 +12,7 @@ def ResetStNum(N=0):
     """
     global NXTSTATENUM
     NXTSTATENUM = N
+    return NXTSTATENUM
     
 def NxtStateStr(prefix="St"):
     global NXTSTATENUM

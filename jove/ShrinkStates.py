@@ -25,8 +25,13 @@ def shrink_dfastates(D):
    
    # Even if one state gets too long, we rename all state names.
    # This policy could be changed in future.
-   
+
+   # Sorting the list of states so that we hash 'em the same way
+   # into the stateDict
+   #
    StateL = list(D["Q"])
+   StateL.sort()
+   
    # Keep a state-renaming dictionary around... it stores the 
    # shrunken state names. When we return a DFA, we re-christen 
    # all state names to their shrunken counterparts.
