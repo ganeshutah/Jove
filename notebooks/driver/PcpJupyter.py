@@ -23,9 +23,13 @@ def pcp_oslink():
 	elif ('linux' in platform_name.lower()):
 		print("Detected platform linux")
 		src = 'pcpbinaries/pcp_linux'
-	else:
-		print("Detected platform Mac")
+	elif ('darwin' in platform_name.lower()):
+		print("Detected platform Darwin")
 		src = 'pcpbinaries/pcp_mac'
+	else:
+		print("??? Undetected Platform : Compile for your os and")
+		print("Edit pcp_oslink() function to add an elif option for your os")
+		sys.exit()
 	if(os.path.isfile(dst) or os.path.islink(dst)):
 		os.remove(dst)
 	
