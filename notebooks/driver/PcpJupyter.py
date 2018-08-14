@@ -5,6 +5,36 @@
 import subprocess
 import re
 import pdb
+import platform
+import os
+
+def pcp_oslink():
+	"""
+	Determines the underlying os to select the symlink the appropriate pcp binary
+	"""
+	platform_name = platform.platform()
+	platform.platform()
+	src = 'pcpbinaries/pcp_linux'
+	dst = 'pcp'
+	if('windows' in platform_name.lower()):
+		print("Detected platform windows")
+		src = 'pcpbinaries\pcp_win.exe'
+		dst = 'pcp.exe'
+	elif ('linux' in platform_name.lower()):
+		print("Detected platform linux")
+		src = 'pcpbinaries/pcp_linux'
+	else:
+		print("Detected platform Mac")
+		src = 'pcpbinaries/pcp_mac'
+	if(os.path.isfile(dst) or os.path.islink(dst)):
+		os.remove(dst)
+	
+	os.symlink(src, dst)
+
+	return dst
+
+		
+		
 
 
 def pcp_solve(pcp_pairs, run=None, ni=False, di=None, depth=None, tiles_per_row=15):
@@ -46,7 +76,8 @@ def pcp_solve(pcp_pairs, run=None, ni=False, di=None, depth=None, tiles_per_row=
     file.close()
 
     # Build the method call.
-    args = "./pcp -i temp.txt"
+    #args = "./pcpbinaries/pcp_win.exe -i temp.txt"
+    args = "./"+pcp_oslink()+" -i temp.txt"
 
     # Add supplied user arguments.
     if run is not None:
