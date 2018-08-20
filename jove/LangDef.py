@@ -173,4 +173,32 @@ def product(S1,S2):
     """
     return { (x,y) for x in S1 for y in S2 }
 
+from math import floor, log, pow
+def nthnumeric(N, Sigma={'a','b'}):
+    """Assume Sigma is a 2-sized list/set of chars (default {'a','b'}). 
+       Produce the Nth string in numeric order, where N >= 0.
+       Idea : Given N, get b = floor(log_2(N+1)) - need that 
+       many places; what to fill in the places is the binary 
+       code for N - (2^b - 1) with 0 as Sigma[0] and 1 as Sigma[1].    
+    """
+    if (type(Sigma)==set):
+       S = list(Sigma)
+    else:
+       assert(type(Sigma)==list
+       ), "Expected to be given set/list for arg2 of nthnumeric."
+       S = Sigma
+    assert(len(Sigma)==2
+          ),"Expected to be given a Sigma of length 2."
+    if(N==0):
+        return ''
+    else:
+        width = floor(log(N+1, 2))
+        tofill = int(N - pow(2, width) + 1)
+        relevant_binstr = bin(tofill)[2::] # strip the 0b 
+                                           # in the leading string
+        len_to_makeup = width - len(relevant_binstr)
+        return (S[0]*len_to_makeup + 
+                shomo(relevant_binstr,
+                      lambda x: S[1] if x=='1' else S[0]))
+
 #--end
