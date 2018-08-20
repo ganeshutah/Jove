@@ -115,7 +115,7 @@ def powset(S):
         pow_rest1 = list(map(lambda Ls: [L[0]] + Ls, pow_rest0))
         return(pow_rest0 + pow_rest1)
     
-    def lint(L1,L2):
+def lint(L1,L2):
     """In : L1 (language : set of strings)
             L2 (language : set of strings)
        Out: L1 intersection L2 (sets of strings)
