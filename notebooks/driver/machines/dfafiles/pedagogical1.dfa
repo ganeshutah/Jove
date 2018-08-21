@@ -1,0 +1,12 @@
+DFA !! Define a DFA
+
+IF : 0   ->  A !! Rule 1 for an init+final state
+IF : 1   ->  B
+
+!! Now comes the interesting part after the IF state
+A  : 0|1 ->  B
+B  : 1   ->  F
+B  : 0   -> IF
+F  : 0|1 ->  B
+
+

@@ -109,23 +109,16 @@ Salient contents of this git directory are now described:
 
 ## NOTE TO WINDOWS USERS
 
- Please adjust symlinks to the windows-style as follows (I added blanks below
- in the paths for extra legibility and to prevent markdown eating back-slashes):
+ Update of 8/21/18: For Windows users, the Jove repo provided should work fine without changes!
 
- 1. Go to the jove folder
-    - remove the Unix-style symlinks lex.py and yacc.py  
-    - and run these commands:
-       * mklink lex.py .. \ 3rdparty \ lex.py (symlink works apparently)
-       * mklink yacc.py .. \ 3rdparty \ yacc.py (symlink works apparently)
+ But we have ended up copying the jove/ directory and lex.py as well as yacc.py into
+ all the directories that need them. This is code-replication, and we may go back to our
+ "old instructions".
 
- 2. Go to **EACH** of these folders: driver, module, src, tutorial:
-    - remove the Unix-style symlinks jove, machines, lex.py and yacc.py
-    - and run these commands:
-       * mklink lex.py .. \ .. \ 3rdparty \ lex.py (symlink works apparently)
-       * mklink yacc.py .. \ .. \ 3rdparty \ yacc.py (symlink works apparently)
-       * copy over the folder jove from .. \ .. \ jove (symlink does not work)
-       * copy over the folder machines from .. \ .. \ machines (symlink does not work)
-       
+ The old instructions to windows users is included [AT THE END] 
+ (#obsolete-but-perhaps-interesting). It consisted of using
+ symbolic links etc. It is a pain, so we have moved away from this.
+ But look at that section if you are curious.
 
 ## Begin by taking a few tutorials
 
@@ -476,6 +469,28 @@ We now describe the tutorials provided.
       - g = graphviz.Graph()
       - g.edges(['AB', 'BC', 'CD', 'DA'])
       - g
+
+
+# Obsolete but perhaps interesting
+
+ If you downloaded Jove before 8/21/18, you perhaps got a repo with symlinks etc.
+ You had to do these adjustments. These are obsolete now.
+
+ 1. Go to the jove folder
+    - remove the Unix-style symlinks lex.py and yacc.py  
+    - and run these commands:
+       * mklink lex.py .. \ 3rdparty \ lex.py (symlink works apparently)
+       * mklink yacc.py .. \ 3rdparty \ yacc.py (symlink works apparently)
+
+ 2. Go to **EACH** of these folders: driver, module, src, tutorial:
+    - remove the Unix-style symlinks jove, machines, lex.py and yacc.py
+    - and run these commands:
+       * mklink lex.py .. \ .. \ 3rdparty \ lex.py (symlink works apparently)
+       * mklink yacc.py .. \ .. \ 3rdparty \ yacc.py (symlink works apparently)
+       * copy over the folder jove from .. \ .. \ jove (symlink does not work)
+       * copy over the folder machines from .. \ .. \ machines (symlink does not work)
+       
+
 
 # END
 

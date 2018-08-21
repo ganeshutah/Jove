@@ -1,0 +1,44 @@
+PDA
+!!---------------------------------------------------------------------------
+!! This is a PDA that accepts all strings with twice as many b's as a's
+!! That is, n_b = 2 * n_a must be satisfied
+!! Recall this can happen when n_a = n_b = 0 (trivial case)
+!!
+!! Acceptance is required to be by empty stack
+!! (see a1b2_accept_f.pda for a PDA that accepts by final state)
+!!
+!! PDA made by markdown will have # on top of stack (TOS)
+!!
+!! The basic algorithm is to convert a's to  two c's
+!! Only c's and b's are allowed on the stack
+!! But depending on the arrival order, we need to juggle what we put on TOS
+!! For details, study the comments below
+!!
+!!---------------------------------------------------------------------------
+
+I : '', # ; '' ->  I    !! In case the input string is empty, we satisfy trivially
+
+I : a, # ; cc#  -> I    !! An a coming in with # on TOS : turn a into two c
+
+I : a, b ; ''  ->  Try  !! An a coming in with a b on TOS: we don't know what lies below b
+                        !! So entry Try state, but after consuming that one b
+
+Try : '', b ; ''  -> I  !! In Try state we find another b; how handy; consume that also
+                        !! Now we are back in state I
+			
+Try : '', c ; cc  -> I  !! In Try state, we face a c; so we have consumed only one b
+                        !! Express deficit of a 'b' by stacking a c
+			
+Try : '', # ; c# -> I   !! We face a #; we have again consumed only one b
+                        !! Express deficit of a 'b' by stacking a c
+			
+I : a, c ; ccc  -> I    !! In I, we face 'c' on TOS, so express deficit of two b
+       	   	   	!! by stacking two c
+
+I : b, # ; b#   -> I	!! b input when # is TOS turns into b stacked
+I : b, b ; bb   -> I    !! b input when b is TOS turns into b stacked
+I : b, c ; ''   -> I    !! b and c are even match
+
+!!---------------------------------------------------------------------------
+
+
