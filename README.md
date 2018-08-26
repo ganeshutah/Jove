@@ -397,15 +397,121 @@ We now describe the tutorials provided.
        
 ## Mac Install
 
-   1. Run the installer installing into your home directory.  Open a terminal.
-      Install the graphviz command-line tools.
-      - conda install graphviz
+### Download
+```
+$ curl https://repo.anaconda.com/archive/Anaconda3-5.2.0-MacOSX-x86_64.sh -o install.sh
+```
+### Run
+```
+$ bash install.sh 
+```
+### Interactive Installation
+```
+Welcome to Anaconda3 5.2.0
 
-   2. Now install the graphviz python module
-      - pip install graphviz
+In order to continue the installation process, please review the license
+agreement.
+Please, press ENTER to continue
+>>> 
+```
+```
+===================================
+Anaconda End User License Agreement
+===================================
+```
 
-   2. Go to [Make sure the install works](#make-sure-the-install-works) section at the
-      end to verify correct installation.
+Press `SPACE BAR`
+
+```
+Do you accept the license terms? [yes|no]
+[no] >>> yes
+```
+```
+Anaconda3 will now be installed into this location:
+/Users/yourname/anaconda3
+
+  - Press ENTER to confirm the location
+  - Press CTRL-C to abort the installation
+  - Or specify a different location below
+
+[/Users/vinuj/anaconda3] >>> 
+PREFIX=/Users/yourname/anaconda3
+```
+
+### Finishing Installation
+```
+installation finished.
+Do you wish the installer to prepend the Anaconda3 install location
+to PATH in your /Users/yourname/.bash_profile ? [yes|no]
+[yes] >>> yes
+```
+
+### Check .bash_profile
+```
+Appending source /Users/yourname/anaconda3/bin/activate in
+newly created /Users/yourname/.bash_profile
+
+For this change to become active, you have to open a new terminal.
+
+Thank you for installing Anaconda3!
+
+===========================================================================
+```
+
+
+### No Need to install Any Editors
+```
+To install Visual Studio Code, you will need:
+  - Internet connectivity
+
+Visual Studio Code License: https://code.visualstudio.com/license
+
+Do you wish to proceed with the installation of Microsoft VSCode? [yes|no]
+>>> no
+```
+
+### Testing
+
+#### Same Terminal
+`.bash_profile` is activated only when you start a new `terminal`, which means 
+that if you try the following, in the same terminal as the installation then 
+you will get the following message.
+```
+$ conda
+-bash: conda: command not found
+```
+
+#### New Terminal
+```
+$ which conda
+/Users/yourname/anaconda3/bin/conda
+```
+
+### Checks
+
+
+```
+$ cat ~/.bash_profile 
+```
+You should notice.
+```
+# added by Anaconda3 installer
+export PATH="/Users/yourname/anaconda3/bin:$PATH"
+```
+
+### Jove Dependencies
+* Install the graphviz command-line tools.
+```
+- conda install graphviz
+```
+
+* Install the graphviz python module
+```
+pip install graphviz
+```
+
+* Go to [Make sure the install works](#make-sure-the-install-works) section at the 
+end to verify correct installation.
 
 ## Windows Install
 
