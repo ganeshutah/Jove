@@ -169,7 +169,7 @@ def mk_star_nfa(N):
     # 4) Spin back from every state in N[F] to Q0
     #
     delta_accum = dict({})
-    IF = "IF"+NxtStateStr()
+    IF = NxtStateStr()
     Q0 = set({ IF }) # new set of start + final states
     # Jump from IF to N's start state set
     delta_accum.update({ (IF,""): N["Q0"] })
@@ -206,7 +206,7 @@ def p_expression_ordy_eps(t):
 def mk_eps_nfa():
     """An nfa with exactly one start+final state
     """
-    Q0 = set({ "IF"+NxtStateStr() })
+    Q0 = set({ NxtStateStr() })
     F  = Q0
     return mk_nfa(Q     = Q0, 
                   Sigma = set({}), 
@@ -224,10 +224,10 @@ def mk_symbol_nfa(a):
     """The NFA for a single re letter
     """
     # Make a fresh initial state
-    q0 = "I"+NxtStateStr()
+    q0 = NxtStateStr()
     Q0 = set({ q0 })
     # Make a fresh final state
-    f = "F"+NxtStateStr()
+    f = NxtStateStr()
     F = set({ f })
     return mk_nfa(Q     = Q0 | F, 
                   Sigma = set({a}), 
