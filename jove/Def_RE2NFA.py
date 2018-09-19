@@ -6,18 +6,18 @@
 # In this module, we will cover regular expressions by showing how they can be converted to NFA. The scanner and parser for RE to convert them to NFA are the main part of this module.
 # 
 
-# In[1]:
+# In[ ]:
 
 from jove.Def_NFA import mk_nfa
-from lex          import lex
-from yacc         import yacc
+from lex                 import lex
+from yacc                import yacc
 from jove.StateNameSanitizers import ResetStNum, NxtStateStr
 
 
 # # Parsing regular expressions : ReParse
 # 
 
-# In[2]:
+# In[ ]:
 
 # -----------------------------------------------------------------------------
 # reparseNEW.py
@@ -169,7 +169,7 @@ def mk_star_nfa(N):
     # 4) Spin back from every state in N[F] to Q0
     #
     delta_accum = dict({})
-    IF = NxtStateStr()
+    IF = "IF"+NxtStateStr()
     Q0 = set({ IF }) # new set of start + final states
     # Jump from IF to N's start state set
     delta_accum.update({ (IF,""): N["Q0"] })
@@ -206,7 +206,7 @@ def p_expression_ordy_eps(t):
 def mk_eps_nfa():
     """An nfa with exactly one start+final state
     """
-    Q0 = set({ NxtStateStr() })
+    Q0 = set({ "IF"+NxtStateStr() })
     F  = Q0
     return mk_nfa(Q     = Q0, 
                   Sigma = set({}), 
@@ -224,10 +224,10 @@ def mk_symbol_nfa(a):
     """The NFA for a single re letter
     """
     # Make a fresh initial state
-    q0 = NxtStateStr()
+    q0 = "I"+NxtStateStr()
     Q0 = set({ q0 })
     # Make a fresh final state
-    f = NxtStateStr()
+    f = "F"+NxtStateStr()
     F = set({ f })
     return mk_nfa(Q     = Q0 | F, 
                   Sigma = set({a}), 
@@ -247,7 +247,7 @@ def p_error(t):
 
 # ## RE to NFA code
 
-# In[3]:
+# In[ ]:
 
 def re2nfa(s, stno = 0):
     """Given a string s representing an RE and an optional
@@ -269,7 +269,7 @@ def re2nfa(s, stno = 0):
     return myparsednfa
 
 
-# In[4]:
+# In[ ]:
 
 print('''You may use any of these help commands:
 help(re2nfa)
