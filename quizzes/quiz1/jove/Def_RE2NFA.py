@@ -6,18 +6,18 @@
 # In this module, we will cover regular expressions by showing how they can be converted to NFA. The scanner and parser for RE to convert them to NFA are the main part of this module.
 # 
 
-# In[1]:
+# In[ ]:
 
 from jove.Def_NFA import mk_nfa
-from lex          import lex
-from yacc         import yacc
+from lex                 import lex
+from yacc                import yacc
 from jove.StateNameSanitizers import ResetStNum, NxtStateStr
 
 
 # # Parsing regular expressions : ReParse
 # 
 
-# In[2]:
+# In[ ]:
 
 # -----------------------------------------------------------------------------
 # reparseNEW.py
@@ -247,7 +247,7 @@ def p_error(t):
 
 # ## RE to NFA code
 
-# In[3]:
+# In[ ]:
 
 def re2nfa(s, stno = 0):
     """Given a string s representing an RE and an optional
@@ -269,7 +269,7 @@ def re2nfa(s, stno = 0):
     return myparsednfa
 
 
-# In[4]:
+# In[ ]:
 
 print('''You may use any of these help commands:
 help(re2nfa)

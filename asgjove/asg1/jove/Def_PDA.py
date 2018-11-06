@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[1]:
+# In[ ]:
 
 from jove.SystemImports       import *
 from jove.TransitionSelectors import *
@@ -112,9 +112,9 @@ from jove.DotBashers          import chk_consistent_pda
 # 
 # We now devise a routine to run a PDA according to either the "accept by final state" criterion or "accept by empty stack" criterion. We call these "ACCEPT_F" and "ACCEPT_S" with the default being ACCEPT_F.  The main difference is that the "final" configurations are collected differently.
 
-# In[2]:
+# In[ ]:
 
-def explore_pda(inp, P, acceptance = 'ACCEPT_F', STKMAX=0, chatty=False):
+def explore_pda(inp, P, acceptance = 'ACCEPT_F', STKMAX=10, chatty=False):
     """A handy routine to print the result of run_pda plus making 
        future extensions to explore run-results.
     """
@@ -138,9 +138,9 @@ def explore_pda(inp, P, acceptance = 'ACCEPT_F', STKMAX=0, chatty=False):
             print("-> ", fin, ".")
 
 
-# In[3]:
+# In[ ]:
 
-def run_pda(str, P, acceptance = 'ACCEPT_F', STKMAX=0, chatty=False):
+def run_pda(str, P, acceptance = 'ACCEPT_F', STKMAX=10, chatty=False):
     """Helper for explore_pda
        ---
        Input:  An initial string str.
@@ -149,7 +149,7 @@ def run_pda(str, P, acceptance = 'ACCEPT_F', STKMAX=0, chatty=False):
                encoded as ACCEPT_F. The alternative is ACCEPT_S
                that stands for "acceptance by empty stack").
                
-       Output: (l_term_id_path, l_final_id_path, s_visited_id)
+       Output: (s_term_id, l_final_id_path, s_visited_id)
                Thus, an external routine can probe and determine
                * terminal IDs
                * acceptance configurations
@@ -161,27 +161,27 @@ def run_pda(str, P, acceptance = 'ACCEPT_F', STKMAX=0, chatty=False):
     s_visited_id    = set({}) # Nothing visited yet
     
     (l_surv, 
-     l_term, 
+     s_term, 
      l_final) = classify_l_id_path(init_l_id_path, s_visited_id, P, acceptance,
                                    STKMAX=STKMAX)
     
     rslt            = h_run_pda(l_id_path       = l_surv,
-                                l_term_id_path  = l_term,     
+                                s_term_id       = s_term,     
                                 l_final_id_path = l_final,  
                                 s_visited_id    = s_visited_id,  
                                 pda             = P,   
                                 acceptance      = acceptance, # Acceptance criterion
                                 STKMAX = STKMAX
                                )
-    (terminal_id_path, final_id_path, visited_ids) = rslt
+    (s_terminal_id, l_final_id_path, s_visited_id) = rslt
     if chatty:
-        print("terminal_id_path = ", terminal_id_path) 
-        print("final_id_path = ", final_id_path)
-        print("visited_ids = ", visited_ids)
+        print("s_terminal_id = ", s_terminal_id) 
+        print("l_final_id_path = ", l_final_id_path)
+        print("s_visited_id = ", s_visited_id)
     return rslt
 
 
-# In[4]:
+# In[ ]:
 
 def classify_l_id_path(l_id_path, s_visited_id, P, acceptance, STKMAX):
     """Helper for run_pda
@@ -202,7 +202,7 @@ def classify_l_id_path(l_id_path, s_visited_id, P, acceptance, STKMAX):
     l_surv = list(map(lambda x: x[1],
                       filter(lambda x: x[0]=="surv",
                              surv_pool)))
-    l_term = list(map(lambda x: x[1],
+    s_term = set(map(lambda x: x[1][0], #-- [1] gets id_path; [0] gets id
                       filter(lambda x: x[0]=="term",
                              term_pool)))
     l_final = list(map(lambda x: x[1],
@@ -210,29 +210,29 @@ def classify_l_id_path(l_id_path, s_visited_id, P, acceptance, STKMAX):
                               final_pool)))
     #print("classify_l_id_path << ")    
     #print("l_surv = ", l_surv)
-    #print("l_term = ", l_term)
+    #print("s_term = ", s_term)
     #print("l_final = ", l_final)
     #print("---")
     
-    return (l_surv, l_term, l_final)
+    return (l_surv, s_term, l_final)
 
 
-# In[5]:
+# In[ ]:
 
-def h_run_pda(l_id_path, l_term_id_path, l_final_id_path, s_visited_id, 
+def h_run_pda(l_id_path, s_term_id, l_final_id_path, s_visited_id, 
               pda, acceptance, STKMAX):
     """Helper for run_pda
        ---
        Input:  A list of id_path, all of which are surviving i.e. not
                "term" or terminal. This invariant is maintained.
-               A list of terminal id_path (terminal in that there is
+               A set of terminal id_path (terminal in that there is
                  no point pushing on them; stuck or loopy).
                A list of final id_path: whenever we meet the 
                acceptance condition, we record that configuration;
                A list of visited id. This will help determine if
                  terminal or not. Detects looping as well.
                A PDA.
-       Output: (l_term_id_path, l_final_id_path, s_visited_id)
+       Output: (s_term_id, l_final_id_path, s_visited_id)
                Thus, an external routine can probe and determine
                * terminal IDs
                * acceptance configurations
@@ -257,17 +257,17 @@ def h_run_pda(l_id_path, l_term_id_path, l_final_id_path, s_visited_id,
         else:
             # Classify the progenies of id0 in nl_id_path0
             (l_surv, 
-             l_term, 
+             s_term, 
              l_final) = classify_l_id_path(nl_id_path0, s_visited_id, pda, acceptance, STKMAX)
 
             l_id_path       = l_id_path[1:]   + l_surv
-            l_term_id_path  = l_term_id_path  + l_term
+            s_term_id       = s_term_id | s_term
             l_final_id_path = l_final_id_path + l_final
 
-    return (l_term_id_path, l_final_id_path, s_visited_id)
+    return (s_term_id, l_final_id_path, s_visited_id)
 
 
-# In[6]:
+# In[ ]:
 
 def interpret_w_eps(q_inp_stk, pda):
        """Helper for step_pda
@@ -309,7 +309,7 @@ def interpret_w_eps(q_inp_stk, pda):
        return i_s_interp_dict
 
 
-# In[7]:
+# In[ ]:
 
 def step_pda(q_inp_stk, path, pda):
     """Inputs: An ID q_inp_stk = (q, inp_str, stk_str)
@@ -351,7 +351,7 @@ def step_pda(q_inp_stk, path, pda):
     return nxt_id_path_l
 
 
-# In[8]:
+# In[ ]:
 
 def survivor_id(s_visited_id, pda, STKMAX):
     """Helper for classify_l_id_path
@@ -387,7 +387,7 @@ def final_id(pda, acceptance):
                     else ("not_final", id_path)))
 
 
-# In[9]:
+# In[ ]:
 
 def cvt_str_to_sym(str):
     """Helper for interpret_w_eps
@@ -402,7 +402,7 @@ def cvt_str_to_sym(str):
         return [("", str), (str[0], str[1:])]
 
 
-# In[10]:
+# In[ ]:
 
 def is_surv_id(id_path, s_visited_id, pda, STKMAX):
     """Helper for survivor_id
@@ -474,7 +474,7 @@ def is_final_id(id_path, pda, acceptance):
 
 # Now for the functions in this file
 
-# In[11]:
+# In[ ]:
 
 print('''You may use any of these help commands:
 help(explore_pda)

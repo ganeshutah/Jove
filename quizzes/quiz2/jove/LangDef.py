@@ -200,5 +200,28 @@ def nthnumeric(N, Sigma={'a','b'}):
         return (S[0]*len_to_makeup + 
                 shomo(relevant_binstr,
                       lambda x: S[1] if x=='1' else S[0]))
-    
+
 #--end
+
+
+print('''You may use any of these help commands:
+help(lphi)
+help(lunit)
+help(lcat)
+help(lexp)
+help(lunion)
+help(lstar)
+help(srev)
+help(lrev)
+help(shomo)
+help(lhomo)
+help(powset)
+help(lint)
+help(lsymdiff)
+help(lminus)
+help(lissubset)
+help(lissuperset)
+help(lcomplem)
+help(product)
+help(nthnumeric)
+''')
