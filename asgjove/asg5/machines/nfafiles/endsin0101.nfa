@@ -1,0 +1,50 @@
+!!---------------------------------------------------------------------------
+!! This NFA looks for patterns of the form ...0101
+!! i.e., ends in 0101.
+!!
+!! This example (over and above thirdlastis1.nfa) also illustrates
+!! the power of nondeterminism. Anytime we see a 0 from state I, we
+!! can have the NFA speculate that it is seeing the beginning of a
+!! 0101 pattern! If the NFA fails in its guess, it pays no price
+!! (because another guess is soon coming from behind).
+!!
+!! * We take 4 states in the NFA solution. The DFA solution takes
+!!   5 states.
+!!
+!! * This shows how burden is shifted from the
+!!   human to the computer doing the NFA simulation.
+!!   Even though the savings in states is not dramatic,
+!!   the effort to build this NFA is much lower than building
+!!   the corresponding DFA.
+!! 
+!!---------------------------------------------------------------------------
+!! State : in ->  tostates !! comment
+!!---------------------------------------------------------------------------
+
+NFA
+
+I    : 0|1 -> I
+I    : 0   -> S0
+S0   : 0|1   -> S01
+S01  : 0|1   -> S010
+S010 : 0|1   -> F
+
+!!---------------------------------------------------------------------------
+!! You may use the line below as an empty shell to populate for your purposes
+!! Also serves as a syntax reminder for entering DFAs.
+!!
+!! State : i1 | i2 -> s1, s2   !! comment
+!!
+!! ..    : .. | .. -> .. , ..  !!  ..
+!!---------------------------------------------------------------------------
+!!
+!! Good commenting and software-engineering methods, good clean indentation,
+!! grouping of similar states, columnar alignment, etc etc. are HUGELY
+!! important in any programming endeavor -- especially while programming
+!! automata. Otherwise, you can easily make a mistake in your automaton
+!! code. Besides, you cannot rely upon others to find your mistakes, as
+!! they will find your automaton code impossible to read!
+!!
+!!---------------------------------------------------------------------------
+
+

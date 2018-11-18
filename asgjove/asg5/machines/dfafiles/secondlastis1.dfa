@@ -1,0 +1,47 @@
+!!------------------------------------------------------------
+!! This DFA looks for patterns of the form ....1.
+!! i.e., the second-last (counting from the end-point) is a 1
+!!
+!! DFAs find such patterns "very stressful to handle",
+!! as they are kept guessing of the form  'are we there yet?'
+!! 'are we seeing the second-last' ?
+!! They must keep all the failure options at hand. Even after
+!! a 'fleeting glimpse' of the second-last, more inputs can
+!! come barreling-in to make that "lucky 1" a non-second-last.
+!!
+!! We take 7 states in the DFA solution.
+!!------------------------------------------------------------
+
+DFA
+!!------------------------------------------------------------
+!! State : in ->  tostate !! comment
+!!------------------------------------------------------------
+
+I   :  0 ->  S0  !! Enter at init state I
+I   :  1 ->  S1  !! Record bit seen in state letter
+                     !! i.e., S0 means "state after seeing a 0"
+			 
+S0  :  0 ->  S00 !! continue recording input seen
+S0  :  1 ->  S01 !! in state-letter. This is a problem-specific
+                 !! way of compressing the input seen so far.
+
+S1  :  0 ->  F10 !! We now have a "second last" available!
+S1  :  1 ->  F11 !! Both F10 and F10 are "F" (final)
+
+S00 :  0 ->  S00 !! History of things seen is still 00
+S00 :  1 ->  S01 !! Remember 01 in the state
+
+S01 :  0 ->  F10 !! We again have a second-last of 1
+S01 :  1 ->  F11 !! We are in F11 because of 11 being last seen
+
+F10 :  0 ->  S00 !! The second-last 1 gets pushed-out
+F10 :  1 ->  S01 !! The second-last 1 gets pushed-out here too
+
+F11 :  0 ->  F10 !! Still we have a second-last 1
+F11 :  1 ->  F11 !! Stay in F11, as last two seen are 11
+
+!!------------------------------------------------------------
+
+
+
+
