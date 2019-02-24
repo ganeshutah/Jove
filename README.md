@@ -95,6 +95,8 @@ Detailed instructions for setting up Jupyter are provided
 (which will be kept updated) and also in [THIS SECTION](#installing-jupyter-and-jove)
 (which may become obsolete; hopefully not)
 
+We have also kept a PDF of these instructions in Jove_Installation.pdf
+
 # CONTENTS
 
 Salient contents of this git directory are now described:
