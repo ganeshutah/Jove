@@ -102,7 +102,6 @@ We have also kept a PDF of these instructions in Jove_Installation.pdf
 Salient contents of this git directory are now described:
 
 * First_Jove_Tutorial -- contains tutorial stuff you may want to run first.
-
 * 3rdparty -- contains 3rd-party stuff (lex.py and yacc.py for now)
 * **jove**     -- all the key Jove include files [.py]
 * machines -- examples of machines in Jove markdown syntax you can study
@@ -112,6 +111,8 @@ Salient contents of this git directory are now described:
   - module   -- More Jupyter notebooks you can run and study (some Youtube)
   - src      -- These are the Def_*.ipynb from which the aforesaid **jove** [.py] files obtained
   - driver   -- These are still more Jupyter notebooks to run and study 'src'
+* asgjove -- contains some class assignments
+* quizzes -- contains more class assignments or quizzes
 
 ## NOTE TO WINDOWS USERS
 
