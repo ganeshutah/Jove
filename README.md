@@ -15,6 +15,8 @@ We may abbreviate this book's title by ``ACPP''
 
 The Github URL for this README.md is https://github.com/ganeshutah/Jove.git
 
+ _PLEASE NOTE THAT Jove REQUIRES PYTHON 3_
+ 
 The code collection is called "Jove" (which the reader may
 recognize as another name for planet Jupiter). We will refer
 to the software offering as a whole as "Jove notebooks" but
@@ -96,6 +98,8 @@ Detailed instructions for setting up Jupyter are provided
 # CONTENTS
 
 Salient contents of this git directory are now described:
+
+* First_Jove_Tutorial -- contains tutorial stuff you may want to run first.
 
 * 3rdparty -- contains 3rd-party stuff (lex.py and yacc.py for now)
 * **jove**     -- all the key Jove include files [.py]
