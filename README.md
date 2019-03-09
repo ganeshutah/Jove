@@ -10,6 +10,7 @@
 
 2) Read the book Automata and Computability: A Programmer's Perspective
    (Don't worry if you don't have access to the book.)
+   [Automata and Computability: A Programmer's Perspective (Amazon link)](https://www.amazon.com/Automata-Computability-Programmers-Ganesh-Gopalakrishnan/dp/1138552429/ref=olp_product_details?_encoding=UTF8&me=) 
 
 3) Follow the contents First\_Jove\_Tutorial and get a feel for Jupyter
    notes, Jove (the collection of automaton packages I've written), and
