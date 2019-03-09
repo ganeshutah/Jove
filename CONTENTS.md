@@ -1,9 +1,26 @@
 <header> 
     <font size="6">
-    Directory Contents
+    Description of the contents of this directory
     </font>
 </header>
 
+* README\_Jove\_Launch : A reminder to launch Jove in this directory!
+
+* README.md : A description of what Jove is about, and which tutorial
+  to do first, once you get Jove installed and running
+
+* notebooks : These are a copious collection of notebooks. Look inside
+  the notebooks/ directory to learn more about them.
+  The first thing 
+
+* machines : These are example NFA, DFA, PDA, and TM in the Jove markdown
+  syntax that you can play with using Jove
+
+* asgjove : Some of my assignments and their files
+
+* quizzes : Some of my quizzes and their files
+
+  
 * 3rdparty : Things that came from other sources. We have some of these:
 
   - lex.py and yacc.py : these came from David Beazley's PLY tools. I have
@@ -19,7 +36,6 @@
     to the directory where Drive_pcp.ipynb lives. In the repo, I provide
     a Mac binary; you will have to do this for other platforms
 
-
 * jove : These are Python files that are imported into almost all the
   Jove ipynb files. These Python files were (in all cases I can recall)
   generated from similarly named ipynb files. It is better to include
@@ -28,16 +44,11 @@
   error. So to side-step that, I'm now generating foo.py and importing
   that into bar.ipynb)
 
-* machines : These are example NFA, DFA, PDA, and TM that you can
-  play with using Jove
-
-* notebooks : These are a copious collection of notebooks. Look inside
-  the notebooks/ directory to learn more about them.
-
 * tools : It currently only has one tool, namely jupyter-clear.py. This
   is designed to clear the output cells of Jupyter notebooks before saving
   them (causes fewer git conflicts and also reduces the .ipynb file size)
 
 * License.md, README.md, CONTENTS.md : serve obvious purposes. Study them.
+
 
 # END

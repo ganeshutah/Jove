@@ -4,6 +4,20 @@
     </font>
 </header>
 
+# Tasks and Order Recommended
+
+1) Install Jove 
+
+2) Read the book Automata and Computability: A Programmer's Perspective
+   (Don't worry if you don't have access to the book.)
+
+3) Follow the contents First\_Jove\_Tutorial and get a feel for Jupyter
+   notes, Jove (the collection of automaton packages I've written), and
+   follow along in chapter order
+   
+ If you have bought my book, look at its Appendix B to know which
+ Jove functions are in which Jove (Jupyter) notebooks
+
 # Introduction to Jove
 
 This git project presents the Jupyter notebooks that go with
@@ -101,7 +115,8 @@ We have also kept a PDF of these instructions in Jove_Installation.pdf
 
 Salient contents of this git directory are now described:
 
-* First_Jove_Tutorial -- contains tutorial stuff you may want to run first.
+* First\_Jove\_Tutorial -- contains tutorial stuff you ought to run
+  first (as soon as you install Jupyter notebooks) 
 * 3rdparty -- contains 3rd-party stuff (lex.py and yacc.py for now)
 * **jove**     -- all the key Jove include files [.py]
 * machines -- examples of machines in Jove markdown syntax you can study
