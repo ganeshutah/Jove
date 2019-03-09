@@ -4,42 +4,49 @@
     </font>
 </header>
 
+# What is Jove?
+
+ Jove is the collection of Jupyter notes created by Ganesh Gopalakrishnan
+ for teaching Models of Computation. We use "Jove", "Jove note books" and
+ "Jupyter notebooks" interchangeably. However "Jove" denotes those Jupyter 
+ notebooks that are part of the git distribution, tying together many learning
+ modules.
+ 
 # Tasks and Order Recommended
 
-1) Install Jove 
+1) Install Jupyter notebooks following the instructions in
+Jupyter\_Notebook\_Installation.pdf found in this directory.
+Then git clone Jove from 
+[https://github.com/ganeshutah/Jove.git](https://github.com/ganeshutah/Jove.git).
 
-2) Read the book Automata and Computability: A Programmer's Perspective
-   (Don't worry if you don't have access to the book.)
+   Now you are ready to follow the contents First\_Jove\_Tutorial 
+   and get a feel for Jupyter
+   notes, Jove, and my book.
+   
+   2) Read the book Automata and Computability: A Programmer's Perspective
+   (hereafter often abbreviated as _ACPP_).
+   Don't worry if you don't have access to the book, although the book provides
+    the theory and ties-in Jove's usage.
    [Automata and Computability: A Programmer's Perspective (Amazon link)](https://www.amazon.com/Automata-Computability-Programmers-Ganesh-Gopalakrishnan/dp/1138552429/ref=olp_product_details?_encoding=UTF8&me=) 
 
-3) Follow the contents First\_Jove\_Tutorial and get a feel for Jupyter
-   notes, Jove (the collection of automaton packages I've written), and
-   follow along in chapter order
-   
- If you have bought my book, look at its Appendix B to know which
+3) If you have bought the ACPP book, look at its Appendix B to know which
  Jove functions are in which Jove (Jupyter) notebooks
 
 # Introduction to Jove
-
-This git project presents the Jupyter notebooks that go with
-Ganesh L. Gopalakrishnan's book 
-
- _Automata and Computability: Programmer's Perspective_
-
-We may abbreviate this book's title by ``ACPP''
 
 The Github URL for this README.md is https://github.com/ganeshutah/Jove.git
 
  _PLEASE NOTE THAT Jove REQUIRES PYTHON 3_
  
 The code collection is called "Jove" (which the reader may
-recognize as another name for planet Jupiter). We will refer
-to the software offering as a whole as "Jove notebooks" but
-sometimes also as Jupyter notebooks (when referring to the
-individual notebooks).
+recognize as another name for planet Jupiter). In fact, the
+exclamation "by Jove!" means "by Jupiter!"
+
+
 
 Jove is a collection of Jupyter notebooks illustrating many
 principles:
+
 * Sets, strings and languages
 * Language operations
 * Construction of and operations on DFA and NFA
@@ -63,7 +70,8 @@ functions introduced.
 screen recordings. Feel free to scroll around in these videos
 to locate Jove (Jupyter notebook) sessions, and follow those.**
 
-Read [a newly added note to Windows users](#note-to-windows-users)
+Read [a newly added section
+NOTE TO WINDOWS USERS](#note-to-windows-users) below.
 
 # Jove's Design and Code Organization
 
@@ -77,7 +85,8 @@ style of coding to make the logic of the function stand out.
 When iteration makes sense (e.g. NFA to RE conversion) we do employ
 the more familiar iterative style.
 
-[The section contents](#contents) specifies how we offer all the
+[The section contents](#contents) called CONTENTS below
+specifies how we offer all the
 files belonging to Jove.
 
 Most automata (NFA, DFA, PDA, and Turing machines) have "Def_..."
@@ -88,21 +97,25 @@ the use of the functions.
 In order to include the "Def_..." files into the "Drive_..." files,
 we prefer to generate Python [.py] files from the former, store these
 files into an jove/ directory, and include those [.py] files into
-the "Drive_..." files. While the direct importing of Jupyter notebooks
+the "Drive\_..." files. While the direct importing of Jupyter notebooks
 into other notebooks is supported, we once ran into bugs, and felt
-that this arrangement was more foolproof.
+that our approach of generating [.py] files and importing them
+into the "Drive\_..." files arrangement was more foolproof.
 
 A key requirement is to have **lex.py** and **yacc.py** in the top-level
-directory. This will be invoked during parsing.
+directory. This will be invoked during parsing. These files (lex.py
+and yacc.py) may be freely copied-over to any subdirectory that needs
+them, as well (e.g., if an import fails, feel free to install them there).
 
 All automata are displayed using Graphiviz for which your Jupyter
 notebook must have Graphiviz installed; we provide
-[complete instructions in this section.]
+[complete instructions in the section "Obtaining and Setting up
+ Jupyter for running Jove", below.]
 (#obtaining-and-setting-up-jupyter-for-running-jove).
 
 # Obtaining and Setting up Jupyter for running Jove
 
-**Please consider installing Jupyter Lab after you setup Jupyter. It makes Jove shine! Here is info on the just-released [Jupyter Lab](https://blog.jupyter.org/jupyterlab-is-ready-for-users-5a6f039b8906)**
+(Note: You may consider installing Jupyter Lab after you setup Jupyter. It often makes Jove shine! Here is info on the just-released [Jupyter Lab](https://blog.jupyter.org/jupyterlab-is-ready-for-users-5a6f039b8906).)
 
 In order to run Jove, you need to set up Jupyter on your machine.
 Detailed instructions for setting up Jupyter are provided 
@@ -110,7 +123,7 @@ Detailed instructions for setting up Jupyter are provided
 (which will be kept updated) and also in [THIS SECTION](#installing-jupyter-and-jove)
 (which may become obsolete; hopefully not)
 
-We have also kept a PDF of these instructions in Jove_Installation.pdf
+We have also kept a PDF of these instructions in Jupyter\_Notebook\_Installation.pdf.
 
 # CONTENTS
 
@@ -135,36 +148,54 @@ Salient contents of this git directory are now described:
  Update of 8/21/18: For Windows users, the Jove repo provided should work fine without changes!
 
  But we have ended up copying the jove/ directory and lex.py as well as yacc.py into
- all the directories that need them. This is code-replication, and we may go back to our
- "old instructions".
-
+ all the directories that need them. I know, this is ugly, and
+ causes code-replication. But in a class setting, we found
+ that "idiot-proof" methods such as this often help students
+ at all levels and having machines of all types.
+ 
  The old instructions to windows users is included [AT THE END] 
- (#obsolete-but-perhaps-interesting). It consisted of using
- symbolic links etc. It is a pain, so we have moved away from this.
- But look at that section if you are curious.
+ (#obsolete-but-perhaps-interesting) under "Obsolete but perhaps
+ interesting". It consisted of using
+ symbolic links etc. It is a pain to create symbolic links in Windows (requires
+ Admin privileges), and so we have moved away from this.
+ But look at that section if you are curious, and want to adapt to that
+ style (much less code replication).
 
 ## Begin by taking a few tutorials
 
- Begin by taking tutorials from the **tutorials** directory.
+ Take the First\_Jove\_Tutorial to a sufficient degree. 
+ 
+ Then,
+ begin by taking tutorials from the **tutorials** directory.
  This directory contains [.ipynb] notebooks that have embedded
- Youtube links. The 
- [Jove Tutorials are described in detail here]
- (#jove-tutorials-are-described-in-detail-here).
- Just go to this directory and type 'jupyter notebook'
+ Youtube links. The section
+ [Jove Tutorials are described in detail here] 
+ (#jove-tutorials-are-described-in-detail-here) (below) can
+ be quite helpful.
+ 
+ Just go to the notebooks/tutorial directory and type 'jupyter notebook'
  and execute the cells in tutorial notebooks you see here.
 
 ## Learn Jove's markdown syntax for creating well-documented machines
 
-While drawing is a good way to create small machines, larger machines
-are like assembly code: you must create them with good documentation
+While drawings (consisting of directed graphs of nodes and edges)
+are a good way to create small machines, larger machines are 
+best created in a textual syntax.
+
+All the machines we create in Jove 
+are really like assembly code; in order to make them readable,
+**easily gradeable**, maintainable, and mistake-free,
+you must create them with good documentation
 and well-chosen state names. For this, we provide a convenient markdown
 syntax.
-* Learn this syntax by running notebooks/driver/Drive_md2mc.ipynb
+
+* Learn this syntax by running notebooks/driver/Drive\_md2mc.ipynb
+
 * Learn the construction of a mini-compiler including lexer and parser
   for parsing the markdown syntax and turning them into Jove's
   internal representation (structs) by a parser present in
-  notebooks/src/Def_md2mc.ipynb. This is what is driven by
-  notebooks/driver/Drive_md2mc.ipynb.
+  notebooks/src/Def\_md2mc.ipynb. This is what is driven by
+  notebooks/driver/Drive\_md2mc.ipynb.
  
 ## Other Directory Contents
 
@@ -178,7 +209,7 @@ Jupyter notebooks you find there. Here are more specifics:
 
   *  Notice that some of the very well-coded Turing machines (by Ian
      Briggs) are available only in the ``low-level'' form (specifically
-     inside *Module10_TM.ipynb*) -- and **not** in the markdown form yet.
+     inside *Module10\_TM.ipynb*) -- and **not** in the markdown form yet.
      Thus, this **module** directory has great value for studying some
      non-trivial TMs.
 
