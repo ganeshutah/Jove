@@ -20,7 +20,7 @@ Jove is described almost in its entirety in its README.md file
 Jove Version 1.0, draft begun February 18, 2018.
 
 Jove was written by Ganesh Gopalakrishnan as part of his forthcoming
-book ``Automata and Computability: Programmer's Perspective'' (hereafter
+book ``Automata and Computability: A Programmer's Perspective'' (hereafter
 abbreviated as ACPP).
 
 Some of the example Turing machines used in Jove were written by Ian Briggs,
@@ -67,6 +67,7 @@ In addition,
     * The maintainer reserves the right to include your changes in the official version of Jove.
     * The current maintainer is Ganesh Gopalakrishnan. If this changes, it will be announced at
       the official site of the ACPP book.
+    * The official site of the book is bit.ly/Automata_Jove
        
 
 3. The name of the author of Jove may not be used to
