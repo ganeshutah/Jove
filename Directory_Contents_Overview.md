@@ -4,9 +4,9 @@
     </font>
 </header>
 
-* README\_Jove\_Launch : A reminder to launch Jove in this directory!
+* Which\_Folder\_To\_Launch\_Jove.md : A reminder to launch Jove in this directory!
 
-* README.md : A description of what Jove is about, and which tutorial
+* README\_Short.md and README\_Long.md : A description of what Jove is about, and which tutorial
   to do first, once you get Jove installed and running
 
 * notebooks : These are a copious collection of notebooks. Look inside
@@ -48,7 +48,8 @@
   is designed to clear the output cells of Jupyter notebooks before saving
   them (causes fewer git conflicts and also reduces the .ipynb file size)
 
-* License.md, README.md, CONTENTS.md : serve obvious purposes. Study them.
+* License.md, README.md, Directory_Contents_Overview.md : serve obvious purposes. Study them.
 
+* Directory_Contents_Overview.md : explains this file
 
 # END
