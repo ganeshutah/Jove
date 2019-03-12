@@ -4,9 +4,9 @@
     </font>
 </header>
 
-In summary, directory navigation from a browser appears to be much
-easier, if you typed "Jupyter notebook" while in this directory
-called "Jove".
+Directory navigation from a browser appears to be much easier
+if you typed "Jupyter notebook" while in this directory (which
+is the top-level directory you are in after git clone, i.e. Jove).
 
 That way you can easily navigate up/down the directory hierarchy
 quite conveniently. If you launched Jove within another directory,
