@@ -54,4 +54,6 @@
 
 * Directory_Contents_Overview.md : explains this file
 
+* WishList.md : A growing wishlist of future additions to Jove
+
 # END
