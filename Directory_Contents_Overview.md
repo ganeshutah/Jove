@@ -4,7 +4,9 @@
     </font>
 </header>
 
-* Which\_Folder\_To\_Launch\_Jove.md : A reminder to launch Jove in this directory!
+* Launch\_Jove\_in\_This\_Folder.md : A reminder to launch Jove in this directory! This is
+  only to make your directory traversals within a browser easier (Jove will work fine
+  wherever you launch it, provided its dependencies are met).
 
 * README\_Short.md and README\_Long.md : A description of what Jove is about, and which tutorial
   to do first, once you get Jove installed and running
