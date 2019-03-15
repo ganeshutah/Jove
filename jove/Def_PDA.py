@@ -3,6 +3,7 @@
 
 # In[ ]:
 
+
 from jove.SystemImports       import *
 from jove.TransitionSelectors import *
 from jove.DotBashers          import chk_consistent_pda
@@ -114,10 +115,12 @@ from jove.DotBashers          import chk_consistent_pda
 
 # In[ ]:
 
-def explore_pda(inp, P, acceptance = 'ACCEPT_F', STKMAX=10, chatty=False):
+
+def explore_pda(inp, P, acceptance = 'ACCEPT_F', STKMAX=6, chatty=False):
     """A handy routine to print the result of run_pda plus making 
        future extensions to explore run-results.
     """
+    print("*** Exploring wrt STKMAX= ", STKMAX, "; increase it if needed ***")
     chk_consistent_pda(P)
     (term, final, visited) = run_pda(inp, P, acceptance, STKMAX=STKMAX,
                                      chatty=chatty)
@@ -140,7 +143,8 @@ def explore_pda(inp, P, acceptance = 'ACCEPT_F', STKMAX=10, chatty=False):
 
 # In[ ]:
 
-def run_pda(str, P, acceptance = 'ACCEPT_F', STKMAX=10, chatty=False):
+
+def run_pda(str, P, acceptance = 'ACCEPT_F', STKMAX=6, chatty=False):
     """Helper for explore_pda
        ---
        Input:  An initial string str.
@@ -155,6 +159,7 @@ def run_pda(str, P, acceptance = 'ACCEPT_F', STKMAX=10, chatty=False):
                * acceptance configurations
                * visited IDs
     """
+    print("*** Exploring wrt STKMAX = ", STKMAX, "; increase it if needed ***")
     chk_consistent_pda(P)
     init_id         = (P["q0"], str, P["z0"]) # Initial ID
     init_l_id_path  = [(init_id, [])]   # [(Initial ID, empty path)]
@@ -182,6 +187,7 @@ def run_pda(str, P, acceptance = 'ACCEPT_F', STKMAX=10, chatty=False):
 
 
 # In[ ]:
+
 
 def classify_l_id_path(l_id_path, s_visited_id, P, acceptance, STKMAX):
     """Helper for run_pda
@@ -218,6 +224,7 @@ def classify_l_id_path(l_id_path, s_visited_id, P, acceptance, STKMAX):
 
 
 # In[ ]:
+
 
 def h_run_pda(l_id_path, s_term_id, l_final_id_path, s_visited_id, 
               pda, acceptance, STKMAX):
@@ -269,6 +276,7 @@ def h_run_pda(l_id_path, s_term_id, l_final_id_path, s_visited_id,
 
 # In[ ]:
 
+
 def interpret_w_eps(q_inp_stk, pda):
        """Helper for step_pda
           ---
@@ -310,6 +318,7 @@ def interpret_w_eps(q_inp_stk, pda):
 
 
 # In[ ]:
+
 
 def step_pda(q_inp_stk, path, pda):
     """Inputs: An ID q_inp_stk = (q, inp_str, stk_str)
@@ -353,6 +362,7 @@ def step_pda(q_inp_stk, path, pda):
 
 # In[ ]:
 
+
 def survivor_id(s_visited_id, pda, STKMAX):
     """Helper for classify_l_id_path
        ---
@@ -389,6 +399,7 @@ def final_id(pda, acceptance):
 
 # In[ ]:
 
+
 def cvt_str_to_sym(str):
     """Helper for interpret_w_eps
        ---
@@ -403,6 +414,7 @@ def cvt_str_to_sym(str):
 
 
 # In[ ]:
+
 
 def is_surv_id(id_path, s_visited_id, pda, STKMAX):
     """Helper for survivor_id
@@ -475,6 +487,7 @@ def is_final_id(id_path, pda, acceptance):
 # Now for the functions in this file
 
 # In[ ]:
+
 
 print('''You may use any of these help commands:
 help(explore_pda)
