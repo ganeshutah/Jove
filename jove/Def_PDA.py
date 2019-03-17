@@ -120,7 +120,7 @@ def explore_pda(inp, P, acceptance = 'ACCEPT_F', STKMAX=6, chatty=False):
     """A handy routine to print the result of run_pda plus making 
        future extensions to explore run-results.
     """
-    print("*** Exploring wrt STKMAX= ", STKMAX, "; increase it if needed ***")
+    # print("*** Exploring wrt STKMAX= ", STKMAX, "; increase it if needed ***")
     chk_consistent_pda(P)
     (term, final, visited) = run_pda(inp, P, acceptance, STKMAX=STKMAX,
                                      chatty=chatty)
