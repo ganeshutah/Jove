@@ -10,7 +10,8 @@
  for teaching Models of Computation. We use "Jove", "Jove note books" and
  "Jupyter notebooks" interchangeably. However "Jove" denotes those Jupyter 
  notebooks that are part of the git distribution, tying together many learning
- modules.
+ modules. My [class website](https://tinyurl.com/cs3100fall18) shows how I
+ taught using Jove, my slides, and my Youtube videos.
  
 # Tasks and Order Recommended
 
