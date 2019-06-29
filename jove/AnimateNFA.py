@@ -22,7 +22,8 @@ class AnimateNFA:
         self.valid_input = True
         self.machine = m_desc
         self.machine_obj = dotObj_nfa(self.machine, FuseEdges=FuseEdges)
-        self.copy_source = self.reformat_edge_labels(set_graph_size(self.machine_obj.source, max_width))
+        self.copy_source = reformat_edge_labels(set_graph_size(self.machine_obj.source, max_width),
+                                                additional=' color=black arrowsize=1 penwidth=1')
         
         # Set things we need for the animation
         self.machine_steps = []
@@ -235,17 +236,17 @@ class AnimateNFA:
             # if any node is in the set of final states then color all the nodes green
             for node in self.to_nodes:
                 if node in self.machine['F']:
-                    return self.set_node_display(self.to_nodes, self.color_accept)
+                    return color_nodes(self.copy_source, self.to_nodes, self.color_accept)
             # otherwise color all of them red
-            return self.set_node_display(self.to_nodes, self.color_reject)
+            return color_nodes(self.copy_source, self.to_nodes, self.color_reject)
         
         # primary steps we are on a node
-        elif step%3 == 0:
+        elif step % 3 == 0:
             self.from_nodes = self.to_nodes
-            return self.set_node_display(self.from_nodes, self.color_neutral)
+            return color_nodes(self.copy_source, self.from_nodes, self.color_neutral)
             
         # secondary steps we are on an edge
-        elif step%3 == 1:
+        elif step % 3 == 1:
             self.to_nodes = set()
             m_state = self.copy_source
             for node in self.from_nodes:
@@ -276,7 +277,7 @@ class AnimateNFA:
         i = special[i] if i in special.keys() else i
         for n in node_set:
             # style the ending node if it not already
-            node_start = m_state.find('{} ['.format(n))
+            node_start = m_state.find('\t{} ['.format(n))
             node_end = m_state.find(']', node_start)
             node_desc = m_state[node_start:node_end+1]
             if 'fontcolor=' not in node_desc:
@@ -284,9 +285,9 @@ class AnimateNFA:
             # style the edge between node and n
             label_start = -1
             if self.fuse:
-                label_start = m_state.find('=', m_state.find('{} -> {}'.format(src_node,n)))
+                label_start = m_state.find('=', m_state.find('\t{} -> {}'.format(src_node,n)))
             else:
-                label_start = m_state.find('=', m_state.find('{} -> {} [label=< {}>'.format(src_node,n,i)))
+                label_start = m_state.find('=', m_state.find('\t{} -> {} [label=< {}>'.format(src_node,n,i)))
             label_end = m_state.find('> color', label_start)
             replace_label = m_state[label_start:label_end]
             replace_label = replace_label.replace(' {}'.format(i), '<font color="{}"> {}</font>'.format(color,i))
@@ -299,7 +300,7 @@ class AnimateNFA:
     def set_eclose_display(self, m_state, src_node, node_set, color):
         for n in node_set:
             # style the ending node if it not already
-            node_start = m_state.find('{} ['.format(n))
+            node_start = m_state.find('\t{} ['.format(n))
             node_end = m_state.find(']', node_start)
             node_desc = m_state[node_start:node_end+1]
             if 'fontcolor=' not in node_desc:
@@ -307,9 +308,9 @@ class AnimateNFA:
             # style the edge between node and n
             label_start = -1
             if self.fuse:
-                label_start = m_state.find('=', m_state.find('{} -> {}'.format(src_node,n)))
+                label_start = m_state.find('=', m_state.find('\t{} -> {}'.format(src_node,n)))
             else:
-                label_start = m_state.find('=', m_state.find('{} -> {} [label=< {}>'.format(src_node,n,'&apos;&apos;')))
+                label_start = m_state.find('=', m_state.find('\t{} -> {} [label=< {}>'.format(src_node,n,'&apos;&apos;')))
             label_end = m_state.find('> color', label_start)
             replace_label = m_state[label_start:label_end]
             if '&apos;&apos;' in replace_label:
@@ -343,36 +344,3 @@ class AnimateNFA:
         feed_string += '\n}'
         # return the feed step
         return feed_string
-    
-    def reformat_edge_labels(self, m_obj):
-        edge_pos = m_obj.find('->')
-        while edge_pos != -1:
-            # find and split the next label
-            label_start = m_obj.find('=', edge_pos)
-            label_end = m_obj.find(']', label_start)
-            label = m_obj[label_start+1:label_end]
-            # extend the label if it contains ']' as part of the label
-            label_late_end = m_obj.find(']', label_end+1)
-            while label_late_end != -1:
-                longer_label = m_obj[label_start+1:label_late_end]
-                if '->' not in longer_label:
-                    label = longer_label
-                    label_end = label_late_end
-                    label_late_end = m_obj.find(']', label_end+1)
-                else:
-                    break
-            label = label.replace('"', '').replace(' ', '').replace('\'\'', '&apos;&apos;')
-            label = replace_special(label)
-            label_list  = label.split('\n')
-            # create an HTML-like label
-            replacement = '<'
-            for elem in range(len(label_list)):
-                replacement += ' {}'.format(label_list[elem])
-                if elem != len(label_list)-1:
-                    replacement += '<br/>'
-            replacement += '>'
-            replacement += ' color=black arrowsize=1 penwidth=1'
-            # replace the label
-            m_obj = m_obj[:label_start+1] + replacement + m_obj[label_end:]
-            edge_pos = m_obj.find('->', label_end)
-        return m_obj

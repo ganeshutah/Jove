@@ -110,12 +110,15 @@ class AnimateTM:
                                               )
         self.path_dropdown.observe(self.on_path_change, names='value')
 
+        # TODO: REMOVE TESTING CODE
+        self.test_output = widgets.Output()
+
         # arrange the widgets in the display area
         row1 = widgets.HBox([self.user_input, self.start_fuel, self.generate_button]) # not displaying alternate start state
         ms_disp = widgets.HBox([self.machine_display])
         tp_disp = widgets.HBox([self.tape_display])
         play_row = widgets.HBox([self.path_dropdown, self.play_controls, self.backward, self.forward, self.speed_control])
-        w = widgets.VBox([row1, ms_disp, tp_disp, play_row])
+        w = widgets.VBox([row1, ms_disp, tp_disp, play_row, self.test_output])
         display(w)
         
         self.play_controls.disabled = True
@@ -123,17 +126,8 @@ class AnimateTM:
         self.backward.disabled = True
         self.speed_control.disabled = True
 
-        
     def on_speed_change(self, change):
         self.play_controls.interval = 1000 - 50 * change['new']
-        
-        
-    def on_stack_size_change(self, change):
-        self.stack_size = change['new']
-        with self.stack_display:
-            clear_output(wait=True)
-            display(Source(self.set_stack_display()))
-    
 
     def on_input_change(self, change):
         # check for valid user input
@@ -143,7 +137,6 @@ class AnimateTM:
         else:
             self.generate_button.button_style = 'primary'
             self.generate_button.description = 'Animate'
-
             
     def on_path_change(self, change):
         self.play_controls._playing = False
@@ -155,18 +148,15 @@ class AnimateTM:
         self.machine_steps = new_path[1]
         self.tape_steps = new_path[2]
         self.play_controls.value = 0
-
         
     def on_backward_click(self, b):
         self.play_controls._playing = False    
         self.is_back_step = True  
         self.play_controls.value -= 1
     
-    
     def on_forward_click(self, b):
         self.play_controls._playing = False        
-        self.play_controls.value += 1 
-        
+        self.play_controls.value += 1
 
     def generate_animation(self, change):
         # switching to input mode
@@ -177,7 +167,7 @@ class AnimateTM:
             self.user_input.disabled = False
             self.start_fuel.disabled = False
             # update the button to switch between modes
-            self.generate_button.description='Animate'
+            self.generate_button.description = 'Animate'
             self.generate_button.button_style = 'primary'
             # disable the play controls
             self.play_controls.disabled = True
@@ -203,14 +193,14 @@ class AnimateTM:
             self.animated = True
             self.user_input.disabled = True
             self.start_fuel.disabled = True
-            self.generate_button.description='Change Input'
+            self.generate_button.description = 'Change Input'
             # clean the current play displays
             self.tape_steps = []
             self.machine_steps = []
             
             # find the acceptance paths
             result = ()
-            with io.capture_output() as captured:
+            with io.capture_output() as captured:  # suppress run_tm print statements
                 result = run_tm(self.machine, self.user_input.value, self.start_fuel.value)
             paths = result[1]
             
@@ -222,7 +212,7 @@ class AnimateTM:
                 if not self.show_rejected and p[0][0] not in self.machine['F']:
                     continue
                     
-                path_states = p[1]
+                path_states = p[1].copy()
                 max_steps = (len(path_states))*2+1
                 path_states.append(p[0])
                 
@@ -232,14 +222,14 @@ class AnimateTM:
                 for step in range(max_steps):
                     tape_contents = path_states[step//2][2]
                     header_pos = path_states[step//2][1]
-                    while (len(tape_contents) <= header_pos):
+                    while len(tape_contents) <= header_pos:
                         tape_contents += '.'
                         
                     # make a header message
                     header_message = ''
                     if step == max_steps - 1:
                         header_message = 'STOP'
-                    elif step%2 == 0:
+                    elif step % 2 == 0:
                         header_message = 'READ: {}'.format(tape_contents[header_pos])
                     else:
                         write_val = ''
@@ -269,7 +259,7 @@ class AnimateTM:
             if path_count == 0:
                 self.generate_button.button_style = 'danger'
                 rejected_machine = set_graph_color(self.copy_source, self.color_reject)
-                rejected_machine = set_graph_label(rejected_machine, "< <font color='{}'><b>No paths found for '{}'</b></font>>".format(self.color_reject,self.user_input.value))
+                rejected_machine = set_graph_label(rejected_machine, "< <font color='{}'><b>No accepting paths found for '{}'</b></font>>".format(self.color_reject, self.user_input.value))
                 with self.machine_display:
                     clear_output(wait=True)
                     display(Source(rejected_machine))
@@ -296,7 +286,6 @@ class AnimateTM:
             self.play_controls.disabled = False
             self.speed_control.disabled = False
             self.path_dropdown.disabled = False
-            
     
     def valid_user_input(self):
         # make sure the input is valid
@@ -304,7 +293,6 @@ class AnimateTM:
             if c not in self.machine['Sigma']:
                 return False
         return True
-
 
     def on_play_step(self, change):    
         # set the step controls
@@ -326,34 +314,31 @@ class AnimateTM:
         with self.tape_display:
             clear_output(wait=True)
             display(Source(self.tape_steps[change['new']]))
-                
     
     def generate_machine_steps(self, states, step, max_step):
         # on first step reset start node
         if step == 0:
             self.from_nodes = self.machine['q0']
             self.to_nodes = self.from_nodes
-            node_display = self.set_node_display(self.from_nodes, self.color_neutral)
-            return node_display
+            return color_nodes(self.copy_source, {self.from_nodes}, self.color_neutral)
             
         # on the last step check for acceptance type
         if step == max_step-1:
             final_node = states[-1][0]
-            if final_node in self.machine['F']: # accepted path (color node green)
-                return self.set_node_display({final_node}, self.color_accept)
-            else: # rejected path (color node red)
-                return self.set_node_display({final_node}, self.color_reject)
+            if final_node in self.machine['F']:  # accepted path (color node green)
+                return color_nodes(self.copy_source, {final_node}, self.color_accept)
+            else:  # rejected path (color node red)
+                return color_nodes(self.copy_source, {final_node}, self.color_reject)
         
         # even steps we are on a node
-        elif step%2 == 0:
+        elif step % 2 == 0:
             from_node = states[step//2][0]
-            node_display = self.set_node_display({from_node}, self.color_neutral)
-            return node_display
+            return color_nodes(self.copy_source, {from_node}, self.color_neutral)
             
         # odd steps we are on an edge
         else:
             to_nodes = set()
-            with io.capture_output() as captured:
+            with io.capture_output() as captured:  # suppress run_tm print statements
                 step_result = step_tm(self.machine, states[step//2], [], [])[0]
                 for r in step_result:
                     to_nodes.add(r[0][0])
@@ -363,30 +348,24 @@ class AnimateTM:
                 tape_content += '.'
             inspecting = tape_content[header_pos]
             return self.set_choice_display(step//2, states, self.copy_source, states[step//2][0], states[step//2+1][0], to_nodes, inspecting,self.color_neutral)
-            
+    
+#    def set_edge_display(self, m_state, src_node, state_set, states, color):
+#        node_set = set()
+#        for s in state_set:
+#            node_set.add(s[0][0])
+#        for n in node_set:
+#            # style the ending node
+#            place = m_state.find(']', m_state.find('\t{} ['.format(n)))
+#            m_state =  m_state[:place] \
+#                       + ' fontcolor={} fillcolor=white color={} style=filled penwidth=2'.format(color, color) \
+#                       + m_state[place:]
+#            # style the edge between node and n
+#            place = m_state.find(']', m_state.find('\t{} -> {} ['.format(src_node, n)))
+#            m_state = m_state[:place] \
+#                      + ' color={} fontcolor={} arrowsize=1.5 penwidth=2'.format(color, color) \
+#                      + m_state[place:]
+#        return m_state
 
-    def set_node_display(self, node_set, color):
-        node_display = self.copy_source
-        for node in node_set:
-            place = node_display.find(']', node_display.find('{} ['.format(node)))
-            node_display =  node_display[:place] + ' fontcolor=white fillcolor={} style=filled'.format(color) + node_display[place:]
-        return node_display
-            
-    
-    def set_edge_display(self, m_state, src_node, state_set, states, color):
-        node_set = set()
-        for s in state_set:
-            node_set.add(s[0][0])
-        for n in node_set:
-            # style the ending node
-            place = m_state.find(']', m_state.find('{} ['.format(n)))
-            m_state =  m_state[:place] + ' fontcolor={} fillcolor=white color={} style=filled penwidth=2'.format(color,color) + m_state[place:]
-            # style the edge between node and n
-            place = m_state.find(']', m_state.find('{} -> {} ['.format(src_node,n)))
-            m_state = m_state[:place] + ' color={} fontcolor={} arrowsize=1.5 penwidth=2'.format(color,color) + m_state[place:]
-        return m_state
-    
-    
     def set_choice_display(self, step, states, m_state, src_node, dest_node, node_set, inspecting, color):
         inspecting_pos = states[step][1]
         current_tape = states[step][2]
@@ -405,44 +384,50 @@ class AnimateTM:
             
             # style the edge label           
             if self.fuse:
-                label_start = m_state.find('=', m_state.find('{} -> {}'.format(src_node,n)))
+                label_start = m_state.find('=', m_state.find('\t{} -> {}'.format(src_node,n)))
                 label_end = m_state.find(']', label_start)
                 replacement = m_state[label_start+1:label_end]
                 for t in transitions:
-                    replacement = replacement.replace(' {}'.format(t),'<font color="{}"> {}</font>'.format(color,t))
-                if n!= dest_node:
-                    replacement += ' color={} arrowsize=1 penwidth=1 style=dashed'.format(color,color)
+                    replacement = replacement.replace(' {}'.format(t), '<font color="{}"> {}</font>'.format(color, t))
+                if n != dest_node:
+                    replacement += ' color={} arrowsize=1 penwidth=1 style=dashed'.format(color, color)
                 else:
-                    replacement += ' color={} arrowsize=1.5 penwidth=2'.format(color,color)
+                    replacement += ' color={} arrowsize=1.5 penwidth=2'.format(color, color)
                 m_state = m_state[:label_start+1] + replacement + m_state[label_end:]
             else:
                 for t in range(len(transitions)):
-                    label_start = m_state.find('=', m_state.find('{} -> {} [label=< {}>'.format(src_node,n,transitions[t])))
+                    label_start = m_state.find('=', m_state.find('\t{} -> {} [label=< {}>'.format(src_node, n, transitions[t])))
                     label_end = m_state.find(']', label_start)
                     label = m_state[label_start+1:label_end]
-                    replacement = label.replace(' {}'.format(transitions[t]),'<font color="{}"> {}</font>'.format(color,transitions[t]))
-                    if n!= dest_node or future_tapes[t] not in states[step+1][2]:
-                        replacement += ' color={} arrowsize=1 penwidth=1 style=dashed'.format(color,color)
+                    replacement = label.replace(' {}'.format(transitions[t]),
+                                                '<font color="{}"> {}</font>'.format(color, transitions[t]))
+                    if n != dest_node or future_tapes[t] not in states[step+1][2]:
+                        replacement += ' color={} arrowsize=1 penwidth=1 style=dashed'.format(color, color)
                     else:
-                        replacement += ' color={} arrowsize=1.5 penwidth=2'.format(color,color)
+                        replacement += ' color={} arrowsize=1.5 penwidth=2'.format(color, color)
                     m_state = m_state[:label_start+1] + replacement + m_state[label_end:]
                     
             # style the ending node
             if n != dest_node:
                 # style the ending node
                 place = m_state.find(']', m_state.find('{} ['.format(n)))
-                m_state =  m_state[:place] + ' fontcolor={} fillcolor=white color={} style=dashed penwidth=1'.format(color,color) + m_state[place:]
+                m_state = m_state[:place] \
+                          + ' fontcolor={} fillcolor=white color={} style=dashed penwidth=1'.format(color, color) \
+                          + m_state[place:]
             else:
                 # style the ending node
                 place = m_state.find(']', m_state.find('{} ['.format(n)))
-                m_state =  m_state[:place] + ' fontcolor={} color={} fillcolor=white style=filled penwidth=2'.format(color,color) + m_state[place:]
+                m_state = m_state[:place] \
+                          + ' fontcolor={} color={} fillcolor=white style=filled penwidth=2'.format(color, color) \
+                          + m_state[place:]
         return m_state
-    
 
     def generate_tape(self, tape_contents, head_loc, head_msg):
         # make the graph for the tape
         tape_length = len(tape_contents)
-        tape_display = 'digraph {{\n\tgraph [rankdir=TB ranksep=0.0 size={}];\n\tnode [fontsize=12 width=0.4 shape=plaintext];\n\ttape [label=< <table border="0" cellborder="1" cellspacing="0" cellpadding="8"><tr>'.format(self.max_width)
+        tape_display = 'digraph {{\n\tgraph [rankdir=TB ranksep=0.0 size={}];'.format(self.max_width)
+        tape_display += '\n\tnode [fontsize=12 width=0.4 shape=plaintext];'
+        tape_display += '\n\ttape [label=< <table border="0" cellborder="1" cellspacing="0" cellpadding="8"><tr>'
         # write the tape
         tape_string = ''
         for i in range(tape_length):
@@ -452,5 +437,8 @@ class AnimateTM:
             else:
                 tape_string += '<td width="28">'
             tape_string += '{}</td>'.format(replace_special(tape_contents[i]))
-        tape_display += tape_string + '</tr></table>>]\n\thead [shape=invhouse width=0.85 fixedsize=true label=< {}>]\n\thead -> tape:pos [arrowsize=0.8]\n}}'.format(replace_special(head_msg))
+        tape_display += tape_string + '</tr></table>>]'
+        # draw the header
+        tape_display += '\n\thead [shape=invhouse width=0.85 fixedsize=true label=< {}>]'.format(replace_special(head_msg))
+        tape_display += '\n\thead -> tape:pos [arrowsize=0.8]\n}}'
         return tape_display

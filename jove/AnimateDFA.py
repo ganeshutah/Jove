@@ -13,6 +13,7 @@ from graphviz import Source
 
 # TODO: NOTE - the above is potentially not prob
 
+
 class AnimateDFA:    
     def __init__(self, m_desc, FuseEdges=False, pick_start=False, max_width=10.0):
         # Options
@@ -164,7 +165,7 @@ class AnimateDFA:
             self.play_controls.max = len(self.user_input.value)*2
             # generate the feed display
             for i in range(self.play_controls.max+1):
-                self.generate_feed(i)
+                self.feed_steps.append(self.generate_feed(i))
                 self.generate_machine_steps(i)
             with self.feed_display:
                 clear_output(wait=True)
@@ -243,8 +244,8 @@ class AnimateDFA:
                 self.forward_steps.append(node_display)
                 self.backward_steps.append(node_display)
         # even steps we are on a node
-        elif step%2 == 0:
-            node_display = self.set_node_display(self.to_node, self.color_neutral)
+        elif step % 2 == 0:
+            node_display = color_nodes(self.copy_source, {self.to_node}, self.color_neutral)
             self.forward_steps.append(node_display)
             self.backward_steps.append(node_display)
         # odd steps we are on an edge
@@ -263,14 +264,14 @@ class AnimateDFA:
     def set_edge_display(self, src, dest, i, node, color):
         i = special[i] if i in special.keys() else i
         # color the node
-        place = self.copy_source.find(']', self.copy_source.find('{} ['.format(node)))
+        place = self.copy_source.find(']', self.copy_source.find('\t{} ['.format(node)))
         edge_display = self.copy_source[:place] + ' fontcolor={} fillcolor=white color={} style=filled penwidth=2'.format(color, color) + self.copy_source[place:]
         # color the edge
         label_start = -1
         if self.fuse:
-            label_start = edge_display.find('=', edge_display.find('{} -> {}'.format(src, dest)))
+            label_start = edge_display.find('=', edge_display.find('\t{} -> {}'.format(src, dest)))
         else:
-            label_start = edge_display.find('=', edge_display.find('{} -> {} [label=< {}>'.format(src, dest, i)))
+            label_start = edge_display.find('=', edge_display.find('\t{} -> {} [label=< {}>'.format(src, dest, i)))
         label_end = edge_display.find(']', label_start)
         label = edge_display[label_start+1:label_end]
         replacement = label.replace(' {}'.format(i), '<font color="{}"> {}</font>'.format(color, i))
@@ -280,18 +281,17 @@ class AnimateDFA:
 
     def generate_feed(self, step):
         input_string = self.user_input.value
-        feed_string = 'digraph {{\n\tgraph [rankdir=LR size={}];\n\tnode [fontsize=12 width=0.35 shape=plaintext];'.format(self.max_width)
         if step == 0:
-            feed_string += '\n\tfeed [label=< <table border="0" cellborder="1" cellspacing="0" cellpadding="8"><tr><td></td><td width="16"></td><td>{}</td></tr></table>>];'.format(replace_special(input_string))
+            return write_feed_source('', '', replace_special(input_string), self.max_width)
         elif step == self.play_controls.max:
-            feed_string += '\n\tfeed [label=< <table border="0" cellborder="1" cellspacing="0" cellpadding="8"><tr><td>{}</td><td width="16"></td><td></td></tr></table>>];'.format(replace_special(input_string))
+            return write_feed_source(replace_special(input_string), '', '', self.max_width)
         elif step % 2 == 0:
-            feed_string += '\n\tfeed [label=< <table border="0" cellborder="1" cellspacing="0" cellpadding="8"><tr><td>{}</td><td width="16"></td><td>{}</td></tr></table>>];'.format(replace_special(input_string[:step//2]),
-                                                                      replace_special(input_string[step//2:]))
+            return write_feed_source(replace_special(input_string[:step//2]),
+                                     '',
+                                     replace_special(input_string[step//2:]),
+                                     self.max_width)
         else:
-            feed_string += '\n\tfeed [label=< <table border="0" cellborder="1" cellspacing="0" cellpadding="8"><tr><td>{}</td><td width="16">{}</td><td>{}</td></tr></table>>];'.format(replace_special(input_string[:step//2]),
-                                                                       replace_special(input_string[step//2]),
-                                                                       replace_special(input_string[step//2+1:]))
-        feed_string += '\n}'
-        # add the feed step
-        self.feed_steps.append(feed_string)
+            return write_feed_source(replace_special(input_string[:step//2]),
+                                     replace_special(input_string[step//2]),
+                                     replace_special(input_string[step//2+1:]),
+                                     self.max_width)
