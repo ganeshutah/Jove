@@ -11,11 +11,17 @@ from graphviz import Source
 
 
 class AnimateTM:
-    def __init__(self, m_desc, FuseEdges=False, show_rejected=False, max_width=10.0):
+    def __init__(self, m_desc,
+                 FuseEdges=False,
+                 show_rejected=False,
+                 max_width=10.0,
+                 accept_color='chartreuse3',
+                 reject_color='red',
+                 neutral_color='dodgerblue2'):
         # Options
-        self.color_accept = 'chartreuse3'
-        self.color_reject = 'red'
-        self.color_neutral = 'dodgerblue2'
+        self.color_accept = accept_color
+        self.color_reject = reject_color
+        self.color_neutral = neutral_color
         self.max_width = max_width
         self.fuse = FuseEdges
         # TM specific option
@@ -234,7 +240,8 @@ class AnimateTM:
                     else:
                         write_val = ''
                         move_dir = ''
-                        destinations = self.machine['Delta'][(path_states[step//2][0],'{}'.format(tape_contents[header_pos]))]
+                        destinations = self.machine['Delta'][(path_states[step//2][0],
+                                                              '{}'.format(tape_contents[header_pos]))]
                         for d in destinations:
                             if d[0] == path_states[step//2+1][0]:
                                 write_val = d[1]
@@ -259,7 +266,9 @@ class AnimateTM:
             if path_count == 0:
                 self.generate_button.button_style = 'danger'
                 rejected_machine = set_graph_color(self.copy_source, self.color_reject)
-                rejected_machine = set_graph_label(rejected_machine, "< <font color='{}'><b>No accepting paths found for '{}'</b></font>>".format(self.color_reject, self.user_input.value))
+                rejected_machine = set_graph_label(rejected_machine,
+                                                   "No accepting paths found for '{}'".format(self.user_input.value),
+                                                   self.color_reject)
                 with self.machine_display:
                     clear_output(wait=True)
                     display(Source(rejected_machine))
@@ -440,5 +449,5 @@ class AnimateTM:
         tape_display += tape_string + '</tr></table>>]'
         # draw the header
         tape_display += '\n\thead [shape=invhouse width=0.85 fixedsize=true label=< {}>]'.format(replace_special(head_msg))
-        tape_display += '\n\thead -> tape:pos [arrowsize=0.8]\n}}'
+        tape_display += '\n\thead -> tape:pos [arrowsize=0.8]\n}'
         return tape_display

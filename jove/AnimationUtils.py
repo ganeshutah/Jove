@@ -6,8 +6,8 @@ special = {'[': '&#91;',
            ')': '&#41;',
            '<': '&#8249;',
            '>': '&#8250;',
-           '\'': '&apos;',
-           '\'\'': '&apos;&apos;',
+           '\'': '&#39;',
+           '\'\'': '&#39;&#39;',
            '"': '&#34'}
 
 
@@ -54,17 +54,21 @@ def set_graph_size(graph_description, dim):
     return graph_description
 
 
-def set_graph_label(graph_description, message, location='t'):
+def set_graph_label(graph_description, message, color='black', location='t'):
     """
     Adds a label to the graph at location.
 
     :param graph_description: A source string of a graphviz digraph
     :param message: A string to display as part of the graph
+    :param color: A color for the label
     :param location: A string indicating the desired location of message. Valid args: 't', 'b'
     :return: A graphviz digraph source
     """
     place = graph_description.find(']', graph_description.find('graph')) + 1
-    graph_description = graph_description[:place] + '\n\tlabelloc="{}";\n\tlabel={};'.format(location,message) + graph_description[place:]
+    graph_description = graph_description[:place] \
+                        + '\n\tlabelloc="{}";'.format(location) \
+                        + '\n\tlabel=< <font color="{}"><b>{}</b></font>>;'.format(color, message) \
+                        + graph_description[place:]
     return graph_description
 
 

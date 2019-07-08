@@ -15,11 +15,17 @@ from graphviz import Source
 
 
 class AnimateDFA:    
-    def __init__(self, m_desc, FuseEdges=False, pick_start=False, max_width=10.0):
+    def __init__(self, m_desc,
+                 FuseEdges=False,
+                 pick_start=False,
+                 max_width=10.0,
+                 accept_color='chartreuse3',
+                 reject_color='red',
+                 neutral_color='dodgerblue2'):
         # Options
-        self.color_accept = 'chartreuse3'
-        self.color_reject = 'red'
-        self.color_neutral = 'dodgerblue2'
+        self.color_accept = accept_color
+        self.color_reject = reject_color
+        self.color_neutral = neutral_color
         self.max_width = max_width
         self.fuse = FuseEdges
         
@@ -29,10 +35,11 @@ class AnimateDFA:
         self.copy_source = reformat_edge_labels(set_graph_size(self.machine_obj.source, max_width))
         
         # Set things we need for the animation
-        self.forward_steps = []
-        self.backward_steps = []
+#        self.forward_steps = []
+#        self.backward_steps = []
+        self.machine_steps = []
         self.feed_steps = []
-        self.is_back_step = False       
+#        self.is_back_step = False
         self.from_node = self.machine['q0']
         self.to_node = self.machine['q0']        
         self.animated = False
@@ -119,9 +126,7 @@ class AnimateDFA:
         self.play_controls.interval = 1000 - 50 * change['new']
 
     def on_backward_click(self, b):
-        self.play_controls._playing = False    
-        self.is_back_step = True
-        
+        self.play_controls._playing = False
         self.play_controls.value -= 1
     
     def on_forward_click(self, b):
@@ -134,7 +139,7 @@ class AnimateDFA:
             self.animated = False
             self.user_input.disabled = False
             self.alternate_start.disabled = False
-            self.generate_button.description='Animate'
+            self.generate_button.description = 'Animate'
             with self.machine_display:
                 clear_output(wait=True)
                 display(Source(self.machine_obj))
@@ -159,20 +164,23 @@ class AnimateDFA:
             self.alternate_start.disabled = True
             self.generate_button.description = 'Change Input'
             self.feed_steps = []
-            self.forward_steps = []
-            self.backward_steps = []
-            
+            self.machine_steps = []
+
             self.play_controls.max = len(self.user_input.value)*2
             # generate the feed display
             for i in range(self.play_controls.max+1):
                 self.feed_steps.append(self.generate_feed(i))
-                self.generate_machine_steps(i)
+                self.machine_steps.append(self.generate_machine_steps(i))
             with self.feed_display:
                 clear_output(wait=True)
                 display(Source(self.feed_steps[0]))
             # display the machine            
             self.play_controls.value = 0
-            self.on_play_step({'new':0})
+            self.on_play_step({'new': 0})
+
+            with self.test_output:
+                for s in self.machine_steps:
+                    print(s)
         
             # enable the controls
             self.backward.disabled = True
@@ -200,10 +208,6 @@ class AnimateDFA:
             self.generate_button.description = 'Animate'
 
     def on_play_step(self, change):
-        # if playing then not back stepping
-        if self.play_controls._playing:
-            self.is_back_step = False
-        
         # set the step controls
         if change['new'] == 0:
             self.backward.disabled = True
@@ -218,11 +222,7 @@ class AnimateDFA:
         # display the machine for this step
         with self.machine_display:
             clear_output(wait=True)
-            if self.is_back_step:
-                display(Source(self.backward_steps[change['new']]))
-            else:
-                display(Source(self.forward_steps[change['new']]))
-        self.is_back_step = False
+            display(Source(self.machine_steps[change['new']]))
         # display the feed for this step
         with self.feed_display:
             clear_output(wait=True)
@@ -236,30 +236,18 @@ class AnimateDFA:
         # on the last step check for acceptance
         if step == self.play_controls.max:
             if self.to_node in self.machine['F']:
-                node_display = self.set_node_display(self.to_node, self.color_accept)
-                self.forward_steps.append(node_display)
-                self.backward_steps.append(node_display)
+                return color_nodes(self.copy_source, {self.to_node}, self.color_accept)
             else:
-                node_display = self.set_node_display(self.to_node, self.color_reject)
-                self.forward_steps.append(node_display)
-                self.backward_steps.append(node_display)
+                return color_nodes(self.copy_source, {self.to_node}, self.color_reject)
         # even steps we are on a node
         elif step % 2 == 0:
-            node_display = color_nodes(self.copy_source, {self.to_node}, self.color_neutral)
-            self.forward_steps.append(node_display)
-            self.backward_steps.append(node_display)
+            return color_nodes(self.copy_source, {self.to_node}, self.color_neutral)
         # odd steps we are on an edge
         else:
             self.from_node = self.to_node
             self.to_node = step_dfa(self.machine, self.from_node, self.user_input.value[step//2])
-            self.forward_steps.append(self.set_edge_display(self.from_node, self.to_node, self.user_input.value[step//2], self.to_node, 'dodgerblue2'))
-            self.backward_steps.append(self.set_edge_display(self.from_node, self.to_node, self.user_input.value[step//2], self.from_node, 'dodgerblue2'))
-    
-    def set_node_display(self, node, color):
-        # color the node
-        place = self.copy_source.find(']', self.copy_source.find('{} ['.format(node)))
-        node_display = self.copy_source[:place] + ' fontcolor=white fillcolor={} style=filled'.format(color) + self.copy_source[place:]
-        return node_display
+            return self.set_edge_display(self.from_node, self.to_node, self.user_input.value[step//2], self.to_node, self.color_neutral)
+
 
     def set_edge_display(self, src, dest, i, node, color):
         i = special[i] if i in special.keys() else i

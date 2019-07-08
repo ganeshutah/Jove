@@ -11,11 +11,17 @@ from graphviz import Source
 
 
 class AnimatePDA:
-    def __init__(self, m_desc, FuseEdges=False, max_stack=30, max_width=9.0):
+    def __init__(self, m_desc,
+                 FuseEdges=False,
+                 max_stack=30,
+                 max_width=9.0,
+                 accept_color='chartreuse3',
+                 reject_color='red',
+                 neutral_color='dodgerblue2'):
         # Options
-        self.color_accept = 'chartreuse3'
-        self.color_reject = 'red'
-        self.color_neutral = 'dodgerblue2'
+        self.color_accept = accept_color
+        self.color_reject = reject_color
+        self.color_neutral = neutral_color
         self.max_width = max_width
         self.fuse = FuseEdges
         # PDA specific options
@@ -240,13 +246,18 @@ class AnimatePDA:
             paths = []
             touched = []
             with io.capture_output() as captured:
-                a, paths, touched = run_pda(self.user_input.value, self.machine, acceptance=self.acceptance_toggle.value, STKMAX=self.stack_size);
+                a, paths, touched = run_pda(self.user_input.value,
+                                            self.machine,
+                                            acceptance=self.acceptance_toggle.value,
+                                            STKMAX=self.stack_size);
             
             # if there are no acceptance paths we don't have any animations to build
             if len(paths) == 0:
                 self.generate_button.button_style = 'danger'
                 rejected_machine = set_graph_color(self.copy_source, self.color_reject)
-                rejected_machine = set_graph_label(rejected_machine, "< <font color='{}'><b>'{}' was rejected</b></font>>".format(self.color_reject, self.user_input.value))
+                rejected_machine = set_graph_label(rejected_machine,
+                                                   "'{}' was rejected".format(self.user_input.value),
+                                                   self.color_reject)
                 with self.machine_display:
                     clear_output(wait=True)
                     display(Source(rejected_machine))
@@ -381,7 +392,7 @@ class AnimatePDA:
             return self.set_choice_display(step//2, self.copy_source, states[step//2][0], states[step//2+1][0], self.to_nodes, states, self.color_neutral)
     
     def set_choice_display(self, step, m_state, src_node, dest_node, state_set, states, color):
-        ap = '&apos;&apos;'
+        ap = '&#39;&#39;'
         node_set = set([s[0][0] for s in state_set])
         for n in node_set:
             # determine the input part of the label (either front of input or '')
@@ -467,9 +478,11 @@ class AnimatePDA:
     
     def generate_feed(self, inspecting, step, max_steps, states):
         input_string = self.user_input.value
-        feed_string = 'digraph {{\n\tgraph [rankdir=LR];\n\tnode [fontsize=12 width=0.35 shape=plaintext];'.format(self.max_width)
+#        feed_string = 'digraph {{\n\tgraph [rankdir=LR];\n\tnode [fontsize=12 width=0.35 shape=plaintext];'.format(self.max_width)
+        feed_string = ''
         if step == 0:
-            feed_string += '\n\tfeed [label=< <table border="0" cellborder="1" cellspacing="0" cellpadding="8"><tr><td></td><td width="16"></td><td>{}</td></tr></table>>];'.format(replace_special(input_string))
+            feed_string = write_feed_source('', '', replace_special(input_string), self.max_width)
+#            feed_string += '\n\tfeed [label=< <table border="0" cellborder="1" cellspacing="0" cellpadding="8"><tr><td></td><td width="16"></td><td>{}</td></tr></table>>];'.format(replace_special(input_string))
         elif step == max_steps:
             current_state = states[step//2]
             prev_state = states[step//2-1]
@@ -477,9 +490,13 @@ class AnimatePDA:
                 inspecting = ''
             endpoint = len(current_state[1])+len(inspecting)
             if endpoint == 0:
-                feed_string += '\n\tfeed [label=< <table border="0" cellborder="1" cellspacing="0" cellpadding="8"><tr><td>{}</td><td width="16"></td><td></td></tr></table>>];'.format(replace_special(input_string))
+                feed_string = write_feed_source(replace_special(input_string), '', '', self.max_width)
+#                feed_string += '\n\tfeed [label=< <table border="0" cellborder="1" cellspacing="0" cellpadding="8"><tr><td>{}</td><td width="16"></td><td></td></tr></table>>];'.format(replace_special(input_string))
             else:
-                feed_string += '\n\tfeed [label=< <table border="0" cellborder="1" cellspacing="0" cellpadding="8"><tr><td>{}</td><td width="16">{}</td><td>{}</td></tr></table>>];'.format(replace_special(input_string[:-endpoint]),replace_special(inspecting),replace_special(current_state[1]))
+                feed_string = write_feed_source(replace_special(input_string[:-endpoint]),
+                                                replace_special(inspecting),
+                                                replace_special(current_state[1]), self.max_width)
+#                feed_string += '\n\tfeed [label=< <table border="0" cellborder="1" cellspacing="0" cellpadding="8"><tr><td>{}</td><td width="16">{}</td><td>{}</td></tr></table>>];'.format(replace_special(input_string[:-endpoint]),replace_special(inspecting),replace_special(current_state[1]))
         else:
             current_state = states[step//2]
             # at a node
@@ -489,9 +506,13 @@ class AnimatePDA:
                     inspecting = ''
                 endpoint = len(current_state[1][len(inspecting):])+len(inspecting)
                 if endpoint == 0:
-                    feed_string += '\n\tfeed [label=< <table border="0" cellborder="1" cellspacing="0" cellpadding="8"><tr><td>{}</td><td width="16"></td><td></td></tr></table>>];'.format(replace_special(input_string))
+                    feed_string = write_feed_source(replace_special(input_string), '', '', self.max_width)
+#                    feed_string += '\n\tfeed [label=< <table border="0" cellborder="1" cellspacing="0" cellpadding="8"><tr><td>{}</td><td width="16"></td><td></td></tr></table>>];'.format(replace_special(input_string))
                 else:
-                    feed_string += '\n\tfeed [label=< <table border="0" cellborder="1" cellspacing="0" cellpadding="8"><tr><td>{}</td><td width="16">{}</td><td>{}</td></tr></table>>];'.format(replace_special(input_string[:-endpoint]),replace_special(inspecting),replace_special(current_state[1][len(inspecting):]))
+                    feed_string = write_feed_source(replace_special(input_string[:-endpoint]),
+                                                    replace_special(inspecting),
+                                                    replace_special(current_state[1][len(inspecting):]), self.max_width)
+#                    feed_string += '\n\tfeed [label=< <table border="0" cellborder="1" cellspacing="0" cellpadding="8"><tr><td>{}</td><td width="16">{}</td><td>{}</td></tr></table>>];'.format(replace_special(input_string[:-endpoint]),replace_special(inspecting),replace_special(current_state[1][len(inspecting):]))
             # picking a path
             else:
                 left = ''
@@ -502,9 +523,13 @@ class AnimatePDA:
                 right = current_state[1][len(inspecting):]
                 endpoint = len(right)+len(inspecting)
                 if endpoint == 0:
-                    feed_string += '\n\tfeed [label=< <table border="0" cellborder="1" cellspacing="0" cellpadding="8"><tr><td>{}</td><td width="16"></td><td></td></tr></table>>];'.format(replace_special(input_string))
+                    feed_string = write_feed_source(replace_special(input_string), '', '', self.max_width)
+#                    feed_string += '\n\tfeed [label=< <table border="0" cellborder="1" cellspacing="0" cellpadding="8"><tr><td>{}</td><td width="16"></td><td></td></tr></table>>];'.format(replace_special(input_string))
                 else:
-                    feed_string += '\n\tfeed [label=< <table border="0" cellborder="1" cellspacing="0" cellpadding="8"><tr><td>{}</td><td width="16">{}</td><td>{}</td></tr></table>>];'.format(replace_special(input_string[:-endpoint]),replace_special(inspecting),replace_special(right))
-        feed_string += '\n}'
+                    feed_string = write_feed_source(replace_special(input_string[:-endpoint]),
+                                                    replace_special(inspecting),
+                                                    replace_special(right), self.max_width)
+#                    feed_string += '\n\tfeed [label=< <table border="0" cellborder="1" cellspacing="0" cellpadding="8"><tr><td>{}</td><td width="16">{}</td><td>{}</td></tr></table>>];'.format(replace_special(input_string[:-endpoint]),replace_special(inspecting),replace_special(right))
+#        feed_string += '\n}'
         # return the feed step
         return feed_string, inspecting
