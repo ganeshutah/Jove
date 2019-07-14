@@ -1,6 +1,9 @@
+from jove.AnimationUtils import *
+
+block_print()
 from jove.DotBashers import *
 from jove.Def_TM import *
-from jove.AnimationUtils import *
+enable_print()
 
 import ipywidgets as widgets
 from ipywidgets import Layout

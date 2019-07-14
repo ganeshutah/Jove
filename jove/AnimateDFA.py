@@ -1,6 +1,9 @@
+from jove.AnimationUtils import *
+
+block_print()
 from jove.DotBashers import *
 from jove.Def_DFA import *
-from jove.AnimationUtils import *
+enable_print()
 
 import ipywidgets as widgets
 from ipywidgets import Layout
@@ -178,9 +181,9 @@ class AnimateDFA:
             self.play_controls.value = 0
             self.on_play_step({'new': 0})
 
-            with self.test_output:
-                for s in self.machine_steps:
-                    print(s)
+            #with self.test_output:
+            #    for s in self.machine_steps:
+            #        print(s)
         
             # enable the controls
             self.backward.disabled = True

@@ -1,3 +1,6 @@
+import sys
+import os
+
 special = {'[': '&#91;',
            ']': '&#93;',
            '{': '&#123;',
@@ -89,6 +92,7 @@ def reformat_edge_labels(graph_description, additional=''):
         label = graph_description[label_start:label_end]
         # replace special characters and split into list of labels
         label = label.strip('"')
+        label = label.strip(' ')
         label = replace_special(label)
         label_list = label.split('\n')
         # create an HTML-like label from the list of labels
@@ -166,3 +170,11 @@ def write_feed_source(left, center, right, max_width):
     feed_string += '</tr></table>>];\n}'
 
     return feed_string
+
+
+def block_print():
+    sys.stdout = open(os.devnull, 'w')
+
+
+def enable_print():
+    sys.stdout = sys.__stdout__

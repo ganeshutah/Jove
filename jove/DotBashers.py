@@ -392,7 +392,7 @@ def addEdges(D, dotObj, FuseEdges, pred):
         dotAl = fuseDotAl(dotAl)
         
     for ((s1,s2), lab) in dotAl:
-        dotObj.edge(s1,s2, label = lab)
+        dotObj.edge(s1,s2, label = "{} ".format(lab))
         
     return dotObj
 
@@ -552,7 +552,7 @@ def addNFAEdges(N, dotObj, FuseEdges, visible_eps=False):
         dotAl = fuseDotAl(dotAl)
         
     for ((s1,s2), lab) in dotAl:
-        dotObj.edge(s1,s2, label = lab)
+        dotObj.edge(s1,s2, label = "{} ".format(lab))
             
     return dotObj 
 

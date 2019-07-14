@@ -1,6 +1,9 @@
+from jove.AnimationUtils import *
+
+block_print()
 from jove.DotBashers import *
 from jove.Def_PDA import *
-from jove.AnimationUtils import *
+enable_print()
 
 import ipywidgets as widgets
 from ipywidgets import Layout
@@ -50,12 +53,7 @@ class AnimatePDA:
                                        layout=Layout(width='500px')
                                        )
         self.user_input.observe(self.on_input_change, names='value')   
-#        self.alternate_start = widgets.Dropdown(options=sorted(self.machine['Q']),
-#                                                value=self.machine['q0'],
-#                                                description='Start State:',
-#                                                disabled=False,
-#                                                layout=Layout(width='200px')
-#                                                )
+
         self.generate_button = widgets.Button(description="Animate", 
                                               button_style='primary', 
                                               disabled=False
@@ -249,7 +247,7 @@ class AnimatePDA:
                 a, paths, touched = run_pda(self.user_input.value,
                                             self.machine,
                                             acceptance=self.acceptance_toggle.value,
-                                            STKMAX=self.stack_size);
+                                            STKMAX=self.stack_size)
             
             # if there are no acceptance paths we don't have any animations to build
             if len(paths) == 0:
@@ -359,8 +357,8 @@ class AnimatePDA:
             self.from_nodes = self.machine['q0']
             self.to_nodes = self.machine['q0']
 
-            with self.test_output:
-                print('starting from {}'.format({self.from_nodes}))
+            #with self.test_output:
+            #    print('starting from {}'.format({self.from_nodes}))
 
             return color_nodes(self.copy_source, {self.from_nodes}, self.color_neutral)
 
