@@ -1,9 +1,11 @@
+import os
+import contextlib
 from jove.AnimationUtils import *
 
-block_print()
-from jove.DotBashers import *
-from jove.Def_TM import *
-enable_print()
+with open(os.devnull, 'w') as devnull:
+    with contextlib.redirect_stdout(devnull):
+        from jove.DotBashers import *
+        from jove.Def_TM import *
 
 import ipywidgets as widgets
 from ipywidgets import Layout
@@ -360,23 +362,6 @@ class AnimateTM:
                 tape_content += '.'
             inspecting = tape_content[header_pos]
             return self.set_choice_display(step//2, states, self.copy_source, states[step//2][0], states[step//2+1][0], to_nodes, inspecting,self.color_neutral)
-    
-#    def set_edge_display(self, m_state, src_node, state_set, states, color):
-#        node_set = set()
-#        for s in state_set:
-#            node_set.add(s[0][0])
-#        for n in node_set:
-#            # style the ending node
-#            place = m_state.find(']', m_state.find('\t{} ['.format(n)))
-#            m_state =  m_state[:place] \
-#                       + ' fontcolor={} fillcolor=white color={} style=filled penwidth=2'.format(color, color) \
-#                       + m_state[place:]
-#            # style the edge between node and n
-#            place = m_state.find(']', m_state.find('\t{} -> {} ['.format(src_node, n)))
-#            m_state = m_state[:place] \
-#                      + ' color={} fontcolor={} arrowsize=1.5 penwidth=2'.format(color, color) \
-#                      + m_state[place:]
-#        return m_state
 
     def set_choice_display(self, step, states, m_state, src_node, dest_node, node_set, inspecting, color):
         inspecting_pos = states[step][1]
@@ -402,9 +387,9 @@ class AnimateTM:
                 for t in transitions:
                     replacement = replacement.replace(' {}'.format(t), '<font color="{}"> {}</font>'.format(color, t))
                 if n != dest_node:
-                    replacement += ' color={} arrowsize=1 penwidth=1 style=dashed'.format(color, color)
+                    replacement += ' color="{}" arrowsize=1 penwidth=1 style=dashed'.format(color)
                 else:
-                    replacement += ' color={} arrowsize=1.5 penwidth=2'.format(color, color)
+                    replacement += ' color="{}" arrowsize=1.5 penwidth=2'.format(color)
                 m_state = m_state[:label_start+1] + replacement + m_state[label_end:]
             else:
                 for t in range(len(transitions)):
@@ -414,9 +399,9 @@ class AnimateTM:
                     replacement = label.replace(' {}'.format(transitions[t]),
                                                 '<font color="{}"> {}</font>'.format(color, transitions[t]))
                     if n != dest_node or future_tapes[t] not in states[step+1][2]:
-                        replacement += ' color={} arrowsize=1 penwidth=1 style=dashed'.format(color, color)
+                        replacement += ' color="{}" arrowsize=1 penwidth=1 style=dashed'.format(color)
                     else:
-                        replacement += ' color={} arrowsize=1.5 penwidth=2'.format(color, color)
+                        replacement += ' color="{}" arrowsize=1.5 penwidth=2'.format(color)
                     m_state = m_state[:label_start+1] + replacement + m_state[label_end:]
                     
             # style the ending node
@@ -424,13 +409,13 @@ class AnimateTM:
                 # style the ending node
                 place = m_state.find(']', m_state.find('{} ['.format(n)))
                 m_state = m_state[:place] \
-                          + ' fontcolor={} fillcolor=white color={} style=dashed penwidth=1'.format(color, color) \
+                          + ' fontcolor="{}" fillcolor=white color="{}" style=dashed penwidth=1'.format(color, color) \
                           + m_state[place:]
             else:
                 # style the ending node
                 place = m_state.find(']', m_state.find('{} ['.format(n)))
                 m_state = m_state[:place] \
-                          + ' fontcolor={} color={} fillcolor=white style=filled penwidth=2'.format(color, color) \
+                          + ' fontcolor="{}" color="{}" fillcolor=white style=filled penwidth=2'.format(color, color) \
                           + m_state[place:]
         return m_state
 

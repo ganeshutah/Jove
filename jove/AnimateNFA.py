@@ -1,9 +1,11 @@
+import os
+import contextlib
 from jove.AnimationUtils import *
 
-block_print()
-from jove.DotBashers import *
-from jove.Def_NFA import *
-enable_print()
+with open(os.devnull, 'w') as devnull:
+    with contextlib.redirect_stdout(devnull):
+        from jove.DotBashers import *
+        from jove.Def_NFA import *
 
 import ipywidgets as widgets
 from ipywidgets import Layout
@@ -290,7 +292,7 @@ class AnimateNFA:
             node_end = m_state.find(']', node_start)
             node_desc = m_state[node_start:node_end+1]
             if 'fontcolor=' not in node_desc:
-                m_state =  m_state[:node_end] + ' fontcolor={} fillcolor=white color={} style=filled penwidth=2'.format(color,color) + m_state[node_end:]
+                m_state =  m_state[:node_end] + ' fontcolor="{}" fillcolor=white color="{}" style=filled penwidth=2'.format(color,color) + m_state[node_end:]
             # style the edge between node and n
             label_start = -1
             if self.fuse:
@@ -302,7 +304,7 @@ class AnimateNFA:
             replace_label = replace_label.replace(' {}'.format(i), '<font color="{}"> {}</font>'.format(color,i))
             edge_end = m_state.find(']', label_start)
             replace_style = m_state[label_end:edge_end]
-            replace_style = replace_style.replace('> color=black arrowsize=1 penwidth=1','> color={} arrowsize=1.5 penwidth=2'.format(color))
+            replace_style = replace_style.replace('> color=black arrowsize=1 penwidth=1','> color="{}" arrowsize=1.5 penwidth=2'.format(color))
             m_state = m_state[:label_start] + replace_label + replace_style + m_state[edge_end:]
         return m_state
     
@@ -313,7 +315,7 @@ class AnimateNFA:
             node_end = m_state.find(']', node_start)
             node_desc = m_state[node_start:node_end+1]
             if 'fontcolor=' not in node_desc:
-                m_state =  m_state[:node_end] + ' fontcolor={} fillcolor=white color={} style=filled penwidth=2'.format(color,color) + m_state[node_end:]
+                m_state =  m_state[:node_end] + ' fontcolor="{}" fillcolor=white color="{}" style=filled penwidth=2'.format(color,color) + m_state[node_end:]
             # style the edge between node and n
             label_start = -1
             if self.fuse:
@@ -326,7 +328,7 @@ class AnimateNFA:
                 replace_label = replace_label.replace(' &#39;&#39;', '<font color="{}"> &#39;&#39;</font>'.format(color))
                 edge_end = m_state.find(']', label_start)
                 replace_style = m_state[label_end:edge_end]
-                replace_style = replace_style.replace('> color=black arrowsize=1 penwidth=1','> color={} arrowsize=1.5 penwidth=2'.format(color))
+                replace_style = replace_style.replace('> color=black arrowsize=1 penwidth=1','> color="{}" arrowsize=1.5 penwidth=2'.format(color))
                 m_state = m_state[:label_start] + replace_label + replace_style + m_state[edge_end:]
         return m_state
     
@@ -339,26 +341,17 @@ class AnimateNFA:
     
     def generate_feed(self, step):
         input_string = self.user_input.value
-#        feed_string = 'digraph {{\n\tgraph [rankdir=LR size={}];\n\tnode [fontsize=12 width=0.35 shape=plaintext];'.format(self.max_width)
         if step == 0:
-            return write_feed_source('', '', replace_special(input_string), self.max_width)
-#            feed_string += '\n\tfeed [label=< <table border="0" cellborder="1" cellspacing="0" cellpadding="8"><tr><td></td><td width="16"></td><td>{}</td></tr></table>>];'.format(replace_special(input_string))
+            return write_feed_source('', '  ', replace_special(input_string), self.max_width)
         elif step == self.play_controls.max:
-            return write_feed_source(replace_special(input_string), '', '', self.max_width)
-#            feed_string += '\n\tfeed [label=< <table border="0" cellborder="1" cellspacing="0" cellpadding="8"><tr><td>{}</td><td width="16"></td><td></td></tr></table>>];'.format(replace_special(input_string))
+            return write_feed_source(replace_special(input_string), '  ', '', self.max_width)
         elif step % 3 == 0:
-            return write_feed_source(replace_special(input_string[:step//3]), '',
+            return write_feed_source(replace_special(input_string[:step//3]), '  ',
                                      replace_special(input_string[step//3:]), self.max_width)
-#            feed_string += '\n\tfeed [label=< <table border="0" cellborder="1" cellspacing="0" cellpadding="8"><tr><td>{}</td><td width="16"></td><td>{}</td></tr></table>>];'.format(replace_special(input_string[:step//3]),replace_special(input_string[step//3:]))
         elif step % 3 == 1:
             return write_feed_source(replace_special(input_string[:step//3]),
                                      replace_special(input_string[step//3]),
                                      replace_special(input_string[step//3+1:]), self.max_width)
-#            feed_string += '\n\tfeed [label=< <table border="0" cellborder="1" cellspacing="0" cellpadding="8"><tr><td>{}</td><td width="16">{}</td><td>{}</td></tr></table>>];'.format(replace_special(input_string[:step//3]),replace_special(input_string[step//3]),replace_special(input_string[step//3+1:]))
         else:
             return write_feed_source(replace_special(input_string[:step//3+1]), '&#39;&#39;',
                                      replace_special(input_string[step//3+1:]), self.max_width)
-#            feed_string += '\n\tfeed [label=< <table border="0" cellborder="1" cellspacing="0" cellpadding="8"><tr><td>{}</td><td width="16">&#39;&#39;</td><td>{}</td></tr></table>>];'.format(replace_special(input_string[:step//3+1]),replace_special(input_string[step//3+1:]))
-#        feed_string += '\n}'
-#        # return the feed step
-#        return feed_string

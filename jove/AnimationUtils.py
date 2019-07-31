@@ -1,6 +1,3 @@
-import sys
-import os
-
 special = {'[': '&#91;',
            ']': '&#93;',
            '{': '&#123;',
@@ -37,7 +34,7 @@ def set_graph_color(graph_description, color):
     """
     place = graph_description.find(']', graph_description.find('graph')) + 1
     graph_description = graph_description[
-              :place] + '\n\tnode [fontcolor={} fillcolor=white color={} style=filled];\n\tedge [color={} fontcolor={}];'.format(
+              :place] + '\n\tnode [fontcolor="{}" fillcolor=white color="{}" style=filled];\n\tedge [color="{}" fontcolor="{}"];'.format(
         color, color, color, color) + graph_description[place:]
     return graph_description
 
@@ -122,7 +119,7 @@ def color_nodes(graph_description, node_set, color):
     for node in node_set:
         place = graph_description.find(']', graph_description.find('\t{} ['.format(node)))
         graph_description = graph_description[:place] \
-                            + ' fontcolor=white fillcolor={} style=filled'.format(color) \
+                            + ' fontcolor=white fillcolor="{}" style=filled'.format(color) \
                             + graph_description[place:]
     return graph_description
 
@@ -142,11 +139,11 @@ def style_nodes(graph_description, node_set, color, dest_node=None, alt_style='d
         place = graph_description.find(']', graph_description.find('\t{} ['.format(node)))
         if dest_node is not None and node is not dest_node:
             graph_description = graph_description[:place] \
-                                + ' fontcolor={} fillcolor=white color={} style={} penwidth=1'.format(color, color, alt_style) \
+                                + ' fontcolor="{}" fillcolor=white color="{}" style={} penwidth=1'.format(color, color, alt_style) \
                                 + graph_description[place:]
         else:
             graph_description = graph_description[:place] \
-                                + ' fontcolor={} color={} fillcolor=white style=filled penwidth=2'.format(color, color) \
+                                + ' fontcolor="{}" color="{}" fillcolor=white style=filled penwidth=2'.format(color, color) \
                                 + graph_description[place:]
     return graph_description
 
@@ -170,11 +167,3 @@ def write_feed_source(left, center, right, max_width):
     feed_string += '</tr></table>>];\n}'
 
     return feed_string
-
-
-def block_print():
-    sys.stdout = open(os.devnull, 'w')
-
-
-def enable_print():
-    sys.stdout = sys.__stdout__

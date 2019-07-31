@@ -1,9 +1,11 @@
+import os
+import contextlib
 from jove.AnimationUtils import *
 
-block_print()
-from jove.DotBashers import *
-from jove.Def_PDA import *
-enable_print()
+with open(os.devnull, 'w') as devnull:
+    with contextlib.redirect_stdout(devnull):
+        from jove.DotBashers import *
+        from jove.Def_PDA import *
 
 import ipywidgets as widgets
 from ipywidgets import Layout
@@ -431,9 +433,9 @@ class AnimatePDA:
                 for t in transitions:
                     replacement = replacement.replace(' {}'.format(t),'<font color="{}"> {}</font>'.format(color,t))
                 if n!= dest_node:
-                    replacement += ' color={} arrowsize=1 penwidth=1 style=dashed'.format(color,color)
+                    replacement += ' color="{}" arrowsize=1 penwidth=1 style=dashed'.format(color)
                 else:
-                    replacement += ' color={} arrowsize=1.5 penwidth=2'.format(color,color)
+                    replacement += ' color="{}" arrowsize=1.5 penwidth=2'.format(color)
                 m_state = m_state[:label_start+1] + replacement + m_state[label_end:]
             else:
                 for t in range(len(transitions)):
@@ -442,18 +444,18 @@ class AnimatePDA:
                     label = m_state[label_start+1:label_end]
                     replacement = label.replace(' {}'.format(transitions[t]),'<font color="{}"> {}</font>'.format(color,transitions[t]))
                     if n!= dest_node or future_stacks[t] != states[step+1][2]:
-                        replacement += ' color={} arrowsize=1 penwidth=1 style=dashed'.format(color,color)
+                        replacement += ' color="{}" arrowsize=1 penwidth=1 style=dashed'.format(color)
                     else:
-                        replacement += ' color={} arrowsize=1.5 penwidth=2'.format(color,color)
+                        replacement += ' color="{}" arrowsize=1.5 penwidth=2'.format(color)
                     m_state = m_state[:label_start+1] + replacement + m_state[label_end:]
                       
             # style the ending node
             if n != dest_node:
                 place = m_state.find(']', m_state.find('\t{} ['.format(n)))
-                m_state =  m_state[:place] + ' fontcolor={} fillcolor=white color={} style=dashed penwidth=1'.format(color,color) + m_state[place:]
+                m_state =  m_state[:place] + ' fontcolor="{}" fillcolor=white color="{}" style=dashed penwidth=1'.format(color,color) + m_state[place:]
             else:
                 place = m_state.find(']', m_state.find('\t{} ['.format(n)))
-                m_state =  m_state[:place] + ' fontcolor={} color={} fillcolor=white style=filled penwidth=2'.format(color,color) + m_state[place:]
+                m_state =  m_state[:place] + ' fontcolor="{}" color="{}" fillcolor=white style=filled penwidth=2'.format(color,color) + m_state[place:]
         return m_state
 
     def set_stack_display(self, contents=''):
@@ -476,11 +478,9 @@ class AnimatePDA:
     
     def generate_feed(self, inspecting, step, max_steps, states):
         input_string = self.user_input.value
-#        feed_string = 'digraph {{\n\tgraph [rankdir=LR];\n\tnode [fontsize=12 width=0.35 shape=plaintext];'.format(self.max_width)
         feed_string = ''
         if step == 0:
-            feed_string = write_feed_source('', '', replace_special(input_string), self.max_width)
-#            feed_string += '\n\tfeed [label=< <table border="0" cellborder="1" cellspacing="0" cellpadding="8"><tr><td></td><td width="16"></td><td>{}</td></tr></table>>];'.format(replace_special(input_string))
+            feed_string = write_feed_source('', '  ', replace_special(input_string), self.max_width)
         elif step == max_steps:
             current_state = states[step//2]
             prev_state = states[step//2-1]
@@ -488,13 +488,11 @@ class AnimatePDA:
                 inspecting = ''
             endpoint = len(current_state[1])+len(inspecting)
             if endpoint == 0:
-                feed_string = write_feed_source(replace_special(input_string), '', '', self.max_width)
-#                feed_string += '\n\tfeed [label=< <table border="0" cellborder="1" cellspacing="0" cellpadding="8"><tr><td>{}</td><td width="16"></td><td></td></tr></table>>];'.format(replace_special(input_string))
+                feed_string = write_feed_source(replace_special(input_string), '  ', '', self.max_width)
             else:
                 feed_string = write_feed_source(replace_special(input_string[:-endpoint]),
-                                                replace_special(inspecting),
+                                                replace_special('  ' if inspecting is '' else inspecting),
                                                 replace_special(current_state[1]), self.max_width)
-#                feed_string += '\n\tfeed [label=< <table border="0" cellborder="1" cellspacing="0" cellpadding="8"><tr><td>{}</td><td width="16">{}</td><td>{}</td></tr></table>>];'.format(replace_special(input_string[:-endpoint]),replace_special(inspecting),replace_special(current_state[1]))
         else:
             current_state = states[step//2]
             # at a node
@@ -504,13 +502,11 @@ class AnimatePDA:
                     inspecting = ''
                 endpoint = len(current_state[1][len(inspecting):])+len(inspecting)
                 if endpoint == 0:
-                    feed_string = write_feed_source(replace_special(input_string), '', '', self.max_width)
-#                    feed_string += '\n\tfeed [label=< <table border="0" cellborder="1" cellspacing="0" cellpadding="8"><tr><td>{}</td><td width="16"></td><td></td></tr></table>>];'.format(replace_special(input_string))
+                    feed_string = write_feed_source(replace_special(input_string), '  ', '', self.max_width)
                 else:
                     feed_string = write_feed_source(replace_special(input_string[:-endpoint]),
-                                                    replace_special(inspecting),
+                                                    replace_special('  ' if inspecting is '' else inspecting),
                                                     replace_special(current_state[1][len(inspecting):]), self.max_width)
-#                    feed_string += '\n\tfeed [label=< <table border="0" cellborder="1" cellspacing="0" cellpadding="8"><tr><td>{}</td><td width="16">{}</td><td>{}</td></tr></table>>];'.format(replace_special(input_string[:-endpoint]),replace_special(inspecting),replace_special(current_state[1][len(inspecting):]))
             # picking a path
             else:
                 left = ''
@@ -521,13 +517,10 @@ class AnimatePDA:
                 right = current_state[1][len(inspecting):]
                 endpoint = len(right)+len(inspecting)
                 if endpoint == 0:
-                    feed_string = write_feed_source(replace_special(input_string), '', '', self.max_width)
-#                    feed_string += '\n\tfeed [label=< <table border="0" cellborder="1" cellspacing="0" cellpadding="8"><tr><td>{}</td><td width="16"></td><td></td></tr></table>>];'.format(replace_special(input_string))
+                    feed_string = write_feed_source(replace_special(input_string), '  ', '', self.max_width)
                 else:
                     feed_string = write_feed_source(replace_special(input_string[:-endpoint]),
-                                                    replace_special(inspecting),
+                                                    replace_special('  ' if inspecting is '' else inspecting),
                                                     replace_special(right), self.max_width)
-#                    feed_string += '\n\tfeed [label=< <table border="0" cellborder="1" cellspacing="0" cellpadding="8"><tr><td>{}</td><td width="16">{}</td><td>{}</td></tr></table>>];'.format(replace_special(input_string[:-endpoint]),replace_special(inspecting),replace_special(right))
-#        feed_string += '\n}'
-        # return the feed step
+
         return feed_string, inspecting

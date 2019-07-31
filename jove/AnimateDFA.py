@@ -1,9 +1,11 @@
+import os
+import contextlib
 from jove.AnimationUtils import *
 
-block_print()
-from jove.DotBashers import *
-from jove.Def_DFA import *
-enable_print()
+with open(os.devnull, 'w') as devnull:
+    with contextlib.redirect_stdout(devnull):
+        from jove.DotBashers import *
+        from jove.Def_DFA import *
 
 import ipywidgets as widgets
 from ipywidgets import Layout
@@ -256,7 +258,7 @@ class AnimateDFA:
         i = special[i] if i in special.keys() else i
         # color the node
         place = self.copy_source.find(']', self.copy_source.find('\t{} ['.format(node)))
-        edge_display = self.copy_source[:place] + ' fontcolor={} fillcolor=white color={} style=filled penwidth=2'.format(color, color) + self.copy_source[place:]
+        edge_display = self.copy_source[:place] + ' fontcolor="{}" fillcolor=white color="{}" style=filled penwidth=2'.format(color, color) + self.copy_source[place:]
         # color the edge
         label_start = -1
         if self.fuse:
@@ -266,19 +268,19 @@ class AnimateDFA:
         label_end = edge_display.find(']', label_start)
         label = edge_display[label_start+1:label_end]
         replacement = label.replace(' {}'.format(i), '<font color="{}"> {}</font>'.format(color, i))
-        edge_display = edge_display[:label_start+1] + replacement + ' color={} arrowsize=1.5 penwidth=2'.format(color) + edge_display[label_end:]
+        edge_display = edge_display[:label_start+1] + replacement + ' color="{}" arrowsize=1.5 penwidth=2'.format(color) + edge_display[label_end:]
 
         return edge_display
 
     def generate_feed(self, step):
         input_string = self.user_input.value
         if step == 0:
-            return write_feed_source('', '', replace_special(input_string), self.max_width)
+            return write_feed_source('', '  ', replace_special(input_string), self.max_width)
         elif step == self.play_controls.max:
-            return write_feed_source(replace_special(input_string), '', '', self.max_width)
+            return write_feed_source(replace_special(input_string), '  ', '', self.max_width)
         elif step % 2 == 0:
             return write_feed_source(replace_special(input_string[:step//2]),
-                                     '',
+                                     '  ',
                                      replace_special(input_string[step//2:]),
                                      self.max_width)
         else:
