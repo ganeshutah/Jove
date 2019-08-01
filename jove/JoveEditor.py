@@ -165,7 +165,7 @@ allows you to pick which state the DFA starts in when consuming the input.
 <H4>Non-Deterministic Finite Automata (NFA)</H4>
 If the 'Alternate Start' option is selected, a multiselect box is added to the controls at the top of the widget that 
 allows you to pick which set of states the NFA starts in when consuming the input. Select multiple state names using 
-Ctrl + Click (Windows) or Shift + Click (Mac).
+<code>Ctrl + Click</code> (Windows) or <code>Shift + Click</code> (Mac).
 </br>
 <H4>Pushdown Automata (PDA)</H4>
 This widget has two additional controls at the top. The 'Acceptance' dropdown lets you choose the acceptance 
@@ -203,8 +203,8 @@ scrollable.
 </br>
 <b>Alternate Start (DFA and NFA):</b> If selected, an additionaly control is added at the top of the animation that 
 allows you to select the state (DFA) or set of states (NFA) that the machine starts in. For DFA the control is a 
-dropdown box. For NFA the control is a multiselct box, select multiple state names using Ctrl + Click (Windows) or 
-Shift + Click (Mac).
+dropdown box. For NFA the control is a multiselct box, select multiple state names using <code>Ctrl + Click</code> 
+(Windows) or <code>Shift + Click</code> (Mac).
 </br>
 <b>Show Rejected (TM):</b> If selected, the path dropdown box will also include rejected paths that were explored by 
 the TM.
@@ -216,45 +216,70 @@ machine_markdown_help_text = '''
 <H4>General</H4>
 The markdown for specifying a machine using Jove is similar for all machine types. You just need to write a series of
 rules that define the transitions between the states in the machine. These rules all share the same base pattern: </br>
-&#8249;From State&#8250; : &#8249;Transition Condition&#8250; -> &#8249;To State&#8250; </br>
-For example, if the From state is 'I', the To state is 'F' and the transition occurs when a '0' is consumed the rule 
-would be: </br>
-I : 0 -> F </br>
-If there is more than one transition condition between the same From and To states you can combine rules using a '|'
-separated list of transitions. For two transitions the pattern would be: </br>
-&#8249;From State&#8250; : &#8249;Transition Condition 1&#8250; | &#8249;Transition Condition 2&#8250; -> 
-&#8249;To State&#8250; </br>
-(i.e. I : 0 | 1 -> F) </br>
-Initial state names must start with an 'I' </br>
-Final state names must start with a 'F' </br>
-States that are both initial and final must have a name that starts with 'IF' </br>
-The symbol '' stands for 'epsilon', a zero-length string. </br>
-'!!' start a line comment, anything after the '!!' will be ignored by the parser </br>
-Whitespace in a line (space and tab) is ignored by the parser, so format your rules in a way that makes them easy to 
-read and add plenty of comments </br>
+<code>&lt;From State&gt; : &lt;Transition Condition&gt; &minus;&gt; &lt;To State&gt;</code> </br>
+With the additional constraints: </br>
+<ul>
+  <li>Initial state names must start with an <code>I</code> </li>
+  <li>Final state names must start with a <code>F</code> </li>
+  <li>States that are both initial and final must have a name that starts with <code>IF</code> </li>
+  <li><code>!!</code> start a line comment, anything after the <code>!!</code> will be ignored by the parser </li>
+  <li><code>''</code> stands for 'epsilon', a zero-length string and can be used in NFA and PDA as noted below </li>
+</ul>
+As an example, if we wanted to create a rule for a DFA that starts in initial state <code>I_start</code> and goes to 
+final state <code>F_end</code> when a <code>0</code> is consumed the rule would be: </br>
+<code>I_start : 0 &minus;&gt; F_end</code> </br>
+If there is more than one transition condition between the same From and To states you can combine rules using a 
+<code>&vert;</code> separated list of transitions. For two transitions the pattern is: </br>
+<code>&lt;From State&gt; : &lt;Transition Condition 1&gt; &vert; &lt;Transition Condition 2&gt; &minus;&gt; &lt;To State&gt;</code> 
+</br>
+So, if we added a second rule that starts in initial state <code>I_start</code> and goes to final state 
+<code>F_end</code> when a <code>1</code> is consumed &lpar;<code>I_start : 1 &minus;&gt; F_end</code>&rpar; then the 
+combined rule would be: </br>
+<code>I_start : 0 &vert; 1 &minus;&gt; F_end</code> </br>
+<b>Note:</b> Whitespace in a line &lpar;space and tab&rpar; is ignored by the parser, so format your rules in a way 
+that makes them easy to read and add plenty of comments </br>
 
 <H4>Deterministic Finite Automata (DFA)</H4>
-<from state> : <input symbol> -> <to state>  !! comment </br>
-ex: I : 0 -> A </br>
+<code>&lt;from state&gt; : &lt;input symbol&gt; &minus;&gt; &lt;to state&gt;  !! comment </code></br>
+ex: <code>I : 0 &minus;&gt; A</code> </br>
 
 <H4>Non-Deterministic Finite Automata (NFA)</H4>
+NFA can have <code>''</code> transitions in addition to transitions that consume input symbols. 
+<code>&lt;from state&gt; : &lt;input symbol or ''&gt; &minus;&gt; &lt;to state&gt;  !! comment</code> </br>
+ex: <code>I : 0 &minus;&gt; A</code> </br>
 NFA are the only machine type in Jove that can have multiple initial states, remember that each of the initial state 
-names must start with an 'I'. </br>
-<from state> : <input symbol or ''> -> <to state>  !! comment </br>
-ex: I : 0 -> A </br>
+names must start with an <code>I</code>. </br>
 
 <H4>Pushdown Automata (PDA)</H4>
-<from state> : <consume input symbol or ''> , <pop stack symbol or ''> ; <push stack symbol(s) or ''> -> <to state>  
-!! comment </br>
-ex: I : 0 , # ; 0# -> A </br>
+PDA transitions have three parts:
+<ol>
+  <li>Input symbol to consume</li>
+  <li>Symbol popped from the stack</li>
+  <li>Symbol&lpar;s&rpar; to push onto the stack</li>  
+</ol>
+By default, PDA have a <code>#</code> marker at the bottom of the stack so that it is easy to check if the stack is 
+empty. You are not <i>required</i> to replace the <code>#</code> marker when it is popped off the stack but it is best 
+practice to make sure it is always on the stack. </br>
+PDA can have <code>''</code> transitions that: do not consume an input symbol, do not pop from the stack, do not push 
+to the stack, or any combination of the the three.
+<code>&lt;from state&gt; : &lt;consume input symbol or ''&gt; , &lt;pop stack symbol or ''&gt; ; &lt;push stack symbol&lpar;s&rpar; or ''&gt; &minus;&gt; &lt;to state&gt;  !! comment</code> </br>
+ex: <code>I : 0 , # ; 0# &minus;&gt; A</code> </br>
 
 <H4>Turing Machines (TM)</H4>
-<from state> : <read from tape> ; <write to tape> , <head move (L,R,S)> -> <to state>  !! comment </br>
-ex: I : 0 ; B , R -> A </br>
+Turing Machine transitions have three parts:
+<ol>
+  <li>Symbol to read from the tape</li>
+  <li>Symbol to write on the tape</li>
+  <li>Head movement &lpar;L - move left, R - move right, S - stay put&rpar;</li>  
+</ol>
+Jove Turing Machines use <code>.</code> to denote a blank position on the tape and all positions to the left and right 
+of the initial input contain <code>.</code>. </br>
+<code>&lt;from state&gt; : &ltread from tape&gt; ; &lt;write to tape&gt; , &lt;head move &lpar;L,R,S&rpar;&gt; &minus;&gt; &lt;to state&gt;  !! comment</code> </br>
+ex: <code>I : 0 ; B , R &minus;&gt; A</code> </br>
 '''
 
 translate_help_text = '''
-TRANSLATION
+Translation is not currently supported.
 '''
 
 class JoveEditor:
@@ -408,12 +433,12 @@ class JoveEditor:
         self.machine_tab = widgets.VBox([self.animated_machine_display, self.machine_failure_display])
 
         # Help Tab
-        help_tab_label = widgets.HTML(value='<H2>Help</H2>', placeholder='', description='')
-        markdown_help = widgets.HTML(value=machine_markdown_help_text.strip(), placeholder='', description='')
-        options_help = widgets.HTML(value=options_help_text.strip(), placeholder='', description='')
-        animation_help = widgets.HTML(value=animation_help_text.strip(), placeholder='', description='')
-        play_help = widgets.HTML(value=play_help_text.strip(), placeholder='', description='')
-        translate_help = widgets.HTML(value=translate_help_text.strip(), placeholder='', description='')
+        help_tab_label = widgets.HTML(value='<H2>Help</H2>')
+        markdown_help = widgets.HTML(value=machine_markdown_help_text.strip(), style={'font-family': 'monospace'})
+        options_help = widgets.HTML(value=options_help_text.strip())
+        animation_help = widgets.HTML(value=animation_help_text.strip())
+        play_help = widgets.HTML(value=play_help_text.strip())
+        translate_help = widgets.HTML(value=translate_help_text.strip())
         help_topics = widgets.Accordion(children=[markdown_help,
                                                   options_help,
                                                   animation_help,
