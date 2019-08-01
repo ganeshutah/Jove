@@ -5,6 +5,8 @@ import os
 import contextlib
 import ast
 import pprint
+import Lib.io
+from contextlib import redirect_stdout
 
 with open(os.devnull, 'w') as devnull:
     with contextlib.redirect_stdout(devnull):
@@ -42,7 +44,7 @@ tm_placeholder = '''
 <from state> : <read from tape> ; <write to tape> , <head move (L,R,S)> -> <to state>  !! comment
 ex: I : 0 ; B , R -> A
 '''
-translate_placeholder = 'Paste a JFlap xml machine in the text area'
+translate_placeholder = '(NOT IMPLEMENTED) Paste a JFlap xml machine in the text area'
 
 dfa_example = '''
 !!---------------------------------------------------------------------------
@@ -461,28 +463,28 @@ class JoveEditor:
 
         # If a machine was passed in handle differently
         if machine is not None:
-            if {'Q', 'Sigma', 'Delta', 'F'} < machine.keys():
-                editor_string = '{}'.format(pprint.pformat(machine))
-                if {'Q', 'Sigma', 'Delta', 'q0', 'F'} == machine.keys():
-                    self.dfa_editor.value = editor_string
-                    self.machine_toggle.value = 'DFA'
-                    self.editor_tabs.selected_index = 1
-                elif {'Q', 'Sigma', 'Delta', 'Q0', 'F'} == machine.keys():
-                    self.nfa_editor.value = editor_string
-                    self.machine_toggle.value = 'NFA'
-                    self.editor_tabs.selected_index = 1
-                elif {'Q', 'Sigma', 'Gamma', 'Delta', 'q0', 'z0', 'F'} == machine.keys():
-                    self.pda_editor.value = editor_string
-                    self.machine_toggle.value = 'PDA'
-                    self.editor_tabs.selected_index = 1
-                elif {'Q', 'Sigma', 'Gamma', 'Delta', 'q0', 'B', 'F'} == machine.keys():
-                    self.tm_editor.value = editor_string
-                    self.machine_toggle.value = 'TM'
-                    self.editor_tabs.selected_index = 1
-                else:
-                    self.translate_editor.value = '!! The provided dictionary does not match any known Jove machine type\n{}'.format(editor_string)
-                    self.machine_toggle.value = 'Translate'
-                    self.editor_tabs.selected_index = 0
+            #if {'Q', 'Sigma', 'Delta', 'F'} < machine.keys():
+            editor_string = '{}'.format(pprint.pformat(machine))
+            if {'Q', 'Sigma', 'Delta', 'q0', 'F'} == machine.keys():
+                self.dfa_editor.value = editor_string
+                self.machine_toggle.value = 'DFA'
+                self.editor_tabs.selected_index = 1
+            elif {'Q', 'Sigma', 'Delta', 'Q0', 'F'} == machine.keys():
+                self.nfa_editor.value = editor_string
+                self.machine_toggle.value = 'NFA'
+                self.editor_tabs.selected_index = 1
+            elif {'Q', 'Sigma', 'Gamma', 'Delta', 'q0', 'z0', 'F'} == machine.keys():
+                self.pda_editor.value = editor_string
+                self.machine_toggle.value = 'PDA'
+                self.editor_tabs.selected_index = 1
+            elif {'Q', 'Sigma', 'Gamma', 'Delta', 'q0', 'B', 'F'} == machine.keys():
+                self.tm_editor.value = editor_string
+                self.machine_toggle.value = 'TM'
+                self.editor_tabs.selected_index = 1
+            else:
+                self.translate_editor.value = '!! The provided dictionary does not match any known Jove machine type\n{}'.format(editor_string)
+                self.machine_toggle.value = 'Translate'
+                self.editor_tabs.selected_index = 0
 
         display(self.editor_tabs)
 
@@ -506,83 +508,151 @@ class JoveEditor:
             clear_output()
 
         if self.editor_tabs.get_title(change['new']) is 'Animate':
-            try:
-                # Clear the last displayed machine
-                with self.animated_machine_display:
-                    clear_output()
-                    # Generate the machine and display it's animator
-                    if self.machine_toggle.value is 'DFA':
-                        machine = None
-                        check_for_dict = self.dfa_editor.value.strip()
-                        if check_for_dict[0] is '{' and check_for_dict[-1] is '}':
-                            machine = ast.literal_eval(check_for_dict)
-                        else:
+            # Clear the last displayed machine
+            with self.animated_machine_display:
+                clear_output()
+            # Generate the machine and display it's animator
+            jove_error = Lib.io.StringIO()
+            machine = None
+            if self.machine_toggle.value is 'DFA':
+                if len(self.dfa_editor.value.strip()) == 0:
+                    self.display_animate_error('DFA', 'No machine description in editor')
+                    return
+                check_for_dict = self.dfa_editor.value.strip()
+                if check_for_dict[0] is '{' and check_for_dict[-1] is '}':
+                    try:
+                        machine = ast.literal_eval(check_for_dict)
+                        if {'Q', 'Sigma', 'Delta', 'q0', 'F'} != machine.keys():
+                            self.display_animate_error('DFA', 'Badly formed machine description in editor')
+                            return
+                    except Exception as e:
+                        self.display_animate_error('DFA', str(e))
+                        return
+                else:
+                    try:
+                        with redirect_stdout(jove_error):
                             machine = md2mc('DFA\n{}'.format(self.dfa_editor.value))
-                        display(AnimateDFA(machine,
-                                           FuseEdges=self.fuse_option.value,
-                                           pick_start=self.alt_start_option.value,
-                                           max_width=self.max_draw_size.value,
-                                           accept_color=self.accept_colorpicker.value,
-                                           reject_color=self.reject_colorpicker.value,
-                                           neutral_color=self.transit_colorpicker.value))
-                    elif self.machine_toggle.value is 'NFA':
-                        machine = None
-                        check_for_dict = self.nfa_editor.value.strip()
-                        if check_for_dict[0] is '{' and check_for_dict[-1] is '}':
-                            machine = ast.literal_eval(check_for_dict)
-                        else:
-                            machine = md2mc('NFA\n{}'.format(self.nfa_editor.value))
-                        display(AnimateNFA(machine,
-                                           FuseEdges=self.fuse_option.value,
-                                           pick_start=self.alt_start_option.value,
-                                           max_width=self.max_draw_size.value,
-                                           accept_color=self.accept_colorpicker.value,
-                                           reject_color=self.reject_colorpicker.value,
-                                           neutral_color=self.transit_colorpicker.value
-                                           ))
-                    elif self.machine_toggle.value is 'PDA':
-                        machine = None
-                        check_for_dict = self.pda_editor.value.strip()
-                        if check_for_dict[0] is '{' and check_for_dict[-1] is '}':
-                            machine = ast.literal_eval(check_for_dict)
-                        else:
-                            machine = md2mc('PDA\n{}'.format(self.pda_editor.value))
-                        display(AnimatePDA(machine,
-                                           FuseEdges=self.fuse_option.value,
-                                           max_stack=self.max_stack_size.value,
-                                           max_width=self.max_draw_size.value,
-                                           accept_color=self.accept_colorpicker.value,
-                                           reject_color=self.reject_colorpicker.value,
-                                           neutral_color=self.transit_colorpicker.value
-                                           ))
-                    elif self.machine_toggle.value is 'TM':
-                        machine = None
-                        check_for_dict = self.tm_editor.value.strip()
-                        if check_for_dict[0] is '{' and check_for_dict[-1] is '}':
-                            machine = ast.literal_eval(check_for_dict)
-                        else:
-                            machine = md2mc('TM\n{}'.format(self.tm_editor.value))
-                        display(AnimateTM(machine,
-                                          FuseEdges=self.fuse_option.value,
-                                          show_rejected=self.show_reject_option.value,
-                                          max_width=self.max_draw_size.value,
-                                          accept_color=self.accept_colorpicker.value,
-                                          reject_color=self.reject_colorpicker.value,
-                                          neutral_color=self.transit_colorpicker.value
-                                          ))
-                    elif self.machine_toggle.value is 'Translate':
-                        display(widgets.Label(value='Translate is not Implemented yet'))
+                    except Exception as e:
+                        message = 'Jove error message:\n{}\n\nPython error message: {}'.format(jove_error.getvalue(), str(e))
+                        self.display_animate_error('DFA', message)
+                        return
+                with self.animated_machine_display:
+                    display(AnimateDFA(machine,
+                                       FuseEdges=self.fuse_option.value,
+                                       pick_start=self.alt_start_option.value,
+                                       max_width=self.max_draw_size.value,
+                                       accept_color=self.accept_colorpicker.value,
+                                       reject_color=self.reject_colorpicker.value,
+                                       neutral_color=self.transit_colorpicker.value))
 
-            except AttributeError:
-                with self.machine_failure_display:
-                    clear_output()
-                    print('Not a valid {}'.format(self.machine_toggle.value))
+            elif self.machine_toggle.value is 'NFA':
+                if len(self.nfa_editor.value.strip()) == 0:
+                    self.display_animate_error('NFA', 'No machine description in editor')
+                    return
+                check_for_dict = self.nfa_editor.value.strip()
+                if check_for_dict[0] is '{' and check_for_dict[-1] is '}':
+                    try:
+                        machine = ast.literal_eval(check_for_dict)
+                        if {'Q', 'Sigma', 'Delta', 'Q0', 'F'} != machine.keys():
+                            self.display_animate_error('NFA', 'Badly formed machine description in editor')
+                            return
+                    except Exception as e:
+                        self.display_animate_error('NFA', str(e))
+                        return
+                else:
+                    try:
+                        with redirect_stdout(jove_error):
+                            machine = md2mc('NFA\n{}'.format(self.nfa_editor.value))
+                    except Exception as e:
+                        message = 'Jove error message:\n{}\n\nPython error message: {}'.format(jove_error.getvalue(), str(e))
+                        self.display_animate_error('NFA', message)
+                        return
+                with self.animated_machine_display:
+                    display(AnimateNFA(machine,
+                                       FuseEdges=self.fuse_option.value,
+                                       pick_start=self.alt_start_option.value,
+                                       max_width=self.max_draw_size.value,
+                                       accept_color=self.accept_colorpicker.value,
+                                       reject_color=self.reject_colorpicker.value,
+                                       neutral_color=self.transit_colorpicker.value
+                                       ))
+            elif self.machine_toggle.value is 'PDA':
+                if len(self.pda_editor.value.strip()) == 0:
+                    self.display_animate_error('PDA', 'No machine description in editor')
+                    return
+                check_for_dict = self.pda_editor.value.strip()
+                if check_for_dict[0] is '{' and check_for_dict[-1] is '}':
+                    try:
+                        machine = ast.literal_eval(check_for_dict)
+                        if {'Q', 'Sigma', 'Gamma', 'Delta', 'q0', 'z0', 'F'} != machine.keys():
+                            self.display_animate_error('PDA', 'Badly formed machine description in editor')
+                            return
+                    except Exception as e:
+                        self.display_animate_error('PDA', str(e))
+                        return
+                else:
+                    try:
+                        with redirect_stdout(jove_error):
+                            machine = md2mc('PDA\n{}'.format(self.pda_editor.value))
+                    except Exception as e:
+                        message = 'Jove error message:\n{}\n\nPython error message: {}'.format(jove_error.getvalue(), str(e))
+                        self.display_animate_error('PDA', message)
+                        return
+                with self.animated_machine_display:
+                    display(AnimatePDA(machine,
+                                       FuseEdges=self.fuse_option.value,
+                                       max_stack=self.max_stack_size.value,
+                                       max_width=self.max_draw_size.value,
+                                       accept_color=self.accept_colorpicker.value,
+                                       reject_color=self.reject_colorpicker.value,
+                                       neutral_color=self.transit_colorpicker.value
+                                       ))
+            elif self.machine_toggle.value is 'TM':
+                if len(self.tm_editor.value.strip()) == 0:
+                    self.display_animate_error('TM', 'No machine description in editor')
+                    return
+                check_for_dict = self.tm_editor.value.strip()
+                if check_for_dict[0] is '{' and check_for_dict[-1] is '}':
+                    try:
+                        machine = ast.literal_eval(check_for_dict)
+                        if {'Q', 'Sigma', 'Gamma', 'Delta', 'q0', 'B', 'F'} != machine.keys():
+                            self.display_animate_error('TM', 'Badly formed machine description in editor')
+                    except Exception as e:
+                        self.display_animate_error('TM', str(e))
+                        return
+                else:
+                    try:
+                        with redirect_stdout(jove_error):
+                            machine = md2mc('TM\n{}'.format(self.tm_editor.value))
+                    except Exception as e:
+                        message = 'Jove error message:\n{}\n\nPython error message: {}'.format(jove_error.getvalue(), str(e))
+                        self.display_animate_error('TM', message)
+                        return
+                with self.animated_machine_display:
+                    display(AnimateTM(machine,
+                                      FuseEdges=self.fuse_option.value,
+                                      show_rejected=self.show_reject_option.value,
+                                      max_width=self.max_draw_size.value,
+                                      accept_color=self.accept_colorpicker.value,
+                                      reject_color=self.reject_colorpicker.value,
+                                      neutral_color=self.transit_colorpicker.value
+                                      ))
+            # Translation is not implemented yet
+            elif self.machine_toggle.value is 'Translate':
+                self.display_animate_error('Translation', 'Translate is not Implemented yet')
+                return
 
         elif self.editor_tabs.get_title(change['new']) is 'Edit':
             with self.animated_machine_display:
                 clear_output()
             with self.machine_failure_display:
                 clear_output()
+
+    def display_animate_error(self, machine_type, message):
+        with self.machine_failure_display:
+            clear_output()
+            error_text = 'Error while generating the {}:\n\n{}'.format(machine_type, message)
+            print(error_text)
 
     def save_machine(self):
         # create a path name, restrict to saving in the current folder
@@ -655,22 +725,21 @@ class JoveEditor:
                     return
 
             if machine is not None:
-                if {'Q', 'Sigma', 'Delta', 'F'} < machine.keys():
-                    if {'Q', 'Sigma', 'Delta', 'q0', 'F'} == machine.keys():
-                        self.dfa_editor.value = editor_string
-                        self.machine_toggle.value = 'DFA'
-                    elif {'Q', 'Sigma', 'Delta', 'Q0', 'F'} == machine.keys():
-                        self.nfa_editor.value = editor_string
-                        self.machine_toggle.value = 'NFA'
-                    elif {'Q', 'Sigma', 'Gamma', 'Delta', 'q0', 'z0', 'F'} == machine.keys():
-                        self.pda_editor.value = editor_string
-                        self.machine_toggle.value = 'PDA'
-                    elif {'Q', 'Sigma', 'Gamma', 'Delta', 'q0', 'B', 'F'} == machine.keys():
-                        self.tm_editor.value = editor_string
-                        self.machine_toggle.value = 'TM'
-
-                self.translate_editor.value = '!! The provided dictionary does not match any known Jove machine type\n{}'.format(editor_string)
-                self.machine_toggle.value = 'Translate'
+                if {'Q', 'Sigma', 'Delta', 'q0', 'F'} == machine.keys():
+                    self.dfa_editor.value = editor_string
+                    self.machine_toggle.value = 'DFA'
+                elif {'Q', 'Sigma', 'Delta', 'Q0', 'F'} == machine.keys():
+                    self.nfa_editor.value = editor_string
+                    self.machine_toggle.value = 'NFA'
+                elif {'Q', 'Sigma', 'Gamma', 'Delta', 'q0', 'z0', 'F'} == machine.keys():
+                    self.pda_editor.value = editor_string
+                    self.machine_toggle.value = 'PDA'
+                elif {'Q', 'Sigma', 'Gamma', 'Delta', 'q0', 'B', 'F'} == machine.keys():
+                    self.tm_editor.value = editor_string
+                    self.machine_toggle.value = 'TM'
+                else:
+                    self.translate_editor.value = '!! The provided dictionary does not match any known Jove machine type\n{}'.format(editor_string)
+                    self.machine_toggle.value = 'Translate'
 
             else:
                 self.translate_editor.value = '!! Unable to resolve the file to a known Jove machine type\n{}'.format(
