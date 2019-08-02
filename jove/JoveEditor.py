@@ -5,7 +5,7 @@ import os
 import contextlib
 import ast
 import pprint
-import Lib.io
+from _io import StringIO
 from contextlib import redirect_stdout
 
 with open(os.devnull, 'w') as devnull:
@@ -27,6 +27,8 @@ from ipywidgets import Layout
 from ipywidgets import GridspecLayout
 from IPython.display import display, clear_output, Javascript, HTML
 from traitlets import Unicode, validate, List, observe, Instance
+
+from PyQt5 import Qt
 
 dfa_placeholder = '''
 <from state> : <input symbol> -> <to state>  !! comment
@@ -317,6 +319,7 @@ class JoveEditor:
                                                     value='DFA',
                                                     description='',
                                                     disabled=False,
+                                                    style={'button_width': '120px'},
                                                     button_style='info',
                                                     tooltips=['Deterministic Finite Automata',
                                                               'Non-deterministic Finite Automata',
@@ -337,16 +340,20 @@ class JoveEditor:
                                           icon='download')
         self.upload_button = widgets.FileUpload(accept='.txt,.xml,.jove,.dfa,.nfa,.pda,.tm',
                                                 button_style='info',
-                                                description='Open',
+                                                description='Load',
                                                 disabled=False)
         self.upload_button.observe(self.on_file_upload, names='value')
         self.save_name_text = widgets.Text(value='',
                                            placeholder='Enter a file name',
                                            disabled=False)
-        self.save_load_display = widgets.Output()
-        with self.save_load_display:
-            display(self.save_button)
         self.save_button.on_click(self.save_machine)
+
+        self.save_load_collapse = widgets.Accordion(children=[widgets.VBox([self.save_button, self.upload_button])],
+                                                    selected_index=None,
+                                                    layout=Layout(height='100%'))
+        self.save_load_collapse.set_title(0, 'Save/Load')
+        self.save_load_collapse.observe(self.on_save_load_click, names='selected_index')
+
 
         # Options Controls
         self.max_draw_size = widgets.BoundedFloatText(value=9.5,
@@ -425,9 +432,10 @@ class JoveEditor:
         accordion.set_title(0, 'Options')
 
         # Pack the text editor and options into a VBOX
-        self.edit_tab = widgets.VBox([widgets.HBox([self.machine_toggle, self.upload_button]),
-                                      self.text_editor_display, accordion])
-        # display
+        self.edit_tab = widgets.VBox([widgets.HBox([self.save_load_collapse, self.machine_toggle],
+                                                   layout=Layout(width='100%', align_content='center')),
+                                     self.text_editor_display,
+                                     accordion])
 
         # Animated Machine
         self.animated_machine_display = widgets.Output()
@@ -436,7 +444,7 @@ class JoveEditor:
 
         # Help Tab
         help_tab_label = widgets.HTML(value='<H2>Help</H2>')
-        markdown_help = widgets.HTML(value=machine_markdown_help_text.strip(), style={'font-family': 'monospace'})
+        markdown_help = widgets.HTML(value=machine_markdown_help_text.strip())
         options_help = widgets.HTML(value=options_help_text.strip())
         animation_help = widgets.HTML(value=animation_help_text.strip())
         play_help = widgets.HTML(value=play_help_text.strip())
@@ -463,7 +471,6 @@ class JoveEditor:
 
         # If a machine was passed in handle differently
         if machine is not None:
-            #if {'Q', 'Sigma', 'Delta', 'F'} < machine.keys():
             editor_string = '{}'.format(pprint.pformat(machine))
             if {'Q', 'Sigma', 'Delta', 'q0', 'F'} == machine.keys():
                 self.dfa_editor.value = editor_string
@@ -502,6 +509,12 @@ class JoveEditor:
             elif change['new'] is 'Translate':
                 display(self.translate_editor)
 
+    def on_save_load_click(self, change):
+        if change['new'] is 0:
+            self.machine_toggle.enabled = False
+        else:
+            self.machine_toggle.enabled = True
+
     def on_tab_switch(self, change):
         # Clean up any previous error messages
         with self.machine_failure_display:
@@ -512,7 +525,7 @@ class JoveEditor:
             with self.animated_machine_display:
                 clear_output()
             # Generate the machine and display it's animator
-            jove_error = Lib.io.StringIO()
+            jove_error = StringIO()
             machine = None
             if self.machine_toggle.value is 'DFA':
                 if len(self.dfa_editor.value.strip()) == 0:
@@ -654,16 +667,16 @@ class JoveEditor:
             error_text = 'Error while generating the {}:\n\n{}'.format(machine_type, message)
             print(error_text)
 
-    def save_machine(self):
-        # create a path name, restrict to saving in the current folder
-        save_path = self.save_name_text.value
-        #save_path = save_path.translate(str.maketrans('', '', ' \n\t\r'))
-        save_path = save_path.strip()
-        save_path = save_path.split("/")[-1].split("\\")[-1].split(".")[0]
-        save_path = save_path.replace(' ', '_')
-        if save_path is '':
-            save_path = 'my_{}'.format(self.machine_toggle.value)
-        save_path += ".txt"
+    def save_machine(self, b):
+        # Get a file name
+        app = Qt.QApplication([])
+        widge = Qt.QWidget()
+        widge.raise_()
+        filepath = Qt.QFileDialog.getSaveFileName(widge, 'Save Jove File',
+                                                  filter="Jove (*.jove *.dfa *.nfa *.pda *.tm);;Text files (*.txt)",
+                                                  initialFilter='*.dfa')
+        if not filepath or filepath[0] == '':
+            return
 
         file_contents = ''
         if self.machine_toggle.value is 'DFA':
@@ -675,8 +688,10 @@ class JoveEditor:
         if self.machine_toggle.value is 'TM':
             file_contents = 'TM\n{}'.format(self.tm_editor.value)
 
-        with open(save_path, 'w') as filewriter:
+        with open(filepath[0], 'w') as filewriter:
             filewriter.writelines(file_contents)
+
+        self.save_load_collapse.selected_index = None
 
     def on_file_upload(self, change):
         file_contents = self.upload_button.value
@@ -685,30 +700,32 @@ class JoveEditor:
         machine_string_list = machine_string.splitlines()
         machine_string = '\n'.join(machine_string_list)
 
+        self.save_load_collapse.selected_index = None
+
         for i in range(len(machine_string_list)):
             current_line = machine_string_list[i].strip()
             if current_line[:3] == 'DFA':
                 del machine_string_list[i]
                 machine_string_list.insert(i, current_line[3:].strip())
-                self.dfa_editor.value = '\n'.join(machine_string_list)
+                self.dfa_editor.value = ('\n'.join(machine_string_list)).strip()
                 self.machine_toggle.value = 'DFA'
                 return
             elif current_line[:3] == 'NFA':
                 del machine_string_list[i]
                 machine_string_list.insert(i, current_line[3:].strip())
-                self.nfa_editor.value = '\n'.join(machine_string_list)
+                self.nfa_editor.value = ('\n'.join(machine_string_list)).strip()
                 self.machine_toggle.value = 'NFA'
                 return
             elif current_line[:3] == 'PDA':
                 del machine_string_list[i]
                 machine_string_list.insert(i, current_line[3:].strip())
-                self.pda_editor.value = '\n'.join(machine_string_list)
+                self.pda_editor.value = ('\n'.join(machine_string_list)).strip()
                 self.machine_toggle.value = 'PDA'
                 return
             elif current_line[:2] == 'TM':
                 del machine_string_list[i]
                 machine_string_list.insert(i, current_line[2:].strip())
-                self.tm_editor.value = '\n'.join(machine_string_list)
+                self.tm_editor.value = ('\n'.join(machine_string_list)).strip()
                 self.machine_toggle.value = 'TM'
                 return
         else:
