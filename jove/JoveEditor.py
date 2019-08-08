@@ -28,7 +28,9 @@ from ipywidgets import GridspecLayout
 from IPython.display import display, clear_output, Javascript, HTML
 from traitlets import Unicode, validate, List, observe, Instance
 
-from PyQt5 import Qt
+from tkinter import filedialog
+from tkinter import *
+#from PyQt5 import Qt
 
 dfa_placeholder = '''
 <from state> : <input symbol> -> <to state>  !! comment
@@ -668,15 +670,44 @@ class JoveEditor:
             print(error_text)
 
     def save_machine(self, b):
+        # Disable save and load buttons
+        self.save_button.disabled = True
+        self.upload_button.disabled = True
+
         # Get a file name
-        app = Qt.QApplication([])
-        widge = Qt.QWidget()
-        widge.raise_()
-        filepath = Qt.QFileDialog.getSaveFileName(widge, 'Save Jove File',
-                                                  filter="Jove (*.jove *.dfa *.nfa *.pda *.tm);;Text files (*.txt)",
-                                                  initialFilter='*.dfa')
-        if not filepath or filepath[0] == '':
+        #app = Qt.QApplication([])
+        #widge = Qt.QWidget()
+        #widge.raise_()
+        #filepath = Qt.QFileDialog.getSaveFileName(widge, 'Save Jove File',
+        #                                          filter="Jove (*.jove *.dfa *.nfa *.pda *.tm);;Text files (*.txt)",
+        #                                          initialFilter='*.dfa')
+
+        root = Tk()
+        root.lift()
+        #root.withdraw()
+        root.grab_set()
+        root.update()
+        filepath = filedialog.asksaveasfilename(parent=root, initialdir=".", title="Select file",
+                                                defaultextension=".jove",
+                                                   filetypes=(("Jove files", "*.jove"),
+                                                              ("Jove files", "*.dfa"),
+                                                              ("Jove files", "*.nfa"),
+                                                              ("Jove files", "*.pda"),
+                                                              ("Jove files", "*.tm"),
+                                                              ("Jove files", "*.jff"),
+                                                              ("Jove files", "*.txt")))
+        #root.update()
+        #root.wm_deiconify()
+        root.update()
+        root.destroy()
+
+        if not filepath:
+            self.save_button.disabled = False
+            self.upload_button.disabled = False
             return
+
+        if filepath[filepath.index('.'):] not in [".jove", ".dfa", ".nfa", ".pda", ".tm"]:
+            filepath = filepath[:filepath.index('.')] + ".jove"
 
         file_contents = ''
         if self.machine_toggle.value is 'DFA':
@@ -688,10 +719,13 @@ class JoveEditor:
         if self.machine_toggle.value is 'TM':
             file_contents = 'TM\n{}'.format(self.tm_editor.value)
 
-        with open(filepath[0], 'w') as filewriter:
+        with open(filepath, 'w') as filewriter:
             filewriter.writelines(file_contents)
 
         self.save_load_collapse.selected_index = None
+
+        self.save_button.disabled = False
+        self.upload_button.disabled = False
 
     def on_file_upload(self, change):
         file_contents = self.upload_button.value
