@@ -359,7 +359,6 @@ class JoveEditor:
         self.save_load_collapse.set_title(0, 'Save/Load')
         self.save_load_collapse.observe(self.on_save_load_click, names='selected_index')
 
-
         # Options Controls
         self.max_draw_size = widgets.BoundedFloatText(value=9.5,
                                                       min=1.0,
@@ -445,7 +444,11 @@ class JoveEditor:
         # Animated Machine
         self.animated_machine_display = widgets.Output()
         self.machine_failure_display = widgets.Output()
-        self.machine_tab = widgets.VBox([self.animated_machine_display, self.machine_failure_display])
+        self.machine_messages_display = widgets.Output()
+        self.machine_messages_text = widgets.HTML(value='<p style="font-family:monospace;font-size:24px">Generating animation widget ...</p>')
+        self.machine_tab = widgets.VBox([self.machine_messages_display,
+                                         self.animated_machine_display,
+                                         self.machine_failure_display])
 
         # Help Tab
         help_tab_label = widgets.HTML(value='<H2>Help</H2>')
@@ -533,11 +536,16 @@ class JoveEditor:
             self.machine_toggle.enabled = True
 
     def on_tab_switch(self, change):
-        # Clean up any previous error messages
+        # Clean up any previous messages
+        with self.machine_messages_display:
+            clear_output()
         with self.machine_failure_display:
             clear_output()
 
         if self.editor_tabs.get_title(change['new']) is 'Animate':
+            with self.machine_messages_display:
+                display(self.machine_messages_text)
+
             # Clear the last displayed machine
             with self.animated_machine_display:
                 clear_output()
@@ -672,10 +680,15 @@ class JoveEditor:
                 self.display_animate_error('Translation', 'Translate is not Implemented yet')
                 return
 
+            with self.machine_messages_display:
+                clear_output()
+
         elif self.editor_tabs.get_title(change['new']) is 'Edit':
             with self.animated_machine_display:
                 clear_output()
             with self.machine_failure_display:
+                clear_output()
+            with self.machine_messages_display:
                 clear_output()
 
     def display_animate_error(self, machine_type, message):
