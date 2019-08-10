@@ -289,7 +289,7 @@ class JoveEditor:
         # added to force using font-family monospace for user input Textarea and Text widgets
         display(HTML("<style>textarea, input { font-family: monospace; }</style>"))
         # Editing textboxes and toggle buttons
-        text_area_sytle = Layout(width='100%', height='500px', font_family='monospace')
+        text_area_sytle = Layout(width='100%', height='500px')
         self.dfa_editor = widgets.Textarea(value=dfa_example.strip() if examples else '',
                                            placeholder=dfa_placeholder.strip(),
                                            disabled=False,
@@ -336,7 +336,6 @@ class JoveEditor:
         # save and upload
         self.save_name_text = widgets.Text(value='',
                                            placeholder='filename',
-                                           layout=Layout(font_family='monospace'),
                                            disabled=False)
         self.save_name_text.observe(self.save_text_changed, names='value')
         self.postfix_text = widgets.HTML(value='<p style="font-family:monospace">.dfa</p>')
@@ -346,7 +345,7 @@ class JoveEditor:
                                           icon='download')
         self.save_button.on_click(self.save_machine)
         self.save_load_messages = widgets.HTML(value='<p style="font-size:small"></br></br></p>')
-        self.upload_button = widgets.FileUpload(accept='.txt,.jff,.jove,.dfa,.nfa,.pda,.tm',
+        self.upload_button = widgets.FileUpload(accept='.txt,.jff,.dfa,.nfa,.pda,.tm',
                                                 button_style='info',
                                                 description='Load',
                                                 disabled=False)
@@ -359,7 +358,6 @@ class JoveEditor:
                                                                             self.upload_button])],
                                                     selected_index=None)
         self.save_load_collapse.set_title(0, 'Save/Load')
-        self.save_load_collapse.observe(self.on_save_load_click, names='selected_index')
 
         # Options Controls
         self.max_draw_size = widgets.BoundedFloatText(value=9.5,
@@ -447,7 +445,7 @@ class JoveEditor:
         self.animated_machine_display = widgets.Output()
         self.machine_failure_display = widgets.Output()
         self.machine_messages_display = widgets.Output()
-        self.machine_messages_text = widgets.HTML(value='<p style="font-family:monospace;font-size:24px">Generating animation widget ...</p>')
+        self.machine_messages_text = widgets.HTML(value='<p style="font-family:monospace;font-size:24px;text-align:center">Generating animation widget ...</p>')
         self.machine_tab = widgets.VBox([self.machine_messages_display,
                                          self.animated_machine_display,
                                          self.machine_failure_display])
@@ -506,12 +504,13 @@ class JoveEditor:
         display(self.editor_tabs)
 
     def on_machine_select(self, change):
-        # Disable save and load buttons
+        # save button
         if self.save_name_text.value == "":
             self.save_button.disabled = True
         else:
             self.save_button.disabled = False
 
+        # display the correct editor and file extension
         with self.text_editor_display:
             clear_output(wait=True)
             if change['new'] is 'DFA':
@@ -528,14 +527,8 @@ class JoveEditor:
                 self.postfix_text.value = '<p style="font-family:monospace">.tm </p>'
             elif change['new'] is 'Translate':
                 display(self.translate_editor)
-                # Disable save and load buttons
+                # Disable save button
                 self.save_button.disabled = True
-
-    def on_save_load_click(self, change):
-        if change['new'] is 0:
-            self.machine_toggle.enabled = False
-        else:
-            self.machine_toggle.enabled = True
 
     def on_tab_switch(self, change):
         # Clean up any previous messages
@@ -551,6 +544,7 @@ class JoveEditor:
             # Clear the last displayed machine
             with self.animated_machine_display:
                 clear_output()
+
             # Generate the machine and display it's animator
             jove_error = StringIO()
             machine = None
@@ -716,6 +710,7 @@ class JoveEditor:
         # Get the filepath
         filepath = self.save_name_text.value
         filepath = filepath.split('.')[0]
+        self.save_name_text.value = filepath
         if self.machine_toggle.value is 'DFA':
             filepath = '{}.dfa'.format(filepath)
         if self.machine_toggle.value is 'NFA':

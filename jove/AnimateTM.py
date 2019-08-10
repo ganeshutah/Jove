@@ -117,7 +117,7 @@ class AnimateTM:
         # set the widget to display the tape
         self.tape_display = widgets.Output()
         with self.tape_display:
-            display(Source(self.generate_tape('........', 0, '')))
+            display(Source(self.generate_tape('........', 0, '', 10)))
 
         self.path_dropdown = widgets.Dropdown(options={},
                                               value=None,
@@ -199,7 +199,7 @@ class AnimateTM:
                 display(Source(self.copy_source))
             with self.tape_display:
                 clear_output(wait=True)
-                display(Source(self.generate_tape('........', 0, '')))
+                display(Source(self.generate_tape('........', 0, '', 10)))
             with self.rejection_display:
                 clear_output()
         
@@ -262,7 +262,11 @@ class AnimateTM:
                                 break
                         header_message = 'WRITE: {}'.format(write_val)
                         tape_contents = path_states[step//2+1][2]
-                    tape_step = self.generate_tape(tape_contents, header_pos, header_message)
+                    fuel_amount = self.start_fuel.value - step//2
+                    tape_step = self.generate_tape(tape_contents,
+                                                   header_pos,
+                                                   header_message,
+                                                   fuel_amount if step != 0 else self.start_fuel.value)
                     path_tape_steps.append(tape_step)
                     
                 # generate the machine steps
@@ -427,7 +431,7 @@ class AnimateTM:
                           + m_state[place:]
         return m_state
 
-    def generate_tape(self, tape_contents, head_loc, head_msg):
+    def generate_tape(self, tape_contents, head_loc, head_msg, fuel):
         # make the graph for the tape
         tape_length = len(tape_contents)
         tape_display = 'digraph {{\n\tgraph [rankdir=TB ranksep=0.0 size={}];'.format(self.max_width)
@@ -444,6 +448,6 @@ class AnimateTM:
             tape_string += '{}</td>'.format(replace_special(tape_contents[i]))
         tape_display += tape_string + '</tr></table>>]'
         # draw the header
-        tape_display += '\n\thead [shape=invhouse width=0.85 fixedsize=true label=< {}>]'.format(replace_special(head_msg))
+        tape_display += '\n\thead [shape=invhouse width=1.0 height=0.7 fixedsize=true label=< {}<br></br>Fuel: {}>]'.format(replace_special(head_msg),fuel)
         tape_display += '\n\thead -> tape:pos [arrowsize=0.8]\n}'
         return tape_display
