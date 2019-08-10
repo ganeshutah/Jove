@@ -286,6 +286,8 @@ Translation is not currently supported.
 
 class JoveEditor:
     def __init__(self, machine=None, examples=False):
+        # added to force using font-family monospace for user input Textarea and Text widgets
+        display(HTML("<style>textarea, input { font-family: monospace; }</style>"))
         # Editing textboxes and toggle buttons
         text_area_sytle = Layout(width='100%', height='500px', font_family='monospace')
         self.dfa_editor = widgets.Textarea(value=dfa_example.strip() if examples else '',
