@@ -112,7 +112,7 @@ class AnimateTM:
             self.rejection_display = widgets.Output()
             self.rejection_text = widgets.HTML(value="")
             self.reject_msg_start = '<p style="color:{}; text-align:center"><b>\'<span style="font-family:monospace">'.format(self.color_reject)
-            self.reject_msg_end = '</span>\' was REJECTED</b></br>(If the string should have been accepted you may need to increase the \'fule\')</p>'
+            self.reject_msg_end = '</span>\' was REJECTED</b></br>(Try running with more \'fuel\')</p>'
             
         # set the widget to display the tape
         self.tape_display = widgets.Output()
