@@ -28,10 +28,6 @@ from ipywidgets import GridspecLayout
 from IPython.display import display, clear_output, Javascript, HTML
 from traitlets import Unicode, validate, List, observe, Instance
 
-from tkinter import filedialog
-from tkinter import *
-#from PyQt5 import Qt
-
 dfa_placeholder = '''
 <from state> : <input symbol> -> <to state>  !! comment
 ex: I : 0 -> A
@@ -336,23 +332,30 @@ class JoveEditor:
             display(self.dfa_editor)
 
         # save and upload
+        self.save_name_text = widgets.Text(value='',
+                                           placeholder='filename',
+                                           layout=Layout(font_family='monospace'),
+                                           disabled=False)
+        self.save_name_text.observe(self.save_text_changed, names='value')
+        self.postfix_text = widgets.HTML(value='<p style="font-family:monospace">.dfa</p>')
         self.save_button = widgets.Button(description="Save",
                                           button_style='info',
-                                          disabled=False,
+                                          disabled=True,
                                           icon='download')
-        self.upload_button = widgets.FileUpload(accept='.txt,.xml,.jove,.dfa,.nfa,.pda,.tm',
+        self.save_button.on_click(self.save_machine)
+        self.save_load_messages = widgets.HTML(value='<p style="font-size:small"></br></br></p>')
+        self.upload_button = widgets.FileUpload(accept='.txt,.jff,.jove,.dfa,.nfa,.pda,.tm',
                                                 button_style='info',
                                                 description='Load',
                                                 disabled=False)
         self.upload_button.observe(self.on_file_upload, names='value')
-        self.save_name_text = widgets.Text(value='',
-                                           placeholder='Enter a file name',
-                                           disabled=False)
-        self.save_button.on_click(self.save_machine)
 
-        self.save_load_collapse = widgets.Accordion(children=[widgets.VBox([self.save_button, self.upload_button])],
-                                                    selected_index=None,
-                                                    layout=Layout(height='100%'))
+        self.save_load_collapse = widgets.Accordion(children=[widgets.VBox([widgets.HBox([self.save_name_text,
+                                                                                          self.postfix_text]),
+                                                                            self.save_button,
+                                                                            self.save_load_messages,
+                                                                            self.upload_button])],
+                                                    selected_index=None)
         self.save_load_collapse.set_title(0, 'Save/Load')
         self.save_load_collapse.observe(self.on_save_load_click, names='selected_index')
 
@@ -498,18 +501,30 @@ class JoveEditor:
         display(self.editor_tabs)
 
     def on_machine_select(self, change):
+        # Disable save and load buttons
+        if self.save_name_text.value == "":
+            self.save_button.disabled = True
+        else:
+            self.save_button.disabled = False
+
         with self.text_editor_display:
             clear_output(wait=True)
             if change['new'] is 'DFA':
                 display(self.dfa_editor)
+                self.postfix_text.value = '<p style="font-family:monospace">.dfa</p>'
             elif change['new'] is 'NFA':
                 display(self.nfa_editor)
+                self.postfix_text.value = '<p style="font-family:monospace">.nfa</p>'
             elif change['new'] is 'PDA':
                 display(self.pda_editor)
+                self.postfix_text.value = '<p style="font-family:monospace">.pda</p>'
             elif change['new'] is 'TM':
                 display(self.tm_editor)
+                self.postfix_text.value = '<p style="font-family:monospace">.tm </p>'
             elif change['new'] is 'Translate':
                 display(self.translate_editor)
+                # Disable save and load buttons
+                self.save_button.disabled = True
 
     def on_save_load_click(self, change):
         if change['new'] is 0:
@@ -669,45 +684,31 @@ class JoveEditor:
             error_text = 'Error while generating the {}:\n\n{}'.format(machine_type, message)
             print(error_text)
 
+    def save_text_changed(self, changed):
+        if changed['new'] == '':
+            self.save_button.disabled = True
+        else:
+            self.save_button.disabled = False
+        self.save_load_messages.value = '<p style="font-size:small"></br></br></p>'
+
     def save_machine(self, b):
         # Disable save and load buttons
         self.save_button.disabled = True
         self.upload_button.disabled = True
+        self.save_name_text.disabled = True
+        self.save_load_messages.value = '<p style="font-size:small">saving ...</br></br></p>'
 
-        # Get a file name
-        #app = Qt.QApplication([])
-        #widge = Qt.QWidget()
-        #widge.raise_()
-        #filepath = Qt.QFileDialog.getSaveFileName(widge, 'Save Jove File',
-        #                                          filter="Jove (*.jove *.dfa *.nfa *.pda *.tm);;Text files (*.txt)",
-        #                                          initialFilter='*.dfa')
-
-        root = Tk()
-        root.lift()
-        #root.withdraw()
-        root.grab_set()
-        root.update()
-        filepath = filedialog.asksaveasfilename(parent=root, initialdir=".", title="Select file",
-                                                defaultextension=".jove",
-                                                   filetypes=(("Jove files", "*.jove"),
-                                                              ("Jove files", "*.dfa"),
-                                                              ("Jove files", "*.nfa"),
-                                                              ("Jove files", "*.pda"),
-                                                              ("Jove files", "*.tm"),
-                                                              ("Jove files", "*.jff"),
-                                                              ("Jove files", "*.txt")))
-        #root.update()
-        #root.wm_deiconify()
-        root.update()
-        root.destroy()
-
-        if not filepath:
-            self.save_button.disabled = False
-            self.upload_button.disabled = False
-            return
-
-        if filepath[filepath.index('.'):] not in [".jove", ".dfa", ".nfa", ".pda", ".tm"]:
-            filepath = filepath[:filepath.index('.')] + ".jove"
+        # Get the filepath
+        filepath = self.save_name_text.value
+        filepath = filepath.split('.')[0]
+        if self.machine_toggle.value is 'DFA':
+            filepath = '{}.dfa'.format(filepath)
+        if self.machine_toggle.value is 'NFA':
+            filepath = '{}.nfa'.format(filepath)
+        if self.machine_toggle.value is 'PDA':
+            filepath = '{}.pda'.format(filepath)
+        if self.machine_toggle.value is 'TM':
+            filepath = '{}.tm'.format(filepath)
 
         file_contents = ''
         if self.machine_toggle.value is 'DFA':
@@ -719,22 +720,30 @@ class JoveEditor:
         if self.machine_toggle.value is 'TM':
             file_contents = 'TM\n{}'.format(self.tm_editor.value)
 
-        with open(filepath, 'w') as filewriter:
-            filewriter.writelines(file_contents)
+        try:
+            with open(filepath, 'w') as filewriter:
+                filewriter.writelines(file_contents)
+        except Exception as e:
+            error_message = '<p style="font-size:small; color:red">saving ... failed</br>'
+            error_message += '{}</p>'.format(str(e))
+            self.save_load_messages.value = error_message
+            self.save_button.disabled = False
+            self.upload_button.disabled = False
+            self.save_name_text.disabled = False
+            return
 
-        self.save_load_collapse.selected_index = None
-
+        self.save_load_messages.value = '<p style="font-size:small">saving ... success</br></br></p>'
         self.save_button.disabled = False
         self.upload_button.disabled = False
+        self.save_name_text.disabled = False
 
     def on_file_upload(self, change):
+        self.save_load_messages.value = '<p style="font-size:small"></br>loading ...</p>'
         file_contents = self.upload_button.value
         machine_binary = file_contents[list(file_contents.keys())[0]]['content']
         machine_string = machine_binary.decode().strip()
         machine_string_list = machine_string.splitlines()
         machine_string = '\n'.join(machine_string_list)
-
-        self.save_load_collapse.selected_index = None
 
         for i in range(len(machine_string_list)):
             current_line = machine_string_list[i].strip()
@@ -743,24 +752,28 @@ class JoveEditor:
                 machine_string_list.insert(i, current_line[3:].strip())
                 self.dfa_editor.value = ('\n'.join(machine_string_list)).strip()
                 self.machine_toggle.value = 'DFA'
+                self.save_load_messages.value = '<p style="font-size:small"></br>loading ... success</p>'
                 return
             elif current_line[:3] == 'NFA':
                 del machine_string_list[i]
                 machine_string_list.insert(i, current_line[3:].strip())
                 self.nfa_editor.value = ('\n'.join(machine_string_list)).strip()
                 self.machine_toggle.value = 'NFA'
+                self.save_load_messages.value = '<p style="font-size:small"></br>loading ... success</p>'
                 return
             elif current_line[:3] == 'PDA':
                 del machine_string_list[i]
                 machine_string_list.insert(i, current_line[3:].strip())
                 self.pda_editor.value = ('\n'.join(machine_string_list)).strip()
                 self.machine_toggle.value = 'PDA'
+                self.save_load_messages.value = '<p style="font-size:small"></br>loading ... success</p>'
                 return
             elif current_line[:2] == 'TM':
                 del machine_string_list[i]
                 machine_string_list.insert(i, current_line[2:].strip())
                 self.tm_editor.value = ('\n'.join(machine_string_list)).strip()
                 self.machine_toggle.value = 'TM'
+                self.save_load_messages.value = '<p style="font-size:small"></br>loading ... success</p>'
                 return
         else:
             machine = None
@@ -770,9 +783,10 @@ class JoveEditor:
                     machine = ast.literal_eval(machine_string)
                     editor_string = '{}'.format(pprint.pformat(machine))
                 except:
-                    self.translate_editor.value = '!! The provided file does not contain a well formed dictionary\n{}'.format(
-                        editor_string)
+                    self.translate_editor.value = '!! The file \'{}\' does not contain a well formed dictionary\n{}'.format(
+                        list(file_contents.keys())[0], machine_string)
                     self.machine_toggle.value = 'Translate'
+                    self.save_load_messages.value = '<p style="font-size:small"></br>loading ... success</p>'
                     return
 
             if machine is not None:
@@ -789,11 +803,13 @@ class JoveEditor:
                     self.tm_editor.value = editor_string
                     self.machine_toggle.value = 'TM'
                 else:
-                    self.translate_editor.value = '!! The provided dictionary does not match any known Jove machine type\n{}'.format(editor_string)
+                    self.translate_editor.value = '!! The file \'{}\' does not match any known Jove machine type\n{}'.format(list(file_contents.keys())[0],editor_string)
                     self.machine_toggle.value = 'Translate'
 
             else:
                 self.translate_editor.value = '!! Unable to resolve the file to a known Jove machine type\n{}'.format(
                         machine_string)
                 self.machine_toggle.value = 'Translate'
+
+        self.save_load_messages.value = '<p style="font-size:small"></br>loading ... success</p>'
         return

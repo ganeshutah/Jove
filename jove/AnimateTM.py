@@ -107,6 +107,12 @@ class AnimateTM:
         self.machine_display = widgets.Output()
         with self.machine_display:
             display(Source(self.copy_source))
+
+            # set a widget to display rejected output
+            self.rejection_display = widgets.Output()
+            self.rejection_text = widgets.HTML(value="")
+            self.reject_msg_start = '<p style="color:{}; text-align:center"><b>\'<span style="font-family:monospace">'.format(self.color_reject)
+            self.reject_msg_end = '</span>\' was REJECTED</b></br>(If the string should have been accepted you may need to increase the \'fule\')</p>'
             
         # set the widget to display the tape
         self.tape_display = widgets.Output()
@@ -129,7 +135,7 @@ class AnimateTM:
         ms_disp = widgets.HBox([self.machine_display])
         tp_disp = widgets.HBox([self.tape_display])
         play_row = widgets.HBox([self.path_dropdown, self.play_controls, self.backward, self.forward, self.speed_control])
-        w = widgets.VBox([row1, ms_disp, tp_disp, play_row, self.test_output])
+        w = widgets.VBox([row1, self.rejection_display, ms_disp, tp_disp, play_row, self.test_output])
         display(w)
         
         self.play_controls.disabled = True
@@ -194,6 +200,8 @@ class AnimateTM:
             with self.tape_display:
                 clear_output(wait=True)
                 display(Source(self.generate_tape('........', 0, '')))
+            with self.rejection_display:
+                clear_output()
         
         # switching to play mode
         else:
@@ -271,9 +279,9 @@ class AnimateTM:
             if path_count == 0:
                 self.generate_button.button_style = 'danger'
                 rejected_machine = set_graph_color(self.copy_source, self.color_reject)
-                rejected_machine = set_graph_label(rejected_machine,
-                                                   "No accepting paths found for '{}'".format(self.user_input.value),
-                                                   self.color_reject)
+                with self.rejection_display:
+                    self.rejection_text.value = '{}{}{}'.format(self.reject_msg_start, self.user_input.value, self.reject_msg_end)
+                    display(self.rejection_text)
                 with self.machine_display:
                     clear_output(wait=True)
                     display(Source(rejected_machine))
