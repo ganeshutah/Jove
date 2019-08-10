@@ -40,6 +40,136 @@ Then git clone Jove from
 3) If you have bought the ACPP book, look at its Appendix B to know which
  Jove functions are in which Jove (Jupyter) notebooks
 
+
+# Installing Jupyter and Jove
+
+## Mac
+
+   1. Install anaconda (I found it at https://www.anaconda.com/distribution/)
+
+   2. Downloading anaconda puts it at /anaconda3/bin/anaconda
+
+   3.  Make sure your path settings are correct
+       * which anaconda gives /anaconda3/bin/anaconda for me
+       * which conda    gives /anaconda3/bin/conda for me
+       
+   4. conda install graphviz -- installs the graphviz command-line tools
+
+   5. pip install graphiviz -- installs the graphviz python module
+
+   6. [optional] conda update ipywidgets (if you later face any issues with Jupyter widgets)
+
+   7. Go to [Make sure the install works](#make-sure-the-install-works) 
+
+## Linux (64-bit or 32-bit)
+    
+   1. Start the installer (instructions assume 64-bit)
+
+   2. To install system-wide:
+      - sudo -H bash Anaconda3-4.4.0-Linux-x86_64.sh
+
+   3. To install only for your user:
+      - bash Anaconda3-4.4.0-Linux-x86_64.sh
+
+   4. In the installer, do the following:
+       - View the license and accept it
+       - Choose where to install (you can press enter for the default)
+       - Answer ``yes'' to having the Anaconda path prepended to your PATH
+
+   5. Exit that terminal and open a new one.
+       - Make sure that the
+         'jupyter' found is the one you installed, via command 'which jupyter'.
+       - This should return a path in the directory where you
+         installed Anaconda 3.
+       - It will be similar to /home/username/anaconda3/bin/jupyter
+
+   6. Install the graphviz command-line module (use
+      'sudo -H' if you installed Anaconda 3 system-wide)
+       - conda install graphviz
+
+   7. Now install the python module for using graphviz.  First, make sure the 'pip'
+      tool used is the one from the Anaconda 3 install.
+       - which pip
+
+   8. Now for the installing of the graphviz python module.  If you installed
+      Anaconda 3 into your home directory, then do the following:
+       - pip install graphviz
+
+   9. If you installed Anaconda 3 system-wide, you can install the graphviz module
+      system-wide:
+       - sudo -H $(which pip) install graphviz
+       - Notice the '$(which pip)' since the root account may not have the same
+         PATH as you.  Or you can install graphviz into only your home directory
+	 as follows: 'pip install --user graphviz'
+
+   10. Go to [Make sure the install works](#make-sure-the-install-works) section at the
+       end to verify correct installation.   
+   
+## Windows (64-bit or 32-bit)
+
+   1. Run the installer installing into your home directory.
+      You do not need to add the Anaconda 3 directories to your system PATH.
+
+   2. After the install, open an Anaconda Prompt (go to the start menu and search
+      ``Anaconda Prompt'').
+      - Note that if you ignored the advise to install in your
+        home directory, you will want to right-click on the Anaconda Prompt icon and
+        select ``Run as Administrator''.
+
+   3. In this prompt, install graphviz
+      - conda install graphviz
+
+   4. Now install the python graphviz module
+      - pip install graphviz
+
+   5. Now the graphviz module (or arguably the subprocess module) has a bug that we
+      will need to work around.
+      Basically, calling subprocess.check_call(['dot'])
+      doesn't match with dot.bat that is in the system PATH.
+      There are two fixes for this. Choose whichever one you want.
+
+    6. The first is to add the graphviz command-line tool directory to your system path
+       - Open the control panel
+       - Search for 'environment' and click on 'Edit environment variables for your
+         account'.
+       - Double click on ``Path'' in the top half of the window.  Add the
+         path for graphviz, which should be something like this:
+	    C:\$Users\username>\Anaconda3\Library\bin\graphviz
+       - Close all command prompts and open them again to have updated PATH variables
+
+    7. The second is to replace 'dot' with 'dot.bat' in the graphviz python module.
+       - Navigate to the graphviz python module directory, for example
+       - C:\Users\<Username>\Anaconda3\Lib\site-packages\graphviz
+       - Open in a text editor files.py and backend.py
+       - Around line 19 in both files, replace
+          'dot' with 'dot.bat'.  (In files.py, it is the value of
+	   '_engine', and in 'backend.py, it is a value
+         in the ENGINES set.
+
+    8. Go to the section [Make sure the install works](#make-sure-the-install-works) 
+
+## Make sure the install works
+
+   1. Now, start the Jupyter notebook
+
+   2. jupyter notebook
+
+   3. If this doesn't open a browser to your notebook, it should print instructions
+      on what to do.  Primarily it should give you something to copy and paste into a
+      browser.
+      
+   4. Try out some graph generation in your Jupyter notebook.
+      Enter the following in the first cell and press Shift-Enter.
+
+      - import graphviz
+      - g = graphviz.Graph()
+      - g.edges(['AB', 'BC', 'CD', 'DA'])
+      - g
+
+   5. Start Jupyter and run notebooks/driver/Drive_Animations.ipynb and see
+      if the animations occur 
+
+
 # Introduction to Jove
 
 The Github URL for this README.md is https://github.com/ganeshutah/Jove.git
@@ -148,6 +278,7 @@ Salient contents of this git directory are now described:
   - module   -- More Jupyter notebooks you can run and study (some Youtube)
   - src      -- These are the Def_*.ipynb from which the aforesaid **jove** [.py] files obtained
   - driver   -- These are still more Jupyter notebooks to run and study 'src'
+             -- **NEW** Drive_Animations.ipynb shows animations
 * asgjove -- contains some class assignments
 * quizzes -- contains more class assignments or quizzes
 
@@ -192,7 +323,7 @@ Salient contents of this git directory are now described:
  Just go to the notebooks/tutorial directory and type 'jupyter notebook'
  and execute the cells in tutorial notebooks you see here.
 
-## Learn Jove's markdown syntax for creating well-documented machines
+## Learn Jove's markdown syntax for creating well-documented machines.
 
 While drawings (consisting of directed graphs of nodes and edges)
 are a good way to create small machines, larger machines are 
@@ -205,7 +336,10 @@ you must create them with good documentation
 and well-chosen state names. For this, we provide a convenient markdown
 syntax.
 
-* Learn this syntax by running notebooks/driver/Drive\_md2mc.ipynb
+* Jove's markdown syntax is succinctly described within
+  notebooks/driver/Drive_Animations.ipynb
+  
+* You may also learn this syntax by running notebooks/driver/Drive\_md2mc.ipynb
 
 * Learn the construction of a mini-compiler including lexer and parser
   for parsing the markdown syntax and turning them into Jove's
@@ -377,8 +511,6 @@ We now describe the tutorials provided.
 
   
   
-
-  
 # How to read and extend the code of Jove
 
 ## Understanding and extending Jove's markdown processing
@@ -411,268 +543,5 @@ We now describe the tutorials provided.
      kindly generate a [.py] file and deposit that into the jove/
      directory
 
-
-# Installing Jupyter and Jove
-
-## Download Anaconda for Python 3
-
-   * Linux: 64-bit or 32-bit
-   * Mac:   64-bit
-   * Windows: 64-bit or 32-bit 
-
-## Linux Install
-
-   1. Start the installer (instructions assume 64-bit)
-
-   2. To install system-wide:
-      - sudo -H bash Anaconda3-4.4.0-Linux-x86_64.sh
-
-   3. To install only for your user:
-      - bash Anaconda3-4.4.0-Linux-x86_64.sh
-
-   4. In the installer, do the following:
-       - View the license and accept it
-       - Choose where to install (you can press enter for the default)
-       - Answer ``yes'' to having the Anaconda path prepended to your PATH
-
-   5. Exit that terminal and open a new one.
-       - Make sure that the
-         'jupyter' found is the one you installed, via command 'which jupyter'.
-       - This should return a path in the directory where you
-         installed Anaconda 3.
-       - It will be similar to /home/username/anaconda3/bin/jupyter
-
-   6. Install the graphviz command-line module (use
-      'sudo -H' if you installed Anaconda 3 system-wide)
-       - conda install graphviz
-
-   7. Now install the python module for using graphviz.  First, make sure the 'pip'
-      tool used is the one from the Anaconda 3 install.
-       - which pip
-
-   8. Now for the installing of the graphviz python module.  If you installed
-      Anaconda 3 into your home directory, then do the following:
-       - pip install graphviz
-
-   9. If you installed Anaconda 3 system-wide, you can install the graphviz module
-      system-wide:
-       - sudo -H $(which pip) install graphviz
-       - Notice the '$(which pip)' since the root account may not have the same
-         PATH as you.  Or you can install graphviz into only your home directory
-	 as follows: 'pip install --user graphviz'
-
-   10. Go to [Make sure the install works](#make-sure-the-install-works) section at the
-       end to verify correct installation.
-
-       
-## Mac Install
-
-### Download
-```
-$ curl https://repo.anaconda.com/archive/Anaconda3-5.2.0-MacOSX-x86_64.sh -o install.sh
-```
-### Run
-```
-$ bash install.sh 
-```
-### Interactive Installation
-```
-Welcome to Anaconda3 5.2.0
-
-In order to continue the installation process, please review the license
-agreement.
-Please, press ENTER to continue
->>> 
-```
-```
-===================================
-Anaconda End User License Agreement
-===================================
-```
-
-Press `SPACE BAR`
-
-```
-Do you accept the license terms? [yes|no]
-[no] >>> yes
-```
-```
-Anaconda3 will now be installed into this location:
-/Users/yourname/anaconda3
-
-  - Press ENTER to confirm the location
-  - Press CTRL-C to abort the installation
-  - Or specify a different location below
-
-[/Users/vinuj/anaconda3] >>> 
-PREFIX=/Users/yourname/anaconda3
-```
-
-### Finishing Installation
-```
-installation finished.
-Do you wish the installer to prepend the Anaconda3 install location
-to PATH in your /Users/yourname/.bash_profile ? [yes|no]
-[yes] >>> yes
-```
-
-### Check .bash_profile
-```
-Appending source /Users/yourname/anaconda3/bin/activate in
-newly created /Users/yourname/.bash_profile
-
-For this change to become active, you have to open a new terminal.
-
-Thank you for installing Anaconda3!
-
-===========================================================================
-```
-
-
-### No Need to install Any Editors
-```
-To install Visual Studio Code, you will need:
-  - Internet connectivity
-
-Visual Studio Code License: https://code.visualstudio.com/license
-
-Do you wish to proceed with the installation of Microsoft VSCode? [yes|no]
->>> no
-```
-
-### Testing
-
-#### Same Terminal
-`.bash_profile` is activated only when you start a new `terminal`, which means 
-that if you try the following, in the same terminal as the installation then 
-you will get the following message.
-```
-$ conda
--bash: conda: command not found
-```
-
-#### New Terminal
-```
-$ which conda
-/Users/yourname/anaconda3/bin/conda
-```
-
-### Checks
-
-
-```
-$ cat ~/.bash_profile 
-```
-You should notice.
-```
-# added by Anaconda3 installer
-export PATH="/Users/yourname/anaconda3/bin:$PATH"
-```
-
-### Jove Dependencies
-* Install the graphviz command-line tools.
-```
-- conda install graphviz
-```
-
-* Install the graphviz python module
-```
-pip install graphviz
-```
-
-* Go to [Make sure the install works](#make-sure-the-install-works) section at the 
-end to verify correct installation.
-
-## Windows Install
-
-   1. Run the installer installing into your home directory.
-      You do not need to add the Anaconda 3 directories to your system PATH.
-
-   2. After the install, open an Anaconda Prompt (go to the start menu and search
-      ``Anaconda Prompt'').
-      - Note that if you ignored the advise to install in your
-        home directory, you will want to right-click on the Anaconda Prompt icon and
-        select ``Run as Administrator''.
-
-   3. In this prompt, install graphviz
-      - conda install graphviz
-
-   4. Now install the python graphviz module
-      - pip install graphviz
-
-
-   5. Now the graphviz module (or arguably the subprocess module) has a bug that we
-      will need to work around.
-      Basically, calling subprocess.check_call(['dot'])
-      doesn't match with dot.bat that is in the system PATH.
-      There are two fixes for this. Choose whichever one you want.
-
-    6. The first is to add the graphviz command-line tool directory to your system path
-       - Open the control panel
-       - Search for 'environment' and click on 'Edit environment variables for your
-         account'.
-       - Double click on ``Path'' in the top half of the window.  Add the
-         path for graphviz, which should be something like this:
-	    C:\$Users\username>\Anaconda3\Library\bin\graphviz
-       - Close all command prompts and open them again to have updated PATH variables
-
-    7. The second is to replace 'dot' with 'dot.bat' in the graphviz python module.
-       - Navigate to the graphviz python module directory, for example
-       - C:\Users\<Username>\Anaconda3\Lib\site-packages\graphviz
-       - Open in a text editor files.py and backend.py
-       - Around line 19 in both files, replace
-          'dot' with 'dot.bat'.  (In files.py, it is the value of
-	   '_engine', and in 'backend.py, it is a value
-         in the ENGINES set.
-
-    8. Go to the section [Make sure the install works](#make-sure-the-install-works) 
-    
-
-## Make sure the install works
-
-   1. Now, start the Jupyter notebook
-
-   2. jupyter notebook
-
-   3. If this doesn't open a browser to your notebook, it should print instructions
-      on what to do.  Primarily it should give you something to copy and paste into a
-      browser.
-      
-   4. Try out some graph generation in your Jupyter notebook.
-      Enter the following in the first cell and press Shift-Enter.
-
-      - import graphviz
-      - g = graphviz.Graph()
-      - g.edges(['AB', 'BC', 'CD', 'DA'])
-      - g
-
-
-# Obsolete but perhaps interesting
-
- If you downloaded Jove before 8/21/18, you perhaps got a repo with symlinks etc.
- You had to do these adjustments. These are obsolete now.
-
- 1. Go to the jove folder
-    - remove the Unix-style symlinks lex.py and yacc.py  
-    - and run these commands:
-       * mklink lex.py .. \ 3rdparty \ lex.py (symlink works apparently)
-       * mklink yacc.py .. \ 3rdparty \ yacc.py (symlink works apparently)
-
- 2. Go to **EACH** of these folders: driver, module, src, tutorial:
-    - remove the Unix-style symlinks jove, machines, lex.py and yacc.py
-    - and run these commands:
-       * mklink lex.py .. \ .. \ 3rdparty \ lex.py (symlink works apparently)
-       * mklink yacc.py .. \ .. \ 3rdparty \ yacc.py (symlink works apparently)
-       * copy over the folder jove from .. \ .. \ jove (symlink does not work)
-       * copy over the folder machines from .. \ .. \ machines (symlink does not work)
-       
-
-
 # END
-
-   
-
-
-
-
 
