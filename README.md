@@ -12,6 +12,13 @@
  notebooks that are part of the git distribution, tying together many learning
  modules. My [class website](https://tinyurl.com/cs3100fall18) shows how I
  taught using Jove, my slides, and my Youtube videos.
+
+# Brand new feature in Jove - ANIMATIONS !!
+
+ Try out notebooks/driver/Drive_Animations.ipynb as your first notebook. It has
+ extensive documentation on the use of the animations feature. This entire subsystem
+ was implemented by Paul C.J. Carlson. (This also includes a future addition being
+ implemented ... which will allow JFLAP files to be imported into Jove.)
  
 # Tasks and Order Recommended
 
@@ -162,6 +169,14 @@ Salient contents of this git directory are now described:
  But look at that section if you are curious, and want to adapt to that
  style (much less code replication).
 
+## Begin by trying out the Animations feature
+
+ Try out notebooks/driver/Drive_Animations.ipynb as your first notebook. You can simply
+ evaluate the cells. Make sure that the cell you are running contains JoveEditor(examples=True).
+ Then you can try NFA, DFA, PDA, or TM just like that. You can begin by reading instructions
+ under the Help tab, and all these instructions are not very long - yet comprehensive.
+ Thanks again to Paul Carlson for implementing the animation subsystem.
+ 
 ## Begin by taking a few tutorials
 
  Take the First\_Jove\_Tutorial to a sufficient degree. 
