@@ -18,10 +18,13 @@
 * machines : These are example NFA, DFA, PDA, and TM in the Jove markdown
   syntax that you can play with using Jove
 
-* asgjove : Some of my assignments and their files
+* asgjove : Some of my assignments and their files ( --> moved to ClassMaterial/2018)
 
-* quizzes : Some of my quizzes and their files
+* quizzes : Some of my quizzes and their files ( --> moved to ClassMaterial/2018)
 
+* MISSING-FILES-WHERE-ARE-THEY : Documents all file relocations
+
+* ClassMaterial : where I'll be adding material useful/relevant for teaching
   
 * 3rdparty : Things that came from other sources. We have some of these:
 
