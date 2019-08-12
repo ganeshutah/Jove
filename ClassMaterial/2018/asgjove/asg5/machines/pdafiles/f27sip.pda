@@ -1,0 +1,51 @@
+PDA 
+!!---------------------------------------------------------------------------
+!! This is a PDA From Sipser's book
+!! This matches a's and b's ignoring c's
+!! or matches a's and c's, ignoring b's in the middle
+!! thus matching either a^m b^m c^n or a^m b^n c^m
+!!---------------------------------------------------------------------------
+
+!!---------------------------------------------------------------------------
+!! State: in , sin ; spush -> tostates !! comment
+!!---------------------------------------------------------------------------
+iq1    : '' , ''  ; $     -> q2       !!  start in init state by pushing a $
+
+q2     : a  , ''  ; a     -> q2       !!  stack a's
+q2     : '' , ''  ; ''    -> q3,q5    !!  split non-det for a^m b^m c^n (q3)
+                                      !!  or a^m b^n c^m (q5)
+			     
+q3     : b  , a   ; ''    -> q3       !!  match b's against a's
+q3     : '' , $   ; ''    -> fq4      !!  hope for acceptance when $ surfaces
+
+fq4    : c  , ''  ; ''    -> fq4      !!  be happy so long as c's come
+                                      !!  will choke and reject if anything
+			              !!  other than c's come
+
+q5     : b  , ''  ; ''    -> q5       !!  here, we are going to punt over b's
+q5     : '' , ''  ; ''    -> q6       !!  and non-det decide to honor c's matching
+                                      !!  against a's
+
+q6     : c  , a   ; ''    -> q6       !!  OK to match so long as c's keep coming
+q6     : '' , $   ; ''    -> fq7      !!  when $ surfaces, be ready to accept in
+                                      !!  state fq7. However, anything else coming in
+			              !!  now will foil match and cause rejection.
+!!---------------------------------------------------------------------------
+!! You may use the line below as an empty shell to populate for your purposes
+!! Also serves as a syntax reminder for entering PDAs.
+!!
+!! State : i1 , si1 ; sp1 | i2 , si2 ; sp2 -> tos1, tos2 !! comment
+!!
+!! ..    : .. , ..  ; ..  | .. , ..  ; ..  -> ..  , ..   !!  ..
+!!---------------------------------------------------------------------------
+!!---------------------------------------------------------------------------
+!!
+!! Good commenting and software-engineering methods, good clean indentation,
+!! grouping of similar states, columnar alignment, etc etc. are HUGELY
+!! important in any programming endeavor -- especially while programming
+!! automata. Otherwise, you can easily make a mistake in your automaton
+!! code. Besides, you cannot rely upon others to find your mistakes, as
+!! they will find your automaton code impossible to read!
+!!
+!!---------------------------------------------------------------------------
+
