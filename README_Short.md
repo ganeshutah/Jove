@@ -17,6 +17,17 @@ The Github URL for this README.md is https://github.com/ganeshutah/Jove.git
 
  _PLEASE NOTE THAT Jove REQUIRES PYTHON 3_
 
+# Brand new feature in Jove - ANIMATIONS !!
+
+ Try out notebooks/driver/Drive_Animations.ipynb as your first notebook. It has
+ extensive documentation on the use of the animations feature. This entire subsystem
+ was implemented by Paul C.J. Carlson, Undergraduate Researcher in my group, whose
+ Linked-in page is https://www.linkedin.com/in/paul-cj-carlson.
+
+ Details also in bit.ly/JoveAnimations
+
+ The animation subsystem also includes a future addition
+ being implemented ... which will allow JFLAP files to be imported into Jove.
  
 # Tasks and Order Recommended
 
