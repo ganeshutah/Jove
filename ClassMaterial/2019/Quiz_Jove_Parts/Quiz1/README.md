@@ -1,3 +1,7 @@
-For Quiz-1, the Jove part is defined in Quiz-1's multiple answer questions.
-Simply follow the instructions there. It consists of trying out two 
-already existing Jove notebooks as described in Quiz-1 on Canvas.
+For Quiz-1, there is no separate Jove notebook file being provided.
+The quiz itself refers to existing Jove files within the standard
+distribution. You'll be running these, and answering the Canvas
+multiple-choice questions based on those executions. No Jove file
+to be submitted.
+
+
