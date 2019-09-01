@@ -24,6 +24,16 @@ Be sure to look up the book's Appendix-B to see
 what commands pertain to DFA operations (it lists
 Jove commands going chapterwise)
 
+5) New: We also illustrate another DFA construction
+   in file L6-Exercises.ipynb
+   where we show how to use Boolean operations and
+   arrive at more complex DFA. This design will
+   be discussed in Lecture 6 of the 2019 CS 3100
+   at the University of Utah, School of Computing.
+
+--
+
+
    
 
 
