@@ -284,7 +284,20 @@ ex: <code>I : 0 ; B , R &minus;&gt; A</code> </br>
 '''
 
 translate_help_text = '''
-Translation is not currently supported.
+You can translate JFlap files to Jove machines using this Jove Editor. This can be done in two ways.
+<ol>
+  <li><b>Copy/Paste</b> - On the 'Edit' tab select 'Translate'. Copy the xml contents of a JFlap file and paste it in 
+  the textarea provided. When you open the 'Animate' tab, Jove Editor will translate the xml to Jove Markdown 
+  determining the appropriate machine type.
+  </li>
+  <li><b>Load a JFlap file</b> - Open the 'Save/Load' menu and click 'Load'. Use the file dialog to select a JFlap 
+  file with the '.jff' extension. When the file is loaded, Jove Editor will display the JFlap xml under 'Translate' on 
+  the 'Edit' tab. Jove Editor will also determine the machine type of the JFlap file and store a copy of the Machine 
+  dictionary under the corresponding machine on the 'Edit' tab. Open the 'Animate' tab with either the 'Translate' or 
+  corresponding machine selected.</li>
+</ol>
+<p><b><em>Note:</em></b> Jove Editor does not force JFlap state names to conform to Jove Markdown, so initial and 
+final states may break the Jove Markdown convention. Animations should still work on these machines.</p>
 '''
 
 class JoveEditor:

@@ -230,7 +230,7 @@ class AnimateNFA:
             e_close_nodes = set()
             m_state = color_nodes(self.copy_source, self.from_nodes, self.color_neutral)
             for node in self.to_nodes:
-                intermediates = Eclosure(self.machine, node)
+                intermediates = Eclosure(self.machine, {node})
                 m_state = self.set_eclose_display(m_state, node, intermediates, self.color_neutral)
                 e_close_nodes = e_close_nodes | intermediates
             self.to_nodes = self.to_nodes | e_close_nodes
@@ -271,7 +271,7 @@ class AnimateNFA:
             e_close_nodes = set()
             m_state = self.machine_steps[step-1]           
             for node in self.to_nodes:
-                intermediates = Eclosure(self.machine, node)
+                intermediates = Eclosure(self.machine, {node})
                 m_state = self.set_eclose_display(m_state, node, intermediates, self.color_neutral)
                 e_close_nodes = e_close_nodes | intermediates
             self.to_nodes = self.to_nodes | e_close_nodes
