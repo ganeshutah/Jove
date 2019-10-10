@@ -1,0 +1,20 @@
+// TO_St2
+digraph {
+	graph [rankdir=LR]
+		EMPTY [label="" shape=plaintext]
+		Reject [label=Reject peripheries=1 shape=circle]
+		Got10Sk1 [label=Got10Sk1 peripheries=1 shape=circle]
+		TryMyLuck [label=TryMyLuck peripheries=1 shape=circle]
+		Got1Sk0 [label=Got1Sk0 peripheries=1 shape=circle]
+		I [label=I peripheries=1 shape=circle]
+		Found101 [label=Found101 peripheries=2 shape=circle]
+			EMPTY -> I
+			I -> TryMyLuck [label="1 ; 1,S 
+ 0 ; 0,S"]
+			I -> I [label="0 ; A,R 
+ 1 ; B,R"]
+			TryMyLuck -> Got1Sk0 [label="1 ; Q,R"]
+			Got1Sk0 -> Got10Sk1 [label="0 ; P,R"]
+			Got10Sk1 -> Found101 [label="1 ; Q,R"]
+			I -> Reject [label=". ; .,R"]
+}
