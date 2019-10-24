@@ -13,6 +13,15 @@ Just run and watch.
 
 My ACM Distinguished Speaker material is here: https://speakers.acm.org/speakers/gopalakrishnan_11429
 
+Try these there:
+
+* Calculator_with_Parse_Tree_Drawing.ipynb
+
+* Drive_ACMDSP.ipynb
+
+* Any other ipynb files you wish!
+
+
 --
 
 
