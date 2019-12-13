@@ -130,14 +130,17 @@ def translate_PDA(raw_xml):
         Sigma.add(r.text)
     if (Sigma.__contains__(None)):
         Sigma.remove(None)
+
     for r in root.iter('read'):
-        Gamma.add(r.text)
+        if r.text is not None:
+            Gamma.update(set(r.text))
     for r in root.iter('pop'):
-        Gamma.add(r.text)
+        if r.text is not None:
+            Gamma.update(set(r.text))
     for r in root.iter('push'):
-        Gamma.add(r.text)
-    if (Gamma.__contains__(None)):
-        Gamma.remove(None)
+        if r.text is not None:
+            Gamma.update(set(r.text))
+
     for t in root.iter('transition'):
         snum = t.find('from').text
         fromName = root.find('.//state[@id=\'' + snum + '\']').get('name')
@@ -228,3 +231,204 @@ def translate_TM(raw_xml):
     B = '.'
     tm = {'Q': names, 'Sigma': Sigma, 'Gamma': Gamma, 'Delta': Delta, 'q0': q0, 'B': B, 'F': Final}
     return tm
+
+
+def machine_to_rules(mtype, machine):
+    transitions = machine['Delta']
+    machine_string = ''
+    if mtype == 'DFA':
+        for t in transitions.keys():
+            machine_string += f'{t[0]}: {t[1]} -> {transitions[t]}\n'
+    elif mtype == 'NFA':
+        for t in transitions.keys():
+            for dest in transitions[t]:
+                t_symbol = '\'\'' if t[1] == '' else t[1]
+                machine_string += f'{t[0]}: {t_symbol} -> {dest}\n'
+    elif mtype == 'PDA':
+        for t in transitions.keys():
+            for dest in transitions[t]:
+                t1_sym = '\'\'' if t[1] == '' else t[1]
+                t2_sym = '\'\'' if t[2] == '' else t[2]
+                dest1_sym = '\'\'' if dest[1] == '' else dest[1]
+                machine_string += f'{t[0]}: {t1_sym} , {t2_sym} ; {dest1_sym} -> {dest[0]}\n'
+    elif mtype == 'TM':
+        for t in transitions.keys():
+            for dest in transitions[t]:
+                t1_sym = '\'\'' if t[1] == '' else t[1]
+                dest1_sym = '\'\'' if dest[1] == '' else dest[1]
+                dest2_sym = '\'\'' if dest[2] == '' else dest[2]
+                machine_string += f'{t[0]}: {t1_sym} ; {dest1_sym} , {dest2_sym} -> {dest[0]}\n'
+
+    return machine_string
+
+
+def make_machine_jove_compliant(mtype, machine):
+    if mtype == 'DFA':
+        i_state = machine['q0']
+        if i_state in machine['F'] and not i_state.lower().startswith('if'):
+            machine = replace_state_name_dfa(machine, i_state, f'IF_{i_state}')
+        elif not i_state.lower().startswith('i'):
+            machine = replace_state_name_dfa(machine, i_state, f'I_{i_state}')
+
+        for state in machine['F']:
+            if state != machine['q0'] and not state.lower().startswith('f'):
+                machine = replace_state_name_dfa(machine, state, f'F_{state}')
+
+    elif mtype == 'NFA':
+        for i_state in machine['Q0']:
+            if i_state in machine['F'] and not i_state.lower().startswith('if'):
+                machine = replace_state_name_nfa(machine, i_state, f'IF_{i_state}')
+            elif not i_state.lower().startswith('i'):
+                machine = replace_state_name_nfa(machine, i_state, f'I_{i_state}')
+
+        for state in machine['F']:
+            if state not in machine['Q0'] and not state.lower().startswith('f'):
+                machine = replace_state_name_nfa(machine, state, f'F_{state}')
+
+    elif mtype == 'PDA':
+        i_state = machine['q0']
+        if i_state in machine['F'] and not i_state.lower().startswith('if'):
+            machine = replace_state_name_pda(machine, i_state, f'IF_{i_state}')
+        elif not i_state.lower().startswith('i'):
+            machine = replace_state_name_pda(machine, i_state, f'I_{i_state}')
+
+        for state in machine['F']:
+            if state != machine['q0'] and not state.lower().startswith('f'):
+                machine = replace_state_name_pda(machine, state, f'F_{state}')
+
+    elif mtype == 'TM':
+        i_state = machine['q0']
+        if i_state in machine['F'] and not i_state.lower().startswith('if'):
+            machine = replace_state_name_tm(machine, i_state, f'IF_{i_state}')
+        elif not i_state.lower().startswith('i'):
+            machine = replace_state_name_tm(machine, i_state, f'I_{i_state}')
+
+        for state in machine['F']:
+            if state != machine['q0'] and not state.lower().startswith('f'):
+                machine = replace_state_name_tm(machine, state, f'F_{state}')
+
+    return machine
+
+
+def replace_state_name_dfa(machine, old_name, new_name):
+    if machine['q0'] == old_name:
+        machine['q0'] = new_name
+    if old_name in machine['F']:
+        machine['F'].add(new_name)
+        machine['F'].remove(old_name)
+
+    for t in machine['Delta'].keys():
+        if t[0] == old_name:
+            new_t = (new_name, t[1])
+            machine['Delta'][new_t] = machine['Delta'][t]
+            machine['Delta'].pop(t, None)
+
+    for t in machine['Delta'].keys():
+        if machine['Delta'][t] == old_name:
+            machine['Delta'][t] = new_name
+
+    machine['Q'].add(new_name)
+    machine['Q'].remove(old_name)
+    return machine
+
+
+def replace_state_name_nfa(machine, old_name, new_name):
+    if old_name in machine['Q0']:
+        machine['Q0'].add(new_name)
+        machine['Q0'].remove(old_name)
+    if old_name in machine['F']:
+        machine['F'].add(new_name)
+        machine['F'].remove(old_name)
+
+    for t in machine['Delta'].keys():
+        if t[0] == old_name:
+            new_t = (new_name, t[1])
+            machine['Delta'][new_t] = machine['Delta'][t]
+            machine['Delta'].pop(t, None)
+
+    for t in machine['Delta'].keys():
+        for dest in machine['Delta'][t]:
+            if dest == old_name:
+                machine['Delta'][t].add(new_name)
+                machine['Delta'][t].remove(old_name)
+
+    machine['Q'].add(new_name)
+    machine['Q'].remove(old_name)
+    return machine
+
+
+def replace_state_name_pda(machine, old_name, new_name):
+    if machine['q0'] == old_name:
+        machine['q0'] = new_name
+    if old_name in machine['F']:
+        machine['F'].add(new_name)
+        machine['F'].remove(old_name)
+
+    for t in machine['Delta'].keys():
+        if t[0] == old_name:
+            new_t = (new_name, t[1], t[2])
+            machine['Delta'][new_t] = machine['Delta'][t]
+            machine['Delta'].pop(t, None)
+
+    for t in machine['Delta'].keys():
+        for dest in machine['Delta'][t]:
+            if dest[0] == old_name:
+                new_dest = (new_name, dest[1])
+                machine['Delta'][t].add(new_dest)
+                machine['Delta'][t].remove(dest)
+
+    machine['Q'].add(new_name)
+    machine['Q'].remove(old_name)
+    return machine
+
+
+def replace_state_name_tm(machine, old_name, new_name):
+    if machine['q0'] == old_name:
+        machine['q0'] = new_name
+    if old_name in machine['F']:
+        machine['F'].add(new_name)
+        machine['F'].remove(old_name)
+
+    for t in machine['Delta'].keys():
+        if t[0] == old_name:
+            new_t = (new_name, t[1])
+            machine['Delta'][new_t] = machine['Delta'][t]
+            machine['Delta'].pop(t, None)
+
+    for t in machine['Delta'].keys():
+        for dest in machine['Delta'][t]:
+            if dest[0] == old_name:
+                new_dest = (new_name, dest[1], dest[2])
+                machine['Delta'][t].add(new_dest)
+                machine['Delta'][t].remove(dest)
+
+    machine['Q'].add(new_name)
+    machine['Q'].remove(old_name)
+    return machine
+
+
+def swap_stack_token(machine, old_token, new_token):
+    # only swap tokens if the machine is a PDA
+    if 'z0' in machine.keys():
+        # swap the stack token definition
+        machine['z0'] = new_token
+
+        # swap the token in 'Gamma'
+        machine['Gamma'].add(new_token)
+        machine['Gamma'].remove(old_token)
+
+        # swap all the tokens in the transition keys
+        for t in machine['Delta'].keys():
+            if old_token in t[2]:
+                new_t = (t[0], t[1], t[2].replace(old_token, new_token))
+                machine['Delta'][new_t] = machine['Delta'][t]
+                machine['Delta'].pop(t, None)
+
+        # swap the tokens in the transition stack writes
+        for t in machine['Delta'].keys():
+            for dest in machine['Delta'][t]:
+                if old_token in dest[1]:
+                    new_dest = (dest[0], dest[1].replace(old_token, new_token))
+                    machine['Delta'][t].add(new_dest)
+                    machine['Delta'][t] -= {dest}
+    return machine

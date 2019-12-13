@@ -47,7 +47,15 @@ tm_placeholder = '''
 <from state> : <read from tape> ; <write to tape> , <head move (L,R,S)> -> <to state>  !! comment
 ex: I : 0 ; B , R -> A
 '''
-translate_placeholder = 'Paste a JFlap xml machine in the text area'
+translate_placeholder = '''
+Load a JFlap (.jff) file using the 'Save/Load' menu.
+The translated machine with be displayed here but any changes made to this machine will not be saved.
+'''
+
+translate_result_placeholder = '''
+Translated rules with be displayed here.
+These rules are used for animation and saving, so edit them and add comments.
+'''
 
 dfa_example = '''
 !!---------------------------------------------------------------------------
@@ -284,18 +292,20 @@ ex: <code>I : 0 ; B , R &minus;&gt; A</code> </br>
 '''
 
 translate_help_text = '''
-You can translate JFlap files to Jove machines using this Jove Editor. This can be done in two ways.
-<ol>
-  <li><b>Copy/Paste</b> - On the 'Edit' tab select 'Translate'. Copy the xml contents of a JFlap file and paste it in 
-  the textarea provided. When you open the 'Animate' tab, Jove Editor will translate the xml to Jove Markdown 
-  determining the appropriate machine type.
-  </li>
+You can translate JFlap files to Jove machines using this Jove Editor.
+<ul>
   <li><b>Load a JFlap file</b> - Open the 'Save/Load' menu and click 'Load'. Use the file dialog to select a JFlap 
-  file with the '.jff' extension. When the file is loaded, Jove Editor will display the JFlap xml under 'Translate' on 
-  the 'Edit' tab. Jove Editor will also determine the machine type of the JFlap file and store a copy of the Machine 
-  dictionary under the corresponding machine on the 'Edit' tab. Open the 'Animate' tab with either the 'Translate' or 
-  corresponding machine selected.</li>
-</ol>
+  file with the '.jff' extension. When the file is loaded the text over the two textareas will indicate the machine type 
+  of the translated machine. The translated machine will be displayed in the left textarea and the translated rules 
+  will be displayed in the right textarea. The required prefixes for initial and final state names are automatically 
+  added.</li>
+  <li><b>Edit</b> - If you want to make changes to the machine, make your edits to the rules and add comments in the 
+  right textarea.</li>
+  <li><b>Animate</b> - Switch to the 'Animate' tab to see the animation for the translated machine. Any edits made in 
+  the right textarea will also be part of the animation.</li>
+  <li><b>Save</b> - Save your translated machine using the 'Save/Load' menu. The changes and comments made in the 
+  right textarea will be saved.</li>
+</ul>
 <p><b><em>Note:</em></b> Jove Editor does not force JFlap state names to conform to Jove Markdown, so initial and 
 final states may break the Jove Markdown convention. Animations should still work on these machines.</p>
 '''
@@ -326,11 +336,22 @@ class JoveEditor:
                                           disabled=False,
                                           layout=text_area_sytle
                                           )
+        self.translated_to_label = widgets.HTML(value='<p style="font-family:monospace;font-size:16px;text-align:center">Nothing translated yet</p>')
         self.translate_editor = widgets.Textarea(value='',
                                                  placeholder=translate_placeholder.strip(),
                                                  disabled=False,
                                                  layout=text_area_sytle
                                                  )
+        self.translate_result = widgets.Textarea(value='',
+                                                 placeholder=translate_result_placeholder.strip(),
+                                                 disabled=False,
+                                                 layout=text_area_sytle
+                                                 )
+        self.translate_contents = widgets.VBox([self.translated_to_label,
+                                                widgets.HBox([self.translate_editor, self.translate_result])
+                                                ])
+        self.pre_translate_machine = {}
+        self.pre_translate_mtype = ''
         self.machine_toggle = widgets.ToggleButtons(options=['DFA', 'NFA', 'PDA', 'TM', 'Translate'],
                                                     value='DFA',
                                                     description='',
@@ -543,9 +564,15 @@ class JoveEditor:
                 display(self.tm_editor)
                 self.postfix_text.value = '<p style="font-family:monospace">.tm </p>'
             elif change['new'] is 'Translate':
-                display(self.translate_editor)
-                # Disable save button
-                self.save_button.disabled = True
+                display(self.translate_contents)
+                if self.pre_translate_mtype == 'DFA':
+                    self.postfix_text.value = '<p style="font-family:monospace">.dfa</p>'
+                elif self.pre_translate_mtype == 'NFA':
+                    self.postfix_text.value = '<p style="font-family:monospace">.nfa</p>'
+                elif self.pre_translate_mtype == 'PDA':
+                    self.postfix_text.value = '<p style="font-family:monospace">.pda</p>'
+                elif self.pre_translate_mtype == 'TM':
+                    self.postfix_text.value = '<p style="font-family:monospace">.tm</p>'
 
     def on_tab_switch(self, change):
         # Clean up any previous messages
@@ -690,53 +717,75 @@ class JoveEditor:
                                       ))
             # Translation is not implemented yet
             elif self.machine_toggle.value is 'Translate':
-                machine_string = self.translate_editor.value
-                if machine_string.startswith('<?xml version='):
-                    mtype, machine, error_msg = translate_type(machine_string)
-                    if mtype == 'UNKNOWN':
-                        self.display_animate_error('Translation', 'Error translating JFlap xml:\n{}'.format(error_msg))
-                    elif mtype == 'DFA':
-                        with self.animated_machine_display:
-                            display(AnimateDFA(machine,
-                                               FuseEdges=self.fuse_option.value,
-                                               pick_start=self.alt_start_option.value,
-                                               max_width=self.max_draw_size.value,
-                                               accept_color=self.accept_colorpicker.value,
-                                               reject_color=self.reject_colorpicker.value,
-                                               neutral_color=self.transit_colorpicker.value))
-                    elif mtype == 'NFA':
-                        with self.animated_machine_display:
-                            display(AnimateNFA(machine,
-                                               FuseEdges=self.fuse_option.value,
-                                               pick_start=self.alt_start_option.value,
-                                               max_width=self.max_draw_size.value,
-                                               accept_color=self.accept_colorpicker.value,
-                                               reject_color=self.reject_colorpicker.value,
-                                               neutral_color=self.transit_colorpicker.value
-                                               ))
-                    elif mtype == 'PDA':
-                        with self.animated_machine_display:
-                            display(AnimatePDA(machine,
-                                               FuseEdges=self.fuse_option.value,
-                                               max_stack=self.max_stack_size.value,
-                                               max_width=self.max_draw_size.value,
-                                               accept_color=self.accept_colorpicker.value,
-                                               reject_color=self.reject_colorpicker.value,
-                                               neutral_color=self.transit_colorpicker.value
-                                               ))
-                    elif mtype == 'TM':
-                        with self.animated_machine_display:
-                            display(AnimateTM(machine,
-                                              FuseEdges=self.fuse_option.value,
-                                              show_rejected=self.show_reject_option.value,
-                                              max_width=self.max_draw_size.value,
-                                              accept_color=self.accept_colorpicker.value,
-                                              reject_color=self.reject_colorpicker.value,
-                                              neutral_color=self.transit_colorpicker.value
-                                              ))
-
-                else:
-                    self.display_animate_error('Translation', 'Editor does not contain xml:\n{}'.format(error_msg))
+                if self.pre_translate_mtype == 'UNKNOWN':
+                    self.display_animate_error('Translation', 'Could not translate the JFlap to a recognized machine type')
+                elif self.pre_translate_mtype == 'DFA':
+                    try:
+                        with redirect_stdout(jove_error):
+                            machine = md2mc('DFA\n{}'.format(self.translate_result.value))
+                    except Exception as e:
+                        message = 'Jove error message:\n{}\n\nPython error message: {}'.format(jove_error.getvalue(), str(e))
+                        self.display_animate_error('DFA', message)
+                        return
+                    with self.animated_machine_display:
+                        display(AnimateDFA(machine,
+                                           FuseEdges=self.fuse_option.value,
+                                           pick_start=self.alt_start_option.value,
+                                           max_width=self.max_draw_size.value,
+                                           accept_color=self.accept_colorpicker.value,
+                                           reject_color=self.reject_colorpicker.value,
+                                           neutral_color=self.transit_colorpicker.value))
+                elif self.pre_translate_mtype == 'NFA':
+                    try:
+                        with redirect_stdout(jove_error):
+                            machine = md2mc('NFA\n{}'.format(self.translate_result.value))
+                    except Exception as e:
+                        message = 'Jove error message:\n{}\n\nPython error message: {}'.format(jove_error.getvalue(), str(e))
+                        self.display_animate_error('NFA', message)
+                        return
+                    with self.animated_machine_display:
+                        display(AnimateNFA(machine,
+                                           FuseEdges=self.fuse_option.value,
+                                           pick_start=self.alt_start_option.value,
+                                           max_width=self.max_draw_size.value,
+                                           accept_color=self.accept_colorpicker.value,
+                                           reject_color=self.reject_colorpicker.value,
+                                           neutral_color=self.transit_colorpicker.value
+                                           ))
+                elif self.pre_translate_mtype == 'PDA':
+                    try:
+                        with redirect_stdout(jove_error):
+                            machine = md2mc('PDA\n{}'.format(self.translate_result.value))
+                    except Exception as e:
+                        message = 'Jove error message:\n{}\n\nPython error message: {}'.format(jove_error.getvalue(), str(e))
+                        self.display_animate_error('PDA', message)
+                        return
+                    with self.animated_machine_display:
+                        display(AnimatePDA(machine,
+                                           FuseEdges=self.fuse_option.value,
+                                           max_stack=self.max_stack_size.value,
+                                           max_width=self.max_draw_size.value,
+                                           accept_color=self.accept_colorpicker.value,
+                                           reject_color=self.reject_colorpicker.value,
+                                           neutral_color=self.transit_colorpicker.value
+                                           ))
+                elif self.pre_translate_mtype == 'TM':
+                    try:
+                        with redirect_stdout(jove_error):
+                            machine = md2mc('TM\n{}'.format(self.translate_result.value))
+                    except Exception as e:
+                        message = 'Jove error message:\n{}\n\nPython error message: {}'.format(jove_error.getvalue(), str(e))
+                        self.display_animate_error('TM', message)
+                        return
+                    with self.animated_machine_display:
+                        display(AnimateTM(machine,
+                                          FuseEdges=self.fuse_option.value,
+                                          show_rejected=self.show_reject_option.value,
+                                          max_width=self.max_draw_size.value,
+                                          accept_color=self.accept_colorpicker.value,
+                                          reject_color=self.reject_colorpicker.value,
+                                          neutral_color=self.transit_colorpicker.value
+                                          ))
 
             with self.machine_messages_display:
                 clear_output()
@@ -781,13 +830,17 @@ class JoveEditor:
         filepath = self.save_name_text.value
         filepath = filepath.split('.')[0]
         self.save_name_text.value = filepath
-        if self.machine_toggle.value is 'DFA':
+        if self.machine_toggle.value is 'DFA' or \
+                (self.machine_toggle.value is 'Translate' and self.pre_translate_mtype == 'DFA'):
             filepath = '{}.dfa'.format(filepath)
-        if self.machine_toggle.value is 'NFA':
+        if self.machine_toggle.value is 'NFA' or \
+                (self.machine_toggle.value is 'Translate' and self.pre_translate_mtype == 'NFA'):
             filepath = '{}.nfa'.format(filepath)
-        if self.machine_toggle.value is 'PDA':
+        if self.machine_toggle.value is 'PDA' or \
+                (self.machine_toggle.value is 'Translate' and self.pre_translate_mtype == 'PDA'):
             filepath = '{}.pda'.format(filepath)
-        if self.machine_toggle.value is 'TM':
+        if self.machine_toggle.value is 'TM' or \
+                (self.machine_toggle.value is 'Translate' and self.pre_translate_mtype == 'TM'):
             filepath = '{}.tm'.format(filepath)
 
         file_contents = ''
@@ -799,6 +852,8 @@ class JoveEditor:
             file_contents = 'PDA\n{}'.format(self.pda_editor.value)
         if self.machine_toggle.value is 'TM':
             file_contents = 'TM\n{}'.format(self.tm_editor.value)
+        if self.machine_toggle.value is 'Translate':
+            file_contents = f'{self.pre_translate_mtype}\n{self.translate_result.value}'
 
         try:
             with open(filepath, 'w') as filewriter:
@@ -820,6 +875,7 @@ class JoveEditor:
     def on_file_upload(self, change):
         self.save_load_messages.value = '<p style="font-size:small"></br>loading ...</p>'
         file_contents = self.upload_button.value
+        file_name = file_contents[list(file_contents.keys())[0]]['metadata']['name']
         machine_binary = file_contents[list(file_contents.keys())[0]]['content']
         machine_string = machine_binary.decode().strip()
         machine_string_list = machine_string.splitlines()
@@ -829,24 +885,32 @@ class JoveEditor:
         if machine_string.strip().startswith('<?xml version="1.0"'):
             self.machine_toggle.value = 'Translate'
             mtype, machine, error_msg = translate_type(machine_string.strip())
+            self.pre_translate_machine = make_machine_jove_compliant(mtype, machine)
+            self.pre_translate_mtype = mtype
             if mtype == 'UNKNOWN':
                 self.translate_editor.value = '!! Unable to translate jflap {}\n{}'.format(error_msg, machine_string)
+                self.translated_to_label.value = '<p style="font-family:monospace;font-size:16px;text-align:center">Translation Failed</p>'
+                return
             elif mtype == 'DFA':
-                self.translate_editor.value = '{}'.format(machine_string)
-                self.dfa_editor.value = '{}'.format(pprint.pformat(machine))
                 self.save_load_messages.value = '<p style="font-size:small">loading ... success</br>translated to DFA</p>'
+                self.translated_to_label.value = '<p style="font-family:monospace;font-size:16px;text-align:center">Translated to DFA</p>'
+                self.postfix_text.value = '<p style="font-family:monospace">.dfa</p>'
             elif mtype == 'NFA':
-                self.translate_editor.value = '{}'.format(machine_string)
-                self.nfa_editor.value = '{}'.format(pprint.pformat(machine))
                 self.save_load_messages.value = '<p style="font-size:small">loading ... success</br>translated to NFA</p>'
+                self.translated_to_label.value = '<p style="font-family:monospace;font-size:16px;text-align:center">Translated to NFA</p>'
+                self.postfix_text.value = '<p style="font-family:monospace">.nfa</p>'
             elif mtype == 'PDA':
-                self.translate_editor.value = '{}'.format(machine_string)
-                self.pda_editor.value = '{}'.format(pprint.pformat(machine))
+                self.pre_translate_machine = swap_stack_token(self.pre_translate_machine, 'Z', '#')
                 self.save_load_messages.value = '<p style="font-size:small">loading ... success</br>translated to PDA</p>'
+                self.translated_to_label.value = '<p style="font-family:monospace;font-size:16px;text-align:center">Translated to PDA</p>'
+                self.postfix_text.value = '<p style="font-family:monospace">.pda</p>'
             elif mtype == 'TM':
-                self.translate_editor.value = '{}'.format(machine_string)
-                self.tm_editor.value = '{}'.format(pprint.pformat(machine))
                 self.save_load_messages.value = '<p style="font-size:small">loading ... success</br>translated to TM</p>'
+                self.translated_to_label.value = '<p style="font-family:monospace;font-size:16px;text-align:center">Translated to TM</p>'
+                self.postfix_text.value = '<p style="font-family:monospace">.tm</p>'
+
+            self.translate_editor.value = '{}'.format(pprint.pformat(self.pre_translate_machine))
+            self.translate_result.value = '!! Translated from {}\n{}'.format(file_name, machine_to_rules(mtype, self.pre_translate_machine))
             return
 
         for i in range(len(machine_string_list)):
