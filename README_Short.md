@@ -4,6 +4,20 @@
     </font>
 </header>
 
+# This README is for the 'colab' branch and start with these instrns:
+
+  These notes pertain to using Jove on Google's 'colab' facility.
+  One simply runs cells as before, but there are some additional
+  instructions:
+
+  1. Make a folder "My Drive/CS3100Spring20", or your chosen name.
+  
+  2. cd to CS3100Spring20, and
+  
+  3. git clone https://github.com/ganeshutah/Jove.git in here
+
+  4. Then proceed with Jove as before
+  
 
 # What is Jove?
 
