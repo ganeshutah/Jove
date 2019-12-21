@@ -10,13 +10,19 @@
   One simply runs cells as before, but there are some additional
   instructions:
 
+  
+
   1. Make a folder "My Drive/CS3100Spring20", or your chosen name.
   
   2. cd to CS3100Spring20, and
   
   3. git clone https://github.com/ganeshutah/Jove.git in here
 
-  4. Then proceed with Jove as before
+  4. Then proceed with browsing
+    http://colab.research.google.com/github/googlecolab/colabtools/blob/master
+    and give the Github path https://github.com/ganeshutah/Jove.git
+
+  5. Begin working with any of the notebooks you see in here
   
 # What is Jove?
 
