@@ -1,0 +1,27 @@
+
+# BEGIN
+
+# Here is how you can get the Asg/Quiz material and also incorporate updates to them
+
+1. git clone https://github.com/ganeshutah/Jove.git [do it once]
+
+2. git pull [in above repo, thereafter - after doing "1" above once]
+
+3. git branch myname_quiz1 [make a branch, say myname_quiz1, for each quiz you are doing]
+
+4. git checkout myname_quiz1 [be in that branch]
+
+... prepare your solution ...
+
+5. Submit
+
+6. If the instructor meanwhile makes any changes ("hot fixes"), how to incorporate?
+
+ a. git checkout myname_quiz1 [ be in the quiz repo ]
+ 
+ b. git merge master [ merge in instructor's "hot fixes" ]
+
+# END
+
+
+

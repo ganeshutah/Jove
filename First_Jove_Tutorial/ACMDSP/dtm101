@@ -1,0 +1,22 @@
+// TO_St1
+digraph {
+	graph [rankdir=LR]
+		EMPTY [label="" shape=plaintext]
+		StuckNo0Aft1 [label=StuckNo0Aft1 peripheries=1 shape=circle]
+		Got10Sk1 [label=Got10Sk1 peripheries=1 shape=circle]
+		Got1Sk0 [label=Got1Sk0 peripheries=1 shape=circle]
+		StuckNo1beg [label=StuckNo1beg peripheries=1 shape=circle]
+		I [label=I peripheries=1 shape=circle]
+		StuckNo1end [label=StuckNo1end peripheries=1 shape=circle]
+		Found101 [label=Found101 peripheries=2 shape=circle]
+			EMPTY -> I
+			I -> I [label="0 ; A,R"]
+			I -> Got1Sk0 [label="1 ; B,R"]
+			I -> StuckNo1beg [label=". ; .,R"]
+			Got1Sk0 -> Got1Sk0 [label="1 ; B,R"]
+			Got1Sk0 -> StuckNo0Aft1 [label=". ; .,R"]
+			Got1Sk0 -> Got10Sk1 [label="0 ; A,R"]
+			Got10Sk1 -> I [label="0 ; A,R"]
+			Got10Sk1 -> Found101 [label="1 ; B,R"]
+			Got10Sk1 -> StuckNo1end [label=". ; .,R"]
+}
