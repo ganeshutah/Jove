@@ -27,6 +27,8 @@
 
   4. Then proceed with browsing
     http://colab.research.google.com/github/googlecolab/colabtools/blob/master
+
+    ( abbreviated for your convenience as bit.ly/colab_jove )
     
     and give the Github path https://github.com/ganeshutah/Jove.git
 
