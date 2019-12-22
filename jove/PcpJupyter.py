@@ -30,16 +30,13 @@ def pcp_oslink():
 		print("??? Undetected Platform : Compile for your os and")
 		print("Edit pcp_oslink() function to add an elif option for your os")
 		sys.exit()
-	if(os.path.isfile(dst) or os.path.islink(dst)):
+                
+	if (os.path.isfile(dst) or os.path.islink(dst)):
 		os.remove(dst)
 
-
         print("src is ", src)
-        
 	os.symlink(src, dst)
-
         print(" Returning symlink ", dst)
-        
 	return dst
 
 		
