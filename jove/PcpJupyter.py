@@ -53,7 +53,10 @@ def pcp_oslink():
         """
         dst = './pcp_linux'
         if not(os.path.isfile(dst) or os.path.islink(dst)):
+                print(" Making a copy of ./pcp_linux")
                 shutil.copyfile('/content/gdrive/My Drive/CS3100Spring20/Jove/jove/pcp_linux', dst)
+        else:
+                print(" Reusing the copy of ./pcp_linux")
         os.chmod(dst, stat.S_IRWXU)
         return dst
 
