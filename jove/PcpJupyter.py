@@ -82,7 +82,9 @@ def pcp_solve(pcp_pairs, run=None, ni=False, di=None, depth=None, tiles_per_row=
     # Build the method call.
     #args = "./pcpbinaries/pcp_win.exe -i temp.txt"
     #args = "./"+pcp_oslink()+" -i temp.txt"
-    args = "/content/gdrive/My\ Drive/CS3100Spring20/Jove/jove/pcp_linux -i temp.txt"
+
+    # This underscore below in My_Drive will be removed after args split in orig. code
+    args = "/content/gdrive/My_Drive/CS3100Spring20/Jove/jove/pcp_linux -i temp.txt"
 
     # Add supplied user arguments.
     if run is not None:
@@ -106,8 +108,9 @@ def pcp_solve(pcp_pairs, run=None, ni=False, di=None, depth=None, tiles_per_row=
     if ni:
         args += " -ni"
 
-    # Run the command.
-    process = subprocess.Popen(args.split(), stdout=subprocess.PIPE)
+    # Run the command. Don't split on 'My Drive' --> so put back blank in underscore introduced above
+    realargs = list(map(lambda x: 'My Drive' if x=='My_Drive' else x, args.split()))
+    process = subprocess.Popen(realargs, stdout=subprocess.PIPE)
     ouput, error = process.communicate()
 
     # Grab the solution info from the generated file.
