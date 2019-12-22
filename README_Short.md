@@ -4,23 +4,9 @@
     </font>
 </header>
 
-# This README is for the 'colab' branch and start with these instrns:
+# Colab branch -- please read!
 
-  These notes pertain to using Jove on Google's 'colab' facility.
-  One simply runs cells as before, but there are some additional
-  instructions:
-
-  1. Make a folder "My Drive/CS3100Spring20", or your chosen name.
-  
-  2. cd to CS3100Spring20, and
-  
-  3. git clone https://github.com/ganeshutah/Jove.git in here
-
-  4. Then proceed with browsing
-    http://colab.research.google.com/github/googlecolab/colabtools/blob/master
-    and give the Github path https://github.com/ganeshutah/Jove.git
-
-  5. Begin working with any of the notebooks you see in here
+  Please read README_colab.md to know how to run Jove without installing anything (on Google's colab system)!
 
 # What is Jove?
 
