@@ -9,7 +9,9 @@ import platform
 import os
 import sys
 import stat
+import shutil
 
+'''
 def pcp_oslink():
         """
         Determines the underlying os to select the symlink the appropriate pcp binary
@@ -32,7 +34,7 @@ def pcp_oslink():
                 print("??? Undetected Platform : Compile for your os and")
                 print("Edit pcp_oslink() function to add an elif option for your os")
                 sys.exit()
-                
+              
         if (os.path.isfile(dst) or os.path.islink(dst)):
                 os.remove(dst)
 
@@ -42,6 +44,17 @@ def pcp_oslink():
         os.chmod(dst, stat.S_IRWXU)
         
         print(" src = ", src, " dst = ", dst)
+        return dst
+'''
+
+def pcp_oslink():
+        """
+        For colab, assume linux!
+        """
+        dst = '/tmp/pcp'
+        if not(os.path.isfile(dst) or os.path.islink(dst)):
+                shutil.copyfile('/content/gdrive/My Drive/CS3100Spring20/Jove/jove/pcp_linux', dst)
+        os.chmod(dst, stat.S_IRWXU)
         return dst
 
 		
