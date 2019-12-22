@@ -7,6 +7,8 @@ import re
 import pdb
 import platform
 import os
+import sys
+import stat
 
 def pcp_oslink():
         """
@@ -35,6 +37,10 @@ def pcp_oslink():
                 os.remove(dst)
 
         os.symlink(src, dst)
+        
+        # added to make binary executable...
+        os.chmod(dst, stat.S_IRWXU)
+        
         print(" src = ", src, " dst = ", dst)
         return dst
 
