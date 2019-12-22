@@ -51,7 +51,7 @@ def pcp_oslink():
         """
         For colab, assume linux!
         """
-        dst = '/tmp/pcp'
+        dst = './pcp_linux'
         if not(os.path.isfile(dst) or os.path.islink(dst)):
                 shutil.copyfile('/content/gdrive/My Drive/CS3100Spring20/Jove/jove/pcp_linux', dst)
         os.chmod(dst, stat.S_IRWXU)
