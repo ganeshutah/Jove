@@ -81,7 +81,8 @@ def pcp_solve(pcp_pairs, run=None, ni=False, di=None, depth=None, tiles_per_row=
 
     # Build the method call.
     #args = "./pcpbinaries/pcp_win.exe -i temp.txt"
-    args = "./"+pcp_oslink()+" -i temp.txt"
+    #args = "./"+pcp_oslink()+" -i temp.txt"
+    args = "/content/gdrive/My Drive/CS3100Spring20/Jove/jove/pcp_linux -i temp.txt"
 
     # Add supplied user arguments.
     if run is not None:
