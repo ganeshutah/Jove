@@ -32,9 +32,14 @@ def pcp_oslink():
 		sys.exit()
 	if(os.path.isfile(dst) or os.path.islink(dst)):
 		os.remove(dst)
-	
+
+
+        print("src is ", src)
+        
 	os.symlink(src, dst)
 
+        print(" Returning symlink ", dst)
+        
 	return dst
 
 		
