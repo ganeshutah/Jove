@@ -15,7 +15,7 @@ def pcp_oslink():
         platform_name = platform.platform()
         platform.platform()
         src = 'pcpbinaries/pcp_linux'
-        dst = '/contents/gdrive/pcp'
+        dst = '/content/gdrive/pcp'
         if('windows' in platform_name.lower()):
                 print("Detected platform windows")
                 src = 'pcpbinaries\pcp_win.exe'
