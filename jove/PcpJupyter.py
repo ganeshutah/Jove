@@ -33,9 +33,11 @@ def pcp_oslink():
                 
 	if (os.path.isfile(dst) or os.path.islink(dst)):
 		os.remove(dst)
+        else:
+                print(" No symlink to clean up. All OK so far. ")
 
 	os.symlink(src, dst)
-        print("src is ", src, " and returning symlink ", dst)
+        print(" src = ", src, " dst = ", dst)
 	return dst
 
 		
