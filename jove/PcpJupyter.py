@@ -9,36 +9,34 @@ import platform
 import os
 
 def pcp_oslink():
-	"""
-	Determines the underlying os to select the symlink the appropriate pcp binary
-	"""
-	platform_name = platform.platform()
-	platform.platform()
-	src = 'pcpbinaries/pcp_linux'
-	dst = '/contents/gdrive/pcp'
-	if('windows' in platform_name.lower()):
-		print("Detected platform windows")
-		src = 'pcpbinaries\pcp_win.exe'
-		dst = 'pcp.exe'
-	elif ('linux' in platform_name.lower()):
-		print("Detected platform linux")
-		src = '/content/gdrive/My Drive/CS3100Spring20/Jove/jove/pcp_linux'
-	elif ('darwin' in platform_name.lower()):
-		print("Detected platform Darwin")
-		src = 'pcpbinaries/pcp_mac'
-	else:
-		print("??? Undetected Platform : Compile for your os and")
-		print("Edit pcp_oslink() function to add an elif option for your os")
-		sys.exit()
-                
-	if (os.path.isfile(dst) or os.path.islink(dst)):
-		os.remove(dst)
+        """
+        Determines the underlying os to select the symlink the appropriate pcp binary
+        """
+        platform_name = platform.platform()
+        platform.platform()
+        src = 'pcpbinaries/pcp_linux'
+        dst = '/contents/gdrive/pcp'
+        if('windows' in platform_name.lower()):
+                print("Detected platform windows")
+                src = 'pcpbinaries\pcp_win.exe'
+                dst = 'pcp.exe'
+        elif ('linux' in platform_name.lower()):
+                print("Detected platform linux")
+                src = '/content/gdrive/My Drive/CS3100Spring20/Jove/jove/pcp_linux'
+        elif ('darwin' in platform_name.lower()):
+                print("Detected platform Darwin")
+                src = 'pcpbinaries/pcp_mac'
         else:
-                print(" No symlink to clean up. All OK so far. ")
+                print("??? Undetected Platform : Compile for your os and")
+                print("Edit pcp_oslink() function to add an elif option for your os")
+                sys.exit()
+                
+        if (os.path.isfile(dst) or os.path.islink(dst)):
+                os.remove(dst)
 
-	os.symlink(src, dst)
+        os.symlink(src, dst)
         print(" src = ", src, " dst = ", dst)
-	return dst
+        return dst
 
 		
 
