@@ -67,4 +67,13 @@
      notebooks that you save. Further save/load options on Google Drive or
      Github is available.
 
+  9. Handy commands:
+
+     a. Tools -> Command Palette -> Clear [ brings up clear all outputs ]
+
+     b. Intellisense-like popping up of functions already loaded
+
+     	i. Just type "dfa" in an empty cell, and it brings up all commands
+	   that carry the substring "dfa" in them
+
 Further notes on colab will be provided in due course.
