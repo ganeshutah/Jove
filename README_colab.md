@@ -23,6 +23,13 @@
 
      ** I have found that only the contents of Jove/jove are necessary **
 
+     ** However you may wish to have also the Jove/machines subdir for prebuilt machines **
+     
+     Then you can load machines as follows (for example):
+     
+     dped1 = md2mc(src="File",
+      fname="/content/gdrive/My Drive/CS3100Spring20/Jove/machines/dfafiles/pedagogical1.dfa") 
+
      You may delete the other files!
 
   4. Then proceed with browsing
@@ -50,7 +57,6 @@
 
      c. Switch to the colab branch
 
-     d. 
 
   6. You can see the Jupyter sessions in vogue, stop any session (especially
      if you exceed the number of sessions), etc.
