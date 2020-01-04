@@ -6,6 +6,8 @@
 
 # What is Jove?
 
+ _PLEASE NOTE THAT Jove REQUIRES PYTHON 3_
+
  Jove is the collection of Jupyter notes created by Ganesh Gopalakrishnan
  for teaching Models of Computation. We use "Jove", "Jove note books" and
  "Jupyter notebooks" interchangeably. However "Jove" denotes those Jupyter 
@@ -177,8 +179,6 @@ Then git clone Jove from
 
 The Github URL for this README.md is https://github.com/ganeshutah/Jove.git
 
- _PLEASE NOTE THAT Jove REQUIRES PYTHON 3_
- 
 The code collection is called "Jove" (which the reader may
 recognize as another name for planet Jupiter). In fact, the
 exclamation "by Jove!" means "by Jupiter!"
