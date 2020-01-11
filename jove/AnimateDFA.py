@@ -126,6 +126,10 @@ class AnimateDFA:
         self.forward.disabled = True
         self.backward.disabled = True
         self.speed_control.disabled = True
+        #
+        # Stackoverflow fix for buttons not showing up
+        #
+        display(HTML('<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>'))
 
     def on_speed_change(self, change):
         self.play_controls.interval = 1000 - 50 * change['new']
