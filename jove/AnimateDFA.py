@@ -120,16 +120,18 @@ class AnimateDFA:
             row1 = widgets.HBox([self.user_input, self.alternate_start, self.generate_button])
         row2 = widgets.HBox([self.play_controls, self.backward, self.forward, self.speed_control])
         w = widgets.VBox([row1, self.machine_display, self.feed_display, row2, self.test_output])
+        #
+        # Stackoverflow fix for buttons not showing up
+        #
+        display(HTML('<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>'))
+        #
         display(w)
         
         self.play_controls.disabled = True
         self.forward.disabled = True
         self.backward.disabled = True
         self.speed_control.disabled = True
-        #
-        # Stackoverflow fix for buttons not showing up
-        #
-        display(HTML('<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>'))
+
 
     def on_speed_change(self, change):
         self.play_controls.interval = 1000 - 50 * change['new']
