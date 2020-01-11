@@ -121,12 +121,12 @@ class AnimateDFA:
         row2 = widgets.HBox([self.play_controls, self.backward, self.forward, self.speed_control])
         w = widgets.VBox([row1, self.machine_display, self.feed_display, row2, self.test_output])
         #
-        # Stackoverflow fix for buttons not showing up
+        display(w)
+        #        
+        # Stackoverflow fix for buttons not showing up        
         #
         display(HTML('<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>'))
-        #
-        display(w)
-        
+
         self.play_controls.disabled = True
         self.forward.disabled = True
         self.backward.disabled = True
