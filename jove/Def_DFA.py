@@ -439,14 +439,14 @@ def langeq_dfa(D1, D2, gen_counterex=False):
         print("Sigma2 = ", D2["Sigma"])
         return False
     else:
-        (eqStatus, cex_path) = h_langeq_dfa(D1["q0"], D1,
-                                            D2["q0"], D2, 
-                                            Visited=[])
+        (eqStatus, lastAdd, cex_path) = h_langeq_dfa(D1["q0"], D1,
+                                                     D2["q0"], D2, 
+                                                     Visited=dict({})) # was []
         if not eqStatus:
             if gen_counterex:
                 print("The DFA are NOT language equivalent!")
-                print("Path leading to counterexample is: ")
-                print(cex_path)
+                print("Last added pair @ mismatch site is: ", lastAdd) # print msg changed
+                print("All visited state pairs are", cex_path)
         return eqStatus # True or False
 
 def same_status(q1, D1, q2, D2):
@@ -466,21 +466,21 @@ def h_langeq_dfa(q1, D1, q2, D2, Visited):
         the counter-example trace.  
     """
     if (q1,q2) in Visited:
-        return (True, Visited)
+        return (True, (q1,q2), Visited)
     else:
-        extVisited = Visited + [(q1,q2)]
+        Visited[(q1,q2)] = "" # extVisited = [(q1,q2)] + Visited  
         if not same_status(q1,D1,q2,D2):
-            return (False, extVisited)
+            return (False, (q1,q2), Visited)
         else:
             l_nxt_status = list(
             map(lambda symb:
                 h_langeq_dfa(D1["Delta"][(q1,symb)], D1,
                              D2["Delta"][(q2,symb)], D2,
-                             extVisited),
+                             Visited),
                 D1["Sigma"]))
             l_rejects = list(filter(lambda x: x[0]==False, l_nxt_status))
             if l_rejects==[]:
-                return (True, extVisited)
+                return (True, (q1,q2), Visited)
             else:
                 return l_rejects[0] # which is the first offending (status,cex)
 
