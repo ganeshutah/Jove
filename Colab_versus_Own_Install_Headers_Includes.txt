@@ -1,0 +1,43 @@
+import sys
+
+#----TURN THESE ON IF RUNNING ON OWN INSTALLATION (default turned-on)
+
+sys.path[0:0] = ['..' , '../3rdparty',
+                 '../..' , '../../3rdparty',
+                 '../../..' , '../../../3rdparty',
+                 '../../../..' , '../../../../3rdparty',
+                 ] # Put these at the head of the search path
+
+
+#----TURN THESE ON IF RUNNING ON JOVE ON COLAB by removing the triple quotes
+'''
+! if [ ! -d Jove ]; then git clone https://github.com/ganeshutah/Jove Jove; fi
+import sys
+sys.path.append('./Jove')
+sys.path.append('./Jove/jove')
+'''
+
+#---- COMMON IMPORTS BELOW : Add more/less imports as needed/tolerable ---
+
+from jove.DotBashers import *
+from jove.Def_md2mc  import *
+from jove.Def_DFA    import *
+from jove.Def_NFA    import *
+from jove.Def_RE2NFA import *
+from jove.Def_NFA2RE import *
+rmore
+from jove.Def_PDA    import *
+from jove.Def_TM     import *
+
+from jove.AnimateDFA import *
+from jove.AnimateNFA import *
+from jove.AnimatePFA import *
+from jove.AnimateTM import *
+
+
+#---- ALWAYS INCLUDE BEFORE ANY call such as AnimateNFA, AnimateDFA, etc ----
+# Unfortunately this has to be within EACH iframe... so can't hard-wire
+# into the Animate... functions
+
+display(HTML('<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>'))
+
