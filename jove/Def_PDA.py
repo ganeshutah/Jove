@@ -159,7 +159,8 @@ def run_pda(str, P, acceptance = 'ACCEPT_F', STKMAX=6, chatty=False):
                * acceptance configurations
                * visited IDs
     """
-    print("*** Exploring wrt STKMAX = ", STKMAX, "; increase it if needed ***")
+    if chatty:
+        print("*** Exploring wrt STKMAX = ", STKMAX, "; increase it if needed ***")
     chk_consistent_pda(P)
     init_id         = (P["q0"], str, P["z0"]) # Initial ID
     init_l_id_path  = [(init_id, [])]   # [(Initial ID, empty path)]
