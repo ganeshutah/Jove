@@ -92,7 +92,7 @@ from jove.TransitionSelectors import *
 # In[2]:
 
 TAPE_ALLOC_SIZE = 8
-def step_tm(T, q_hi_tape_fuel, path, haltList):
+def step_tm(T, q_hi_tape_fuel, path, haltList, chatty=True):
    """Helper for run_tm
       ---
       Inputs: * A TM T
@@ -125,7 +125,8 @@ def step_tm(T, q_hi_tape_fuel, path, haltList):
    
    if (hi == len(tape)):
        # Going beyond end of allocated tape; allocate more!
-       print("Allocating ", TAPE_ALLOC_SIZE, " tape cells to the RIGHT!")
+       if chatty:
+           print("Allocating ", TAPE_ALLOC_SIZE, " tape cells to the RIGHT!")
        tape = tape + T["B"]*TAPE_ALLOC_SIZE
        
    if (q, tape[hi]) not in T["Delta"]:
@@ -138,7 +139,8 @@ def step_tm(T, q_hi_tape_fuel, path, haltList):
        (nq, ng, dirn) = nq_ng_dirn
        # Head attempts to move to the left of the left-end
        if (hi==0) and (dirn=="L"):
-           print("Allocating ", TAPE_ALLOC_SIZE, " tape cells to the LEFT!")
+           if chatty:
+               print("Allocating ", TAPE_ALLOC_SIZE, " tape cells to the LEFT!")
            ntape = T["B"]*TAPE_ALLOC_SIZE + ng + tape[1:]  
            nhi   = TAPE_ALLOC_SIZE - 1  # Do the left move too!
        else:
@@ -163,7 +165,7 @@ def step_tm(T, q_hi_tape_fuel, path, haltList):
 
 # In[3]:
 
-def run_tm(T, tape, fuel):
+def run_tm(T, tape, fuel, chatty=True):
     """Helper for explore_tm
        ---
        Given a TM T and a tape, run the TM for fuel steps
@@ -189,7 +191,7 @@ def run_tm(T, tape, fuel):
         (nq, nhi, ntape, nfuel) = q_hi_tape_fuel
         if (nfuel > 0):
             (nl_id_path, haltList) = step_tm(T, q_hi_tape_fuel, 
-                                             path, haltList)
+                                             path, haltList, chatty)
             l_id_path = nl_id_path + l_id_path[1:]
         else:
             l_trunc_path += [path]
