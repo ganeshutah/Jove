@@ -18,6 +18,8 @@ def pcp_oslink():
 	dst = 'pcp'
 	if('windows' in platform_name.lower()):
 		print("Detected platform windows")
+                print("PLEASE ENSURE THAT you are running with Admin Privileges!")
+                print("ELSE this PCP tool won't be able to create the requisite symbolic link(s).")
 		src = 'pcpbinaries\pcp_win.exe'
 		dst = 'pcp.exe'
 	elif ('linux' in platform_name.lower()):
