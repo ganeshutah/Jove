@@ -26,8 +26,9 @@ abbreviated as ACPP).
 Some of the example Turing machines used in Jove were written by Ian Briggs,
 University of Utah. The section on Lambda Calculus was written entirely by
 Ian Briggs, including the Python code. Jove also benefited from Michael Bentley
-and Heath French, University of Utah, who contributed to the use of Jupyter widgets,
-and also helped test the software.
+and Heath French, University of Utah, who contributed to the use of Jupyter widgets, and also helped test the software.
+
+The animation modules were contributed by Paul C.J. Carlson, former student at Utah.
 
 Other acknowledgements, either for the ACPP book or the Jove software include:
 Prof. John Brzozowski, University of Waterloo, Canada (proof-reading the ACPP
