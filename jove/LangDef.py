@@ -174,21 +174,22 @@ def product(S1,S2):
     return { (x,y) for x in S1 for y in S2 }
 
 from math import floor, log, pow
-def nthnumeric(N, Sigma={'a','b'}):
-    """Assume Sigma is a 2-sized list/set of chars (default {'a','b'}). 
+def nthnumeric(N, S=['a','b']):
+    """Assume S ('Sigma') is a 2-sized list of chars (default ['a','b']). 
        Produce the Nth string in numeric order, where N >= 0.
        Idea : Given N, get b = floor(log_2(N+1)) - need that 
        many places; what to fill in the places is the binary 
-       code for N - (2^b - 1) with 0 as Sigma[0] and 1 as Sigma[1].    
+       code for N - (2^b - 1) with 0 as S[0] and 1 as S[1].    
     """
-    if (type(Sigma)==set):
-       S = list(Sigma)
-    else:
-       assert(type(Sigma)==list
-       ), "Expected to be given set/list for arg2 of nthnumeric."
-       S = Sigma
-    assert(len(Sigma)==2
-          ),"Expected to be given a Sigma of length 2."
+#    if (type(Sigma)==set):
+#       S = list(Sigma)
+#    else:
+#       assert(type(Sigma)==list
+#       ), "Expected to be given set/list for arg2 of nthnumeric."
+    assert(type(S)==list # This makes sure that the order does not flip
+          ),"nthnumeric now expects to be given a two-element list!!" 
+    assert(len(S)==2
+          ),"Expected to be given an S of length 2."
     if(N==0):
         return ''
     else:
