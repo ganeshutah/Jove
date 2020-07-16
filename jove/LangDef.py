@@ -181,11 +181,6 @@ def nthnumeric(N, S=['a','b']):
        many places; what to fill in the places is the binary 
        code for N - (2^b - 1) with 0 as S[0] and 1 as S[1].    
     """
-#    if (type(Sigma)==set):
-#       S = list(Sigma)
-#    else:
-#       assert(type(Sigma)==list
-#       ), "Expected to be given set/list for arg2 of nthnumeric."
     assert(type(S)==list # This makes sure that the order does not flip
           ),"nthnumeric now expects to be given a two-element list!!" 
     assert(len(S)==2
