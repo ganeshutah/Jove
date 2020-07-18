@@ -1,0 +1,10 @@
+// do_St5
+digraph {
+	graph [rankdir=LR]
+	EMPTY [label="" shape=plaintext]
+	A [label=A peripheries=1 shape=circle]
+	IF [label=IF peripheries=2 shape=circle]
+	EMPTY -> IF
+	IF -> A [label="0 "]
+	A -> IF [label="0 "]
+}

@@ -1,0 +1,11 @@
+// TO_St25
+digraph {
+	graph [rankdir=LR]
+	EMPTY [label="" shape=plaintext]
+	I [label=I peripheries=1 shape=circle]
+	F [label=F peripheries=2 shape=circle]
+	EMPTY -> I
+	I -> F [label=". ; .,S"]
+	I -> I [label="0 ; 0,S 
+ 1 ; 0,R"]
+}

@@ -1,0 +1,109 @@
+// TO_St29
+digraph {
+	graph [rankdir=LR]
+	EMPTY [label="" shape=plaintext]
+	"B=p_00" [label="B=p_00" peripheries=1 shape=circle]
+	"B+q_01" [label="B+q_01" peripheries=1 shape=circle]
+	RstHdL0 [label=RstHdL0 peripheries=1 shape=circle]
+	EnsureSndDone1 [label=EnsureSndDone1 peripheries=1 shape=circle]
+	"B+q_10" [label="B+q_10" peripheries=1 shape=circle]
+	"B+q_00" [label="B+q_00" peripheries=1 shape=circle]
+	Last1 [label=Last1 peripheries=1 shape=circle]
+	"B=q_00" [label="B=q_00" peripheries=1 shape=circle]
+	"B=p_01" [label="B=p_01" peripheries=1 shape=circle]
+	"B=q_11" [label="B=q_11" peripheries=1 shape=circle]
+	SkEnd_01 [label=SkEnd_01 peripheries=1 shape=circle]
+	"B+p_10" [label="B+p_10" peripheries=1 shape=circle]
+	"B=q_01" [label="B=q_01" peripheries=1 shape=circle]
+	"B=p_10" [label="B=p_10" peripheries=1 shape=circle]
+	EnsureSndDone0 [label=EnsureSndDone0 peripheries=1 shape=circle]
+	SkEnd_00 [label=SkEnd_00 peripheries=1 shape=circle]
+	"B+p_00" [label="B+p_00" peripheries=1 shape=circle]
+	SkEnd_11 [label=SkEnd_11 peripheries=1 shape=circle]
+	RstHdL1 [label=RstHdL1 peripheries=1 shape=circle]
+	I_00 [label=I_00 peripheries=1 shape=circle]
+	"B=q_10" [label="B=q_10" peripheries=1 shape=circle]
+	SkEnd_10 [label=SkEnd_10 peripheries=1 shape=circle]
+	F [label=F peripheries=2 shape=circle]
+	EMPTY -> I_00
+	I_00 -> "B+p_00" [label="0 ; 0,S 
+ 1 ; 1,S"]
+	"B+p_00" -> "B+q_00" [label="0 ; X,R"]
+	"B+p_00" -> "B+q_01" [label="1 ; Y,R"]
+	"B+p_00" -> "B+p_00" [label="X ; X,R 
+ Y ; Y,R"]
+	"B+p_00" -> EnsureSndDone0 [label="+ ; +,R"]
+	"B+p_10" -> "B+q_01" [label="0 ; X,R"]
+	"B+p_10" -> "B+q_10" [label="1 ; Y,R"]
+	"B+p_10" -> "B+p_10" [label="X ; X,R 
+ Y ; Y,R"]
+	"B+p_10" -> EnsureSndDone1 [label="+ ; +,R"]
+	"B+q_00" -> "B+q_00" [label="0 ; 0,R 
+ 1 ; 1,R"]
+	"B+q_00" -> "B=p_00" [label="+ ; +,R"]
+	"B+q_01" -> "B=p_01" [label="+ ; +,R"]
+	"B+q_01" -> "B+q_01" [label="0 ; 0,R 
+ 1 ; 1,R"]
+	"B+q_10" -> "B+q_10" [label="0 ; 0,R 
+ 1 ; 1,R"]
+	"B+q_10" -> "B=p_10" [label="+ ; +,R"]
+	"B=p_00" -> "B=p_00" [label="X ; X,R 
+ Y ; Y,R"]
+	"B=p_00" -> "B=q_00" [label="0 ; X,R"]
+	"B=p_00" -> "B=q_01" [label="1 ; Y,R"]
+	"B=p_10" -> "B=p_10" [label="X ; X,R 
+ Y ; Y,R"]
+	"B=p_10" -> "B=q_10" [label="0 ; X,R"]
+	"B=p_10" -> "B=q_11" [label="1 ; Y,R"]
+	"B=q_11" -> "B=q_11" [label="0 ; 0,R 
+ 1 ; 1,R"]
+	"B=q_11" -> SkEnd_11 [label="= ; =,R"]
+	"B=p_01" -> "B=p_01" [label="X ; X,R 
+ Y ; Y,R"]
+	"B=q_01" -> SkEnd_01 [label="= ; =,R"]
+	"B=q_00" -> "B=q_00" [label="0 ; 0,R 
+ 1 ; 1,R"]
+	"B=q_00" -> SkEnd_00 [label="= ; =,R"]
+	"B=q_01" -> "B=q_01" [label="0 ; 0,R 
+ 1 ; 1,R"]
+	"B=q_10" -> "B=q_10" [label="0 ; 0,R 
+ 1 ; 1,R"]
+	"B=q_10" -> SkEnd_10 [label="= ; =,R"]
+	"B=p_01" -> "B=q_01" [label="0 ; X,R"]
+	"B=p_01" -> "B=q_10" [label="1 ; Y,R"]
+	SkEnd_00 -> SkEnd_00 [label="0 ; 0,R 
+ 1 ; 1,R"]
+	SkEnd_00 -> RstHdL0 [label=". ; 0,L"]
+	SkEnd_01 -> SkEnd_01 [label="0 ; 0,R 
+ 1 ; 1,R"]
+	SkEnd_01 -> RstHdL0 [label=". ; 1,L"]
+	SkEnd_10 -> SkEnd_10 [label="0 ; 0,R 
+ 1 ; 1,R"]
+	SkEnd_10 -> RstHdL1 [label=". ; 0,L"]
+	SkEnd_11 -> SkEnd_11 [label="0 ; 0,R 
+ 1 ; 1,R"]
+	SkEnd_11 -> RstHdL1 [label=". ; 1,L"]
+	EnsureSndDone0 -> EnsureSndDone0 [label="X ; X,R 
+ Y ; Y,R"]
+	EnsureSndDone0 -> F [label="= ; =,R"]
+	EnsureSndDone1 -> EnsureSndDone1 [label="X ; X,R 
+ Y ; Y,R"]
+	EnsureSndDone1 -> Last1 [label="= ; =,R"]
+	Last1 -> Last1 [label="0 ; 0,R 
+ 1 ; 1,R"]
+	Last1 -> F [label=". ; 1,R"]
+	RstHdL0 -> RstHdL0 [label="+ ; +,L 
+ Y ; Y,L 
+ 1 ; 1,L 
+ = ; =,L 
+ 0 ; 0,L 
+ X ; X,L"]
+	RstHdL1 -> RstHdL1 [label="+ ; +,L 
+ Y ; Y,L 
+ 1 ; 1,L 
+ = ; =,L 
+ 0 ; 0,L 
+ X ; X,L"]
+	RstHdL0 -> "B+p_00" [label=". ; .,R"]
+	RstHdL1 -> "B+p_10" [label=". ; .,R"]
+}
