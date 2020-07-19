@@ -1,5 +1,6 @@
-* Classic has Jove as described in the book Automata and Computability. Its documentation of files and directories matches the book more closely.
+* Classic has Jove as described in the book Automata and Computability. Its documentation of files and directories matches the book more closely. It is a bit too complex in layout, but since many of the files are referred to in the book, I'm not deleting anything.
 
-* Recommended has a more modern presentation of the content. This is recommended for use after September 2020 (perhaps even before). Name will be Recommended_use_after_Sep2020 till Sep 2020, and then to be renamed to Recommended.
+* Recommended has a more modern presentation of the content.
+
 
 
