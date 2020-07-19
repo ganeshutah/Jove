@@ -31,8 +31,8 @@ from jove.Module4_NFA import rev_dfa
 from jove.Module4_NFA import mk_nfa
 from jove.Module4_NFA import min_dfa_brz
 
-from lex                 import lex
-from yacc                import yacc
+from jove.lex                 import lex
+from jove.yacc                import yacc
 
 
 # # Parsing regular expressions : ReParse
