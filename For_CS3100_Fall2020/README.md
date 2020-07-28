@@ -19,17 +19,29 @@
 * Assignments are to be turned in as finished Jove notebooks
 * There may be occasional hand-written files to be scanned and uploaded
 
+* **SYLLABUS** is as follows:
 
- **_SYLLABUS_**
+* 1:8/25
+  -
+  -   
+* 2:8/27
+  -
+  -
+  
+* 3:9/1
+  -
+  -   
+* 4:9/3
+  -
+  -   
 
- * Lecture number, date, topics
- * -------------------------------------------------------
- *  **1:8/25**
- 
+* 5:9/8
+* 6:9/10
+
  - Quiz-1 given; due before L3, covers L1,2,3,4
  - 1_Computability_Languages/
  
- *  **2:8/27**
+
  
  - 1_Computability_Languages/
  - Asg-1-given
