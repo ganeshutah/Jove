@@ -1,9 +1,7 @@
 
 * This is a directory prepared for the CS 3100, Fall 2020 students
-
 * It contains a description of how various Jove modules will be
   covered in our lectures
-
 * I'll now straight present the syllabus and the schedule of
   lectures. Two notes are in order:
   - All Quizzes will be assigned on Canvas or Gradescope 
@@ -12,47 +10,67 @@
   - All our Assignments will be provided inside the Jove notebooks
   - All our Exams (MT-1, MT-2 and Finals) will be given either on Canvas
     or on Gradescope
-
 * CS 3100 is running in a *FLIPPED CLASS* style!
-
 * You MUST run each Jove notebook mentioned below *BEFORE* you come
   to a lecture. These notebooks contain a video recording PLUS practice
   material for you
-  
 * Some notebooks will last across multiple lectures, and some lectures
   will involve multiple notebooks
-
 * Assignments are to be turned in as finished Jove notebooks
-
 * There may be occasional hand-written files to be scanned and uploaded
 
 
  **_SYLLABUS_**
-   -  1:8/25       Quiz-1 given; due before L3, covers L1,2,3,4
- *  1:8/25	  1_Computability_Languages/
- *  2:8/27	  1_Computability_Languages/
-   -  2:8/27	  Asg-1-given
+
+ * Lecture number, date, topics
+ *-------------------------------------------------------
+ *  1:8/25
+  - Quiz-1 given; due before L3, covers L1,2,3,4
+  - 1_Computability_Languages/
+ 
+ *  2:8/27
+  - 1_Computability_Languages/
+  - Asg-1-given
+  - Quiz-2 given; due before L5, covers L5,6
+ *-------------------------------------------------------
+ 
  *  3:9/1	  2_Basic_DFA/
+ 
  *  4:9/3	  3_Advanced_DFA/
-   -  4:9/3	  Asg-1-due
-   -  4:9/3	  Asg-2-given
-   -  4:9/3	  Quiz-2 given; due before L5, covers L5,6
+ *  	  Asg-1-due
+ *  	  Asg-2-given
+ *  	  Quiz-3 given; due before L7, covers L7,8
+ 
+ *-------------------------------------------------------
+ 
  *  5:9/8	  4_NFA/
+ 
+ 
  *  6:9/10	  5_NFA2DFA/
-   -  6:9/10	  Asg-2-due
-   -  6:9/10	  Asg-3-given
-   -  6:9/10	  Quiz-3 due before L7, covers L7,8
+ *  6:9/10	  Asg-2-due
+ *  6:9/10	  Asg-3-given
+
+
+ *-------------------------------------------------------
+ 
  *  7:9/15	  6_RE/
+ 
  *  8:9/17	  7_NFA2RE/
-   -  	  Asg-3-due
-   -  	  Asg-4-given
+ *  8:9/17	  Asg-3-due
+ *  8:9/17  	  Asg-4-given
+
+ *-------------------------------------------------------
+ 
  *  9:9/22	  Review of Asg 1-3; MT-1 covering Asg 1-3
- *  	  MT-1 assigned on Canvas or Gradescope on Thu
- *  	  MT-1 due Monday
- *  ==================================================
+ *  9:9/22	  MT-1 assigned on Canvas or Gradescope on Thu
+ *  9:9/22	  MT-1 due Following Monday
+
  *  Quiz-4 due before L10, covers L10,11
- *  --------------------------------------------
+
  *  10:9/24	  8_Min_DFA/
+
+ *-------------------------------------------------------
+ 
  *  11:9/29	  9_Reg_PL/
  *  	  Asg-4-due
  *  	  Asg-5-given
