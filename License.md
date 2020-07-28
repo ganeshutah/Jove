@@ -9,7 +9,9 @@ terms as befitting.
 
 Jove, the software offered here, takes a different approach than
 JFLAP in that it aims to expose students to a ``Read/Eval/Print''
-style of interaction within Jupyter notebooks. They also profit
+style of interaction within Jupyter notebooks.
+
+Users of Jove will also profit
 from reading the Jove source code -- another form of education not
 obtained by merely interacting with a piece of software.
 
