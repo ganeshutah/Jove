@@ -28,30 +28,24 @@
 
 
 > **_SYLLABUS_**
-> ------------------------------------------------------- 
-
-> * Quiz-1 due before L3, covers L1,2,3,4
-> -------------------------------------------------------  
+>   -  1:8/25       Quiz-1 given; due before L3, covers L1,2,3,4
 > *  1:8/25	  1_Computability_Languages/
 > *  2:8/27	  1_Computability_Languages/
-> *  	  Asg-1-given
+>   -  2:8/27	  Asg-1-given
 > *  3:9/1	  2_Basic_DFA/
 > *  4:9/3	  3_Advanced_DFA/
-> *  	  Asg-1-due
-> *  	  Asg-2-given
-> *  Quiz-2 due before L5, covers L5,6
-> *  --------------------------------------------
+>   -  4:9/3	  Asg-1-due
+>   -  4:9/3	  Asg-2-given
+>   -  4:9/3	  Quiz-2 given; due before L5, covers L5,6
 > *  5:9/8	  4_NFA/
 > *  6:9/10	  5_NFA2DFA/
-> *  	  Asg-2-due
-> *  	  Asg-3-given
-> *  Quiz-3 due before L7, covers L7,8
-> *  --------------------------------------------
+>   -  6:9/10	  Asg-2-due
+>   -  6:9/10	  Asg-3-given
+>   -  6:9/10	  Quiz-3 due before L7, covers L7,8
 > *  7:9/15	  6_RE/
 > *  8:9/17	  7_NFA2RE/
-> *  	  Asg-3-due
-> *  	  Asg-4-given
-> *  ==================================================
+>   -  	  Asg-3-due
+>   -  	  Asg-4-given
 > *  9:9/22	  Review of Asg 1-3; MT-1 covering Asg 1-3
 > *  	  MT-1 assigned on Canvas or Gradescope on Thu
 > *  	  MT-1 due Monday
