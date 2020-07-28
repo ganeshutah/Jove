@@ -23,25 +23,30 @@
  **_SYLLABUS_**
 
  * Lecture number, date, topics
- *-------------------------------------------------------
- *  1:8/25
-  - Quiz-1 given; due before L3, covers L1,2,3,4
-  - 1_Computability_Languages/
+ * -------------------------------------------------------
+ *  **1:8/25**
  
- *  2:8/27
-  - 1_Computability_Languages/
-  - Asg-1-given
-  - Quiz-2 given; due before L5, covers L5,6
- *-------------------------------------------------------
+ - Quiz-1 given; due before L3, covers L1,2,3,4
+ - 1_Computability_Languages/
  
- *  3:9/1	  2_Basic_DFA/
+ *  **2:8/27**
  
- *  4:9/3	  3_Advanced_DFA/
- *  	  Asg-1-due
- *  	  Asg-2-given
- *  	  Quiz-3 given; due before L7, covers L7,8
+ - 1_Computability_Languages/
+ - Asg-1-given
+ - Quiz-2 given; due before L5, covers L5,6
+
+ * -------------------------------------------------------
  
- *-------------------------------------------------------
+ *  **3:9/1**
+ -  2_Basic_DFA/
+ 
+ *  **4:9/3*
+ - 3_Advanced_DFA/
+ - Asg-1-due
+ - Asg-2-given
+ - Quiz-3 given; due before L7, covers L7,8
+ 
+ * -------------------------------------------------------
  
  *  5:9/8	  4_NFA/
  
