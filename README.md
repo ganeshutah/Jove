@@ -8,6 +8,8 @@
 
   - For_The_Public is for the general public or CS 3100 students who want more examples to look at
 
+* There is no secret in any of these directories! So, For_The_Public folks are welcome to use the
+  contents of For_CS3100_Fall2020 (and vice-versa).
 
 * Under For_The_Public, there are two directories:
 

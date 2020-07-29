@@ -105,6 +105,7 @@
   - 20_Algo_Proc_PCP/
 * 24:11/12
   - 21_Mapping_Redn/
+  - Asg-10 given; due the following week Friday  
 
 * 25:11/17
   - Quiz-13 due before L27, covers L27,28
@@ -112,6 +113,7 @@
 
 * 26:11/19
   - 23_NPC/
+  - Asg-11 given; due the following week Friday    
   
 * 27:11/24
   - Quiz-14 due before L29, covers L29
@@ -119,6 +121,8 @@
 
 * 28:12/1
   - 25_Lambda_Calc/
+  - Asg-12 given; due THIS WEEK Friday
+    (hints to answer will be in "Review for Finals")
   
 * 29:12/3
   - Review for Finals
