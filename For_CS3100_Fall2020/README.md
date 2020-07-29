@@ -52,7 +52,6 @@
 * 9:9/22
   - Quiz-5 given; due before L11, covers L11,12
   - Review of Asg 1-3; MT-1 covering Asg 1-3 given out; Due the following Monday 11:59pm
-  - MT-1 assigned on Canvas or Gradescope; Due the following Monday 11:59pm
 * 10:9/24
   - 8_Min_DFA/
 
