@@ -85,101 +85,40 @@
 
 * 19:10/27
   - Quiz-10 given; due before L21, covers L21,22
-  - s
+  - 16_CFL_PL/		
 * 20:10/29
-  - t
-  - t
+  - 17_DTM/
+  - Asg-8 given; due the following week Friday
   
 * 21:11/3
   - Quiz-11 given; due before L23, covers L23,24
-  - u
+  - 18_NDTM/
 * 22:11/5
-  - v
-  - v
+  - 19_Formal_TM/
+  - Asg-9 given; due the following week Friday
   
 * 23:11/10
-  - Quiz-12 due before L27, covers L27,28
-  - w
+  - Quiz-12 due before L25, covers L25,26
+  - 20_Algo_Proc_PCP/
 * 24:11/12
-  - x
-  - x
+  - 21_Mapping_Redn/
 
 * 25:11/17
-  - y
-  - y
+  - Quiz-13 due before L27, covers L27,28
+  - 22_Bool_Basics/
+
 * 26:11/19
-  - z
-  - z
+  - 23_NPC/
   
 * 27:11/24
-  - aa
-  - aa
+  - Quiz-14 due before L29, covers L29
+  - 24_NPC_Redn/
+
 * 28:12/1
-  - bb
-  - 
+  - 25_Lambda_Calc/
   
 * 29:12/3
-  - cc
   - Review for Finals
 
 * -------------------------------------------------------
-
-
- 
- *  
- *  --------------------------------------------
- *  12:10/1	  
- *  13:10/6	  
- *  	  Asg-5-due
- *  	  Asg-6-given
- *  
- *  --------------------------------------------
- *  14:10/8	  
- *  15:10/13  
- *  	  Asg-6-due
- *  	  Asg-7-given
- *  
- *  --------------------------------------------
- *  L16:10/15 
- *  L17:10/20 
- *  	  
- *  	  Asg-7-due
- *  	  Asg-8-given
- *  ==================================================
- *  L18:10/22 
- *  	  MT-2 assigned on Thu
- *  	  MT-2 due Monday
- *  ==================================================
- *  
- *  --------------------------------------------
- *  L19:10/27 16_CFL_PL/		
- *  L20:10/29 17_DTM/
- *  	  Asg-8-due
- *  	  Asg-9-given
- *  
- *  --------------------------------------------
- *  L21:11/3  18_NDTM/
- *  L22:11/5  19_Formal_TM/
- *  	  Asg-9-due
- *  	  Asg-10-given
- *  
- *  --------------------------------------------
- *  L23:11/5  20_Algo_Proc_PCP/
- *  L24:11/10 21_Mapping_Redn/
- *  	  Asg-10-due
- *  	  Asg-11-given
- *  
- *  --------------------------------------------
- *  L25:11/12 22_Bool_Basics/
- *  L26:11/17 23_NPC/
- *  	  Asg-11-due
- *  	  Asg-12-given
- *  
- *  --------------------------------------------
- *  L27:11/19 24_NPC_Redn/
- *  L28:11/24 25_Lambda_Calc/
- *  	  Asg-12-due
- *  L29:12/1  Review-4
- *  12/10	  Finals
- * -------------------------------------------------------
 
