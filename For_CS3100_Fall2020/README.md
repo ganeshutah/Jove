@@ -59,7 +59,7 @@
   - Quiz-6 given; due before L13, covers L13,14
   - 9_Reg_PL/
 * 12:10/1
-  - Asg-4 given; due the following week Friday
+  - Asg-5 given; due the following week Friday
   - 9_Reg_PL/
 
 * 13:10/6
@@ -67,21 +67,21 @@
   - 10_PDA/
 * 14:10/8
   - 11_CFG/
-  - Asg-5 given; due the following week Friday
+  - Asg-6 given; due the following week Friday
   
 * 15:10/13
   - Quiz-8 given; due before L17, covers L17,18
   - 12_CFG2PDA/
 * 16:10/15
   - 13_Linearity_Amb/	
-  - Asg-6 given; due the following week Friday 
+  - Asg-7 given; due the following week Friday 
   
 * 17:10/20
   - Quiz-9 given; due before L19, covers L19,20
   - 14_Calculator/
   - 15_Derivatives/
 * 18:10/22
-  - Review-2; MT-2 covering Asg 4-5 given out; due the following Monday 11:59pm
+  - Review-2; MT-2 covering Asg 4-6 given out; due the following Monday 11:59pm
 
 * 19:10/27
   - Quiz-10 given; due before L21, covers L21,22
