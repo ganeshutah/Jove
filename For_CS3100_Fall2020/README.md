@@ -22,191 +22,160 @@
 * **SYLLABUS** is as follows:
 
 * 1:8/25
-  - a
-  - a 
+  - Quiz-1 given; due before L3, covers L1,2,3,4
+  - 1_Computability_Languages/ 
 * 2:8/27
-  - b
-  - b
+  - Asg-1 given, due the following week Friday
+  - 1_Computability_Languages/
   
 * 3:9/1
-  - c
-  - c   
+  - Quiz-2 given; due before L5, covers L5,6
+  - 2_Basic_DFA/
 * 4:9/3
-  - d
-  - d 
+  - Asg-2 given, due the following week Friday
+  - 3_Advanced_DFA/ 
 
 * 5:9/8
-  - e
-  - e
+  - Quiz-3 given; due before L7, covers L7,8
+  - 4_NFA/
 * 6:9/10
-  - f
-  - f
+  - Asg-3 given, due the following week Friday
+  - 5_NFA2DFA/
 
 * 7:9/15
-  - g
-  - g
+  - Quiz-4 given; due before L9, covers L9,10
+  - 6_RE/
 * 8:9/17
-  - h
-  - h
+  - Asg-4 given, due the following week Friday
+  - 7_NFA2RE/
 
 * 9:9/22
-  - i
-  - i
+  - Quiz-5 given; due before L11, covers L11,12
+  - Review of Asg 1-3; MT-1 covering Asg 1-3 given out; Due the following Monday 11:59pm
+  - MT-1 assigned on Canvas or Gradescope; Due the following Monday 11:59pm
 * 10:9/24
-  - j
-  - j
+  - 8_Min_DFA/
 
 * 11:9/29
-  - k
-  - k
+  - Quiz-6 given; due before L13, covers L13,14
+  - 9_Reg_PL/
 * 12:10/1
-  - l
-  - l
+  - Asg-4 given; due the following week Friday
+  - 9_Reg_PL/
 
 * 13:10/6
-  - m
-  - m
+  - Quiz-7 given; due before L15, covers L15,16
+  - 10_PDA/
 * 14:10/8
-  - n
-  - n
+  - 11_CFG/
+  - Asg-5 given; due the following week Friday
   
 * 15:10/13
-  - o
-  - o
+  - Quiz-8 given; due before L17, covers L17,18
+  - 12_CFG2PDA/
 * 16:10/15
-  - p
-  - p
+  - 13_Linearity_Amb/	
+  - Asg-6 given; due the following week Friday 
   
 * 17:10/20
-  - q
-  - q
+  - Quiz-9 given; due before L19, covers L19,20
+  - 14_Calculator/
+  - 15_Derivatives/
 * 18:10/22
-  - r
-  - r
+  - Review-2; MT-2 covering Asg 4-5 given out; due the following Monday 11:59pm
 
 * 19:10/27
-  - s
+  - Quiz-10 given; due before L21, covers L21,22
   - s
 * 20:10/29
   - t
   - t
   
 * 21:11/3
-  - u
+  - Quiz-11 given; due before L23, covers L23,24
   - u
 * 22:11/5
   - v
   - v
   
 * 23:11/10
-  - w
+  - Quiz-12 due before L27, covers L27,28
   - w
 * 24:11/12
   - x
   - x
 
- - Quiz-1 given; due before L3, covers L1,2,3,4
- - 1_Computability_Languages/
- 
+* 25:11/17
+  - y
+  - y
+* 26:11/19
+  - z
+  - z
+  
+* 27:11/24
+  - aa
+  - aa
+* 28:12/1
+  - bb
+  - 
+  
+* 29:12/3
+  - cc
+  - Review for Finals
 
- 
- - 1_Computability_Languages/
- - Asg-1-given
- - Quiz-2 given; due before L5, covers L5,6
-
- * -------------------------------------------------------
- 
- *  **3:9/1**
- -  2_Basic_DFA/
- 
- *  **4:9/3*
- - 3_Advanced_DFA/
- - Asg-1-due
- - Asg-2-given
- - Quiz-3 given; due before L7, covers L7,8
- 
- * -------------------------------------------------------
- 
- *  5:9/8	  4_NFA/
- 
- 
- *  6:9/10	  5_NFA2DFA/
- *  6:9/10	  Asg-2-due
- *  6:9/10	  Asg-3-given
+* -------------------------------------------------------
 
 
- *-------------------------------------------------------
  
- *  7:9/15	  6_RE/
- 
- *  8:9/17	  7_NFA2RE/
- *  8:9/17	  Asg-3-due
- *  8:9/17  	  Asg-4-given
-
- *-------------------------------------------------------
- 
- *  9:9/22	  Review of Asg 1-3; MT-1 covering Asg 1-3
- *  9:9/22	  MT-1 assigned on Canvas or Gradescope on Thu
- *  9:9/22	  MT-1 due Following Monday
-
- *  Quiz-4 due before L10, covers L10,11
-
- *  10:9/24	  8_Min_DFA/
-
- *-------------------------------------------------------
- 
- *  11:9/29	  9_Reg_PL/
- *  	  Asg-4-due
- *  	  Asg-5-given
- *  Quiz-5 due before L12, covers L12,13
+ *  
  *  --------------------------------------------
- *  12:10/1	  9_Reg_PL/
- *  13:10/6	  10_PDA/
+ *  12:10/1	  
+ *  13:10/6	  
  *  	  Asg-5-due
  *  	  Asg-6-given
- *  Quiz-6 due before L14, covers L14,15
+ *  
  *  --------------------------------------------
- *  14:10/8	  11_CFG/
- *  15:10/13  12_CFG2PDA/
+ *  14:10/8	  
+ *  15:10/13  
  *  	  Asg-6-due
  *  	  Asg-7-given
- *  Quiz-7 due before L16, covers L16,17
+ *  
  *  --------------------------------------------
- *  L16:10/15 13_Linearity_Amb/	
- *  L17:10/20 14_Calculator/
- *  	  15_Derivatives/
+ *  L16:10/15 
+ *  L17:10/20 
+ *  	  
  *  	  Asg-7-due
  *  	  Asg-8-given
  *  ==================================================
- *  L18:10/22 Review-2;  MT-2 covering Asg 4-7
+ *  L18:10/22 
  *  	  MT-2 assigned on Thu
  *  	  MT-2 due Monday
  *  ==================================================
- *  Quiz-8 due before L19, covers L19,20
+ *  
  *  --------------------------------------------
  *  L19:10/27 16_CFL_PL/		
  *  L20:10/29 17_DTM/
  *  	  Asg-8-due
  *  	  Asg-9-given
- *  Quiz-9 due before L21, covers L21,22
+ *  
  *  --------------------------------------------
  *  L21:11/3  18_NDTM/
  *  L22:11/5  19_Formal_TM/
  *  	  Asg-9-due
  *  	  Asg-10-given
- *  Quiz-10 due before L23, covers L23,24
+ *  
  *  --------------------------------------------
  *  L23:11/5  20_Algo_Proc_PCP/
  *  L24:11/10 21_Mapping_Redn/
  *  	  Asg-10-due
  *  	  Asg-11-given
- *  Quiz-11	due before L25, covers L25,26
+ *  
  *  --------------------------------------------
  *  L25:11/12 22_Bool_Basics/
  *  L26:11/17 23_NPC/
  *  	  Asg-11-due
  *  	  Asg-12-given
- *  Quiz-12 due before L27, covers L27,28
+ *  
  *  --------------------------------------------
  *  L27:11/19 24_NPC_Redn/
  *  L28:11/24 25_Lambda_Calc/
