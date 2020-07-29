@@ -1,4 +1,7 @@
 
+* Begin watching the video in Overview_Of_CS3100_Fall2020/
+  by running the Jove notebook there.
+
 * This is a directory prepared for the CS 3100, Fall 2020 students
 * It contains a description of how various Jove modules will be
   covered in our lectures
