@@ -22,7 +22,7 @@
 * Assignments are to be turned in as finished Jove notebooks
 * There may be occasional hand-written files to be scanned and uploaded
 
-* **SYLLABUS** is as follows (if I write `` 1:8/25 '' it means Lec1 on 8/25)
+* **SYLLABUS** is as follows (if I write `` 1:8/25 '' it means Lec1 on 8/25, and so on)
 
 * 1:8/25
   - Quiz-1 given; due before L3, covers L1,2,3,4
