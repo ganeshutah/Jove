@@ -1,1 +1,3 @@
-This directory contains the course syllabus, grading policies, and academic misconduct policies.
+This directory contains a Jupyter notebook that has a video
+explaining our whole course.
+

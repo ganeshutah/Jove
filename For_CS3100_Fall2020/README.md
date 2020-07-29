@@ -22,10 +22,6 @@
 * Assignments are to be turned in as finished Jove notebooks
 * There may be occasional hand-written files to be scanned and uploaded
 
-* Total: 14 Quizzes (top 10 count), 12 Assignments (top 10 count), MT-1, MT-2, and Finals
-
-* 2 points per quiz (20%); 4 points per assignment (40%); MT-1 and MT-2 (12% each); Finals (16%)
-
 * See Course Policies and other info on Canvas
 
 * -------------------------------------------------------
