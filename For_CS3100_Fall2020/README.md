@@ -1,28 +1,42 @@
 
 * Begin watching the video in Overview_Of_CS3100_Fall2020/
-  by running the Jove notebook there.
+  by running the Jove notebook there. 
 
 * This is a directory prepared for the CS 3100, Fall 2020 students
+
 * It contains a description of how various Jove modules will be
   covered in our lectures
+  
 * I'll now straight present the syllabus and the schedule of
-  lectures. Two notes are in order:
-  - All Quizzes will be assigned on Canvas or Gradescope 
+  lectures. 
+  
+  - All Quizzes will be assigned on Canvas 
+  
     - They are given out before a PAIR of lectures (occurring in a week)
+    
     - They must be solved and submitted before those PAIR of lectures
-  - All our Assignments will be provided inside the Jove notebooks
-  - All our Exams (MT-1, MT-2 and Finals) will be given either on Canvas
-    or on Gradescope
+    
+  - All our Assignments will be provided via Jove notebooks
+  
+  - All our Exams (MT-1, MT-2 and Finals) will be given on Canvas
+
 * CS 3100 is running in a *FLIPPED CLASS* style!
+
 * You MUST run each Jove notebook mentioned below *BEFORE* you come
   to a lecture. These notebooks contain a video recording PLUS practice
   material for you
+  
 * Some notebooks will last across multiple lectures, and some lectures
   will involve multiple notebooks
-* Assignments are to be turned in as finished Jove notebooks
-* There may be occasional hand-written files to be scanned and uploaded
+  
+* Assignments are to be turned in as finished Jove notebooks.
 
-* See Course Policies and other info on Canvas
+* Each question of an assignment will be in a separate ".ipynb" Jove file.
+
+* In some cases, we will allow documents to be scanned and uploaded as PDF. We require
+  you to be using Adobe Scan - a free app you can get for iPhone or Android.
+
+* For more info, see the PDF documents on Canvas that describe our course policies.
 
 * -------------------------------------------------------
 
