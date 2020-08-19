@@ -1,6 +1,6 @@
 
-* Begin watching the video in Overview_Of_CS3100_Fall2020/
-  by running the Jove notebook there. 
+* Begin by running the notebook in Overview_Of_CS3100_Fall2020/. Then start with the remaining directories such as
+1_Computability_Languages/, 2_Basic_DFA/, etc.
 
 * This is a directory prepared for the CS 3100, Fall 2020 students.
 
