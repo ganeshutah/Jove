@@ -50,7 +50,7 @@
 
 * -------------------------------------------------------
 
-* Week-1 **Reading**: Chapters 1,2,3.** __Outcomes:__
+* Week-1 **Reading**: Chapters 1,2,3. __Outcomes:__
   Emerge with complete understanding of the basics of
   computability, why studying formal language matters, and know how to construct
   languages using set operations, concatenation, and exponentiation. They also
@@ -65,7 +65,7 @@
    - 2:8/27
      - Run the Notebooks within 01_Computability_Languages/
    
-* Week-2 **Reading**: Chapters 3,4,5.** __Outcomes:__
+* Week-2 **Reading**: Chapters 3,4,5. __Outcomes:__
   Finish understanding Kleene-star, and are able to design
   DFA using two methods: By knowing how to encode salient information in DFA states
   (by naming DFA states to retain this info) and by Boolean operations on DFA (union,
