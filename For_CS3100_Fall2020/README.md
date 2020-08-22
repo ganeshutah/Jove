@@ -234,7 +234,7 @@ Outcomes: Understand the importance of nondeterminism in computer
    - 29:12/3
      - Review for Finals
    
-   - FINAL EXAM is on Canvas, Thursday 12/10/20, 10:30am - 12:30pm on Canvas)
-   
-   * -------------------------------------------------------
+* FINAL EXAM is on Canvas, Thursday 12/10/20, 10:30am - 12:30pm on Canvas)
+  
+* -------------------------------------------------------
    
