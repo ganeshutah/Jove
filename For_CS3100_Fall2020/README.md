@@ -47,10 +47,11 @@
 * -------------------------------------------------------
 
 * **SYLLABUS** is as follows (if I write `` 1:8/25 '' it means Lec1 on 8/25, and so on)
+* Some of the chapters are read across multiple weeks.
 
 * -------------------------------------------------------
 
-* Week-1 **Reading**: Chapters 1,2,3. __Outcomes:__
+* Week-1 **Reading**: Chapters 1, 2, 3. __Outcomes:__
   Emerge with complete understanding of the basics of
   computability, why studying formal language matters, and know how to construct
   languages using set operations, concatenation, and exponentiation. They also
@@ -65,7 +66,7 @@
    - 2:8/27
      - Run the Notebooks within 01_Computability_Languages/
    
-* Week-2 **Reading**: Chapters 3,4,5. __Outcomes:__
+* Week-2 **Reading**: Chapters 3, 4 (except 4.6 thru 4.8), 5, 6. __Outcomes:__
   Finish understanding Kleene-star, and are able to design
   DFA using two methods: By knowing how to encode salient information in DFA states
   (by naming DFA states to retain this info) and by Boolean operations on DFA (union,
@@ -80,7 +81,8 @@
    - 4:9/3
      - Run the Notebooks within 03_Advanced_DFA/ 
    
-* Week-3 Outcomes: Understand the importance of nondeterminism in computer
+* Week-3 **Reading** Chapter 6 (skip 6.4 and 6.5), 7.  __Outcomes:__
+Outcomes: Understand the importance of nondeterminism in computer
   science, and what nondeterministic finite-state automata are. They understand how to
   convert NFA to DFA via subset construction. They are able to witness, through actual
   hands-on activity, that NFA can blow up exponentially when converted to DFA. They
@@ -95,7 +97,8 @@
    - 6:9/10
      - Run the Notebooks within 05_NFA2DFA/
    
-* Week-4 Outcomes: Understand what regular expressions are, and how they
+* Week-4 **Reading** Chapter 8, 9.  __Outcomes:__
+  Understand what regular expressions are, and how they
   can be converted into NFA, and back to RE. They understand all the algorithmic
   details, solving interesting real-world problems using regular expressions, including
   error-correcting finite-state machines, and the encoding of the Postage Stamp Problem
@@ -108,7 +111,8 @@
    - 8:9/17
      - Run the Notebooks within 07_NFA2RE/
    
-* Week-5 Outcomes: Take a midterm to assess the previous objectives. Ungraded practice
+* Week-5 **Reading** Chapter 6.4.  __Outcomes:__
+  Take a midterm to assess the previous objectives. Ungraded practice
   problems would have been given out each week; discuss those in class. The exam is
   a take-home timed exam on Canvas. After the exam, learn two algorithms for DFA
   minimization, one based on dynamic programming, and the other based on Brzozowski's
@@ -123,7 +127,8 @@
    - 10:9/24
      - Run the Notebooks within 08_Min_DFA/
 
-* Week-6 Outcomes: We understand the limitations of finite automata by
+* Week-6 **Reading** Chapter 4.6 through 4.8.  __Outcomes:__
+  Understand the limitations of finite automata by
   studying the regular language Pumping Lemma 
    - 11:9/29
      - Run the Notebooks within 09_Reg_PL/
@@ -133,7 +138,10 @@
      - Run the Notebooks within 09_Reg_PL/
    
    
-* Week-7 Outcomes:   
+* Week-7 **Reading** Chapters 11 (except 11.9), 12.  __Outcomes:__
+  Learn the basics of pushdown automata followed by
+  context-free grammars and languages. 
+  
    - 13:10/6
      - Run the Notebooks within 10_PDA/
      - Quiz-7 given; due 10/9 11:59pm, covers L113,14
@@ -141,7 +149,10 @@
    - 14:10/8
      - Run the Notebooks within 11_CFG/  
    
-* Week-8 Outcomes:     
+* Week-8 **Reading** Chapters 11 (except 11.9), 12.  __Outcomes:__
+  Learn how to convert CFG to PDA, basic notions about
+  ambiguous grammars, and linearity.
+  
    - 15:10/13
      - Run the Notebooks within 12_CFG2PDA/
      - Quiz-8 given; due 10/16 11:59pm, covers L15,16
@@ -150,7 +161,9 @@
      - Run the Notebooks within 13_Linearity_Amb/
    
    
-* Week-9 Outcomes:     
+* Week-9 **Reading** Chapters 10, 11 (except 11.9).  __Outcomes:__
+  The basics of derivative-based parsing.
+  
    - 17:10/20
      - Run the Notebooks within 14_Calculator/
      - Run the Notebooks within 15_Derivatives/
@@ -160,7 +173,11 @@
      - MIDTERM EXAM-2 covering Asg 4-6 given out
      - Due Monday 10/26 11:59pm
 
-* Week-10 Outcomes:
+* Week-10 **Reading** Chapters 11.9, 13.  __Outcomes:__
+  Limitations of pushdown automata and context-free grammars
+  learned via the CFL Pumping Lemma. Learn the basics of
+  designing Turing machines.
+  
    - 19:10/27
      - Run the Notebooks within 16_CFL_PL/		
      - Quiz-10 given; due 10/30pm, covers L19,20
@@ -169,7 +186,10 @@
      - Run the Notebooks within 17_DTM/  
    
    
-* Week-11 Outcomes:     
+* Week-11 **Reading** Chapters 13, 14  __Outcomes:__
+  NDTMs and the Chomsky Hierarchy. Halting problem,
+  and the basics of undecidability proofs.
+  
    - 21:11/3
      - Run the Notebooks within 18_NDTM/
      - Quiz-11 given; due 11/5 11:59pm, covers L21,22
@@ -178,7 +198,9 @@
      - Run the Notebooks within 19_Formal_TM/  
    
    
-* Week-12 Outcomes:     
+* Week-12 **Reading** Chapters 14, 15.  __Outcomes:__
+  The Post Correspondence Problem. Systematic approaches
+  to mapping reductions.
    - 23:11/10
      - Run the Notebooks within 20_Algo_Proc_PCP/
      - Quiz-12 given; due 11/13 11:59pm, covers L23,24
@@ -187,7 +209,9 @@
      - Run the Notebooks within 21_Mapping_Redn/  
    
    
-* Week-13 Outcomes:      
+* Week-13 **Reading** Chapters 16, 17.  __Outcomes:__
+  Basics of Boolean reasoning, conjunctive normal form
+  formulae, validity versus satisfiability, NP-completeness.
    - 25:11/17
      - Run the Notebooks within 22_Bool_Basics/
      - Quiz-13 given; due 11/20 11:59pm, covers L25,26
@@ -196,13 +220,15 @@
      - Run the Notebooks within 23_NPC/  
    
    
-* Week-14 Outcomes:     
+* Week-14 **Reading** Chapters 16, 17.  __Outcomes:__
+  How mapping reduction looks in the area of NP-completeness proofs.
    - 27:11/24
      - Run the Notebooks within 24_NPC_Redn/
      - Quiz-14 given; due 12/4 11:59pm, covers L27,28
      - Asg-12 given; due 12/11/20 11:59pm, covers material after L26
    
-* Week-15 Outcomes:   
+* Week-15 **Reading** Chapter 18.  __Outcomes:__  Learn the basics of
+  Lambda calculus and show how it models programs.
    - 28:12/1
      - Run the Notebooks within 25_Lambda_Calc/    
    - 29:12/3
