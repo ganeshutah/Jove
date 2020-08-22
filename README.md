@@ -38,7 +38,7 @@
       basically navigate up-to an ipynb and then click on the Chrome
       Colab extension icon.)
 
-* If you are running it on your laptop,
+* If you are running it on your laptop (**highly recommended for speed, etc**),
 
   - Follow the instructions in For_The_Public/Classic/README.md
     or README_Short.md or read Jupyter_Notebook_Installation.pdf
