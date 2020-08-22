@@ -48,7 +48,8 @@
 
 * Week-1 Outcomes: Students emerge with complete understanding of the basics of
   computability, why studying formal language matters, and know how to construct
-  languages using set operations, concatenation, and exponentiation
+  languages using set operations, concatenation, and exponentiation. They also
+  begin studying Kleene-star.
 
    - 1:8/25
      - Run the Notebooks within 1_Computability_Languages/ 
@@ -57,7 +58,13 @@
    - 2:8/27
      - Run the Notebooks within 1_Computability_Languages/
    
-     
+* Week-2 Outcomes: Students finish understanding Kleene-star, and are able to design
+  DFA using two methods: By knowing how to encode salient information in DFA states
+  (by naming DFA states to retain this info) and by Boolean operations on DFA (union,
+  intersection, complement). They know how to document DFA using literate-programming
+  methods of annotating comments within a simple DFA markdown. They are able to
+  automatically build, and test DFA, following important principles of software testing.
+
    - 3:9/1
      - Run the Notebooks within 2_Basic_DFA/
      - Quiz-2 given; due 9/4 11:59pm, covers L3,4
@@ -65,6 +72,13 @@
    - 4:9/3
      - Run the Notebooks within 3_Advanced_DFA/ 
    
+* Week-3 Outcomes: Students understand the importance of nondeterminism in computer
+  science, and what nondeterministic finite-state automata are. They understand how to
+  convert NFA to DFA via subset construction. They are able to witness, through actual
+  hands-on activity, that NFA can blow up exponentially when converted to DFA. They
+  may also obtain a DFA directly, and check against results from NFA2DFA using a
+  DFA graph isomorphism check, thus showing the power of the Myhill-Nerode theorem to
+  help check one software construction method against the other, to catch bugs.
    
    - 5:9/8
      - Run the Notebooks within 4_NFA/
@@ -72,7 +86,6 @@
      - Asg-3 given, due 9/18/20 11:59pm, covers L5,6
    - 6:9/10
      - Run the Notebooks within 5_NFA2DFA/
-   
    
    
    - 7:9/15
