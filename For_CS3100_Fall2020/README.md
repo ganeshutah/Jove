@@ -1,6 +1,6 @@
 
-* Begin by running the notebook in Overview_Of_CS3100_Fall2020/. Then start with the remaining directories such as
-1_Computability_Languages/, 2_Basic_DFA/, etc.
+* Begin by running the notebook in 00_Overview_Of_CS3100_Fall2020/. Then start with the remaining directories such as
+01_Computability_Languages/, 02_Basic_DFA/, etc.
 
 * This is a directory prepared for the CS 3100, Fall 2020 students.
 
@@ -50,7 +50,8 @@
 
 * -------------------------------------------------------
 
-* Week-1 Outcomes: Emerge with complete understanding of the basics of
+* Week-1 **Reading**: Chapters 1,2,3.** __Outcomes:__
+  Emerge with complete understanding of the basics of
   computability, why studying formal language matters, and know how to construct
   languages using set operations, concatenation, and exponentiation. They also
   begin studying Kleene-star. As for practical matters, they understand the course
@@ -58,13 +59,14 @@
   grades.
 
    - 1:8/25
-     - Run the Notebooks within 1_Computability_Languages/ 
+     - Run the Notebooks within 01_Computability_Languages/ 
      - Quiz-1 given; due 8/28 11:59pm, covers L1,2
      - Asg-1 given, due 9/4/20 11:59pm, covers L1,2
    - 2:8/27
-     - Run the Notebooks within 1_Computability_Languages/
+     - Run the Notebooks within 01_Computability_Languages/
    
-* Week-2 Outcomes: Finish understanding Kleene-star, and are able to design
+* Week-2 **Reading**: Chapters 3,4,5.** __Outcomes:__
+  Finish understanding Kleene-star, and are able to design
   DFA using two methods: By knowing how to encode salient information in DFA states
   (by naming DFA states to retain this info) and by Boolean operations on DFA (union,
   intersection, complement). They know how to document DFA using literate-programming
@@ -72,11 +74,11 @@
   automatically build, and test DFA, following important principles of software testing.
 
    - 3:9/1
-     - Run the Notebooks within 2_Basic_DFA/
+     - Run the Notebooks within 02_Basic_DFA/
      - Quiz-2 given; due 9/4 11:59pm, covers L3,4
      - Asg-2 given, due 9/11/20 11:59pm, covers L3,4
    - 4:9/3
-     - Run the Notebooks within 3_Advanced_DFA/ 
+     - Run the Notebooks within 03_Advanced_DFA/ 
    
 * Week-3 Outcomes: Understand the importance of nondeterminism in computer
   science, and what nondeterministic finite-state automata are. They understand how to
@@ -87,11 +89,11 @@
   help check one software construction method against the other, to catch bugs.
    
    - 5:9/8
-     - Run the Notebooks within 4_NFA/
+     - Run the Notebooks within 04_NFA/
      - Quiz-3 given; due 9/11 11:59pm, covers L5,6
      - Asg-3 given, due 9/18/20 11:59pm, covers L5,6
    - 6:9/10
-     - Run the Notebooks within 5_NFA2DFA/
+     - Run the Notebooks within 05_NFA2DFA/
    
 * Week-4 Outcomes: Understand what regular expressions are, and how they
   can be converted into NFA, and back to RE. They understand all the algorithmic
@@ -100,11 +102,11 @@
   (also known as the Coin Problem).
 
    - 7:9/15
-     - Run the Notebooks within 6_RE/
+     - Run the Notebooks within 06_RE/
      - Quiz-4 given; due 9/18 11:59pm, covers L7,8
      - Asg-4 given, due 9/25/20 11:59pm, covers L7,8    
    - 8:9/17
-     - Run the Notebooks within 7_NFA2RE/
+     - Run the Notebooks within 07_NFA2RE/
    
 * Week-5 Outcomes: Take a midterm to assess the previous objectives. Ungraded practice
   problems would have been given out each week; discuss those in class. The exam is
@@ -119,17 +121,19 @@
      - MIDTERM EXAM-1 covering Asg 1-3 given out
      - Due Monday 9/28 11:59pm
    - 10:9/24
-     - Run the Notebooks within 8_Min_DFA/
-   
+     - Run the Notebooks within 08_Min_DFA/
+
+* Week-6 Outcomes: We understand the limitations of finite automata by
+  studying the regular language Pumping Lemma 
    - 11:9/29
-     - Run the Notebooks within 9_Reg_PL/
+     - Run the Notebooks within 09_Reg_PL/
      - Quiz-6 given; due 10/2 11:59pm, covers L11,12
      - Asg-5 given; due 10/9 11:59pm, covers L11,12
    - 12:10/1
-     - Run the Notebooks within 9_Reg_PL/
+     - Run the Notebooks within 09_Reg_PL/
    
    
-   
+* Week-7 Outcomes:   
    - 13:10/6
      - Run the Notebooks within 10_PDA/
      - Quiz-7 given; due 10/9 11:59pm, covers L113,14
@@ -137,7 +141,7 @@
    - 14:10/8
      - Run the Notebooks within 11_CFG/  
    
-     
+* Week-8 Outcomes:     
    - 15:10/13
      - Run the Notebooks within 12_CFG2PDA/
      - Quiz-8 given; due 10/16 11:59pm, covers L15,16
@@ -146,7 +150,7 @@
      - Run the Notebooks within 13_Linearity_Amb/
    
    
-     
+* Week-9 Outcomes:     
    - 17:10/20
      - Run the Notebooks within 14_Calculator/
      - Run the Notebooks within 15_Derivatives/
@@ -155,7 +159,8 @@
      - Review-2
      - MIDTERM EXAM-2 covering Asg 4-6 given out
      - Due Monday 10/26 11:59pm
-   
+
+* Week-10 Outcomes:
    - 19:10/27
      - Run the Notebooks within 16_CFL_PL/		
      - Quiz-10 given; due 10/30pm, covers L19,20
@@ -164,7 +169,7 @@
      - Run the Notebooks within 17_DTM/  
    
    
-     
+* Week-11 Outcomes:     
    - 21:11/3
      - Run the Notebooks within 18_NDTM/
      - Quiz-11 given; due 11/5 11:59pm, covers L21,22
@@ -173,7 +178,7 @@
      - Run the Notebooks within 19_Formal_TM/  
    
    
-     
+* Week-12 Outcomes:     
    - 23:11/10
      - Run the Notebooks within 20_Algo_Proc_PCP/
      - Quiz-12 given; due 11/13 11:59pm, covers L23,24
@@ -182,7 +187,7 @@
      - Run the Notebooks within 21_Mapping_Redn/  
    
    
-      
+* Week-13 Outcomes:      
    - 25:11/17
      - Run the Notebooks within 22_Bool_Basics/
      - Quiz-13 given; due 11/20 11:59pm, covers L25,26
@@ -191,13 +196,13 @@
      - Run the Notebooks within 23_NPC/  
    
    
-     
+* Week-14 Outcomes:     
    - 27:11/24
      - Run the Notebooks within 24_NPC_Redn/
      - Quiz-14 given; due 12/4 11:59pm, covers L27,28
      - Asg-12 given; due 12/11/20 11:59pm, covers material after L26
    
-   
+* Week-15 Outcomes:   
    - 28:12/1
      - Run the Notebooks within 25_Lambda_Calc/    
    - 29:12/3
