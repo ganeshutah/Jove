@@ -17,9 +17,13 @@
     - They must be solved and submitted the same week Friday 11:59pm.
     
   - All our Assignments will be provided via Jove notebooks, with a PDF
-    summarizing them as well.
+    summarizing them as well. The PDF is kept on Canvas.
   
   - All our Exams (MT-1, MT-2 and Finals) will be given on Canvas.
+
+  - **Practice problems** for the exams will be assigned each week, 
+    but won't be graded. These will help you study for the exams
+    in an incremental fashion. Find the Practice Problems on Canvas.
 
 * CS 3100 is running in a *FLIPPED CLASS* style.
 
@@ -46,10 +50,12 @@
 
 * -------------------------------------------------------
 
-* Week-1 Outcomes: Students emerge with complete understanding of the basics of
+* Week-1 Outcomes: Emerge with complete understanding of the basics of
   computability, why studying formal language matters, and know how to construct
   languages using set operations, concatenation, and exponentiation. They also
-  begin studying Kleene-star.
+  begin studying Kleene-star. As for practical matters, they understand the course
+  objectives, how to run the course software and submit the required material for
+  grades.
 
    - 1:8/25
      - Run the Notebooks within 1_Computability_Languages/ 
@@ -58,7 +64,7 @@
    - 2:8/27
      - Run the Notebooks within 1_Computability_Languages/
    
-* Week-2 Outcomes: Students finish understanding Kleene-star, and are able to design
+* Week-2 Outcomes: Finish understanding Kleene-star, and are able to design
   DFA using two methods: By knowing how to encode salient information in DFA states
   (by naming DFA states to retain this info) and by Boolean operations on DFA (union,
   intersection, complement). They know how to document DFA using literate-programming
@@ -72,7 +78,7 @@
    - 4:9/3
      - Run the Notebooks within 3_Advanced_DFA/ 
    
-* Week-3 Outcomes: Students understand the importance of nondeterminism in computer
+* Week-3 Outcomes: Understand the importance of nondeterminism in computer
   science, and what nondeterministic finite-state automata are. They understand how to
   convert NFA to DFA via subset construction. They are able to witness, through actual
   hands-on activity, that NFA can blow up exponentially when converted to DFA. They
@@ -87,7 +93,12 @@
    - 6:9/10
      - Run the Notebooks within 5_NFA2DFA/
    
-   
+* Week-4 Outcomes: Understand what regular expressions are, and how they
+  can be converted into NFA, and back to RE. They understand all the algorithmic
+  details, solving interesting real-world problems using regular expressions, including
+  error-correcting finite-state machines, and the encoding of the Postage Stamp Problem
+  (also known as the Coin Problem).
+
    - 7:9/15
      - Run the Notebooks within 6_RE/
      - Quiz-4 given; due 9/18 11:59pm, covers L7,8
@@ -95,7 +106,13 @@
    - 8:9/17
      - Run the Notebooks within 7_NFA2RE/
    
-   
+* Week-5 Outcomes: Take a midterm to assess the previous objectives. Ungraded practice
+  problems would have been given out each week; discuss those in class. The exam is
+  a take-home timed exam on Canvas. After the exam, learn two algorithms for DFA
+  minimization, one based on dynamic programming, and the other based on Brzozowski's
+  minimization which can be realized using one line of code as ("reverse; determinize;
+  reverse; determinize").
+
    - 9:9/22
      - Quiz-5 given; due 9/25 11:59pm, covers L9,10
      - Review of Asg 1-3
