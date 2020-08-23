@@ -1,2 +1,3 @@
-Run these before each lecture.
+# Run these notebooks before each lecture.
+
 
