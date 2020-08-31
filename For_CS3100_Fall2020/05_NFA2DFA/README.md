@@ -1,2 +1,3 @@
-Run these before each lecture.
+Basics of NFA2DFA
+
 

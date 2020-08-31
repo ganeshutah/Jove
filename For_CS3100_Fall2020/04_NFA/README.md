@@ -1,2 +1,3 @@
-Run these before each lecture.
+This notebook explains NFA and its animations.
+
 
