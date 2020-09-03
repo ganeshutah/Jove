@@ -1,49 +1,3 @@
-
-* Begin by running the notebook in 00_Overview_Of_CS3100_Fall2020/. Then start with the remaining directories such as
-01_Computability_Languages/, 02_Basic_DFA/, etc.
-
-* This is a directory prepared for the CS 3100, Fall 2020 students.
-
-* It contains a description of how various Jove modules will be
-  covered in our lectures.
-  
-* I'll now straight present the syllabus and the schedule of
-  lectures. 
-  
-  - All Quizzes will be assigned on Canvas:
-  
-    - They are given out before a PAIR of lectures (occurring in a week).
-    
-    - They must be solved and submitted the same week Friday 11:59pm.
-    
-  - All our Assignments will be provided via Jove notebooks, with a PDF
-    summarizing them as well. The PDF is kept on Canvas.
-  
-  - All our Exams (MT-1, MT-2 and Finals) will be given on Canvas.
-
-  - **Practice problems** for the exams will be assigned each week, 
-    but won't be graded. These will help you study for the exams
-    in an incremental fashion. Find the Practice Problems on Canvas.
-
-* CS 3100 is running in a *FLIPPED CLASS* style.
-
-* You MUST run each Jove notebook mentioned below *BEFORE* you come
-  to a lecture. These notebooks contain a video recording PLUS practice
-  material for you.
-  
-* Some notebooks will last across multiple lectures, and some lectures
-  will involve multiple notebooks.
-  
-* Assignments are to be turned in as finished Jove notebooks. There may
-  also be uploads of other files, as specified.
-
-* Each question of an assignment will be in a separate ".ipynb" Jove file.
-
-* In some cases, we will allow documents to be scanned and uploaded as PDF. We require
-  you to be using Adobe Scan - a free app you can get for iPhone or Android.
-
-* For more info, see the PDF documents on Canvas that describe our course policies.
-
 * -------------------------------------------------------
 
 * **SYLLABUS** is as follows (if I write `` 1:8/25 '' it means Lec1 on 8/25, and so on)
@@ -238,3 +192,51 @@ Outcomes: Understand the importance of nondeterminism in computer
   
 * -------------------------------------------------------
    
+
+* Begin by running the notebook in 00_Overview_Of_CS3100_Fall2020/. Then start with the remaining directories such as
+01_Computability_Languages/, 02_Basic_DFA/, etc.
+
+* This is a directory prepared for the CS 3100, Fall 2020 students.
+
+* It contains a description of how various Jove modules will be
+  covered in our lectures.
+  
+* I'll now straight present the syllabus and the schedule of
+  lectures. 
+  
+  - All Quizzes will be assigned on Canvas:
+  
+    - They are given out before a PAIR of lectures (occurring in a week).
+    
+    - They must be solved and submitted the same week Friday 11:59pm.
+    
+  - All our Assignments will be provided via Jove notebooks, with a PDF
+    summarizing them as well. The PDF is kept on Canvas.
+  
+  - All our Exams (MT-1, MT-2 and Finals) will be given on Canvas.
+
+  - **Practice problems** for the exams will be assigned each week, 
+    but won't be graded. These will help you study for the exams
+    in an incremental fashion. Find the Practice Problems on Canvas.
+
+* CS 3100 is running in a *FLIPPED CLASS* style.
+
+* You MUST run each Jove notebook mentioned below *BEFORE* you come
+  to a lecture. These notebooks contain a video recording PLUS practice
+  material for you.
+  
+* Some notebooks will last across multiple lectures, and some lectures
+  will involve multiple notebooks.
+  
+* Assignments are to be turned in as finished Jove notebooks. There may
+  also be uploads of other files, as specified.
+
+* Each question of an assignment will be in a separate ".ipynb" Jove file.
+
+* In some cases, we will allow documents to be scanned and uploaded as PDF. We require
+  you to be using Adobe Scan - a free app you can get for iPhone or Android.
+
+* For more info, see the PDF documents on Canvas that describe our course policies.
+
+
+* -----------------------------------------------------------------
