@@ -1,7 +1,3 @@
-* -------------------------------------------------------
-
-* **SYLLABUS** is as follows (if I write `` 1:8/25 '' it means Lec1 on 8/25, and so on)
-* Some of the chapters are read across multiple weeks.
 
 * -------------------------------------------------------
 
@@ -240,3 +236,8 @@ Outcomes: Understand the importance of nondeterminism in computer
 
 
 * -----------------------------------------------------------------
+
+* **SYLLABUS** is as follows (if I write `` 1:8/25 '' it means Lec1 on 8/25, and so on)
+* Some of the chapters are read across multiple weeks.
+
+* -------------------------------------------------------
