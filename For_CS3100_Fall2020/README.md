@@ -40,10 +40,10 @@ Outcomes: Understand the importance of nondeterminism in computer
   DFA graph isomorphism check, thus showing the power of the Myhill-Nerode theorem to
   help check one software construction method against the other, to catch bugs.
    
-   - 5:9/8
+   - 5:9/8 (CLASS CANCELLED due to weather; NOTE NEW DUE DATES) 
      - Run the Notebooks within 04_NFA/
-     - Quiz-3 given; due 9/11 11:59pm, covers L5,6
-     - Asg-3 given, due 9/18/20 11:59pm, covers L5,6
+     - Quiz-3 given; due 9/18 11:59pm, covers L5,6
+     - Asg-3 given, due 9/25 11:59pm, covers L5,6
    - 6:9/10
      - Run the Notebooks within 05_NFA2DFA/
    
@@ -57,7 +57,7 @@ Outcomes: Understand the importance of nondeterminism in computer
    - 7:9/15
      - Run the Notebooks within 06_RE/
      - Quiz-4 given; due 9/18 11:59pm, covers L7,8
-     - Asg-4 given, due 9/25/20 11:59pm, covers L7,8    
+     - Asg-4 given, due 9/25 11:59pm, covers L7,8    
    - 8:9/17
      - Run the Notebooks within 07_NFA2RE/
    
