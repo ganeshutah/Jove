@@ -78,6 +78,7 @@ Outcomes: Understand the importance of nondeterminism in computer
    - **MIDTERM EXAM-1**
      - **COVERING Asg 1-3 given out 9/26/20 9 AM**
      - **DUE MONDAY 9/28 11:59pm**
+     - **TWO ATTEMPTS of 80 mins each - SECOND ATTEMPT COUNTS**
      
 
 * Week-6 **Reading** Chapter 4.6 through 4.8.  __Outcomes:__
