@@ -72,10 +72,13 @@ Outcomes: Understand the importance of nondeterminism in computer
    - 9:9/22
      - Quiz-5 given; due 9/25 11:59pm, covers L9,10
      - Review of Asg 1-3
-     - MIDTERM EXAM-1 covering Asg 1-3 given out
-     - Due Monday 9/28 11:59pm
    - 10:9/24
      - Run the Notebooks within 08_Min_DFA/
+
+   - **MIDTERM EXAM-1**
+     - Covering Asg 1-3 given out ** 9/26/20 9 AM **
+     - ** Due Monday 9/28 11:59pm **
+     
 
 * Week-6 **Reading** Chapter 4.6 through 4.8.  __Outcomes:__
   Understand the limitations of finite automata by
