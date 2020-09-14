@@ -56,7 +56,6 @@ Outcomes: Understand the importance of nondeterminism in computer
 
    - 7:9/15
      - Run the Notebooks within 06_RE/
-     - Quiz-4 given; due 9/18 11:59pm, covers L7,8
      - Asg-4 given, due 9/25 11:59pm, covers L7,8    
    - 8:9/17
      - Run the Notebooks within 07_NFA2RE/
@@ -70,7 +69,7 @@ Outcomes: Understand the importance of nondeterminism in computer
   reverse; determinize").
 
    - 9:9/22
-     - Quiz-5 given; due 9/25 11:59pm, covers L9,10
+     - Quiz-4 given; due 9/25 11:59pm, reviews material to date
      - Review of Asg 1-3
    - 10:9/24
      - Run the Notebooks within 08_Min_DFA/
@@ -86,7 +85,7 @@ Outcomes: Understand the importance of nondeterminism in computer
   studying the regular language Pumping Lemma 
    - 11:9/29
      - Run the Notebooks within 09_Reg_PL/
-     - Quiz-6 given; due 10/2 11:59pm, covers L11,12
+     - Quiz-5 given; due 10/2 11:59pm, covers L11,12
      - Asg-5 given; due 10/9 11:59pm, covers L11,12
    - 12:10/1
      - Run the Notebooks within 09_Reg_PL/
@@ -98,7 +97,7 @@ Outcomes: Understand the importance of nondeterminism in computer
   
    - 13:10/6
      - Run the Notebooks within 10_PDA/
-     - Quiz-7 given; due 10/9 11:59pm, covers L113,14
+     - Quiz-6 given; due 10/9 11:59pm, covers L113,14
      - Asg-6 given; due 10/16/20 11:59pm, covers L113,14      
    - 14:10/8
      - Run the Notebooks within 11_CFG/  
@@ -109,7 +108,7 @@ Outcomes: Understand the importance of nondeterminism in computer
   
    - 15:10/13
      - Run the Notebooks within 12_CFG2PDA/
-     - Quiz-8 given; due 10/16 11:59pm, covers L15,16
+     - Quiz-7 given; due 10/16 11:59pm, covers L15,16
      - Asg-7 given; due 10/23/20 11:59pm, covers L15,16         
    - 16:10/15
      - Run the Notebooks within 13_Linearity_Amb/
@@ -121,7 +120,7 @@ Outcomes: Understand the importance of nondeterminism in computer
    - 17:10/20
      - Run the Notebooks within 14_Calculator/
      - Run the Notebooks within 15_Derivatives/
-     - Quiz-9 given; due 10/23 11:59pm, covers L117,18
+     - Quiz-8 given; due 10/23 11:59pm, covers L117,18
    - 18:10/22
      - Review-2
      - MIDTERM EXAM-2 covering Asg 4-6 given out
@@ -134,7 +133,7 @@ Outcomes: Understand the importance of nondeterminism in computer
   
    - 19:10/27
      - Run the Notebooks within 16_CFL_PL/		
-     - Quiz-10 given; due 10/30pm, covers L19,20
+     - Quiz-9 given; due 10/30pm, covers L19,20
      - Asg-8 given; due 11/6/20 11:59pm, covers L19,20
    - 20:10/29
      - Run the Notebooks within 17_DTM/  
@@ -146,7 +145,7 @@ Outcomes: Understand the importance of nondeterminism in computer
   
    - 21:11/3
      - Run the Notebooks within 18_NDTM/
-     - Quiz-11 given; due 11/5 11:59pm, covers L21,22
+     - Quiz-10 given; due 11/5 11:59pm, covers L21,22
      - Asg-9 given; due 11/13/20 11:59pm, covers L21,22  
    - 22:11/5
      - Run the Notebooks within 19_Formal_TM/  
@@ -157,7 +156,7 @@ Outcomes: Understand the importance of nondeterminism in computer
   to mapping reductions.
    - 23:11/10
      - Run the Notebooks within 20_Algo_Proc_PCP/
-     - Quiz-12 given; due 11/13 11:59pm, covers L23,24
+     - Quiz-11 given; due 11/13 11:59pm, covers L23,24
      - Asg-10 given; due 11/20/20 11:59pm, covers L23,24  
    - 24:11/12
      - Run the Notebooks within 21_Mapping_Redn/  
@@ -168,7 +167,7 @@ Outcomes: Understand the importance of nondeterminism in computer
   formulae, validity versus satisfiability, NP-completeness.
    - 25:11/17
      - Run the Notebooks within 22_Bool_Basics/
-     - Quiz-13 given; due 11/20 11:59pm, covers L25,26
+     - Quiz-12 given; due 11/20 11:59pm, covers L25,26
      - Asg-11 given; due MONDAY 11/30/20 11:59pm, covers L25,26 
    - 26:11/19
      - Run the Notebooks within 23_NPC/  
@@ -178,7 +177,7 @@ Outcomes: Understand the importance of nondeterminism in computer
   How mapping reduction looks in the area of NP-completeness proofs.
    - 27:11/24
      - Run the Notebooks within 24_NPC_Redn/
-     - Quiz-14 given; due 12/4 11:59pm, covers L27,28
+     - Quiz-13 given; due 12/4 11:59pm, covers L27,28
      - Asg-12 given; due 12/11/20 11:59pm, covers material after L26
    
 * Week-15 **Reading** Chapter 18.  __Outcomes:__  Learn the basics of
