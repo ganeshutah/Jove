@@ -71,8 +71,11 @@ Outcomes: Understand the importance of nondeterminism in computer
    - 9:9/22
      - Quiz-4 given; due 9/25 11:59pm, reviews material to date
      - Review of Asg 1-3
-   - 10:9/24
      - Run the Notebooks within 08_Min_DFA/
+     
+   - 10:9/24
+     - EXAM SIMULATION in breakout groups
+
 
    - **MIDTERM EXAM-1**
      - **COVERING Asg 1-3 given out 9/26/20 9 AM**
