@@ -662,6 +662,234 @@ def h_langeq_dfa(q1, D1, q2, D2, Visited):
 
 # In[10]:
 
+def fixptDist(D, ht, chatty=False):
+    """
+       Setting chatty=True helps reveal the detailed steps. Please try it!
+    
+       In : D (consistent DFA)
+            ht (hash-table of distinguishability pair distances)
+       Out: ht that has attained a fixpoint in distinguishability.
+    
+       Helper (but main workhorse) for min_dfa.
+    
+       Given an initial hash-table ht and a DFA D to be minimized,
+       determine the min. distinguishability distances, going frame 
+       by frame, as illustrated in the DFA minimization algorithm. 
+       Return fixpoint ht. Fixpoint is when ht ceases to change.
+       
+    """
+    changed = True
+    while changed:
+        changed = False
+        for kv in ht.items():
+            s0 = kv[0][0]
+            s1 = kv[0][1]
+            
+            if (chatty):
+                print(" ")
+                print("Seeing if states ", s0, " and ", s1, " can now be distinguished by any symbol.")
+                
+            for c in D["Sigma"]:
+                ns0 = D["Delta"][(s0,c)]
+                ns1 = D["Delta"][(s1,c)]
+                
+                if (chatty):
+                    print("   The next states reached via symbol ", c, " are: ", ns0, " and ", ns1)
+                    
+                
+                #
+                # Distinguishable state pairs carry 
+                # "distinguishability distance" in the ht
+                if ns0 == ns1:
+                    
+                    if (chatty):
+                        print("      Nope. Symbol ", c, " could not distinguish (the next states are the same).")
+                        
+                    continue
+                    
+                if (ns0, ns1) in ht:
+                    # s0,s1 are distinguishable
+                    if ht[(s0,s1)] == -1 and ht[(ns0, ns1)] >= 0: 
+                        
+                        if (chatty):
+                            print("   Found a distinguishable pair!")
+                            
+                        # acquire one more than the
+                        # dist. number of (ns0,ns1)
+                        
+                        ht[(s0,s1)] = ht[(ns0, ns1)] + 1
+
+                       
+                        if (chatty):
+                            print("      Since ", (ns0,ns1), " are ", ht[(ns0,ns1)], " distinguishable, marking ", (s0,s1), " as ", ht[(s0,s1)], " distinguishable.")
+                            print("         Hence, must continue through one more sweep of the algorithm.")
+                            
+                        changed = True                            
+                        break
+                else:
+                    # ht stores only (ns0,ns1); 
+                    # so check the other way
+                    if (ns1, ns0) in ht:                              
+                        if ht[(s0,s1)] == -1 and ht[(ns1, ns0)] >= 0:  
+                            
+                            if (chatty):
+                                print("   Found a distinguishable pair!")
+                            
+                            ht[(s0,s1)] = ht[(ns1, ns0)] + 1
+
+                            if (chatty):
+                                print("      Since ", (ns0,ns1), " are ", ht[(ns1,ns0)], " distinguishable, marking ", (s0,s1), " as ", ht[(s0,s1)], " distinguishable.")
+                                print("         Hence, must continue through one more sweep of the algorithm.")
+                            
+                            
+                            changed = True                             
+                            break                                      
+                    else:                                              
+                        print("ht doesn't cover all reqd state combos. An internal inconsistency!")
+    return ht
+
+
+def min_dfa(D, state_name_mode='succinct', chatty=False):  # Default state mode
+    """
+       The top-level callable DFA minimizer.
+ 
+       In : D (consistent DFA to be minimized)
+       Out: Minimized version of D.
+   
+       Given a DFA D, go through the state minimization algorithm.
+
+       Setting chatty=True helps reveal the detailed steps. Please try it!        
+
+       If the state_name_mode is verbose, we will make state names
+       by stringing together the state names in the equivalence
+       classes. If 'succinct', then only the name of the equivalence-class
+       representative is retained.
+    """
+    if (len(D["Q"]) == 1): # Already minimal
+        if(chatty):
+            print("-> Your DFA is already minimal.")
+        return D
+    else:
+        # Build a dict of all state combinations of DFA.
+        # Function state_combos also imparts a -1 for each state pair,
+        # initializing the separation distance at -1.  
+        ht = dict(state_combos(list(D["Q"])))
+    
+        # Mark final and non-final states to be 0-distinguishable.
+        # This is achieved by putting a 0 against those state pairs.
+        if (chatty):
+            print("Separating final and non-final states (marking 0-distinguishable entries).")
+            
+        sepFinNonFin(D, ht)
+        
+        if (chatty):
+            print("   The 0-distinguishable entries are:")
+            for k in ht.keys():
+                if (ht[k]==0):
+                    print("States ", k[0]," and ", k[1], " are 0-distinguished.")
+                
+    
+        # Main fixpoint computation: Assigning distinguishability dist. 
+        #==============================================================
+        ht = fixptDist(D, ht, chatty)
+    
+        if (chatty):
+                print(" ")
+                print("Now, collecting equivalence-classes.")
+                
+        # Pick out equivalent state-pairs, i.e. those that cannot be 
+        # distinguished. These are still with a "-1" in ht.
+        ht_1 = [ stpair for (stpair, dist) in ht.items() if dist == -1 ]
+    
+    
+        if (chatty):
+                print("   The equivalent pairs are:")
+                
+                
+        # Now form equivalence classes
+        # what's returned is 
+        # [(rep_1, [all_eql_states_1]), (rep_2, [all_eql_states_2]),...]
+        # which includes all equivalence classes of size 2 or more.
+        rep_eqc = bash_eql_classes(ht_1)
+
+        
+          
+        if (chatty):
+            print("   The merged equivalent classes and representative states are these:")
+            for eqc in rep_eqc:
+                print("State ", eqc[0], " represents the equivalent states ", eqc[1])
+             
+            
+                
+        # Now we have to deal with singleton equivalence classes. 
+        # These sit unmerged, OUTSIDE OF ALL (x,y) in ht_1
+        # i.e. all the entries in ht_1 are PARTNERED STATE PAIRS.  
+    
+        # If we now take D["Q"] and subtract from it all those x and y
+        # which are present in some pair in ht_1, we obtain completely
+        # non-mergable states. These are states in their own eql. classes.
+    
+        # 1. Find all partnered states from ht_1
+        Partnered_states = list({x for (x,y) in ht_1} |
+                                {y for (x,y) in ht_1})
+    
+        # 2. Now who is left un-partnered?
+        List_of_self_only_eqlt_states = listminus(D["Q"], Partnered_states)                     
+    
+        # 3. For these singletons, i.e. "self-only equivalent states", 
+        # they are self-representative. Form pairs that indicate this fact.
+        rep_eqc_1 = [(x, [x]) for x in List_of_self_only_eqlt_states]
+    
+        # 4. OK now, we can combine the set of pairs where each pair is 
+        # (representative, [the list of equivalent states])
+        # So finally we get the list of equivalence classes with 
+        # representatives  which is of this form:
+        # [(a0,[a0, a1, a2, a3, a4]), (b0,[b0, b1]), (c0,[c0]), ...] 
+        final_rep_eqc = rep_eqc + rep_eqc_1
+    
+        # We are now ready to build a DFA out of final_rep_eqc. 
+        # =====================================================
+    
+        # 1. First, form the set of minimized states, which are 
+        # state representatives.
+        minQ = {x for (x,y) in final_rep_eqc}
+    
+        # 2. The Alpbahet remains the same.
+        minSigma = D["Sigma"]
+    
+        # 3. The starting state is the representative of D["q0"]
+        minq0 = q0_of(D["q0"], final_rep_eqc)
+    
+        # 4. The final states are the representatives of the original
+        #    final states. This is computed by helper F_of.
+        minF = F_of(D["F"], final_rep_eqc)
+    
+        # 5. The transition relation of the minimized DFA is obtained
+        #    by the helper Delta_of
+        minDelta = Delta_of(D["Delta"], final_rep_eqc)
+    
+        # 6. We now need to rename the states if the user wants verbose 
+        #    names (default is succinct). Verbose names are the name of 
+        #    states in each equivalence class strung together sep by "_".
+        if state_name_mode == 'verbose':
+            # First build a state-renaming hash-table involving 
+            # mk_state_eqc_name
+            state_rename_ht = { x : mk_state_eqc_name(y) 
+                                for (x,y) in final_rep_eqc }
+        
+            minQ            = { state_rename_ht[x] for x in minQ }
+            minq0           = state_rename_ht[minq0]
+            minF            = { state_rename_ht[f] for f in minF }
+            minDelta = { (state_rename_ht[x], y) : state_rename_ht[z] 
+                         for ((x,y),z) in minDelta.items() }
+        #
+        # Return the finished (minimized) DFA!
+        return mk_dfa(minQ, minSigma, minDelta, minq0, minF)
+
+'''
+
+OLDER CODE COMMENTED OUT
+
 def fixptDist(D, ht):
     """In : D (consistent DFA)
             ht (hash-table of distinguishability pair distances)
@@ -705,7 +933,6 @@ def fixptDist(D, ht):
                     else:                                              
                         print("ht doesn't cover all reqd state combos.")
     return ht
-
 
 # In[11]:
 
@@ -811,6 +1038,9 @@ def min_dfa(D, state_name_mode='succinct'):  # Default state mode
         #
         # Return the finished (minimized) DFA!
         return mk_dfa(minQ, minSigma, minDelta, minq0, minF)
+
+END OLD CODE
+'''
 
 
 # In[12]:
