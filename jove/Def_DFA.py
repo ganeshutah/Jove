@@ -681,72 +681,62 @@ def fixptDist(D, ht, chatty=False):
     changed = True
     while changed:
         changed = False
-        for kv in ht.items():
+        for kv in ht.items():              
             s0 = kv[0][0]
-            s1 = kv[0][1]
-            
+            s1 = kv[0][1]            
+            if ht[(s0,s1)] == 0:
+                continue             
             if (chatty):
                 print(" ")
-                print("Seeing if states ", s0, " and ", s1, " can now be distinguished by any symbol.")
-                
+                print("Seeing if states ", s0, " and ", s1, " can now be distinguished by any symbol.")            
             for c in D["Sigma"]:
                 ns0 = D["Delta"][(s0,c)]
-                ns1 = D["Delta"][(s1,c)]
-                
+                ns1 = D["Delta"][(s1,c)]     
                 if (chatty):
-                    print("   The next states reached via symbol ", c, " are: ", ns0, " and ", ns1)
-                    
-                
-                #
-                # Distinguishable state pairs carry 
-                # "distinguishability distance" in the ht
+                    print("   The next states reached via symbol ", c, " are: ", ns0, " and ", ns1)      
                 if ns0 == ns1:
-                    
                     if (chatty):
                         print("      Nope. Symbol ", c, " could not distinguish (the next states are the same).")
-                        
-                    continue
-                    
+                    continue    
                 if (ns0, ns1) in ht:
-                    # s0,s1 are distinguishable
-                    if ht[(s0,s1)] == -1 and ht[(ns0, ns1)] >= 0: 
-                        
-                        if (chatty):
-                            print("   Found a distinguishable pair!")
-                            
-                        # acquire one more than the
-                        # dist. number of (ns0,ns1)
-                        
-                        ht[(s0,s1)] = ht[(ns0, ns1)] + 1
-
-                       
-                        if (chatty):
-                            print("      Since ", (ns0,ns1), " are ", ht[(ns0,ns1)], " distinguishable, marking ", (s0,s1), " as ", ht[(s0,s1)], " distinguishable.")
-                            print("         Hence, must continue through one more sweep of the algorithm.")
-                            
-                        changed = True                            
-                        break
+                    if ht[(s0,s1)] == -1:
+                        if ht[(ns0, ns1)] >= 0: 
+                            if (chatty):
+                                print("   Found a distinguishable pair!")                 
+                            ht[(s0,s1)] = ht[(ns0, ns1)] + 1                
+                            if (chatty):
+                                print("      Since ", (ns0,ns1), " are ", ht[(ns0,ns1)], " distinguishable, marking ", (s0,s1), " as ", ht[(s0,s1)], " distinguishable.")
+                                print("         Hence, must continue through one more sweep of the algorithm.")  
+                            changed = True                            
+                            break
+                        else:
+                            if (chatty):
+                                print("   Cannot distinguish yet, via ", c)      
+                            continue     
                 else:
-                    # ht stores only (ns0,ns1); 
-                    # so check the other way
                     if (ns1, ns0) in ht:                              
-                        if ht[(s0,s1)] == -1 and ht[(ns1, ns0)] >= 0:  
-                            
-                            if (chatty):
-                                print("   Found a distinguishable pair!")
-                            
-                            ht[(s0,s1)] = ht[(ns1, ns0)] + 1
+                        if ht[(s0,s1)] == -1:
+                            if ht[(ns1, ns0)] >= 0:  
+                                if (chatty):
+                                    print("   Found a distinguishable pair!")
+                                ht[(s0,s1)] = ht[(ns1, ns0)] + 1
 
-                            if (chatty):
-                                print("      Since ", (ns0,ns1), " are ", ht[(ns1,ns0)], " distinguishable, marking ", (s0,s1), " as ", ht[(s0,s1)], " distinguishable.")
-                                print("         Hence, must continue through one more sweep of the algorithm.")
+                                if (chatty):
+                                    print("      Since ", (ns0,ns1), " are ", ht[(ns1,ns0)], " distinguishable, marking ", (s0,s1), " as ", ht[(s0,s1)], " distinguishable.")
+                                    print("         Hence, must continue through one more sweep of the algorithm.")        
+                                changed = True                             
+                                break  
+                            else:
+                                if (chatty):
+                                    print("   Cannot distinguish yet, via ", c) 
+                                continue
                             
-                            
-                            changed = True                             
-                            break                                      
                     else:                                              
                         print("ht doesn't cover all reqd state combos. An internal inconsistency!")
     return ht
+
+
+#----
 
 
 def min_dfa(D, state_name_mode='succinct', chatty=False):  # Default state mode
