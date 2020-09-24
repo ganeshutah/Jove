@@ -80,12 +80,18 @@ Outcomes: Understand the importance of nondeterminism in computer
    - **MIDTERM EXAM-1**
      - **NOTEBOOK PART**
        - COVERS Asg 1-3
+       - You have all the time from Sat till Monday
+       - 75% of the overall score
      - **QUIZ PART**
        - Covers Quiz 1-3
+       - Two 40-min attempts
+       - Best Quiz Attempt Counts
+       - No "incorrect answer" feedback
+       - 25% of the overall score
      - **Given out**
        - 9/26/20 9 AM or before
      - **DUE**
-       - MONDAY 9/28 11:59pm**
+       - MONDAY 9/28 11:59pm
 
      
 
