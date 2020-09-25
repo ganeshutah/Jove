@@ -78,6 +78,8 @@ Outcomes: Understand the importance of nondeterminism in computer
 
 
    - **MIDTERM EXAM-1**
+     - **BOOK SECTIONS**
+       - CHAPTERS 1-7
      - **NOTEBOOK PART**
        - COVERS Asg 1-3
        - You have all the time from Sat till Monday
