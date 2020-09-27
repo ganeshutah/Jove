@@ -311,6 +311,25 @@ final states may break the Jove Markdown convention. Animations should still wor
 '''
 
 class JoveEditor:
+    '''
+    This is the generic animation panel.
+    
+    JoveEditor(examples=True)
+
+    gives one a generic animation panel
+    that comes prepopulated with examples to run.
+    
+    This panel also gives you good documentation on the markdown language
+    and also the major animation commands contained in specialized animation
+    widgets such as AnimateDFA, AnimateNFA, AnimatePDA, and AnimateTM.
+
+    Include these lines:
+
+    JoveEditor(examples=False/True)
+    display(HTML('<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>'))
+
+    Then the animation works in one's own install or Colab.
+    '''
     def __init__(self, machine=None, examples=False):
         # added to force using font-family monospace for user input Textarea and Text widgets
         display(HTML("<style>textarea, input { font-family: monospace; }</style>"))
@@ -981,3 +1000,5 @@ class JoveEditor:
 
         self.save_load_messages.value = '<p style="font-size:small"></br>loading ... success</p>'
         return
+
+print(''' "help(JoveEditor)" gives you info on the generic animation panel that animates all machines. ''')
