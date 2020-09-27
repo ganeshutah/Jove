@@ -16,6 +16,19 @@ from graphviz import Source
 
 
 class AnimatePDA:
+    '''
+    This is the PDA animation class.
+    Call it with the PDA to be animated, and also FuseEdges=True/False
+    to draw the PDA with edges either fused or not.
+    For producing drawings in Colab, it is important to have these in
+    every cell that calls animation.
+    
+    AnimatePDA(myPDA, FuseEdges='True/False')
+    followed by
+    display(HTML('<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>'))
+
+    Then the animation works in one's own install or Colab.
+    '''
     def __init__(self, m_desc,
                  FuseEdges=False,
                  max_stack=30,
@@ -532,3 +545,5 @@ class AnimatePDA:
                                                     replace_special(right), self.max_width)
 
         return feed_string, inspecting
+
+print(''' "help(AnimatePDA)" gives you info on how to use animations with PDA ''')

@@ -19,7 +19,21 @@ from graphviz import Source
 # TODO: NOTE - the above is potentially not prob
 
 
-class AnimateDFA:    
+class AnimateDFA:
+    '''
+    This is the DFA animation class.
+    Call it with the DFA to be animated, and also FuseEdges=True/False
+    to draw the DFA with edges either fused or not.
+    For producing drawings in Colab, it is important to have these in
+    every cell that calls animation.
+    
+    AnimateDFA(myDFA, FuseEdges='True/False')
+    followed by
+    display(HTML('<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>'))
+
+    Then the animation works in one's own install or Colab.
+    '''
+    
     def __init__(self, m_desc,
                  FuseEdges=False,
                  pick_start=False,
@@ -96,7 +110,7 @@ class AnimateDFA:
                                        layout=Layout(width='40px'), 
                                        disabled=True
                                        )
-        self.forward = widgets.Button(icon='step-forward', 
+        self.forward = widgets.Button(icon='step-forward',
                                       layout=Layout(width='40px'),
                                       disabled=True
                                       )
@@ -288,3 +302,6 @@ class AnimateDFA:
                                      replace_special(input_string[step//2]),
                                      replace_special(input_string[step//2+1:]),
                                      self.max_width)
+
+print(''' "help(AnimateDFA)" gives you info on how to use animations with DFA ''')
+

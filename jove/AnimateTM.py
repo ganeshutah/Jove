@@ -16,6 +16,20 @@ from graphviz import Source
 
 
 class AnimateTM:
+    '''
+    This is the TM animation class.
+    Call it with the TM to be animated, and also FuseEdges=True/False
+    to draw the TM with edges either fused or not.
+    For producing drawings in Colab, it is important to have these in
+    every cell that calls animation.
+    
+    AnimateTM(myTM, FuseEdges='True/False')
+    followed by
+    display(HTML('<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>'))
+
+    Then the animation works in one's own install or Colab.
+    '''
+   
     def __init__(self, m_desc,
                  FuseEdges=False,
                  show_rejected=False,
@@ -451,3 +465,5 @@ class AnimateTM:
         tape_display += '\n\thead [shape=invhouse width=1.0 height=0.7 fixedsize=true label=< {}<br></br>Fuel: {}>]'.format(replace_special(head_msg),fuel)
         tape_display += '\n\thead -> tape:pos [arrowsize=0.8]\n}'
         return tape_display
+
+print(''' "help(AnimateTM)" gives you info on how to use animations with TM ''')

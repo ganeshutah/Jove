@@ -15,6 +15,20 @@ from graphviz import Source
 
 
 class AnimateNFA:
+    '''
+    This is the NFA animation class.
+    Call it with the NFA to be animated, and also FuseEdges=True/False
+    to draw the NFA with edges either fused or not.
+    For producing drawings in Colab, it is important to have these in
+    every cell that calls animation.
+    
+    AnimateNFA(myNFA, FuseEdges='True/False')
+    followed by
+    display(HTML('<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>'))
+
+    Then the animation works in one's own install or Colab.
+    '''
+    
     def __init__(self, m_desc,
                  FuseEdges=False,
                  pick_start=False,
@@ -355,3 +369,5 @@ class AnimateNFA:
         else:
             return write_feed_source(replace_special(input_string[:step//3+1]), '&#39;&#39;',
                                      replace_special(input_string[step//3+1:]), self.max_width)
+
+print(''' "help(AnimateNFA)" gives you info on how to use animations with NFA ''')
