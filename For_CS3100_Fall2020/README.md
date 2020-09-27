@@ -101,21 +101,25 @@ Outcomes: Understand the importance of nondeterminism in computer
 
 * Week-6 **Reading** Chapter 4.6 through 4.8.  __Outcomes:__
   Understand the limitations of finite automata by
-  studying the regular language Pumping Lemma 
+  studying the regular language Pumping Lemma. Also begin introducing
+  Pushdown Automata while the students slowly mull over the Pumping Lemma.
+  
    - 11:9/29
      - Run the Notebooks within 09_Reg_PL/
      - Quiz-5 given; due 10/2 11:59pm, covers L11,12
      - Asg-5 given; due 10/9 11:59pm, covers L11,12
+     - In-class: ZOOM BREAKOUT for problem-solving about PL
+     
    - 12:10/1
-     - Run the Notebooks within 09_Reg_PL/
-   
+     - Run the Notebooks within 10_PDA/
+     - In-class: ZOOM BREAKOUT for problem-solving about PL   
    
 * Week-7 **Reading** Chapters 11 (except 11.9), 12.  __Outcomes:__
   Learn the basics of pushdown automata followed by
   context-free grammars and languages. 
   
    - 13:10/6
-     - Run the Notebooks within 10_PDA/
+
      - Quiz-6 given; due 10/9 11:59pm, covers L113,14
      - Asg-6 given; due 10/16/20 11:59pm, covers L113,14      
    - 14:10/8
