@@ -1,5 +1,8 @@
+* Please read through the PDFs in here
 
-There is no notebook for the regular Pumping Lemma. It is a theory lecture.
-Look at Lec11.pptx (slides).
+* Please watch the video https://youtu.be/y9XLtsGCYCk
 
-We will work out problems in class on 9/29 and 10/1
+* Then focus on the examples in PainlessPL.pdf
+
+* There is a nice BYU-Utah games in BYU_Versus_Utah_Pumping_Lemma.pdf
+
