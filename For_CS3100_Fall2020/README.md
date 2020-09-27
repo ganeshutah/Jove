@@ -112,7 +112,7 @@ Outcomes: Understand the importance of nondeterminism in computer
      
    - 12:10/1
      - Run the Notebooks within 10_PDA/
-     - In-class: ZOOM BREAKOUT for problem-solving about PL   
+     - In-class: ZOOM BREAKOUT for problem-solving about PDA
    
 * Week-7 **Reading** Chapters 11 (except 11.9), 12.  __Outcomes:__
   Learn the basics of pushdown automata followed by
