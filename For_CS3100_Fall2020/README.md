@@ -94,7 +94,7 @@ Outcomes: Understand the importance of nondeterminism in computer
 * Week-6 **Reading** Chapter 4.6 through 4.8.  __Outcomes:__
   Understand the limitations of finite automata by
   studying the regular language Pumping Lemma. Also begin introducing
-  Pushdown Automata while the students slowly mull over the Pumping Lemma.
+  Pushdown Automata.
   
    - 11:9/29
      - Run the Notebooks within 09_Reg_PL/
@@ -107,34 +107,36 @@ Outcomes: Understand the importance of nondeterminism in computer
      - In-class: Problem-solving about PDA
    
 * Week-7 **Reading** Chapters 11 (except 11.9), 12.  __Outcomes:__
-  Learn the basics of pushdown automata followed by
+  More details of pushdown automata followed by an introduction to
   context-free grammars and languages. 
   
    - 13:10/6
      - Quiz-6 given; due 10/9 11:59pm, covers L13,14
      - Asg-6 given; due 10/16/20 11:59pm, covers L13,14
+     - Run the Notebooks within 11_CFG/
+     - Run the Notebooks within 12_CFG2PDA/
      
    - 14:10/8
-     - Run the Notebooks within 11_CFG/  
+     - Conversion of CFG to PDA
    
 * Week-8 **Reading** Chapters 11 (except 11.9), 12.  __Outcomes:__
-  Learn how to convert CFG to PDA, basic notions about
-  ambiguous grammars, and linearity.
+  Ambiguous grammars, linearity. A simple calculator.
   
    - 15:10/13
-     - Run the Notebooks within 12_CFG2PDA/
      - Quiz-7 given; due 10/16 11:59pm, covers L15,16
-     - Asg-7 given; due 10/23/20 11:59pm, covers L15,16         
-   - 16:10/15
+     - Asg-7 given; due 10/23/20 11:59pm, covers L15,16
      - Run the Notebooks within 13_Linearity_Amb/
-   
+     - Run the Notebooks within 14_Calculator/
+     
+   - 16:10/15
+     - How to design a Calculator.
    
 * Week-9 **Reading** Chapters 10, 11 (Now read 11.9 also!).  __Outcomes:__
   The basics of derivative-based parsing. Also, a first discussion
   of the CFL Pumping Lemma.
   
    - 17:10/20
-     - Run the Notebooks within 14_Calculator/
+     - Derivatives.
      - Run the Notebooks within 15_Derivatives/
      - Quiz-8 given; due 10/23 11:59pm, covers L117,18
      - Asg-8 given; due 10/30/20 11:59pm, covers the design
@@ -161,8 +163,8 @@ Outcomes: Understand the importance of nondeterminism in computer
        - Min-DFA (dynamic-programming based)
        - Regular Language Pumping Lemma
        - PDA (Chapter 12)
-       - CFG (Chapter 11), including CFL PL
-       
+       - CFG (Chapter 11), Excluding the CFL PL
+
      - Given out 10/22
      - Due Monday 10/26 11:59pm     
      - Run the Notebooks within 17_DTM/  
