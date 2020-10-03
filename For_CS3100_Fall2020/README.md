@@ -153,7 +153,7 @@ Outcomes: Understand the importance of nondeterminism in computer
      - Discussions of CFL PL   
      
    - 20:10/29
-     - Review-2
+     - Review of MT-2
      - **MIDTERM EXAM-2** covering Asg 4-7 PLUS Quizzes 5-8
      - Specific portions:
        - Regular Expressions in Asg-4 (some of the MT-1 practice that was not asked)
