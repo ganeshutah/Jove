@@ -155,6 +155,14 @@ Outcomes: Understand the importance of nondeterminism in computer
    - 20:10/29
      - Review-2
      - **MIDTERM EXAM-2** covering Asg 4-7 PLUS Quizzes 5-8
+     - Specific portions:
+       - Regular Expressions in Asg-4 (some of the MT-1 practice that was not asked)
+       - NFA to RE
+       - Min-DFA (dynamic-programming based)
+       - Regular Language Pumping Lemma
+       - PDA (Chapter 12)
+       - CFG (Chapter 11), including CFL PL
+       
      - Given out 10/22
      - Due Monday 10/26 11:59pm     
      - Run the Notebooks within 17_DTM/  
