@@ -120,8 +120,8 @@ Outcomes: Understand the importance of nondeterminism in computer
   
    - 13:10/6
 
-     - Quiz-6 given; due 10/9 11:59pm, covers L113,14
-     - Asg-6 given; due 10/16/20 11:59pm, covers L113,14      
+     - Quiz-6 given; due 10/9 11:59pm, covers L13,14
+     - Asg-6 given; due 10/16/20 11:59pm, covers L13,14      
    - 14:10/8
      - Run the Notebooks within 11_CFG/  
    
