@@ -108,7 +108,7 @@ Outcomes: Understand the importance of nondeterminism in computer
    
 * Week-7 **Reading** Chapters 11 (except 11.9), 12.  __Outcomes:__
   More details of pushdown automata followed by an introduction to
-  context-free grammars and languages. 
+  context-free grammars and languages.  Ambiguity.
   
    - 13:10/6
      - Quiz-6 given; due 10/9 11:59pm, covers L13,14
@@ -120,7 +120,7 @@ Outcomes: Understand the importance of nondeterminism in computer
      - Conversion of CFG to PDA
    
 * Week-8 **Reading** Chapters 11 (except 11.9), 12.  __Outcomes:__
-  Ambiguous grammars, linearity. A simple calculator.
+ Linearity. A simple calculator.
   
    - 15:10/13
      - Quiz-7 given; due 10/16 11:59pm, covers L15,16
