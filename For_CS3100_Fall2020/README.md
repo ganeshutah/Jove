@@ -108,20 +108,20 @@ Outcomes: Understand the importance of nondeterminism in computer
      - Run the Notebooks within 09_Reg_PL/
      - Quiz-5 given; due 10/2 11:59pm, covers L11,12
      - Asg-5 given; due 10/9 11:59pm, covers L11,12
-     - In-class: ZOOM BREAKOUT for problem-solving about PL
+     - In-class: Problem-solving about PL
      
    - 12:10/1
      - Run the Notebooks within 10_PDA/
-     - In-class: ZOOM BREAKOUT for problem-solving about PDA
+     - In-class: Problem-solving about PDA
    
 * Week-7 **Reading** Chapters 11 (except 11.9), 12.  __Outcomes:__
   Learn the basics of pushdown automata followed by
   context-free grammars and languages. 
   
    - 13:10/6
-
      - Quiz-6 given; due 10/9 11:59pm, covers L13,14
-     - Asg-6 given; due 10/16/20 11:59pm, covers L13,14      
+     - Asg-6 given; due 10/16/20 11:59pm, covers L13,14
+     
    - 14:10/8
      - Run the Notebooks within 11_CFG/  
    
@@ -137,18 +137,19 @@ Outcomes: Understand the importance of nondeterminism in computer
      - Run the Notebooks within 13_Linearity_Amb/
    
    
-* Week-9 **Reading** Chapters 10, 11 (except 11.9).  __Outcomes:__
-  The basics of derivative-based parsing.
+* Week-9 **Reading** Chapters 10, 11 (Now read 11.9 also!).  __Outcomes:__
+  The basics of derivative-based parsing. Also, a first discussion
+  of the CFL Pumping Lemma.
   
    - 17:10/20
      - Run the Notebooks within 14_Calculator/
      - Run the Notebooks within 15_Derivatives/
      - Quiz-8 given; due 10/23 11:59pm, covers L117,18
+     - Asg-8 given; due 10/30/20 11:59pm, covers the design
+       of a calculator and derivative-style pattern-matching.
+     
    - 18:10/22
-     - Review-2
-     - **MIDTERM EXAM-2** covering Asg 4-6 PLUS Quizzes Covered till now!
-     - Given out 10/22
-     - Due Monday 10/26 11:59pm
+     - Run the Notebooks within 16_CFL_PL/		
 
 * Week-10 **Reading** Chapters 11.9, 13.  __Outcomes:__
   Limitations of pushdown automata and context-free grammars
@@ -156,12 +157,15 @@ Outcomes: Understand the importance of nondeterminism in computer
   designing Turing machines.
   
    - 19:10/27
-     - Run the Notebooks within 16_CFL_PL/		
      - Quiz-9 given; due 10/30pm, covers L19,20
-     - Asg-8 given; due 11/6/20 11:59pm, covers L19,20
+     - Discussions of CFL PL   
+     
    - 20:10/29
+     - Review-2
+     - **MIDTERM EXAM-2** covering Asg 4-7 PLUS Quizzes 5-8
+     - Given out 10/22
+     - Due Monday 10/26 11:59pm     
      - Run the Notebooks within 17_DTM/  
-   
    
 * Week-11 **Reading** Chapters 13, 14  __Outcomes:__
   NDTMs and the Chomsky Hierarchy. Halting problem,
@@ -170,7 +174,9 @@ Outcomes: Understand the importance of nondeterminism in computer
    - 21:11/3
      - Run the Notebooks within 18_NDTM/
      - Quiz-10 given; due 11/5 11:59pm, covers L21,22
-     - Asg-9 given; due 11/13/20 11:59pm, covers L21,22  
+     - Asg-9 given; due 11/13/20 11:59pm, covers the
+       CFL PL, DTM, and NDTM
+       
    - 22:11/5
      - Run the Notebooks within 19_Formal_TM/  
    
@@ -181,7 +187,9 @@ Outcomes: Understand the importance of nondeterminism in computer
    - 23:11/10
      - Run the Notebooks within 20_Algo_Proc_PCP/
      - Quiz-11 given; due 11/13 11:59pm, covers L23,24
-     - Asg-10 given; due 11/20/20 11:59pm, covers L23,24  
+     - Asg-10 given; due 11/20/20 11:59pm, covers L23,24
+       (Post Correspondence, Mapping Reductions)
+     
    - 24:11/12
      - Run the Notebooks within 21_Mapping_Redn/  
    
