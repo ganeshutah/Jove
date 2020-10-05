@@ -9,8 +9,8 @@
 # In[1]:
 
 from jove.Def_NFA import mk_nfa
-from lex          import lex
-from yacc         import yacc
+from jove.lex     import lex
+from jove.yacc    import yacc
 from jove.StateNameSanitizers import ResetStNum, NxtStateStr
 
 

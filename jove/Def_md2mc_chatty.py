@@ -48,8 +48,8 @@
 
 # In[1]:
 
-from lex import lex
-from yacc import yacc 
+from jove.lex import lex
+from jove.yacc import yacc 
 
 #=================================================================
 # Maintain our own LINENO for error reporting 
