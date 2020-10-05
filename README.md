@@ -1,4 +1,30 @@
 
+* TL; DR
+  - Watch https://youtu.be/vhZGUFhm9fY
+  - Now go to https://github.com/ganeshutah/Jove.git and go to For_CS3100_Fall2020
+  - See my weekly lesson plans for a class I'm teaching
+  - Go to 00_Overview_Of_CS3100_Fall2020 and play Overview_Of_CS3100.ipynb
+    - It gives another 5-minute overview of Jove
+    - You can see the Full Animation Panel as well as individualized animations for various machine-types
+  - Now go through the directories whose names begin with 01, 02, etc., and see my weekly lessons
+  - Assignments are delivered as notebooks and the students
+    - answer the theoretical questions using Latex markdowns
+    - answer the Jove (experimental) questions using Colab, submitting finished notebooks
+  - For instructors: I have all the solutions for Assignments, Quizzes, and End-of-Chapter exercises 
+  - Last but not least, see the practical tie-in by visiting the notebooks in
+    - 11_CFG/ 
+      - Calculator_with_Parse_Tree_Drawing.ipynb
+        - explains Expression Parsing, comparing different programming languages
+      - Drive_PDA_Based_Parsing.ipynb
+        - explains how CFG are turned into PDA and parsed, revealing grammar ambiguity, etc.
+    - 12_CFG2PDA/
+      - RE2_NFA_PT.ipynb
+        - explains how regular-expressions (RE) are parsed using Context-Free Grammars
+	- explains how "code generation" (NFA generation) from REs works
+	
+
+* ***NOW FOR THE LONGER VERSION***
+
 * Jove helps you learn about various Models of Computation as well as what is usually called ``Automata Theory''
 
 * There are two directories here:
