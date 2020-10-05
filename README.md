@@ -22,7 +22,9 @@
         - explains how regular-expressions (RE) are parsed using Context-Free Grammars
 	- explains how "code generation" (NFA generation) from REs works
 	
-
+  - I am *VERY* keen on making Jove a community project where YOU CAN CONTRIBUTE!
+    - We can talk more; drop me an email at ganesh@cs.utah.edu (or issue Git pull-requests)
+  
 * ***NOW FOR THE LONGER VERSION***
 
 * Jove helps you learn about various Models of Computation as well as what is usually called ``Automata Theory''
