@@ -135,9 +135,10 @@ Outcomes: Understand the importance of nondeterminism in computer
      - How to design a Calculator.
      - The basics of derivative-based Pattern Matching.
    
-* Week-9 **Reading** Now read 11.9 - CFL PL - also!.  __Outcomes:__
-  A first discussion
-  of the CFL Pumping Lemma.
+* Week-9 **Reading** Now read 11.9 (a pumping lemma for
+  context-free languages).  __Outcomes:__
+  Applying the CFL PL for proving that a given language is
+  not context-free.
   
    - 17:10/20
      - Run the Notebooks within 15_Derivatives/
@@ -149,8 +150,7 @@ Outcomes: Understand the importance of nondeterminism in computer
      - Run the Notebooks within 16_CFL_PL/		
 
 * Week-10 **Reading** Chapters 11.9, 13.  __Outcomes:__
-  Limitations of pushdown automata and context-free grammars
-  learned via the CFL Pumping Lemma. Learn the basics of
+  Learn the basics of
   designing Turing machines.
   
    - 19:10/27
