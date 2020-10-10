@@ -121,19 +121,20 @@ Outcomes: Understand the importance of nondeterminism in computer
      - Conversion of CFG to PDA
    
 * Week-8 **Reading** Chapters 11 (except 11.9), 12.  __Outcomes:__
+ Designing a calculator.
  Understand how NFA can be translated into Linear CFGs.
  The notions of Consistency and Completeness. Demonstration on simple grammars.
  Chapters 10 (derivatives).
   
    - 15:10/13
      - Quiz-7 given; due 10/16 11:59pm, covers L15,16
-     - Asg-7 given; due 10/23/20 11:59pm, covers L15,16
+     - Asg-7 given; due 10/23/20 11:59pm, covers L15,16 (calculator design, derivatives)
      - Run the Notebooks within 13_Linearity_Amb/
      - Run the Notebooks within 14_Calculator/
      
    - 16:10/15
-     - How to design a Calculator.
      - The basics of derivative-based Pattern Matching.
+     - Run the Notebooks within 15_Derivatives/     
    
 * Week-9 **Reading** Now read 11.9 (a pumping lemma for
   context-free languages).  __Outcomes:__
@@ -141,21 +142,21 @@ Outcomes: Understand the importance of nondeterminism in computer
   not context-free.
   
    - 17:10/20
-     - Run the Notebooks within 15_Derivatives/
      - Quiz-8 given; due 10/23 11:59pm, covers L117,18
-     - Asg-8 given; due 10/30/20 11:59pm, covers the design
-       of a calculator and derivative-style pattern-matching.
+     - Asg-8 given; due 10/30/20 11:59pm, covers 
+       the CFL Pumping Lemma and its applications.
      
    - 18:10/22
      - Run the Notebooks within 16_CFL_PL/		
 
-* Week-10 **Reading** Chapters 11.9, 13.  __Outcomes:__
+* Week-10 **Reading** Chapter 13.  __Outcomes:__
   Learn the basics of
   designing Turing machines.
   
    - 19:10/27
      - Quiz-9 given; due 10/30pm, covers L19,20
-     - Discussions of CFL PL   
+     - How to design DTMs and NDTMs 
+     - Run the Notebooks within 17_DTM/ and 18_NDTM/
      
    - 20:10/29
      - Review of MT-2
@@ -164,26 +165,25 @@ Outcomes: Understand the importance of nondeterminism in computer
        - Regular Expressions in Asg-4 (some of the MT-1 practice that was not asked)
        - NFA to RE
        - Min-DFA (dynamic-programming based)
-       - Regular Language Pumping Lemma
+       - **Regular Language Pumping Lemma**
        - PDA (Chapter 12)
-       - CFG (Chapter 11), Excluding the CFL PL
+       - CFG (Chapter 11), **Excluding the CFL PL**
 
      - Given out 10/22
      - Due Monday 10/26 11:59pm     
-     - Run the Notebooks within 17_DTM/  
    
-* Week-11 **Reading** Chapters 13, 14  __Outcomes:__
+* Week-11 **Reading** Chapters 13, 14 (begin reading) __Outcomes:__
   NDTMs and the Chomsky Hierarchy. Halting problem,
   and the basics of undecidability proofs.
   
    - 21:11/3
-     - Run the Notebooks within 18_NDTM/
-     - Quiz-10 given; due 11/5 11:59pm, covers L21,22
-     - Asg-9 given; due 11/13/20 11:59pm, covers the
+     - **NO CLASS, But... ASG-9 given**, Due 11/13/20 11:59pm, covers the
        CFL PL, DTM, and NDTM
        
    - 22:11/5
-     - Run the Notebooks within 19_Formal_TM/  
+     - Chapter 14, Basic Undecidability Proofs.
+     - Run the Notebooks within 19_Formal_TM/
+
    
    
 * Week-12 **Reading** Chapters 14, 15.  __Outcomes:__
