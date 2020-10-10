@@ -109,6 +109,7 @@ Outcomes: Understand the importance of nondeterminism in computer
 * Week-7 **Reading** Chapters 11 (except 11.9), 12.  __Outcomes:__
   More details of pushdown automata followed by an introduction to
   context-free grammars and languages.  Ambiguity.
+  Consistency and Completeness.
   
    - 13:10/6
      - Quiz-6 given; due 10/9 11:59pm, covers L13,14
@@ -120,7 +121,9 @@ Outcomes: Understand the importance of nondeterminism in computer
      - Conversion of CFG to PDA
    
 * Week-8 **Reading** Chapters 11 (except 11.9), 12.  __Outcomes:__
- Linearity. A simple calculator.
+ Understand how NFA can be translated into Linear CFGs.
+ The notions of Consistency and Completeness. Demonstration on simple grammars.
+ Chapters 10 (derivatives).
   
    - 15:10/13
      - Quiz-7 given; due 10/16 11:59pm, covers L15,16
@@ -130,13 +133,13 @@ Outcomes: Understand the importance of nondeterminism in computer
      
    - 16:10/15
      - How to design a Calculator.
+     - The basics of derivative-based Pattern Matching.
    
-* Week-9 **Reading** Chapters 10, 11 (Now read 11.9 also!).  __Outcomes:__
-  The basics of derivative-based parsing. Also, a first discussion
+* Week-9 **Reading** Now read 11.9 - CFL PL - also!.  __Outcomes:__
+  A first discussion
   of the CFL Pumping Lemma.
   
    - 17:10/20
-     - Derivatives.
      - Run the Notebooks within 15_Derivatives/
      - Quiz-8 given; due 10/23 11:59pm, covers L117,18
      - Asg-8 given; due 10/30/20 11:59pm, covers the design
