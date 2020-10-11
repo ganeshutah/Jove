@@ -467,6 +467,7 @@ def p_you_are_hosed(t):
     
 def p_dfa_md(t):
     '''md : DFA lines'''
+    print("Parsing a DFA description")        
     print("Parsed DFA keyword")
     mc = get_machine_components(t[2], 'DFA')
     (From_s, To_s,
@@ -481,12 +482,14 @@ def p_dfa_md(t):
     
 def p_nfa_md(t):
     '''md : NFA lines'''
+    print("Parsing an NFA description")    
     global LINENO
     LINENO = -1 # restore for next error processing
     t[0] = ('NFA', get_machine_components(t[2], 'NFA'))
 
 def p_pda_md(t):
     '''md : PDA lines'''
+    print("Parsing a PDA description")
     mc = get_machine_components(t[2], 'PDA')
     (From_s, To_s,
      G_in,   G_out,
@@ -590,7 +593,7 @@ def p_ID_or_EPS_or_B(t):
     elif id=="''":
         id = ''
     #--
-    print("Got one label of a DFA, which is an ID, that being", id)
+    print("Got one label of a *FA, which is an ID, that being", id)
     lineattr = default_line_attr()
     lineattr.update({ "SigmaEps" : [ id ] })
     t[0] = lineattr
