@@ -129,12 +129,10 @@ Outcomes: Understand the importance of nondeterminism in computer
    - 15:10/13
      - Quiz-7 given; due 10/16 11:59pm, covers L15,16
      - Asg-7 given; due 10/23/20 11:59pm, covers L15,16 (calculator design, derivatives)
-     -
      - LOOK FOR ASSIGNMENT-7 as a PDF file that will cover
        - 13_Linearity_Amb/
        - 14_Calculator/
        - 15_Derivatives/
-       
      - Run the Notebooks provided within 13_Linearity_Amb/
      - Run the Notebooks provided within 14_Calculator/
      
