@@ -135,6 +135,7 @@ Outcomes: Understand the importance of nondeterminism in computer
        - 15_Derivatives/
      - Run the Notebooks provided within 13_Linearity_Amb/
      - Run the Notebooks provided within 14_Calculator/
+     - The directory ASSIGNMENT-7/ is created under 13_Linearity_Amb/
      
    - 16:10/15
      - The basics of derivative-based Pattern Matching.
