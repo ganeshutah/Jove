@@ -1,5 +1,12 @@
 
 * TL; DR
+  - THE CONTENTS of this webpage are based on my textbook
+  [Automata and Computability: A Programmer's Perspective][bookurl],
+        ISBN-13: 978-1138552425, ISBN-10: 1138552429 which may be
+	used according to the lesson plans described below. Slides, videos,
+	and solutions are available! (The book is coming out in an inexpensive
+	paperback edition also.)
+
   - Watch https://youtu.be/vhZGUFhm9fY
   - Now go to https://github.com/ganeshutah/Jove.git and go to For_CS3100_Fall2020
   - See my weekly lesson plans for a class I'm teaching
@@ -72,6 +79,11 @@
     or README_Short.md or read Jupyter_Notebook_Installation.pdf
 
   - Once installed, type "jupyter notebook" in this directory
+
+
+**URLs used**
+
+[bookurl]: https://www.amazon.com/Automata-Computability-Programmers-Ganesh-Gopalakrishnan-dp-036765654X/dp/036765654X/ref=mt_other?_encoding=UTF8&me=&qid=
 
 **end**
 
