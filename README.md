@@ -84,7 +84,7 @@
 
 [bookurl]: https://www.amazon.com/Automata-Computability-Programmers-Ganesh-Gopalakrishnan-dp-036765654X/dp/036765654X/ref=mt_other?_encoding=UTF8&me=&qid=
 
-**end**
+**[The End, ... but Marvel at Jove, creator of the "double anti-whammy!"](https://www.nytimes.com/2009/07/26/weekinreview/26overbye.html) **
 
 
 
