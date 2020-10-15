@@ -81,7 +81,6 @@
   - Once installed, type "jupyter notebook" in this directory
 
 
-**URLs used**
 
 [bookurl]: https://www.amazon.com/Automata-Computability-Programmers-Ganesh-Gopalakrishnan-dp-036765654X/dp/036765654X/ref=mt_other?_encoding=UTF8&me=&qid=
 
