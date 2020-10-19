@@ -1,2 +1,3 @@
-Run these before each lecture.
+Illustration of the CFL PL.
+
 
