@@ -150,9 +150,10 @@ Outcomes: Understand the importance of nondeterminism in computer
      - Quiz-8 given; due 10/23 11:59pm, covers L117,18
      - Asg-8 given; due 10/30/20 11:59pm, covers 
        the CFL Pumping Lemma and its applications.
+     - A notebook rendering of the CFL PL attempted: 16_CFL_PL/		
      
    - 18:10/22
-     - Run the Notebooks within 16_CFL_PL/		
+     - Run the Notebooks within 17_DTM/
 
 * Week-10 **Reading** Chapter 13.  __Outcomes:__
   Learn the basics of
@@ -161,7 +162,7 @@ Outcomes: Understand the importance of nondeterminism in computer
    - 19:10/27
      - Quiz-9 given; due 10/30pm, covers L19,20
      - How to design DTMs and NDTMs 
-     - Run the Notebooks within 17_DTM/ and 18_NDTM/
+     - Run the Notebooks within 18_NDTM/
      
    - 20:10/29
      - Review of MT-2
@@ -173,9 +174,8 @@ Outcomes: Understand the importance of nondeterminism in computer
        - **Regular Language Pumping Lemma**
        - PDA (Chapter 12)
        - CFG (Chapter 11), **Excluding the CFL PL**
-
-     - Given out 10/22
-     - Due Monday 10/26 11:59pm     
+     - Given out 10/31 Saturday by 9am
+     - Due 11/02 Monday by 11:59pm     
    
 * Week-11 **Reading** Chapters 13, 14 (begin reading) __Outcomes:__
   NDTMs and the Chomsky Hierarchy. Halting problem,
