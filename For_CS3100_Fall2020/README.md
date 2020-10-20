@@ -148,12 +148,16 @@ Outcomes: Understand the importance of nondeterminism in computer
   
    - 17:10/20
      - Quiz-8 given; due 10/23 11:59pm, covers L117,18
+     - ASSIGNMENT-8 is contained in   16_CFL_PL/. A notebook is given
+       for you to submit your answers (named as usual).
      - Asg-8 given; due 10/30/20 11:59pm, covers 
-       the CFL Pumping Lemma and its applications.
+       the CFL Pumping Lemma and its applications. It also
+       has a few ready-made TMs for you to run.
      - A notebook rendering of the CFL PL attempted: 16_CFL_PL/		
      
    - 18:10/22
      - Run the Notebooks within 17_DTM/
+     - This is required for ASSIGNMENT-8.
 
 * Week-10 **Reading** Chapter 13.  __Outcomes:__
   Learn the basics of
