@@ -1,2 +1,1 @@
-Run these before each lecture.
-
+DTM and NDTM for Asg8
