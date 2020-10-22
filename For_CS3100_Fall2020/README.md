@@ -147,7 +147,7 @@ Outcomes: Understand the importance of nondeterminism in computer
   not context-free.
   
    - 17:10/20
-     - Quiz-8 given; due 10/23 11:59pm, covers L117,18
+     - Quiz-8 given; due 10/26 11:59pm, covers L117,18
      - ASSIGNMENT-8 is contained in   16_CFL_PL/. A notebook is given
        for you to submit your answers (named as usual).
      - Asg-8 given; due 10/30/20 11:59pm, covers 
