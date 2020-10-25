@@ -156,7 +156,7 @@ Outcomes: Understand the importance of nondeterminism in computer
      - A notebook rendering of the CFL PL attempted: 16_CFL_PL/		
      
    - 18:10/22
-     - Run the Notebooks within 17_DTM/
+     - Run the Notebooks within 17_DTMs_and_NDTMs/
      - This is required for ASSIGNMENT-8.
 
 * Week-10 **Reading** Chapter 13.  __Outcomes:__
@@ -166,7 +166,7 @@ Outcomes: Understand the importance of nondeterminism in computer
    - 19:10/27
      - Quiz-9 given; due 10/30pm, covers L19,20
      - How to design DTMs and NDTMs 
-     - Run the Notebooks within 18_NDTM/
+     - Run the Notebooks within 18_More_TM_Exs/
      
    - 20:10/29
      - Review of MT-2
@@ -190,46 +190,44 @@ Outcomes: Understand the importance of nondeterminism in computer
        CFL PL, DTM, and NDTM
        
    - 22:11/5
-     - Chapter 14, Basic Undecidability Proofs.
-     - Run the Notebooks within 19_Formal_TM/
-
+     - Chapter 14, Basic Undecidability Proofs. The Post Correspondence Problem.
+     - Run the Notebooks within 19_Algo_Proc_PCP/
    
    
 * Week-12 **Reading** Chapters 14, 15.  __Outcomes:__
-  The Post Correspondence Problem. Systematic approaches
-  to mapping reductions.
+  Mapping reductions.
    - 23:11/10
-     - Run the Notebooks within 20_Algo_Proc_PCP/
+     - Run the Notebooks within 20_Mapping_Redn/
      - Quiz-11 given; due 11/13 11:59pm, covers L23,24
      - Asg-10 given; due 11/20/20 11:59pm, covers L23,24
        (Post Correspondence, Mapping Reductions)
      
    - 24:11/12
-     - Run the Notebooks within 21_Mapping_Redn/  
+     - Run the Notebooks within 20_Mapping_Redn/
    
    
 * Week-13 **Reading** Chapters 16, 17.  __Outcomes:__
   Basics of Boolean reasoning, conjunctive normal form
   formulae, validity versus satisfiability, NP-completeness.
    - 25:11/17
-     - Run the Notebooks within 22_Bool_Basics/
+     - Run the Notebooks within 21_Bool_Basics/
      - Quiz-12 given; due 11/20 11:59pm, covers L25,26
      - Asg-11 given; due MONDAY 11/30/20 11:59pm, covers L25,26 
    - 26:11/19
-     - Run the Notebooks within 23_NPC/  
+     - Run the Notebooks within 22_NPC/  
    
    
 * Week-14 **Reading** Chapters 16, 17.  __Outcomes:__
   How mapping reduction looks in the area of NP-completeness proofs.
    - 27:11/24
-     - Run the Notebooks within 24_NPC_Redn/
+     - Run the Notebooks within 22_NPC/
      - Quiz-13 given; due 12/4 11:59pm, covers L27,28
      - Asg-12 given; due 12/11/20 11:59pm, covers material after L26
    
 * Week-15 **Reading** Chapter 18.  __Outcomes:__  Learn the basics of
   Lambda calculus and show how it models programs.
    - 28:12/1
-     - Run the Notebooks within 25_Lambda_Calc/    
+     - Run the Notebooks within 23_Lambda_Calc/
    - 29:12/3
      - Review for Finals
    
