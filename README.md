@@ -7,6 +7,9 @@
 	and solutions are available! (The book is coming out in an inexpensive
 	paperback edition also.)
 
+  - [Additional coverage of Jove][cacmnote]
+     is in a CACM note published in October, 2020.
+
   - Watch https://youtu.be/vhZGUFhm9fY
   - Now go to https://github.com/ganeshutah/Jove.git and go to For_CS3100_Fall2020
   - See my weekly lesson plans for a class I'm teaching
@@ -83,6 +86,8 @@
 
 
 [bookurl]: https://www.amazon.com/Automata-Computability-Programmers-Ganesh-Gopalakrishnan-dp-036765654X/dp/036765654X/ref=mt_other?_encoding=UTF8&me=&qid=
+
+[cacmnote]: https://cacm.acm.org/magazines/2020/10/247591-using-computer-programs-and-search-problems-for-teaching-theory-of-computation/fulltext
 
 **[The End, ... but Marvel at Jove, creator of the "double anti-whammy!"](https://www.nytimes.com/2009/07/26/weekinreview/26overbye.html) **
 

@@ -11,24 +11,37 @@ Jove, the software offered here, takes a different approach than
 JFLAP in that it aims to expose students to a ``Read/Eval/Print''
 style of interaction within Jupyter notebooks.
 
+__(Addition made October 2020:) That said, Jove now includes a great
+deal of animation features, thanks to Paul C.J. Carlson. Kindly see
+Jove/For_CS3100_Fall2020/00_Overview_Of_CS3100_Fall2020/ and play the
+notebooks on Google's Colab.__
+
 Users of Jove will also profit
 from reading the Jove source code -- another form of education not
 obtained by merely interacting with a piece of software.
 
-Jove is described almost in its entirety in its README.md file 
+Jove is described almost in its entirety in its README.md file.
+Kindly also see the contents of Jove/ which has an entire course
+with weekly lessons, at For_CS3100_Fall2020/, and For_The_Public/
+which includes many other notebooks.
 
 # Jove License 
 
-Jove Version 1.0, draft begun February 18, 2018.
+Jove Version 1.0, draft begun February 18, 2018. Updated October, 2020.
 
-Jove was written by Ganesh Gopalakrishnan as part of his forthcoming
-book ``Automata and Computability: A Programmer's Perspective'' (hereafter
-abbreviated as ACPP).
+Jove was written by Ganesh Gopalakrishnan as part of his 
+book   [Automata and Computability: A Programmer's Perspective][bookurl],
+(abbreviated as ACPP) published by CRC Press. [Additional coverage of Jove][cacmnote]
+is in a CACM note published in October, 2020.
+
+Jove and the ACPP book immensely benefit from the thorough proof-reading
+of chapters by Professor Rick Neff of BYU, Idaho. 
 
 Some of the example Turing machines used in Jove were written by Ian Briggs,
 University of Utah. The section on Lambda Calculus was written entirely by
 Ian Briggs, including the Python code. Jove also benefited from Michael Bentley
-and Heath French, University of Utah, who contributed to the use of Jupyter widgets, and also helped test the software.
+and Heath French, University of Utah, who contributed to the use of Jupyter widgets,
+and also helped test the software.
 
 The animation modules were contributed by Paul C.J. Carlson, former student at Utah.
 
@@ -85,7 +98,7 @@ School of Computing,
 University of Utah,
 Salt Lake City, UT 84112
 
+[bookurl]: https://www.amazon.com/Automata-Computability-Programmers-Ganesh-Gopalakrishnan-dp-036765654X/dp/036765654X/ref=mt_other?_encoding=UTF8&me=&qid=
 
-
-
+[cacmnote]: https://cacm.acm.org/magazines/2020/10/247591-using-computer-programs-and-search-problems-for-teaching-theory-of-computation/fulltext
 
