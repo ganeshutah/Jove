@@ -21,7 +21,7 @@
     - answer the theoretical questions using Latex markdowns
     - answer the Jove (experimental) questions using Colab, submitting finished notebooks
   - For instructors: I have all the solutions for Assignments, Quizzes, and End-of-Chapter exercises 
-  - Last but not least, see the practical tie-in by visiting the notebooks in
+  - Last but not least, see the practical tie-in by visiting the various notebook (here is a sampling):
     - 01_Computability_Languages/1c_Language_Basics.ipynb
       - use of Widgets to show "star" working
     - 02_Basic_DFA/Basic_DFA.ipynb
