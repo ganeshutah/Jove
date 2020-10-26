@@ -36,7 +36,7 @@
     - 12_CFG2PDA/
       - RE2_NFA_PT.ipynb
         - explains how regular-expressions (RE) are parsed using Context-Free Grammars
-	- explains how "code generation" (NFA generation) from REs works
+        - explains how "code generation" (NFA generation) from REs works
     - 17_DTMs_and_NDTMs/CH13-Asg8.ipynb
       - DTM and NDTM animation
 	
