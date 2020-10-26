@@ -22,6 +22,12 @@
     - answer the Jove (experimental) questions using Colab, submitting finished notebooks
   - For instructors: I have all the solutions for Assignments, Quizzes, and End-of-Chapter exercises 
   - Last but not least, see the practical tie-in by visiting the notebooks in
+    - 01_Computability_Languages/1c_Language_Basics.ipynb
+      - use of Widgets to show "star" working
+    - 02_Basic_DFA/Basic_DFA.ipynb
+      - DFA definition and animation
+    - 07_NFA2RE/NFA_to_RE.ipynb
+      - NFA to RE conversion
     - 11_CFG/ 
       - Calculator_with_Parse_Tree_Drawing.ipynb
         - explains Expression Parsing, comparing different programming languages
@@ -31,6 +37,8 @@
       - RE2_NFA_PT.ipynb
         - explains how regular-expressions (RE) are parsed using Context-Free Grammars
 	- explains how "code generation" (NFA generation) from REs works
+    - 17_DTMs_and_NDTMs/CH13-Asg8.ipynb
+      - DTM and NDTM animation
 	
   - I am *VERY* keen on making Jove a community project where YOU CAN CONTRIBUTE!
     - We can talk more; drop me an email at ganesh@cs.utah.edu (or issue Git pull-requests)
