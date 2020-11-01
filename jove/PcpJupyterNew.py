@@ -34,12 +34,12 @@ def pcp_oslink():
                 try:
                         os.remove(dst)
                 except OSError:
-                        print("Tried to remove ", dst, " but that failed.")       
-	try:
+                        print("Tried to remove ", dst, " but that failed.")
+        try:
                 os.symlink(src, dst)
         except OSError:
                 print("Tried to symlink ", src, " with ", dst, " but that failed.")
-	return dst
+        return dst
 		
 		
 
