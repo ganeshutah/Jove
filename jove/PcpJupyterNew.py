@@ -8,7 +8,7 @@ import pdb
 import platform
 import os
 
-def pcp_oslink():
+def pcp_oslink(OWN_INSTALL):
         """
         Determines the underlying os to select the symlink the appropriate pcp binary
         """
@@ -16,7 +16,12 @@ def pcp_oslink():
         platform.platform()
         src = 'pcpbinaries/pcp_linux'
         #dst = './Jove/jove/pcp'
-        dst = './pcp'
+        
+        if OWN_INSTALL:
+                dst = './pcp'
+        else:
+                dst = "./Jove/jove/pcp"
+        
         if('windows' in platform_name.lower()):
                 print("Detected platform windows; PLEASE be running with Admin Privileges!")
                 src = 'pcpbinaries\pcp_win.exe'
@@ -86,10 +91,7 @@ def pcp_solve(pcp_pairs, OWN_INSTALL=False, run=None, ni=False, di=None, depth=N
     # Build the method call.
     #args = "./pcpbinaries/pcp_win.exe -i temp.txt"
 
-    if OWN_INSTALL:
-            args = pcp_oslink()+" -i temp.txt"
-    else:
-            args = "pcp -i temp.txt"
+    args = pcp_oslink(OWN_INSTALL)+" -i temp.txt"
 
     # Add supplied user arguments.
     if run is not None:
