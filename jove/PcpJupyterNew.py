@@ -16,7 +16,7 @@ def pcp_oslink():
         platform.platform()
         src = 'pcpbinaries/pcp_linux'
         #dst = './Jove/jove/pcp'
-        dst = 'pcp'
+        dst = './pcp'
         if('windows' in platform_name.lower()):
                 print("Detected platform windows; PLEASE be running with Admin Privileges!")
                 src = 'pcpbinaries\pcp_win.exe'
