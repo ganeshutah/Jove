@@ -9,28 +9,28 @@ import platform
 import os
 
 def pcp_oslink():
-	"""
-	Determines the underlying os to select the symlink the appropriate pcp binary
-	"""
-	platform_name = platform.platform()
-	platform.platform()
-	src = 'pcpbinaries/pcp_linux'
-	dst = './Jove/jove/pcp'
-	if('windows' in platform_name.lower()):
-		print("Detected platform windows; PLEASE be running with Admin Privileges!")
-		src = 'pcpbinaries\pcp_win.exe'
-		dst = 'pcp.exe'
-	elif ('linux' in platform_name.lower()):
-		print("Detected platform linux")
-		src = 'pcpbinaries/pcp_linux'
-	elif ('darwin' in platform_name.lower()):
-		print("Detected platform Darwin")
-		src = 'pcpbinaries/pcp_mac'
-	else:
-		print("??? Undetected Platform : Compile for your os and")
-		print("Edit pcp_oslink() function to add an elif option for your os")
-		sys.exit()
-	if(os.path.isfile(dst) or os.path.islink(dst)):
+        """
+        Determines the underlying os to select the symlink the appropriate pcp binary
+        """
+        platform_name = platform.platform()
+        platform.platform()
+        src = 'pcpbinaries/pcp_linux'
+        dst = './Jove/jove/pcp'
+        if('windows' in platform_name.lower()):
+                print("Detected platform windows; PLEASE be running with Admin Privileges!")
+                src = 'pcpbinaries\pcp_win.exe'
+                dst = 'pcp.exe'
+        elif ('linux' in platform_name.lower()):
+                print("Detected platform linux")
+                src = 'pcpbinaries/pcp_linux'
+        elif ('darwin' in platform_name.lower()):
+                print("Detected platform Darwin")
+                src = 'pcpbinaries/pcp_mac'
+        else:
+                print("??? Undetected Platform : Compile for your os and")
+                print("Edit pcp_oslink() function to add an elif option for your os")
+                sys.exit()
+        if(os.path.isfile(dst) or os.path.islink(dst)):
                 try:
                         os.remove(dst)
                 except OSError:
@@ -40,8 +40,8 @@ def pcp_oslink():
         except OSError:
                 print("Tried to symlink ", src, " with ", dst, " but that failed.")
         return dst
-		
-		
+                
+                
 
 
 def pcp_solve(pcp_pairs, run=None, ni=False, di=None, depth=None, tiles_per_row=15):
