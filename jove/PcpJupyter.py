@@ -109,7 +109,7 @@ def pcp_solve(pcp_pairs, run=None, ni=False, di=None, depth=None, tiles_per_row=
         args += " -ni"
 
     # Run the command.
-    print(" Running ... : ", args.split())
+    print(" Running the command ... : ", args.split())
     process = subprocess.Popen(args.split(), stdout=subprocess.PIPE)
     ouput, error = process.communicate()
 
