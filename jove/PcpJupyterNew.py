@@ -85,7 +85,11 @@ def pcp_solve(pcp_pairs, run=None, ni=False, di=None, depth=None, tiles_per_row=
 
     # Build the method call.
     #args = "./pcpbinaries/pcp_win.exe -i temp.txt"
-    args = pcp_oslink()+" -i temp.txt"
+
+    if OWN_INSTALL:
+            args = pcp_oslink()+" -i temp.txt"
+    else:
+            args = "pcp -i temp.txt"
 
     # Add supplied user arguments.
     if run is not None:
