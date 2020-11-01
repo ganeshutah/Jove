@@ -164,7 +164,7 @@ Outcomes: Understand the importance of nondeterminism in computer
   designing Turing machines.
   
    - 19:10/27
-     - Quiz-9 given; due 10/30pm, covers L19,20
+     - Quiz-9 given; due 10/30pm, covers Turing Machines
      - How to design DTMs and NDTMs 
      - Run the Notebooks within 18_More_TM_Exs/
      

@@ -31,15 +31,12 @@ def pcp_oslink():
 		print("Edit pcp_oslink() function to add an elif option for your os")
 		sys.exit()
 	if(os.path.isfile(dst) or os.path.islink(dst)):
-                try:
-                        os.remove(dst)
-                except OSError:
-                        print("Tried to remove ", dst, " but that failed.")       
-	try:
-                os.symlink(src, dst)
-        except OSError:
-                print("Tried to symlink ", src, " with ", dst, " but that failed.")
+		os.remove(dst)
+	
+	os.symlink(src, dst)
+
 	return dst
+
 		
 		
 
