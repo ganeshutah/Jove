@@ -45,10 +45,10 @@ def pcp_oslink():
                 
 
 
-def pcp_solve(pcp_pairs, run=None, ni=False, di=None, depth=None, tiles_per_row=15):
+def pcp_solve(pcp_pairs, OWN_INSTALL=False, run=None, ni=False, di=None, depth=None, tiles_per_row=15):
     """
     Forward user input to a file, which we then use Ling Zhao's pcp solver to solve.
-
+    :param OWN_INSTALL: if True, running on one's own machine; default is Colab (so false)
     :param pcp_pairs: List of tuple pairs representing pcp 'tiles'
     :param run: Number of runs to perform.
     :param ni: No iterative search.
