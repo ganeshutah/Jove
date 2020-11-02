@@ -130,8 +130,8 @@ def pcp_solve(pcp_pairs, OWN_INSTALL=False, run=None, ni=False, di=None, depth=N
 
     if len(split_string) > 1:
         # If we are here, the above RegEx is matched, meaning we have found a solution.
-        print("Solution(s) to PCP instance are below. Note: the tiles may be reversed,\n")
-        print("as the solver may sometimes present the solution in reverse.:\n")
+        print("Solution(s) to PCP instance are below. Note: the tiles may be reversed,")
+        print("  as the solver may sometimes present the solution in reverse.:\n")
         for x in range(1, len(split_string)):
             print("Solution " + str(x))
             sol = split_string[x]
