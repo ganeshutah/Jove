@@ -190,7 +190,8 @@ Outcomes: Understand the importance of nondeterminism in computer
        CFL PL, DTM, and NDTM
        
    - 22:11/5
-     - Chapter 14, Basic Undecidability Proofs. The Post Correspondence Problem.
+     - Chapter 14, Basic Undecidability Proofs.
+       Chapter 15, The Post Correspondence Problem.
      - Run the Notebooks within 19_Algo_Proc_PCP/
    
    
