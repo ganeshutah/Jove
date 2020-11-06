@@ -15,7 +15,7 @@ def pcp_oslink():
 	platform_name = platform.platform()
 	platform.platform()
 	src = 'pcpbinaries/pcp_linux'
-	dst = 'pcp'
+	dst = './Jove/jove/pcp'
 	if('windows' in platform_name.lower()):
 		print("Detected platform windows; PLEASE be running with Admin Privileges!")
 		src = 'pcpbinaries\pcp_win.exe'
@@ -31,12 +31,15 @@ def pcp_oslink():
 		print("Edit pcp_oslink() function to add an elif option for your os")
 		sys.exit()
 	if(os.path.isfile(dst) or os.path.islink(dst)):
-		os.remove(dst)
-	
-	os.symlink(src, dst)
-
+                try:
+                        os.remove(dst)
+                except OSError:
+                        print("Tried to remove ", dst, " but that failed.")       
+	try:
+                os.symlink(src, dst)
+        except OSError:
+                print("Tried to symlink ", src, " with ", dst, " but that failed.")
 	return dst
-
 		
 		
 
@@ -81,7 +84,7 @@ def pcp_solve(pcp_pairs, run=None, ni=False, di=None, depth=None, tiles_per_row=
 
     # Build the method call.
     #args = "./pcpbinaries/pcp_win.exe -i temp.txt"
-    args = "./"+pcp_oslink()+" -i temp.txt"
+    args = pcp_oslink()+" -i temp.txt"
 
     # Add supplied user arguments.
     if run is not None:
@@ -106,7 +109,7 @@ def pcp_solve(pcp_pairs, run=None, ni=False, di=None, depth=None, tiles_per_row=
         args += " -ni"
 
     # Run the command.
-    print(" Running ... : ", args.split())
+    print(" Running the command ... : ", args.split())
     process = subprocess.Popen(args.split(), stdout=subprocess.PIPE)
     ouput, error = process.communicate()
 

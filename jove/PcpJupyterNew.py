@@ -8,43 +8,52 @@ import pdb
 import platform
 import os
 
-def pcp_oslink():
-	"""
-	Determines the underlying os to select the symlink the appropriate pcp binary
-	"""
-	platform_name = platform.platform()
-	platform.platform()
-	src = 'pcpbinaries/pcp_linux'
-	dst = 'pcp'
-	if('windows' in platform_name.lower()):
-		print("Detected platform windows; PLEASE be running with Admin Privileges!")
-		src = 'pcpbinaries\pcp_win.exe'
-		dst = 'pcp.exe'
-	elif ('linux' in platform_name.lower()):
-		print("Detected platform linux")
-		src = 'pcpbinaries/pcp_linux'
-	elif ('darwin' in platform_name.lower()):
-		print("Detected platform Darwin")
-		src = 'pcpbinaries/pcp_mac'
-	else:
-		print("??? Undetected Platform : Compile for your os and")
-		print("Edit pcp_oslink() function to add an elif option for your os")
-		sys.exit()
-	if(os.path.isfile(dst) or os.path.islink(dst)):
-		os.remove(dst)
-	
-	os.symlink(src, dst)
+def pcp_oslink(OWN_INSTALL):
+        """
+        Determines the underlying os to select the symlink the appropriate pcp binary
+        """
+        platform_name = platform.platform()
+        platform.platform()
+        src = 'pcpbinaries/pcp_linux'
+        #dst = './Jove/jove/pcp'
+        
+        if OWN_INSTALL:
+                dst = './pcp'
+        else:
+                dst = "./Jove/jove/pcp"
+        
+        if('windows' in platform_name.lower()):
+                print("Detected platform windows; PLEASE be running with Admin Privileges!")
+                src = 'pcpbinaries\pcp_win.exe'
+                dst = 'pcp.exe'
+        elif ('linux' in platform_name.lower()):
+                print("Detected platform linux")
+                src = 'pcpbinaries/pcp_linux'
+        elif ('darwin' in platform_name.lower()):
+                print("Detected platform Darwin")
+                src = 'pcpbinaries/pcp_mac'
+        else:
+                print("??? Undetected Platform : Compile for your os and")
+                print("Edit pcp_oslink() function to add an elif option for your os")
+                sys.exit()
+        if(os.path.isfile(dst) or os.path.islink(dst)):
+                try:
+                        os.remove(dst)
+                except OSError:
+                        print("Tried to remove ", dst, " but that failed.")
+        try:
+                os.symlink(src, dst)
+        except OSError:
+                print("Tried to symlink ", src, " with ", dst, " but that failed.")
+        return dst
+                
+                
 
-	return dst
 
-		
-		
-
-
-def pcp_solve(pcp_pairs, run=None, ni=False, di=None, depth=None, tiles_per_row=15):
+def pcp_solve(pcp_pairs, OWN_INSTALL=False, run=None, ni=False, di=None, depth=None, tiles_per_row=15):
     """
     Forward user input to a file, which we then use Ling Zhao's pcp solver to solve.
-
+    :param OWN_INSTALL: if True, running on one's own machine; default is Colab (so false)
     :param pcp_pairs: List of tuple pairs representing pcp 'tiles'
     :param run: Number of runs to perform.
     :param ni: No iterative search.
@@ -81,7 +90,8 @@ def pcp_solve(pcp_pairs, run=None, ni=False, di=None, depth=None, tiles_per_row=
 
     # Build the method call.
     #args = "./pcpbinaries/pcp_win.exe -i temp.txt"
-    args = "./"+pcp_oslink()+" -i temp.txt"
+
+    args = pcp_oslink(OWN_INSTALL)+" -i temp.txt"
 
     # Add supplied user arguments.
     if run is not None:
@@ -106,7 +116,7 @@ def pcp_solve(pcp_pairs, run=None, ni=False, di=None, depth=None, tiles_per_row=
         args += " -ni"
 
     # Run the command.
-    print(" Running ... : ", args.split())
+    print(" Running the command ... : ", args.split())
     process = subprocess.Popen(args.split(), stdout=subprocess.PIPE)
     ouput, error = process.communicate()
 
@@ -120,7 +130,8 @@ def pcp_solve(pcp_pairs, run=None, ni=False, di=None, depth=None, tiles_per_row=
 
     if len(split_string) > 1:
         # If we are here, the above RegEx is matched, meaning we have found a solution.
-        print("Solution(s) to PCP instance:\n")
+        print("Solution(s) to PCP instance are below. Note: the tiles may be reversed,")
+        print("  as the solver may sometimes present the solution in reverse.:\n")
         for x in range(1, len(split_string)):
             print("Solution " + str(x))
             sol = split_string[x]

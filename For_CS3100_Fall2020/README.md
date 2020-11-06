@@ -164,7 +164,7 @@ Outcomes: Understand the importance of nondeterminism in computer
   designing Turing machines.
   
    - 19:10/27
-     - Quiz-9 given; due 10/30pm, covers L19,20
+     - Quiz-9 given; due 10/30pm, covers Turing Machines
      - How to design DTMs and NDTMs 
      - Run the Notebooks within 18_More_TM_Exs/
      
@@ -190,7 +190,8 @@ Outcomes: Understand the importance of nondeterminism in computer
        CFL PL, DTM, and NDTM
        
    - 22:11/5
-     - Chapter 14, Basic Undecidability Proofs. The Post Correspondence Problem.
+     - Chapter 14, Basic Undecidability Proofs.
+       Chapter 15, The Post Correspondence Problem.
      - Run the Notebooks within 19_Algo_Proc_PCP/
    
    
