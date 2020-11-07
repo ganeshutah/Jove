@@ -200,8 +200,11 @@ Outcomes: Understand the importance of nondeterminism in computer
   Thesis by also obtaining a taste of Lambda Calculus, aided
   by a Jove notebook that helps you read Chapter 18 selectively.
    - 23:11/10
-     - Run the notebook within 20_Mapping_Redn/
-       - This will expose you to Lambda Calculus
+     - Run the notebook within 20_Mapping_Redn/ and also do the
+       practice problems within 20_Mapping_Redn/
+       - This will give you practice with basic computability
+       	 notions
+       - This will also expose you to Lambda Calculus
      - Quiz-11 given; due 11/13 11:59pm, covers L23,24
      - Asg-10 given; due 11/20/20 11:59pm, covers L23,24
        (Post Correspondence, Mapping Reductions)
