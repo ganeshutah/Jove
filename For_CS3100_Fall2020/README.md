@@ -198,13 +198,13 @@ Outcomes: Understand the importance of nondeterminism in computer
 * Week-12 **Reading** Chapters 14, 15.  __Outcomes:__
   Mapping reductions.
    - 23:11/10
-     - Run the Notebooks within 20_Mapping_Redn/
+     - Do the Practice Problems within 20_Mapping_Redn/
      - Quiz-11 given; due 11/13 11:59pm, covers L23,24
      - Asg-10 given; due 11/20/20 11:59pm, covers L23,24
        (Post Correspondence, Mapping Reductions)
      
    - 24:11/12
-     - Run the Notebooks within 20_Mapping_Redn/
+     - Do the Practice Problems within 20_Mapping_Redn/
    
    
 * Week-13 **Reading** Chapters 16, 17.  __Outcomes:__
