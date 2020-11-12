@@ -195,16 +195,22 @@ Outcomes: Understand the importance of nondeterminism in computer
      - Run the Notebooks within 19_Algo_Proc_PCP/
    
    
-* Week-12 **Reading** Chapters 14, 15.  __Outcomes:__
-  Mapping reductions.
+* Week-12 **Reading** Chapters 14, 15, 18.  __Outcomes:__
+  Mapping reductions. Also you get to appreciate the Church-Turing
+  Thesis by also obtaining a taste of Lambda Calculus, aided
+  by a Jove notebook that helps you read Chapter 18 selectively.
    - 23:11/10
-     - Run the Notebooks within 20_Mapping_Redn/
+     - Run the notebook within 20_Mapping_Redn/ and also do the
+       practice problems within 20_Mapping_Redn/
+       - This will give you practice with basic computability
+       	 notions
+       - This will also expose you to Lambda Calculus
      - Quiz-11 given; due 11/13 11:59pm, covers L23,24
      - Asg-10 given; due 11/20/20 11:59pm, covers L23,24
        (Post Correspondence, Mapping Reductions)
      
    - 24:11/12
-     - Run the Notebooks within 20_Mapping_Redn/
+     - Do the Practice Problems within 20_Mapping_Redn/
    
    
 * Week-13 **Reading** Chapters 16, 17.  __Outcomes:__
