@@ -229,12 +229,12 @@ Outcomes: Understand the importance of nondeterminism in computer
    - 27:11/24
      - Run the Notebooks within 22_NPC/
      - Quiz-13 given; due 12/4 11:59pm, covers L27,28
-     - Asg-12 given; due 12/11/20 11:59pm, covers material after L26
+
    
 * Week-15 **Reading** Chapter 18.  __Outcomes:__  Learn the basics of
   Lambda calculus and show how it models programs.
    - 28:12/1
-     - Run the Notebooks within 23_Lambda_Calc/
+     - Review for Finals
    - 29:12/3
      - Review for Finals
    
