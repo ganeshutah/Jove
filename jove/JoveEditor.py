@@ -570,19 +570,19 @@ class JoveEditor:
         # display the correct editor and file extension
         with self.text_editor_display:
             clear_output(wait=True)
-            if change['new'] is 'DFA':
+            if change['new'] == 'DFA':
                 display(self.dfa_editor)
                 self.postfix_text.value = '<p style="font-family:monospace">.dfa</p>'
-            elif change['new'] is 'NFA':
+            elif change['new'] == 'NFA':
                 display(self.nfa_editor)
                 self.postfix_text.value = '<p style="font-family:monospace">.nfa</p>'
-            elif change['new'] is 'PDA':
+            elif change['new'] == 'PDA':
                 display(self.pda_editor)
                 self.postfix_text.value = '<p style="font-family:monospace">.pda</p>'
-            elif change['new'] is 'TM':
+            elif change['new'] == 'TM':
                 display(self.tm_editor)
                 self.postfix_text.value = '<p style="font-family:monospace">.tm </p>'
-            elif change['new'] is 'Translate':
+            elif change['new'] == 'Translate':
                 display(self.translate_contents)
                 if self.pre_translate_mtype == 'DFA':
                     self.postfix_text.value = '<p style="font-family:monospace">.dfa</p>'
@@ -600,7 +600,7 @@ class JoveEditor:
         with self.machine_failure_display:
             clear_output()
 
-        if self.editor_tabs.get_title(change['new']) is 'Animate':
+        if self.editor_tabs.get_title(change['new']) == 'Animate':
             with self.machine_messages_display:
                 display(self.machine_messages_text)
 
@@ -611,12 +611,12 @@ class JoveEditor:
             # Generate the machine and display it's animator
             jove_error = StringIO()
             machine = None
-            if self.machine_toggle.value is 'DFA':
+            if self.machine_toggle.value == 'DFA':
                 if len(self.dfa_editor.value.strip()) == 0:
                     self.display_animate_error('DFA', 'No machine description in editor')
                     return
                 check_for_dict = self.dfa_editor.value.strip()
-                if check_for_dict[0] is '{' and check_for_dict[-1] is '}':
+                if check_for_dict[0] == '{' and check_for_dict[-1] == '}':
                     try:
                         machine = ast.literal_eval(check_for_dict)
                         if {'Q', 'Sigma', 'Delta', 'q0', 'F'} != machine.keys():
@@ -642,12 +642,12 @@ class JoveEditor:
                                        reject_color=self.reject_colorpicker.value,
                                        neutral_color=self.transit_colorpicker.value))
 
-            elif self.machine_toggle.value is 'NFA':
+            elif self.machine_toggle.value == 'NFA':
                 if len(self.nfa_editor.value.strip()) == 0:
                     self.display_animate_error('NFA', 'No machine description in editor')
                     return
                 check_for_dict = self.nfa_editor.value.strip()
-                if check_for_dict[0] is '{' and check_for_dict[-1] is '}':
+                if check_for_dict[0] == '{' and check_for_dict[-1] == '}':
                     try:
                         machine = ast.literal_eval(check_for_dict)
                         if {'Q', 'Sigma', 'Delta', 'Q0', 'F'} != machine.keys():
@@ -673,12 +673,12 @@ class JoveEditor:
                                        reject_color=self.reject_colorpicker.value,
                                        neutral_color=self.transit_colorpicker.value
                                        ))
-            elif self.machine_toggle.value is 'PDA':
+            elif self.machine_toggle.value == 'PDA':
                 if len(self.pda_editor.value.strip()) == 0:
                     self.display_animate_error('PDA', 'No machine description in editor')
                     return
                 check_for_dict = self.pda_editor.value.strip()
-                if check_for_dict[0] is '{' and check_for_dict[-1] is '}':
+                if check_for_dict[0] == '{' and check_for_dict[-1] == '}':
                     try:
                         machine = ast.literal_eval(check_for_dict)
                         if {'Q', 'Sigma', 'Gamma', 'Delta', 'q0', 'z0', 'F'} != machine.keys():
@@ -704,12 +704,12 @@ class JoveEditor:
                                        reject_color=self.reject_colorpicker.value,
                                        neutral_color=self.transit_colorpicker.value
                                        ))
-            elif self.machine_toggle.value is 'TM':
+            elif self.machine_toggle.value == 'TM':
                 if len(self.tm_editor.value.strip()) == 0:
                     self.display_animate_error('TM', 'No machine description in editor')
                     return
                 check_for_dict = self.tm_editor.value.strip()
-                if check_for_dict[0] is '{' and check_for_dict[-1] is '}':
+                if check_for_dict[0] == '{' and check_for_dict[-1] == '}':
                     try:
                         machine = ast.literal_eval(check_for_dict)
                         if {'Q', 'Sigma', 'Gamma', 'Delta', 'q0', 'B', 'F'} != machine.keys():
@@ -734,8 +734,8 @@ class JoveEditor:
                                       reject_color=self.reject_colorpicker.value,
                                       neutral_color=self.transit_colorpicker.value
                                       ))
-            # Translation is not implemented yet
-            elif self.machine_toggle.value is 'Translate':
+            # Translation is not implemented yet --> update: was implemented
+            elif self.machine_toggle.value == 'Translate':
                 if self.pre_translate_mtype == 'UNKNOWN':
                     self.display_animate_error('Translation', 'Could not translate the JFlap to a recognized machine type')
                 elif self.pre_translate_mtype == 'DFA':
@@ -809,7 +809,7 @@ class JoveEditor:
             with self.machine_messages_display:
                 clear_output()
 
-        elif self.editor_tabs.get_title(change['new']) is 'Edit':
+        elif self.editor_tabs.get_title(change['new']) == 'Edit':
             with self.animated_machine_display:
                 clear_output()
             with self.machine_failure_display:
@@ -849,29 +849,29 @@ class JoveEditor:
         filepath = self.save_name_text.value
         filepath = filepath.split('.')[0]
         self.save_name_text.value = filepath
-        if self.machine_toggle.value is 'DFA' or \
-                (self.machine_toggle.value is 'Translate' and self.pre_translate_mtype == 'DFA'):
+        if self.machine_toggle.value == 'DFA' or \
+                (self.machine_toggle.value == 'Translate' and self.pre_translate_mtype == 'DFA'):
             filepath = '{}.dfa'.format(filepath)
-        if self.machine_toggle.value is 'NFA' or \
-                (self.machine_toggle.value is 'Translate' and self.pre_translate_mtype == 'NFA'):
+        if self.machine_toggle.value == 'NFA' or \
+                (self.machine_toggle.value == 'Translate' and self.pre_translate_mtype == 'NFA'):
             filepath = '{}.nfa'.format(filepath)
-        if self.machine_toggle.value is 'PDA' or \
-                (self.machine_toggle.value is 'Translate' and self.pre_translate_mtype == 'PDA'):
+        if self.machine_toggle.value == 'PDA' or \
+                (self.machine_toggle.value == 'Translate' and self.pre_translate_mtype == 'PDA'):
             filepath = '{}.pda'.format(filepath)
-        if self.machine_toggle.value is 'TM' or \
-                (self.machine_toggle.value is 'Translate' and self.pre_translate_mtype == 'TM'):
+        if self.machine_toggle.value == 'TM' or \
+                (self.machine_toggle.value == 'Translate' and self.pre_translate_mtype == 'TM'):
             filepath = '{}.tm'.format(filepath)
 
         file_contents = ''
-        if self.machine_toggle.value is 'DFA':
+        if self.machine_toggle.value == 'DFA':
             file_contents = 'DFA\n{}'.format(self.dfa_editor.value)
-        if self.machine_toggle.value is 'NFA':
+        if self.machine_toggle.value == 'NFA':
             file_contents = 'NFA\n{}'.format(self.nfa_editor.value)
-        if self.machine_toggle.value is 'PDA':
+        if self.machine_toggle.value == 'PDA':
             file_contents = 'PDA\n{}'.format(self.pda_editor.value)
-        if self.machine_toggle.value is 'TM':
+        if self.machine_toggle.value == 'TM':
             file_contents = 'TM\n{}'.format(self.tm_editor.value)
-        if self.machine_toggle.value is 'Translate':
+        if self.machine_toggle.value == 'Translate':
             file_contents = f'{self.pre_translate_mtype}\n{self.translate_result.value}'
 
         try:

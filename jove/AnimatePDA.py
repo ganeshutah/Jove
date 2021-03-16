@@ -512,7 +512,7 @@ class AnimatePDA:
                 feed_string = write_feed_source(replace_special(input_string), '  ', '', self.max_width)
             else:
                 feed_string = write_feed_source(replace_special(input_string[:-endpoint]),
-                                                replace_special('  ' if inspecting is '' else inspecting),
+                                                replace_special('  ' if inspecting == '' else inspecting),
                                                 replace_special(current_state[1]), self.max_width)
         else:
             current_state = states[step//2]
@@ -526,7 +526,7 @@ class AnimatePDA:
                     feed_string = write_feed_source(replace_special(input_string), '  ', '', self.max_width)
                 else:
                     feed_string = write_feed_source(replace_special(input_string[:-endpoint]),
-                                                    replace_special('  ' if inspecting is '' else inspecting),
+                                                    replace_special('  ' if inspecting == '' else inspecting),
                                                     replace_special(current_state[1][len(inspecting):]), self.max_width)
             # picking a path
             else:
@@ -541,7 +541,7 @@ class AnimatePDA:
                     feed_string = write_feed_source(replace_special(input_string), '  ', '', self.max_width)
                 else:
                     feed_string = write_feed_source(replace_special(input_string[:-endpoint]),
-                                                    replace_special('  ' if inspecting is '' else inspecting),
+                                                    replace_special('  ' if inspecting == '' else inspecting),
                                                     replace_special(right), self.max_width)
 
         return feed_string, inspecting
