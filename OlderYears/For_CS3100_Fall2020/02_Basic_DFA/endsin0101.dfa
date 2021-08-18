@@ -1,0 +1,58 @@
+!!---------------------------------------------------------------------------
+!! This DFA looks for patterns of the form ..0101
+!! i.e., ends in 0101.
+!!
+!! DFAs find such patterns "very stressful to handle", as they are kept
+!! guessing of the form  'are we there yet?' 'are we seeing the 0 that begins
+!! the 0101 pattern'?
+!!
+!! They must keep all the failure options at hand. Even after a
+!! 'fleeting glimpse' of the 0101, more inputs can come barreling-in
+!! to make that "lucky 0101" go away.
+!!
+!! We take 5 states in the DFA solution. The NFA solution is much easier
+!! to arrive at.
+!!---------------------------------------------------------------------------
+
+DFA
+!!---------------------------------------------------------------------------
+!! State : in -> tostate !! comment
+!!---------------------------------------------------------------------------
+I       : 0  -> S0      !! We go to S0, in anticipation of seeing a 0101
+I       : 1  -> I       !! Seeing a 1 does not help us; stay in I
+
+S0      : 0  -> S0      !! We punt on 0, hoping that a 1 will come
+S0      : 1  -> S01     !! We advance to state S01, again recording the input
+                        !! seen so far on the state name.
+
+S01     : 0  -> S010    !! OK, in S01, seeing a 0 is more fulfillment; goto S010
+S01     : 1  -> I       !! Alas, a 1 sends us crashing back to I. We can't
+                        !! redeem a part of what was already seen.
+
+S010    : 0  -> S0      !! Crash on a 0, but back to S0, as we can redeem the 0
+S010    : 1  -> F0101   !! Yay, we saw a 0101, and we accept the string sending
+                        !! us here. We may have seen 0100110101 to come here; that
+			!! is fine.
+
+F0101   : 0  -> S010    !! See that another 0 sends us crashing to S010, as we
+                        !! can redeem the 010 and hope for a 1.
+			
+F0101   : 1  -> I       !! But seeing a 1 sends us crashing straight back to I.
+
+!!---------------------------------------------------------------------------
+!! You may use the line below as an empty shell to populate for your purposes
+!! Also serves as a syntax reminder for entering DFAs.
+!!
+!! State : i1 | i2 -> to !! comment
+!!
+!! ..    : .. | .. -> .. !!  ..
+!!---------------------------------------------------------------------------
+!!
+!! Good commenting and software-engineering methods, good clean indentation,
+!! grouping of similar states, columnar alignment, etc etc. are HUGELY
+!! important in any programming endeavor -- especially while programming
+!! automata. Otherwise, you can easily make a mistake in your automaton
+!! code. Besides, you cannot rely upon others to find your mistakes, as
+!! they will find your automaton code impossible to read!
+!!
+!!---------------------------------------------------------------------------
