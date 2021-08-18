@@ -190,6 +190,8 @@ Outcomes: Understand the importance of nondeterminism in computer
    - 21:11/8
      - **ASG-9 given**, Due 11/19/21 11:59pm, covers the
        CFL PL, DTM, and NDTM
+
+     - ASG-9 is within 18_More_TM_Exs/
        
    - 22:11/10
      - Chapter 14, Basic Undecidability Proofs.
