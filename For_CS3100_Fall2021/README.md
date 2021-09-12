@@ -45,8 +45,8 @@ Outcomes: Understand the importance of nondeterminism in computer
    
    - *:9/6 (Labor day holiday)
      - Run the Notebooks within 04_NFA/
-     - Quiz-3 given; due 9/17 11:59pm, covers L5,6
-     - Asg-3 given, due 9/17/21 11:59pm, covers L5,6
+     - Quiz-3 given; due 9/20/21 11:59pm, covers L5,6
+     - Asg-3 given, due 9/20/21 11:59pm, covers L5,6
      
    - 5:9/8
      - Run the Notebooks within 05_NFA2DFA/
@@ -60,8 +60,9 @@ Outcomes: Understand the importance of nondeterminism in computer
 
    - 6:9/13
      - Run the Notebooks within 06_RE/
-     - Asg-4 given, due 9/24 11:59pm, covers L7,8    
+
    - 7:9/15
+     - Asg-4 given, due 9/24 11:59pm, covers L7,8       
      - Run the Notebooks within 07_NFA2RE/
    
 * Week-5 **Reading** Chapter 6.4.  __Outcomes:__
