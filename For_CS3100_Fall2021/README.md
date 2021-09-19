@@ -85,6 +85,11 @@ Outcomes: Understand the importance of nondeterminism in computer
 
    - 10:9/27 :
 
+   -  **Reading** Chapter 4.6 through 4.8.  __Outcomes:__
+     Understand the limitations of finite automata by
+     studying the regular language Pumping Lemma.
+      Also begin introducing Pushdown Automata.
+
      > Lecture is held (introduces the Pumping Lemma)
 
      > **MT-1** will be given via Github : 09_Reg_PL/mt1.ipynb
@@ -96,10 +101,6 @@ Outcomes: Understand the importance of nondeterminism in computer
 
      > **Due** 9/28/21 11:59pm
 
-* **Reading** Chapter 4.6 through 4.8.  __Outcomes:__
-  Understand the limitations of finite automata by
-  studying the regular language Pumping Lemma. Also begin introducing
-  Pushdown Automata.
   
    - 11:9/29
      - Run the Notebooks within 09_Reg_PL/
