@@ -97,7 +97,7 @@ Outcomes: Understand the importance of nondeterminism in computer
      > **BOOK SECTIONS**
        CHAPTERS 1-7 (Except Pumping Lemma and Details of  Dynamic-programming Based Minimization)
 	 
-     > **Given out**  9/27/21 9 PM or before
+     > **Given out**  9/27/21 6 PM 
 
      > **Due** 9/28/21 11:59pm
 
