@@ -74,26 +74,27 @@ Outcomes: Understand the importance of nondeterminism in computer
   reverse; determinize").
 
    - 8:9/20
-     - Quiz-4 given; due 9/24 11:59pm, reviews material to date
+     - Quiz-4 given; due 9/27 11:59pm, reviews material to date
      - Review of Asg 1-3
      - Run the Notebooks within 08_Min_DFA/
      
    - 9:9/22
-     - EXAM SIMULATION in breakout groups
+     - Practice for MT-1
 
 * Week-6
 
-   - 10:9/27 **MT-1**
-     - **BOOK SECTIONS**
-       - CHAPTERS 1-7 (Except Pumping Lemma and Details of  Dynamic-programming Based Minimization)
+   - 10:9/27 :
+
+     > Lecture is held (introduces the Pumping Lemma)
+
+     > **MT-1** will be given via Github : 09_Reg_PL/mt1.ipynb
+     
+     > **BOOK SECTIONS**
+       CHAPTERS 1-7 (Except Pumping Lemma and Details of  Dynamic-programming Based Minimization)
 	 
-     - **NOTEBOOK PART**
-       - COVERS Asg 1-3 (75% of the overall score)
-       
-     - **QUIZ PART**
-       - Covers Quiz 1-3 ; Best of two 40-min attempts ;  No "incorrect answer" feedback ; 25% of the overall score
-     - **Given out / DUE **
-       - 9/27/21 9 AM or before / DUE 9/28/21 11:59pm
+     > **Given out**  9/27/21 9 PM or before
+
+     > **Due** 9/28/21 11:59pm
 
 * **Reading** Chapter 4.6 through 4.8.  __Outcomes:__
   Understand the limitations of finite automata by
