@@ -74,7 +74,7 @@ Outcomes: Understand the importance of nondeterminism in computer
   reverse; determinize").
 
    - 8:9/20
-     - Quiz-4 given; due 9/27 11:59pm, reviews material to date
+     - Quiz-4 given; due 9/29 11:59pm, reviews material to date
      - Run the Notebooks within 08_Min_DFA/
      
    - 9:9/22
