@@ -62,7 +62,10 @@ Outcomes: Understand the importance of nondeterminism in computer
      - Run the Notebooks within 06_RE/
 
    - 7:9/15
-     - Asg-4 (inside 06_RE) given, due 9/27 11:59pm, covers L7,8       
+     - Asg-4 (inside 06_RE) given,
+       > due 9/27 11:59pm for full points
+       > due 9/29 11:59pm for 10%-reduced points
+     - covers L7,8       
      - Run the Notebooks within 07_NFA2RE/ for added practice!
    
 * Week-5 **Reading** Chapter 6.4.  __Outcomes:__
