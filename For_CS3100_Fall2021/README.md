@@ -124,7 +124,6 @@ Outcomes: Understand the importance of nondeterminism in computer
      - Quiz-6 given; due 10/11 11:59pm, covers L13,14
      - Asg-6 given; due 10/18/21 11:59pm, covers L13,14
      - Run the Notebooks within 11_CFG/
-     - Run the Notebooks within 12_CFG2PDA/
      
 * Week-8 **Reading** Chapters 11 (except 11.9), 12.  __Outcomes:__
  Designing a calculator.
