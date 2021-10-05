@@ -107,7 +107,7 @@ Outcomes: Understand the importance of nondeterminism in computer
   
    - 11:9/29
      - Run the Notebooks within 09_Reg_PL/
-     - Quiz-5 given; due 10/6 11:59pm, covers L11,12
+     - Quiz-5 given; due 10/8 11:59pm, covers L11,12
      - Asg-5 given; due 10/8 11:59pm, covers L11,12
      - In-class: Problem-solving about PL
 
@@ -121,8 +121,8 @@ Outcomes: Understand the importance of nondeterminism in computer
      - In-class: Problem-solving about PDA
    
    - 13:10/6
-     - Quiz-6 given; due 10/11 11:59pm, covers L13,14
-     - Asg-6 given; due 10/18/21 11:59pm, covers L13,14
+     - Quiz-6 given; due 10/18 11:59pm, covers L13,14
+     - Asg-6 given; due 10/22/21 11:59pm, covers L13,14
      - Run the Notebooks within 11_CFG/
      
 * Week-8 **Reading** Chapters 11 (except 11.9), 12.  __Outcomes:__
