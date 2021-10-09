@@ -121,7 +121,7 @@ Outcomes: Understand the importance of nondeterminism in computer
      - In-class: Problem-solving about PDA
    
    - 13:10/6
-     - Quiz-6 given; due 10/18 11:59pm, covers L13,14
+     - Quiz-6 given; due 10/22 11:59pm, covers L13,14
      - Asg-6 given; due 10/22/21 11:59pm, covers L13,14
      - Run the Notebooks within 11_CFG/
      
