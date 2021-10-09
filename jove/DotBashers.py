@@ -140,11 +140,11 @@ def chk_consistent_pda(P):
     assert(Sigma != set({})), "PDA being made with an empty Sigma."
     
     if (z0 != ""):
-        assert(z0 in Gamma),"PDA's z0 symbol isn't present in its Gamma."
+        assert(z0 in Gamma),"PDA's z0 symbol (i.e. #) isn't present in its Gamma."
         assert(Sigma < Gamma),"PDA's Sigma not properly contained in Gamma."
     else:
         assert(Sigma <= Gamma),"PDA's Sigma not contained in Gamma."
-    assert(z0 not in Sigma),"PDA's Sigma mustn't contain its z0 symbol."
+    assert(z0 not in Sigma),"PDA's Sigma mustn't contain its z0 symbol (i.e. #)."
     assert("" not in Gamma),"PDA's Gamma contains Epsilon; it mustn't"
     assert(q0 in Q),        "PDA's q0 is not within its Q."
     assert(F <= Q),         "PDA's F is not contained within its Q."
