@@ -134,18 +134,17 @@ Outcomes: Understand the importance of nondeterminism in computer
    - 14:10/18
      - Conversion of CFG to PDA
      - Quiz-7 given; due 10/22 11:59pm, covers L15,16
-     - Asg-7 given; due 10/29/21 11:59pm, covers L15,16 (calculator design, derivatives)
-     - LOOK FOR ASSIGNMENT-7 as a PDF file that will cover
        - 13_Linearity_Amb/
        - 14_Calculator/
        - 15_Derivatives/
      - Run the Notebooks provided within 13_Linearity_Amb/
      - Run the Notebooks provided within 14_Calculator/
-     - The directory ASSIGNMENT-7/ is created under 13_Linearity_Amb/     
    
    - 15:10/20
      - The basics of derivative-based Pattern Matching.
-     - Run the Notebooks  provided within 15_Derivatives/     
+     - Run the Notebooks  provided within 15_Derivatives/
+     - The directory ASSIGNMENT-7/ is created under 13_Linearity_Amb/     
+     - **Asg-7 given 10/23/21; due 11/05/21 11:59pm**
      
 * Week-9 **Reading** Now read 11.9 (a pumping lemma for
   context-free languages).  __Outcomes:__
@@ -155,14 +154,7 @@ Outcomes: Understand the importance of nondeterminism in computer
    - 16:10/25
      - Quiz-8 given; due 10/29 11:59pm, covers L117,18
      - Run the Notebooks within 17_DTMs_and_NDTMs/
-     - This is required for ASSIGNMENT-8.     
-     - ASSIGNMENT-8 is contained in   16_CFL_PL/. A notebook is given
-       for you to submit your answers (named as usual).
-     - Asg-8 given; due 11/05/20 11:59pm, covers 
-       the CFL Pumping Lemma and its applications. It also
-       has a few ready-made TMs for you to run.
      - A notebook rendering of the CFL PL attempted: 16_CFL_PL/		
-     
    - 18:10/27
 
 
