@@ -133,7 +133,7 @@ Outcomes: Understand the importance of nondeterminism in computer
 
    - 14:10/18
      - Conversion of CFG to PDA
-     - Quiz-7 given; due 10/22 11:59pm, covers L15,16
+     - Quiz-7 given; due 10/29 11:59pm, covers L15,16
        - 13_Linearity_Amb/
        - 14_Calculator/
        - 15_Derivatives/
@@ -141,7 +141,6 @@ Outcomes: Understand the importance of nondeterminism in computer
      - Run the Notebooks provided within 14_Calculator/
    
    - 15:10/20
-     - The basics of derivative-based Pattern Matching.
      - Run the Notebooks  provided within 15_Derivatives/
      - The directory ASSIGNMENT-7/ is created under 13_Linearity_Amb/     
      - **Asg-7 given 10/23/21; due 11/05/21 11:59pm**
@@ -152,7 +151,6 @@ Outcomes: Understand the importance of nondeterminism in computer
   not context-free.
   
    - 16:10/25
-     - Quiz-8 given; due 10/29 11:59pm, covers L117,18
      - Run the Notebooks within 17_DTMs_and_NDTMs/
      - A notebook rendering of the CFL PL attempted: 16_CFL_PL/		
    - 18:10/27
@@ -161,40 +159,41 @@ Outcomes: Understand the importance of nondeterminism in computer
 * Week-10 **Reading** Chapter 13.  __Outcomes:__
   Learn the basics of
   designing Turing machines.
-  
+n  
    - 19:11/01
-     - Quiz-9 given; due 11/05 11:59pm, covers Turing Machines
-     - How to design DTMs and NDTMs 
+     - More CFL PL practice
+     - Minimization of DFA via Dynamic Programming
+     - Quiz-8 given; due 11/05 11:59pm
+     - Basics of Turing Machines
      - Run the Notebooks within 18_More_TM_Exs/
-     
+      
    - 20:11/03
      - Review of MT-2
      - **MIDTERM EXAM-2** covering Asg 4-7 PLUS Quizzes 5-8
      - Specific portions:
-       - Regular Expressions in Asg-4 (some of the MT-1 practice that was not asked)
-       - NFA to RE
+       - Regular Expressions, RE2NFA and NFA2RE
+       - **Regular Language Pumping Lemma**     
        - Min-DFA (dynamic-programming based)
-       - **Regular Language Pumping Lemma**
        - PDA (Chapter 12)
-       - CFG (Chapter 11), **Excluding the CFL PL**
+       - CFG (Chapter 11)
+       - **CFL Pumping Lemma**            
      - Given out 11/06 Saturday by 9am
      - Due 11/08 Monday by 11:59pm     
    
-* Week-11 **Reading** Chapters 13, 14 (begin reading) __Outcomes:__
+* Week-11 **Reading** Chapters 13, 14 (begin reading), 15 __Outcomes:__
   NDTMs and the Chomsky Hierarchy. Halting problem,
   and the basics of undecidability proofs.
   
    - 21:11/8
-     - **ASG-9 given**, Due 11/19/21 11:59pm, covers the
-       CFL PL, DTM, and NDTM
-
-     - ASG-9 is within 18_More_TM_Exs/
+     - Quiz-9 given, due 11/12/21
+     - **ASG-8 given**, Due 11/19/21 11:59pm, covers DTM, DTM, PCP
+     - ASG-8 is within 18_More_TM_Exs/
+     - Run the Notebooks within 19_Algo_Proc_PCP/     
        
    - 22:11/10
      - Chapter 14, Basic Undecidability Proofs.
        Chapter 15, The Post Correspondence Problem.
-     - Run the Notebooks within 19_Algo_Proc_PCP/
-   
+
    
 * Week-12 **Reading** Chapters 14, 15, 18.  __Outcomes:__
   Mapping reductions. Also you get to appreciate the Church-Turing
@@ -206,8 +205,8 @@ Outcomes: Understand the importance of nondeterminism in computer
        - This will give you practice with basic computability
        	 notions
        - This will also expose you to Lambda Calculus
-     - Quiz-10 given; due 11/19 11:59pm, covers L23,24
-     - Asg-10 given; due 11/24/21 11:59pm, covers L23,24
+     - Quiz-9 given; due 11/19 11:59pm, covers L23,24
+     - Asg-9 given; due 11/24/21 11:59pm, covers L23,24
        (Post Correspondence, Mapping Reductions)
      
    - 24:11/17
@@ -220,7 +219,7 @@ Outcomes: Understand the importance of nondeterminism in computer
    - 25:11/22
      - Run the Notebooks within 21_NPC_Lambda/
      - Quiz-11 given; due 11/26 11:59pm, covers L25,26
-     - Asg-11 given; due FRIDAY 12/03/21 11:59pm, covers L25,26 
+     - Asg-10 given; due FRIDAY 12/03/21 11:59pm, covers L25,26 
    - 26:11/24
      - Introduced the notion of NP-Completeness
    
@@ -321,10 +320,10 @@ Outcomes: Understand the importance of nondeterminism in computer
   - q6 10/6 - 10/11
   - a6 10/6 - 10/18
 
-  - q7 10/18 - 10/22
-  - a7 10/18 - 10/29
+  - q7 10/18 - 10/29
+  - a7 10/18 - 11/05
 
-  - q8 10/25 - 10/29
+  - q8 11/01 - 10/29
   - a8 10/25 - 11/05
 
   - MT1 9/27 - 9/28
