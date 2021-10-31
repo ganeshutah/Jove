@@ -171,10 +171,13 @@ n
      - Review of MT-2
      - **MIDTERM EXAM-2** covering Asg 4-7 PLUS Quizzes 5-8
      - Specific portions:
+       - DFA minimization NOT in MT2 but in Quiz-8 and Finals
+       - RE2NFA and NFA2RE NOT in MT2 but in Finals
        - **Regular Language Pumping Lemma**     
        - PDA (Chapter 12)
        - CFG (Chapter 11)
-       - **CFL Pumping Lemma**            
+       - **CFL Pumping Lemma**
+       
      - Given out 11/06 Saturday by 9am
      - Due 11/08 Monday by 11:59pm     
    
