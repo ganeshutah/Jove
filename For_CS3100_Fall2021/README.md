@@ -95,7 +95,7 @@ Outcomes: Understand the importance of nondeterminism in computer
 
      > Lecture is held (introduces the Pumping Lemma)
 
-     > **MT-1** will be given via Github : 09_Reg_PL/mt1.ipynb
+     > **MT-1** will be given via Github : MIDTERM-1/mt1.ipynb
      
      > **BOOK SECTIONS**
        CHAPTERS 1-7 (Except Pumping Lemma and Details of  Dynamic-programming Based Minimization)
@@ -179,6 +179,13 @@ n
        - **CFL Pumping Lemma**
        
      - Given out 11/06 Saturday by 9 AM
+     > **MT-2** will be given in two pieces:
+       * The Multi-answer quiz is on Canvas as a Quiz named "Midterm-2 Exam's Quiz Component"
+       * The Long-answer part is given via Github MIDTERM-2/MT2Long.ipynb (to permit corrections to be pushed)
+       * SUBMISSION OF MT2Long.ipynb will be via a Canvas Upload
+         - look for a Canvas Quiz
+         - named "Midterm-2 Exam's Long-Answer Component"
+         - where you have to upload a few screenshots and provide text answers.
      - Due 11/08 Monday by 11:59 PM
    
 * Week-11 **Reading** Chapters 13, 14 (begin reading), 15 __Outcomes:__
