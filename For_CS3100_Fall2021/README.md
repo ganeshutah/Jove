@@ -171,15 +171,15 @@ n
      - Review of MT-2
      - **MIDTERM EXAM-2** covering Asg 4-7 PLUS Quizzes 5-8
      - Specific portions:
-       - DFA minimization NOT in MT2 but in Quiz-8 and Finals
-       - RE2NFA and NFA2RE NOT in MT2 but in Finals
-       - **Regular Language Pumping Lemma**     
+       - DFA minimization 
+       - RE2NFA and NFA2RE 
        - PDA (Chapter 12)
        - CFG (Chapter 11)
+       - **Regular Language Pumping Lemma**            
        - **CFL Pumping Lemma**
        
-     - Given out 11/06 Saturday by 9am
-     - Due 11/08 Monday by 11:59pm     
+     - Given out 11/06 Saturday by 9 AM
+     - Due 11/08 Monday by 11:59 PM
    
 * Week-11 **Reading** Chapters 13, 14 (begin reading), 15 __Outcomes:__
   NDTMs and the Chomsky Hierarchy. Halting problem,
