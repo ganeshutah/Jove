@@ -171,9 +171,7 @@ n
      - Review of MT-2
      - **MIDTERM EXAM-2** covering Asg 4-7 PLUS Quizzes 5-8
      - Specific portions:
-       - Regular Expressions, RE2NFA and NFA2RE
        - **Regular Language Pumping Lemma**     
-       - Min-DFA (dynamic-programming based)
        - PDA (Chapter 12)
        - CFG (Chapter 11)
        - **CFL Pumping Lemma**            
