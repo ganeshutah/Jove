@@ -177,6 +177,7 @@ n
        - CFG (Chapter 11)
        - **Regular Language Pumping Lemma**            
        - **CFL Pumping Lemma**
+       - I am *NOT* asking questions on consistency and completeness for MT-2 (will, for Finals)
        
      - Given out 11/06 Saturday by 9 AM
      > **MT-2** will be given in two pieces:
