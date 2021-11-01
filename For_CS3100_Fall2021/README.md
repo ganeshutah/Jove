@@ -171,7 +171,7 @@ n
      - Review of MT-2
      - **MIDTERM EXAM-2** covering Asg 4-7 PLUS Quizzes 5-8
      - Specific portions:
-       - DFA minimization 
+       - DFA minimization (short questions)
        - RE2NFA and NFA2RE 
        - PDA (Chapter 12)
        - CFG (Chapter 11)
