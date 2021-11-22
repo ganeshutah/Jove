@@ -214,31 +214,31 @@ n
        - This will give you practice with basic computability
        	 notions
        - This will also expose you to Lambda Calculus
-     - Quiz-9 given; due 11/19 11:59pm, covers L23,24
-     - Asg-9 given; due 11/24/21 11:59pm, covers L23,24
-       (Post Correspondence, Mapping Reductions)
      
    - 24:11/17
      - Do the Practice Problems within 20_Mapping_Redn/
    
-   
+
 * Week-13 **Reading** Chapters 16, 17.  __Outcomes:__
+  Finish-up discussion of mapping reductions.
   Basics of Boolean reasoning, conjunctive normal form
   formulae, validity versus satisfiability, NP-completeness.
    - 25:11/22
-     - Run the Notebooks within 21_NPC_Lambda/
-     - Quiz-11 given; due 11/26 11:59pm, covers L25,26
-     - Asg-10 given; due FRIDAY 12/03/21 11:59pm, covers L25,26 
+     - Finish talking about Mapping Reductions
+     - Introduce Boolean Logic and BDDs
+     - Quiz-11 given; due 12/03/21 11:59pm
+     - Asg-9 given; due 12/03/21 11:59pm
+
    - 26:11/24
+     - Run the Notebooks within 21_NPC_Lambda/   
      - Introduced the notion of NP-Completeness
+     - How Mapping Reductions are used in NPC proofs
    
    
 * Week-14 **Reading** Chapters 16, 17. Begin reading Chapter 18. __Outcomes:__
   How mapping reduction looks in the area of NP-completeness proofs. Begin
   to understand Lambda Calculus.
    - 27:11/29
-     - Run the Notebooks within 21_NPC_Lambda/
-     - Quiz-12 given; due 12/3 11:59pm, covers L27,28
 
    - 28:12/1
      - Chapter 18 discussions
@@ -308,49 +308,6 @@ n
 * Some of the chapters are read across multiple weeks.
 
 * -------------------------------------------------------
-
-* QUIZ / ASG schedules
-
-  - q1 8/23 - 27
-  - a1 8/23 - 9/3
-
-  - q2 8/30 - 9/3
-  - a2 8/30 - 9/10
-
-  - q3 9/6  - 9/17
-  - a3 9/6  - 9/17
-
-  - a4 9/13 - 9/24
-  - q4 9/20 - 9/24
-
-  - q5 9/29 - 10/6
-  - a5 9/29 - 10/8
-
-  - q6 10/6 - 10/11
-  - a6 10/6 - 10/18
-
-  - q7 10/18 - 10/29
-  - a7 10/18 - 11/05
-
-  - q8 11/01 - 10/29
-  - a8 10/25 - 11/05
-
-  - MT1 9/27 - 9/28
-
-  - q9 11/01 - 11/05
-
-  - MT2 11/06 - 11/08
-
-  - a9 11/08 - 11/19
-
-  - q10 11/15 - 11/19
-  - a10 11/15 - 11/24
-
-  - q11 11/22 - 11/26
-  - a11 11/22 - 12/03
-
-  - q12 11/29 - 12/03
-  
   - Finals on 12/13 - 6:00 - 8:00 pm
 * -------------------------------------------------------
 
