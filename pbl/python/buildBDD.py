@@ -10,7 +10,7 @@ time = now.strftime("%H_%M_%S")
 uniqid       = "bdd_"+time
 dot_OUT      =  "> python/images/" + uniqid + ".png"
 
-print("==== LOOK FOR ==== ", os.getcwd()+uniqid+".dot", " and convert via render ")
+print("==== LOOK FOR ==== ", uniqid+".dot", " and convert via render ")
 
 global final_dot_file
 
