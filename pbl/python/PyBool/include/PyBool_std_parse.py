@@ -250,7 +250,6 @@ def parse_file(example):
     main_expr = {}
     sub_expr  = {}
 
-    print("cwd = ", os.getcwd())
     #fName = read( "fName: ")
 #   fName = "examples/example1"
 #   print("fName is ", fName)
