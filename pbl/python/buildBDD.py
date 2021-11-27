@@ -14,7 +14,7 @@ dot_OUT      =  "> python/images/" + uniqid + ".png"
 
 global final_dot_file
 
-final_dot_file = uniqid+".dot"
+final_dot_file = uniqid
 
 
 sys.path.append(BDD_PATH)
