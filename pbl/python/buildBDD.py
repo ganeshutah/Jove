@@ -60,7 +60,7 @@ def buildBDDmain(example):
     for x in sat_assigns:        
         sat_assigns_string += str(map(lambda y : 0 if '~' in y else 1, x)) + '\n'
 
-    dot_file = "python/programoutput/" + uniqid + ".dot"
+    dot_file = uniqid + ".dot"
     print("dot_file = ", dot_file)
     print("BDD = ", bdd)
     
