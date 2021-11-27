@@ -1,0 +1,7 @@
+#Simple first example.
+
+Var_Order : x1 x2 x3
+
+P1 = x1 | (x2 & x3)
+
+Main_Exp : P1

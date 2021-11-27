@@ -1,0 +1,10 @@
+#Example showing two equivalent formulas
+
+Var_Order : x1 x2 x3 x4 x5
+
+f1 = (x1 | (x2 & x3)) XOR (~x4 <=> x5)
+
+f2 = (~(x1 | (x2 & x3)) & (~x4 <=> x5)) | ((x1 | (x2 & x3)) & ~(~x4 <=> x5))
+
+#Should get all 2^5 = 32 satisfying assignments
+Main_Exp : (f1 <=> f2)

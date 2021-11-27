@@ -1,0 +1,160 @@
+Tyler Sorensen
+February 18, 2012
+University of Utah
+
+This file contains the Specs for the standard input language of PyBool
+It was implemented using the ply python package and all code can
+be found in the file PyBool_std_parse.py.
+
+
+-------------------------------------------------------------
+---Legal Operators-------------------------------------------
+-------------------------------------------------------------
+
+The legal operators are:
+
+And -            noted: &
+Or -             noted: |
+logically equal- noted: <=>
+implies -	 noted: =>
+not -		 noted: ~
+Exclusive or -	 noted: XOR
+Parenthesis  -   noted: ( )
+
+They corespond to their usual meaning in Boolean Algebra
+
+-------------------------------------------------------------
+---Key Words-------------------------------------------------
+-------------------------------------------------------------
+
+The following are keywords that cannot be used as variable
+names along with a brief description
+
+Var_Order
+Used in declaring the variable ordering
+
+Main_Exp
+Used in identifying the expression to consider
+
+XOR
+the exclusive or operator
+
+-------------------------------------------------------------
+---Key Words and Variables-----------------------------------
+-------------------------------------------------------------
+
+Variables, much like any other language are a string of characters.
+
+The restrictions on variable names are the following:
+
+-Cannot start with a symbol or a 0 or 1 (must start with a letter)
+
+-Cannot be a keyword
+
+There are two types of variables, literal variables and formula 
+variables. 
+
+Literal variables hold a 0 or a 1
+
+Formula variables hold an expression and are declared simply by assigning
+them.
+
+-------------------------------------------------------------
+--Variable Declaration---------------------------------------
+-------------------------------------------------------------
+
+-Literal Variables and Var_Order
+
+Some applications of Boolean formula require an explicit variable
+ordering to be declared. This is what the Var_Order keyword is for.
+To explicity declare a variable order, simply write
+Var_Order : List_of_Variables
+
+example:
+Var_Order : x1 x2 x3
+
+You are not limited to one Var_Order statement, as you might want
+to add variables later on, just don't repeat variable declarations.
+
+-Formula Variables
+
+To declare a formula variable, simply use the assignment operator '='
+For example, if you wanted the variable X to hold the following formula:
+x1 & x2 & ~x3 you would simply write the line:
+
+X = x1 & x2 & ~x3
+
+Now X can be used in other formulas in place of x1 & x2 & ~x3
+
+-------------------------------------------------------------
+--Main_Exp---------------------------------------------------
+-------------------------------------------------------------
+
+Once you have all your expression written, you need to tell the
+BDD which expression you actually want solved. It can be useful
+to have many "sub" expression but only solve certain combinations
+of them at a time. This is done with the Main_Exp keyword. 
+
+Say you have two formulas stored in X1 and X2 and you want to 
+solve the conjunction of the formulas, you would write:
+
+Main_Exp : X1 & X2
+
+Notice how Main_Exp is followed by a ':'
+
+In general Main_Exp is
+
+Main_Exp : expression
+
+where expression is any valid expression consisting of literals,
+literal variables or formula variables.
+
+-------------------------------------------------------------
+--Msc--------------------------------------------------------
+-------------------------------------------------------------
+
+A few final points:
+
+Comments are started with a # symbol will render the rest
+of the line as a comment. 
+
+Semi Colons are ignored, so if it is your style to end lines with
+a semi colon, please do so.
+
+-------------------------------------------------------------
+--Putting it all together - an Example-----------------------
+-------------------------------------------------------------
+
+Here is an example for a Lewis Carroll Puzzle:
+
+#Input for a Lewis Carroll problem
+#Written in the mark up language for the python BDD manager
+
+#Declare all the variables. Notice how you can use
+#more than one line.
+Var_Order : eatPennyBuns old young danceTightRopes
+Var_Order : pigs respect giddy publicLunch ridiculous
+Var_Order : umbrella fat wise balloon 
+
+#These are the Premises
+P1 = (~danceTightRopes & ~eatPennyBuns) => old 
+P2 = (pigs & giddy) => respect
+P3 = (ridiculous & eatPennyBuns) => ~publicLunch
+P4 = (young & balloon) => giddy
+P5 = (wise & balloon) => umbrella
+P6 = (fat & ridiculous & ~danceTightRopes) => publicLunch
+P7 = (wise & giddy) => ~danceTightRopes
+P8 = (pigs & umbrella) => ridiculous
+P9 = (~danceTightRopes & respect) => fat  
+
+#This is the extra statement needed
+Extra = old <=> ~young 
+
+#This is the conclusion
+C = (wise & young & pigs) => ~balloon
+
+#This is all the premises conjoined
+P_All = P1 & P2 & P3 & P4 & P5 & P6 & P7 & P8 & P9
+
+#The main expression to be considered.
+Main_Exp : P_All & Extra & ~C

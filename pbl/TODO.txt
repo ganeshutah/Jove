@@ -1,0 +1,8 @@
+
+1. Make .php scripts buildBDDMin.php buildBDD.php the same file with
+different args. They are only different by 1 line.
+
+2. Link download link to git-hub repo.
+
+3. PBL interface, not very interesting. The simplifications need to be
+more robust.

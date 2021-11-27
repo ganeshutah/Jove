@@ -1,0 +1,5 @@
+#Do the constraints that x = 3, and x+y = 5
+#with 4 bit variables.
+
+Var_Order : x0 x1 
+Main_Exp : x0 & x1

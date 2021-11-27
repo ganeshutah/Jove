@@ -1,0 +1,16 @@
+
+Var_Order : aUT, bUT, aNV, bNV, aAZ, bAZ, aCO, bCO
+
+Nv_not_Ut = ~((aNV <=> aUT) & (bNV <=> bUT))
+Nv_not_Az = ~((aNV <=> aAZ) & (bNV <=> bAZ))
+Az_not_Ut = ~((aUT <=> aAZ) & (bUT <=> bAZ))
+
+Co_not_Az = ~((aCO <=> aAZ) & (bCO <=> bAZ))
+Co_not_Ut = ~((aCO <=> aUT) & (bCO <=> bUT))
+
+
+#Nv_Ut = ((aNV <=> aAZ) & (bNV <=> bAZ))
+#NvRed = (aNV & bNV)
+#AzRed = (aAZ & bAZ)
+
+Main_Exp : Nv_not_Ut & Nv_not_Az & Az_not_Ut & Co_not_Az & Co_not_Ut

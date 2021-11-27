@@ -1,0 +1,2 @@
+Var_Order : i0 i1 i2 i3 s1 s0
+Main_Exp : ~s0 & ~s1 & i0 | s0 & ~s1 & i1 | ~s0 & s1 & i2 | s0 & s1 & i3

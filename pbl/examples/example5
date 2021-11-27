@@ -1,0 +1,28 @@
+#Example showing all possible four colorings of a small map
+#
+#Find all four colorings of a map such that no two surfaces
+#of the same coloring are touching.
+#
+#Assume that Navada is touching Utah and Arizona
+#            Arizona is touching Utah
+#            Colorado is touching Arizona and Utah
+#
+#Encode colors as 2 bits:
+#00 - Yello
+#01 - Blue
+#10 - Red
+#11 - Green
+#
+#Challenge, How to change this formula to find 3 colorings of maps!
+
+Var_Order : aUT, bUT, aNV, bNV, aAZ, bAZ, aCO, bCO
+
+Nv_not_Ut = ~((aNV <=> aUT) & (bNV <=> bUT))
+Nv_not_Az = ~((aNV <=> aAZ) & (bNV <=> bAZ))
+Az_not_Ut = ~((aUT <=> aAZ) & (bUT <=> bAZ))
+
+Co_not_Az = ~((aCO <=> aAZ) & (bCO <=> bAZ))
+Co_not_Ut = ~((aCO <=> aUT) & (bCO <=> bUT))
+
+Main_Exp : Nv_not_Ut & Nv_not_Az & Az_not_Ut & Co_not_Az & Co_not_Ut
+

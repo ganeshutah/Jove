@@ -1,0 +1,8 @@
+#Example showing some of the propagation simplifications.
+#By propagating 0 into variable x4, the whole formula should
+#come out to be false.
+
+#NOTE : the simplifications are not very robust and just 
+#happen when they are obvious.
+
+Main_Exp : (x1 => (y1 | y2) XOR (x2 | x3 <=> y4)) & x4

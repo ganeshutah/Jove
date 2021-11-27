@@ -1,0 +1,6 @@
+#Simple chain of implications example. 
+#Putting it into nne form will express everthing
+#in operators &, | and ~ (negation only applied to
+#literals)
+
+Main_Exp : (x1 => y1) & (x2 => y2) & ~(x3 => x4)

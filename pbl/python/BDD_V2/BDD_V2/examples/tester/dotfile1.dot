@@ -1,0 +1,29 @@
+digraph G {
+/* Defaults */
+ fontsize = 12;
+ ratio = compress; 
+/* Bounding box */
+ size = "4,4";
+Node0 [label=0, color=Red, shape=box, peripheries=2]
+Node1 [label=1, color=Blue, shape=box, peripheries=2]
+Node2 [label=b0, shape=circle, peripheries=1]
+Node3 [label=a0, shape=circle, peripheries=1]
+Node4 [label=b1, shape=circle, peripheries=1]
+Node5 [label=a1, shape=circle, peripheries=1]
+Node6 [label=b2, shape=circle, peripheries=1]
+Node7 [label=a2, shape=circle, peripheries=1]
+Node7->Node6 [color=red, label = "0"]
+Node7->Node5 [color=blue, label = "1"]
+Node6->Node5 [color=red, label = "0"]
+Node6->Node1 [color=blue, label = "1"]
+Node5->Node4 [color=red, label = "0"]
+Node5->Node3 [color=blue, label = "1"]
+Node4->Node3 [color=red, label = "0"]
+Node4->Node1 [color=blue, label = "1"]
+Node3->Node2 [color=red, label = "0"]
+Node3->Node0 [color=blue, label = "1"]
+Node2->Node0 [color=red, label = "0"]
+Node2->Node1 [color=blue, label = "1"]
+/* Unix command: dot -Tps bdd.dot > bdd.ps */
+/* For further details, see the `dot' manual */
+}

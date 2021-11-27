@@ -1,0 +1,34 @@
+#Tyler Sorensen
+#December 5, 2011
+
+#Input for the second Lewis Carroll problem
+#Written in the mark up language for the python BDD manager
+
+#Declare all the variables. Notice how you can use
+#more than one line.
+Var_Order : eatPennyBuns old young danceTightRopes
+Var_Order : pigs respect giddy publicLunch ridiculous
+Var_Order : umbrella fat wise balloon 
+
+#These are the Premises
+P1 = (~danceTightRopes & ~eatPennyBuns) => old 
+P2 = (pigs & giddy) => respect
+P3 = (ridiculous & eatPennyBuns) => ~publicLunch
+P4 = (young & balloon) => giddy
+P5 = (wise & balloon) => umbrella
+P6 = (fat & ridiculous & ~danceTightRopes) => publicLunch
+P7 = (wise & giddy) => ~danceTightRopes
+P8 = (pigs & umbrella) => ridiculous
+P9 = (~danceTightRopes & respect) => fat  
+
+#This is the extra statement needed
+Extra = old <=> ~young 
+
+#This is the conclusion
+C = (wise & young & pigs) => ~balloon
+
+#This is all the premises conjoined
+P_All = P1 & P2 & P3 & P4 & P5 & P6 & P7 & P8 & P9
+
+#The main expression to be considered.
+Main_Exp : P_All & Extra & ~C

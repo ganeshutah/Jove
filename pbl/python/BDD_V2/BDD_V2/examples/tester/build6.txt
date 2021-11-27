@@ -1,0 +1,4 @@
+#---Mux41Good.txt begins here and ends where shown below---
+Var_Order : s0 s1 i0 i1 i2 i3
+Main_Exp : ~s0 & ~s1 & i0 | s0 & ~s1 & i1 | ~s0 & s1 & i2 | s0 & s1 & i3
+#---end of Mux41Good.txt---

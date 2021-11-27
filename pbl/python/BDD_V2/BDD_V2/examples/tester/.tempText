@@ -1,0 +1,2 @@
+babies,illogical,despised,manageCrocs,
+((babies => illogical) & (illogical => despised) & (manageCrocs => ~despised) & ~(babies => ~manageCrocs))

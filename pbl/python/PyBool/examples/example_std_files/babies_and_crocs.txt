@@ -1,0 +1,17 @@
+#Tyler Sorensen
+#December 5, 2011
+
+#Input for the first Lewis Carroll problem
+#Written in the mark up language for the python BDD manager
+
+Var_Order : babies illogical despised manageCrocs,
+
+P1 = babies => illogical
+
+P2 = illogical => despised	
+   
+P3 = manageCrocs => ~despised	
+
+C  = babies => ~manageCrocs
+
+Main_Exp : P1 & P2 & P3 & ~C

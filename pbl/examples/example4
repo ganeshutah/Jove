@@ -1,0 +1,36 @@
+#This is a simple "bit blasting" example (decision procedure for bit vectors)
+#The length of the bit vectors are 4 bits.
+
+#We want to show that the constraints : (x == 3) and (x+y == 5) is satisfiable
+#and get a model. (you could also easily show overflow with this example) 
+
+#4 variables for x (x0 is lsb)
+Var_Order : x0 x1 x2 x3
+
+#4 variables for y (y0 is lsb)
+Var_Order : y0 y1 y2 y3
+
+#assert 
+#x == 3
+Xeq3 = (x0 <=> 1) & (x1 <=> 1) & (x2 <=> 0) & (x3 <=> 0)
+
+#create dependant variable z such that x+y=z
+#so make the addition circuit (compute the bit and the carry)
+z0 = x0 XOR y0
+z0c = x0 & y0
+
+z1 = x1 XOR y1 XOR z0c
+z1c = (x1 & y1) | (z0c & (x1 XOR y1))
+
+z2 = x2 XOR y2 XOR z1c
+z2c = (x2 & y2) | (z1c & (x2 XOR y2))
+
+z3 = x3 XOR y3 XOR z2c
+
+#assert
+#z == 5
+Zeq5 = (z0 <=> 1) & (z1 <=> 0) & (z2 <=> 1) & (z3 <=> 0)
+
+#We should get y = 2, or y0 = 0, y1 = 1, y2 = 0, y3 = 0
+#as a satisfying assignment.
+Main_Exp : Xeq3 & Zeq5

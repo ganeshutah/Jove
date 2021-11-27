@@ -1,0 +1,22 @@
+#Very simple example to show off syntax
+
+#First declare the variables and specify variable orderings
+Var_Order : x1 x2 x3
+
+#You can have multiple Var_Order statements, just don't
+#duplicate variables. The variables declared in the first
+#Var_Order statement will come before later declared variables.
+#You can even declare variables after sub-formulas
+Var_Order : x4
+
+#Create a sub-formula. Note: These variables do not have
+#Have to be declared. They are just place holders
+#You can force precedence with parenthesis.
+sub = ~x1 & x2 & (x3 | x4)
+
+#Constants are just 0's and 1's.
+sub_True = 1
+
+#The main expression is the only one considered by the BDD
+#and is declared like so
+Main_Exp : sub <=> sub_True

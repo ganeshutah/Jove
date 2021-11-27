@@ -1,0 +1,31 @@
+#Formula for a simple Lewis Carroll logic puzzle.
+#
+#The Puzzle is stated as follows:
+#Assume that:
+#
+#All babies are illogical.
+#Nobody is despised who can manage a crocodile.
+#Illogical persons are despised.
+#
+#Show that:
+#Babies cannot manage crocodiles.
+
+#Declare variables and order
+Var_Order : babies illogical despised manageCrocs
+
+#Babies are illogical
+P1 = babies => illogical
+
+#illogical people are despised
+P2 = illogical => despised
+
+#People who manage crocs are not despised   
+P3 = manageCrocs => ~despised	
+
+#Conclusion: babies cannot manage crocs
+C  = babies => ~manageCrocs
+
+#Main expression is all premises with the negation
+#of what we're trying to prove. Should have 0 satisfying
+#assignments if true.
+Main_Exp : P1 & P2 & P3 & ~C

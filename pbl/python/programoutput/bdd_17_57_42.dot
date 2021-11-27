@@ -1,0 +1,11 @@
+digraph G {
+/* Defaults */
+ fontsize = 12;
+ graph [dpi = 600];
+ ratio = compress; 
+/* Bounding box */
+ size = "4,4";
+Node1 [label=1, color=Blue, shape=box, peripheries=2]
+/* Unix command: dot -Tps bdd.dot > bdd.ps */
+/* For further details, see the `dot' manual */
+}
