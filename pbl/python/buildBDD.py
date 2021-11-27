@@ -10,7 +10,7 @@ time = now.strftime("%H_%M_%S")
 uniqid       = "bdd_"+time
 dot_OUT      =  "> python/images/" + uniqid + ".png"
 
-print("==== LOOK FOR ==== ", uniqid+".dot", " and convert via render ")
+#print("==== LOOK FOR ==== ", uniqid+".dot", " and convert via render ")
 
 global final_dot_file
 
@@ -58,17 +58,17 @@ def buildBDDmain(example):
     sat_assigns = BDD.all_sat(bdd)
     sat_assigns_string = ""
     for x in sat_assigns:        
-        sat_assigns_string += str(map(lambda y : 0 if '~' in y else 1, x)) + '\n'
+        sat_assigns_string += str(list(map(lambda y : 0 if '~' in y else 1, x))) + '\n'
 
     dot_file = uniqid + ".dot"
-    print("dot_file = ", dot_file)
-    print("BDD = ", bdd)
+#    print("dot_file = ", dot_file)
+#    print("BDD = ", bdd)
     
     BDD.dot_bdd(bdd, dot_file)
     #print reduce(lambda x, y : x + " " + y, [dot_PATH, dot_ARGS, dot_file, dot_OUT])
     #err = os.system(reduce(lambda x, y : x + " " + y, [dot_PATH, dot_ARGS, dot_file, dot_OUT]))
     #print( rm + " " + dot_file )
-    print("Dot file left behind as", dot_file)
+#   print("Dot file left behind as", dot_file)
     #os.system(rm + " " + dot_file)
 
     #   if err != 0:
@@ -76,7 +76,7 @@ def buildBDDmain(example):
     #       exit_err()
     
     STAT_str = "Number of satisfying assignments: " + str(sat_count) + "\n"\
-                + stats + "\n\nAll satisfying assignts:\n" + "------------------------------\n"\
+                + stats + "\n\nAll satisfying assignments:\n" + "------------------------------\n"\
                 + sat_assigns_string
     print("Satisfying string is", STAT_str)
     
