@@ -14,7 +14,7 @@ print("==== LOOK FOR ==== ", uniqid+".dot", " and convert via render ")
 
 global final_dot_file
 
-final_dot_file = "python/programoutput/"+uniqid+".dot"
+final_dot_file = uniqid+".dot"
 
 
 sys.path.append(BDD_PATH)
