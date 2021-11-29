@@ -1,4 +1,9 @@
 
+* Breaking news!
+  - We have ported Dr. Tyler Sorensen's BDD tool into Jove (discussed in 21_NPC_Lambda)
+  - This was given via a web interface (http://formal.cs.utah.edu:8080/pbl/BDD.php) which is under maintenance (sometimes)
+  - Check it out by running BDD.ipynb :) where this web dependency is removed!
+  
 * TL; DR
   - THE CONTENTS of this webpage are based on my textbook
   [Automata and Computability: A Programmer's Perspective][bookurl],
