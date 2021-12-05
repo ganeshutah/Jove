@@ -259,7 +259,7 @@ n
   > * There will be two timed Quiz attempts allowed
   > * The exam will also ask you to do work on Jove notebooks and submit the results.
   > * The portions will be those since Midterm-2.
-      This work will involve building machines, BDD, use of the PCP and Lambda Calculus Tools
+      This work will involve building machines, reasoning about mapping reductions, and the use of the BDD, PCP and Lambda Calculus Tools.
   
 * -------------------------------------------------------
    
