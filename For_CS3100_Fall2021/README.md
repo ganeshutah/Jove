@@ -254,7 +254,7 @@ n
    - 30:12/8
      - Review For Finals
    
-* FINAL EXAM is on Canvas, Monday 12/13/20, 6:00pm - 8:00pm 
+* FINAL EXAM is on Canvas, Monday 12/13/20, 6:00am - 8:00pm 
   
 * -------------------------------------------------------
    
