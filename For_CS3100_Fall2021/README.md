@@ -254,9 +254,11 @@ n
    - 30:12/8
      - Review For Finals
    
-* FINAL EXAM is on Canvas, Monday 12/13/20, 6:00am - 8:00pm
+* FINAL EXAM is on Canvas, ** Sunday 12/12/21 6:00pm to Monday 12/13/31 8:00pm **
   > * The exam will consist of a quiz (COMPREHENSIVE) like in Midterm-2
+  > * There will be two timed Quiz attempts allowed
   > * The exam will also ask you to do work on Jove notebooks and submit the results.
+  > * This part will be made available 6pm on 12/12/21 and due 8pm 12/13/21.  
       The portions will be those since Midterm-2.
       This work will involve building machines, BDD, use of the PCP and Lambda Calculus Tools
   
