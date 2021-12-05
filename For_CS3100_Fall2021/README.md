@@ -254,7 +254,8 @@ n
    - 30:12/8
      - Review For Finals
    
-* FINAL EXAM is on Canvas, ** Sunday 12/12/21 6:00pm to Monday 12/13/31 8:00pm **
+* FINAL EXAM will be delivered via Canvas, with supplementary files as noted there.
+  > * The exam is between ** Sunday 12/12/21 6:00pm to Monday 12/13/31 8:00pm **
   > * The exam will consist of a quiz (COMPREHENSIVE) like in Midterm-2
   > * There will be two timed Quiz attempts allowed
   > * The exam will also ask you to do work on Jove notebooks and submit the results.
