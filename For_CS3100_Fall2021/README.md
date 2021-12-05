@@ -227,10 +227,13 @@ n
      - Finish talking about Mapping Reductions
      - Introduce Boolean Logic and BDDs
      - Quiz-11 given; due 12/03/21 11:59pm
-     - Asg-9 given; due 12/03/21 11:59pm
+     - Run the Notebooks within 21_NPC_Lambda/
+     - Asg-9 is within 21_NPC_Lambda/
+     > * It involves a PDF file where the questions are provided
+       * CS3100_F21_Asg9.pdf
+       * It is given 11/22/21 and due 12/06/21 11:59pm     
 
    - 26:11/24
-     - Run the Notebooks within 21_NPC_Lambda/   
      - Introduced the notion of NP-Completeness
      - How Mapping Reductions are used in NPC proofs
    
