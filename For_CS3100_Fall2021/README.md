@@ -258,8 +258,7 @@ n
   > * The exam will consist of a quiz (COMPREHENSIVE) like in Midterm-2
   > * There will be two timed Quiz attempts allowed
   > * The exam will also ask you to do work on Jove notebooks and submit the results.
-  > * This part will be made available 6pm on 12/12/21 and due 8pm 12/13/21.  
-      The portions will be those since Midterm-2.
+  > * The portions will be those since Midterm-2.
       This work will involve building machines, BDD, use of the PCP and Lambda Calculus Tools
   
 * -------------------------------------------------------
