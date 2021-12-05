@@ -256,7 +256,7 @@ n
    
 * FINAL EXAM will be delivered via Canvas, with supplementary files as noted there
   > * The exam is between Sunday 12/12/21 6:00pm to Monday 12/13/31 8:00pm 
-  > * it will consist of a quiz with two timed attempts allowed. The portions are *comprehensive**
+  > * it will consist of a quiz with two timed attempts allowed. The portions are *comprehensive*
   > * The exam will also ask you to do work on Jove notebooks and submit the results
   > * The portions will be those since Midterm-2
       This work will involve building machines, reasoning about mapping reductions, and the use of the BDD, PCP and Lambda Calculus Tools
