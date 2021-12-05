@@ -249,10 +249,10 @@ n
 * Week-15 **Reading** Chapter 18.  __Outcomes:__  Learn the basics of
   Lambda calculus and show how it models programs.
    - 29:12/6
-     - Review for Finals
+     - Lambda Calculus
 
    - 30:12/8
-     - More review
+     - Review For Finals
    
 * FINAL EXAM is on Canvas, Monday 12/13/20, 6:00pm - 8:00pm 
   
