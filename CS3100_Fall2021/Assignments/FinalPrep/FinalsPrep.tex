@@ -1,0 +1,356 @@
+
+% --------------------------------------------------------------
+% This is all preamble stuff that you don't have to worry about.
+% Head down to where it says "Start here"
+% --------------------------------------------------------------
+
+\documentclass[12pt]{article}
+
+\usepackage{graphicx,url}
+\usepackage{proof}
+\usepackage{framed}
+\usepackage{etaremune}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage{paralist}
+\thispagestyle{empty}
+
+% 1. To get version suitable for students to populate,
+%    remove the contents of the \ignoreSoln{..body..}
+%
+% 2. To get a version suitable for generating PDF 
+%    without solutions, remove the #1 below
+%
+% 3. To generate solutions, keep the #1 below
+%
+% 4. Assigned grader fills \ignoreSoln{..body..}
+%    and also provides his/her feedback to student
+%    and policy followed for point deduction
+%    So design policy before grading begins.
+
+\newcommand{\ignoreSoln}[1]{#1}   
+%\newcommand{\ignoreModel}[1]{#1} 
+
+
+\newcommand{\bigset}[2]{\big\{\;#1\;:\;#2\;\big\}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Np}{\mathbb{N^{+}}}
+
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{reflection}[2][Reflection]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\DeclareMathSizes{14}{14}{14}{14}
+
+\begin{document}
+
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+
+%\renewcommand{\qedsymbol}{\filledbox}
+
+
+\begin{center}
+\begin{large}
+  CS 3100, Fall 2021, Finals Prep, Dec 8, 2021
+  \ \\
+\end{large}
+
+
+\end{center}
+\date{}
+
+
+\begin{enumerate}
+
+\item Show that $Y = (\lambda f. \; (lambda x.\; f(x\; x))\; (lambda x.\; f(x\; x)) )$
+   is a fixed-point combinator.
+
+ \item Show that $Ye$
+   is a fixed-point combinator for eager languages.
+ \item[] $Y_e G = (\lambda f. (\lambda x. (xx) [\lambda y. f(\lambda v. ((yy )v))])G$.
+
+\item Write a recursive function that sums from $N$ down to $1$ and
+  express its using the $Ye$ combinator. Demonstrate, by running, the series summation
+  from a few numbers (e.g., 10, 50, 100) down to 1.
+
+\item Is \( L_{emptycfg} =
+    \{ \langle G\rangle \;:\; L(G)=\emptyset \}\) recursive? Here,
+    $G$ is a CFG.
+
+    \begin{compactenum}
+    \item[] {\sf Answer: Yes. Keep sweeping from the start symbol of $G$
+      to see if $G$ gets caught up in infinite recursion. Actually sweep
+      from the terminals back to the $S$ (start) symbol of $G$. Somehow
+      if $G$ manages to produce any string $s$ at all, then $L(G)\neq\emptyset$.
+      Else it is equal to $\emptyset$.
+      }
+    \end{compactenum}
+
+
+ \item Is \( L_{G1eqG2} =
+    \{ \langle G_1,G_2\rangle \;:\; L(G_1)= L(G_2) \}\) RE, where
+    $G_1$ and $G_2$
+    are CFGs?
+
+    \begin{compactenum}
+    \item[] {\sf Answer: No.
+      If you find a string $w$ accepted by one grammar but not the other, then
+      the grammars are not language-equivalent.
+      But if you keep finding all $w$ within the language of both grammars, you can't stop.
+      Intuitively, grammar equality is not established with one string accepted by both.
+      One has to ``exhaust'' all strings.
+      The formal proof was discussed as a canvas response but not needed.
+      }
+    \end{compactenum}
+
+
+  \item Prove that there exist non-RE languages.
+    \begin{sf}
+      Argue how each RE language can be represented by a bit-vector, calling
+      the bits
+
+      \begin{footnotesize}
+\begin{verbatim}
+L0  b00 b01 b01 ...
+L1  b10 b11 b12 ...
+L2  b21 b22 ...
+L3 ...
+\end{verbatim}
+      \end{footnotesize}
+      Now consider the complemented diagonal. Write it out. Argue
+      how it compares with each of the languages L0, L1, ...
+    \end{sf}
+    \begin{compactenum}
+    \item[] {\sf Detailed Answer: Attempt to show that all TMs can be
+      ``numbered'' (listed out). Thus, all the RE languages can be numbered.
+      That is what I mean by L0, L1, L2, ... above.
+      But now, one can find ONE language not in ANY of these languages.
+      This is discussed in Appendix-C of the book (last ``chapter'').}
+    \end{compactenum}
+
+
+    %=================================================================
+    
+  \item Prove that the set of Turing  machines $T$ that halt when
+    started with input string $w$, and
+    that do not write outside of positions $p_1$
+    and $p_2$ on the tape ($p_1\leq p_2$) is recursive.
+  \item[]
+    \begin{sf}
+      Answer:
+    \begin{compactenum}
+    \item Notice that the TM is not allowed to write more than
+      a finite number of cells.
+    \item Keep simulating this TM, observing the IDs attained
+      by the TM.
+    \item The number of IDs is finite. So when the IDs begin repeating
+      and the TM has not yet halted, we can conclude that the
+      TM will never halt.
+    \item Following the aforesaid algorithm, we can conclude
+      that this set of $\langle T,w,p_1,p_2\rangle$ is recursive.
+    \end{compactenum}
+    \end{sf}
+
+        %=================================================================
+    
+  \item Argue that
+    RE sets are closed under union, concatenation, intersection, reversal.
+  Here is a taste for one proof (closure under intersection); write the others:
+
+  \begin{sf}
+    Answer:
+  \begin{compactitem}
+  \item Define the following TM that takes $M_1$ and $M_2$:
+      \begin{compactitem}
+  \item intersectM1M2($M_1$,$M_2$):
+  \item run $M_1$ and $M_2$ in dovetail order on inputs, also
+    generated by the dovetail enumeration procedure
+  \item When this simulation notices $M_1$ and $M_2$ accepting
+    some string, it emits that string
+  \item This procedure now lists all strings in $M_1$ and $M_2$.
+      \end{compactitem}
+  \end{compactitem}
+  \end{sf}
+
+  %=================================================================
+
+\item Present and prove a mapping reduction from
+  $A_{TM}$ to $CFL_{TM}$.
+
+    %=================================================================
+    
+  \item 
+  Do Problem 5, Page 232, Exercise 15.2.3 of our book.
+  This asks you to perform
+  a mapping reduction from the PCP to the CFG Ambiguity problem,
+  and thus argue that if there is a decider for the CFG Ambiguity problem,
+  then there will be a decider for PCP also.
+  %
+  The languages involved in this exercise are now formally defined:
+  %
+  PCP is defined on Page 229, Section 15.2, and reproduced below:\\
+Given any alphabet $\Sigma$ such that $|\Sigma| > 1$, consider the
+{\em tile alphabet} ${\cal T}\subseteq \Sigma^{+} \times \Sigma^{+}$.
+%
+Define
+\[ PCP = \{ S \;:\; S \; {\rm is\; a\; finite\; sequence\;
+\;of
+\;elements
+\;over
+\; {\cal T}\; that\; has\; a\; solution}\}.\]
+
+Also, define
+    \[ Amb = \{ \langle G\rangle \;:\; G \;{\rm is}\; {\rm a}\; CFG
+    \;{\rm that}\; \;{\rm has}\; > 1 \;{\rm parse}\; \;{\rm for}\;
+    \;{\rm some}\; w\in\Sigma^{*}\}\]
+
+
+  %---
+  \begin{enumerate}
+\item[] \label{pcpambmr}
+    Here is how we can build a mapping reduction from
+PCP to Amb; please fill in missing steps
+(if any) and argue that the mapping reduction actually works
+(achieves its purpose).
+\item[]
+Let
+\[ A = w_1,w_2,\ldots,w_n \]
+and
+\[ B = x_1,x_2,\ldots,x_n \]
+be two lists of words over a finite alphabet $\Sigma$.
+Let $a_1,a_2,\ldots,a_n$ be symbols that do not appear in any of 
+the $w_i$ or $x_i$.
+Let $G$ be a CFG
+\[ (\{S,S_A,S_B\},\; \Sigma\cup\{a_1,\ldots,a_n\},\; P, \; S), \]
+where $P$ contains the productions
+\begin{itemize}
+  \item[] $S\rightarrow S_A$,
+  \item[] $S\rightarrow S_B$,
+  \item[] For $1\leq i\leq n$, $S_A\rightarrow w_i S_A a_i$,
+  \item[] For $1\leq i\leq n$, $S_A\rightarrow w_i a_i$,
+  \item[] For $1\leq i\leq n$, $S_B\rightarrow x_i S_B a_i$, and
+  \item[] For $1\leq i\leq n$, $S_B\rightarrow x_i a_i$.
+\end{itemize}
+Now, argue that $G$ is ambiguous if and only if the PCP instance 
+$(A,B)$ has a solution
+(thus, we may view the process of going from $(A,B)$ to 
+$G$ as the desired mapping reduction). \hfill $\Box$
+  \end{enumerate}
+
+  %---
+  \begin{enumerate}
+  \item 
+    Using the mapping reduction proposed in Exercise 15.2.3, 
+    argue that
+    if the PCP system has a solution, then the mapped object---the CFG---is
+    ambiguous.
+    %
+    It asks you to argue more formally as follows in your answer:
+    
+    \begin{enumerate}
+    \item 
+      ``Suppose the given
+      PCP system {\bf has} a solution;
+     then a direct consequence of this
+      is [THIS].'' Here, in your answer, you have to say what it means for
+      a {\em common} string being parsed using the grammar resulting from
+      this mapping reduction. Elaborate on ``[THIS]'' in 3-4 tight sentences.
+
+
+    \item The translated grammar must then have [THIS] property with respect
+      to ambiguity. Write that down formally.
+      
+    \end{enumerate}
+    
+  \item Show that if the PCP system has no solution,
+    then the mapped object (CFG)
+    is not ambiguous.
+    %
+    Argue the following carefully: suppose the PCP instance has no solution;
+    could the generated CFG still admit some common string that produces
+    two parse trees? What rules that out?
+
+
+
+  \end{enumerate}
+
+\item[] {\bf Solution}
+
+  
+\begin{itemize}
+\item We design a mapping reduction that takes a PCP instance and emits the desired CFG. 
+
+\item By our design, we can see that we have woven the PCP instance tile upper
+  and lower halves into two alternate production schemes that split-off at $S_A$ and $S_B$. 
+
+\item If the PCP instance has a solution, we can see a way to force ambiguity by forcing $S_A$ 
+  and $S_B$ to produce the same output string,
+  namely a sequence of $w_i$ followed by $a_i$ or  a sequence of $x_i$ followed by $a_i$. 
+
+\item But since the $w_i$ and $x_i$ sequences are the same (PCP instance has a solution), we will obtain it only by matching the $a_i$ sequences; this shows that a parallel production scheme is to be taken via $S_A$ and $S_B$.
+
+\item[] {\em In more detail,}
+
+\item We can 
+  see that if the PCP instance has no solution, there is no alternate production sequence that will match up the derived strings (the $a_i$ tails must still match). 
+
+\item Thus, there will be no string that has two parses.
+
+\item The $a_i$ symbols are not present in $\Sigma$.
+ 
+\item Thus, any time a string has two parses, the "tail" $a_i$ sequences
+  must agree.
+  
+\item Further, the "head" sequences in $w_i$ and $x_i$
+  must agree, which corresponds to the PCP instance having a
+  solution.
+
+
+\item If the PCP instance has a solution, the mapped CFG will admit a common 
+  $w_i$ and $x_i$ sequence. The tail $a_i$ sequence can be matched as well.
+ 
+\item This results in an ambiguous parse for some string that is derived by concatenating
+  the PCP instance solution with a corresponding $a_i$ tail sequence.
+
+\item Suppose the PCP instance has no solution. 
+
+\item Thus, there is no arrangement of the individual $w_i$s and matching $x_i$s
+  such that the $w_i$ sequence agrees with the $x_i$ sequence. 
+
+\item Is it still possible that there is a common string generated by the CFG?
+  This is impossible as the $w_i$ and $x_i$ do not have common symbols over the $a_i$. 
+
+\item Thus the only way common strings can be formed is ruled out by the $w_i$ and $x_i$ sequence matches being ruled out -- or that the CFG never generates ambiguous parses.
+\end{itemize}
+
+
+
+\item Review the P-time mapping reduction from 3SAT to Clique.
+
+\item Show that if a 3CNF formula is a contradiction, then for any variable assignment,
+  there is one clause that attains the value assignment ``TTT'' for its
+  literals, and another clause that attains the value assignment ``FFF''
+
+\item Review the P-time mapping reduction from 3SAT to Three-color.
+
+
+
+\end{enumerate}
+
+\end{document}
+
+
