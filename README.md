@@ -1,8 +1,3 @@
-
-* Breaking news!
-  - We have ported Dr. Tyler Sorensen's BDD tool into Jove (discussed in 21_NPC_Lambda)
-  - This was given via a web interface (http://formal.cs.utah.edu:8080/pbl/BDD.php) which is under maintenance (sometimes)
-  - Check it out by running BDD.ipynb :) where this web dependency is removed!
   
 * TL; DR
   - THE CONTENTS of this webpage are based on my textbook
@@ -101,6 +96,12 @@
 [bookurl]: https://www.amazon.com/Automata-Computability-Programmers-Ganesh-Gopalakrishnan-dp-036765654X/dp/036765654X/ref=mt_other?_encoding=UTF8&me=&qid=
 
 [cacmnote]: https://cacm.acm.org/magazines/2020/10/247591-using-computer-programs-and-search-problems-for-teaching-theory-of-computation/fulltext
+
+
+  - We have ported Dr. Tyler Sorensen's BDD tool into Jove (discussed in 21_NPC_Lambda)
+  - This was given via a web interface (http://formal.cs.utah.edu:8080/pbl/BDD.php) which is under maintenance (sometimes)
+  - Check it out by running BDD.ipynb :) where this web dependency is removed!
+
 
 **[The End, ... but Marvel at Jove, creator of the "double anti-whammy!"](https://www.nytimes.com/2009/07/26/weekinreview/26overbye.html) **
 
