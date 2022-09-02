@@ -25,9 +25,37 @@
 
    - 3:8/29
      - Run the Notebooks within 02_Basic_DFA/
-     - Quiz-2 given; covers L3,4
-     - Asg-2 given,  covers L3,4
+     - Quiz-2 covers L3,4
+     - Asg-2  covers L3,4
    - 4:9/2
-     - Run the Notebooks within 03_Advanced_DFA/ 
+     - Run the Notebooks within 03_Advanced_DFA/
+
+* Week-3 **Reading** Chapter 6 (skip 6.4 and 6.5), 7.  __Outcomes:__
+Outcomes: Understand the importance of nondeterminism in computer
+  science, and what nondeterministic finite-state automata are. They understand how to
+  convert NFA to DFA via subset construction. They are able to witness, through actual
+  hands-on activity, that NFA can blow up exponentially when converted to DFA. They
+  may also obtain a DFA directly, and check against results from NFA2DFA using a
+  DFA graph isomorphism check, thus showing the power of the Myhill-Nerode theorem to
+  help check one software construction method against the other, to catch bugs.
+
+     9/2: Quiz-3 covers L5
+   
+   - 5:9/7
+     - Run the Notebooks within 04_NFA/
+     - Run the Notebooks within 05_NFA2DFA/
+   
+* Week-4 **Reading** Chapter 8, 9.  __Outcomes:__
+  Understand what regular expressions are, and how they
+  can be converted into NFA, and back to RE. They understand all the algorithmic
+  details, solving interesting real-world problems using regular expressions, including
+  error-correcting finite-state machines, and the encoding of the Postage Stamp Problem
+  (also known as the Coin Problem).
+
+   - 6:9/12
+     - Run the Notebooks within 06_RE/
+     
+   - 7:9/14
+     - Run the Notebooks within 07_NFA2RE/
 
 * -------------------------------------------------------
