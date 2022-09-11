@@ -259,6 +259,11 @@ def flTup(arg):
         # print('arg[1:]=',arg[1:])                
         t1 = flTup(arg[0])
         t2 = flTup(arg[1:])
+        #-- For "(", I put an "a", and for ")", I put a "z"
+        #-- These characters don't seem to trip-up AnimateDFA etc.
+        #-- Whereas, if you embed "(" and ")" below, AnimateDFA
+        #-- goes through its motions, but without painting anything
+        #-- into the "state circles" in the animation drawing.
         return "a"+t1+"_"+t2+"z"
 
     else:
