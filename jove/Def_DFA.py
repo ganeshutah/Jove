@@ -238,6 +238,31 @@ def comp_dfa(D):
                   Dt["q0"],
                   Dt["Q"]-Dt["F"])
 
+## Given a nest of tuples of strings, obtain a concatenation of their contents
+## Each leaf tuple (when you hit a ",") is changed to "_" and
+## Each hierarchical nest (('a','b'),'c') retains a ( or ) in the ID
+## This matches Def_md2mc.py t_ID conventions
+## Thus (('a','b'),'c') becomes '((a_b)_c)'
+## Thus (('a', (('a','b'),'c'),'d'), 'e') becomes '((a_(((a_b)_c)_d))_e)'
+#  isinstance(obj, tuple)
+#  isinstance(obj, str)
+#  isinstance(obj, int)
+
+def flTup(arg):
+    if isinstance(arg, str):
+        return arg # for 'a' etc
+    elif len(arg)==1 and isinstance(arg, tuple): # for ('a',) etc
+        return arg[0]    
+    elif isinstance(arg,tuple):
+        # print('arg=',arg)
+        # print('arg[0]=',arg[0])
+        # print('arg[1:]=',arg[1:])                
+        t1 = flTup(arg[0])
+        t2 = flTup(arg[1:])
+        return "("+t1+"_"+t2+")"
+    else:
+        print("Type of arg unrecognized; outside of flTup's precondition")
+        
 
 # ## DFA Union
 # 
@@ -245,9 +270,10 @@ def comp_dfa(D):
 
 # In[5]:
 
-def union_dfa(D1in, D2in):
+def union_dfa(D1in, D2in, flatten_states=False):
     """In : D1in (consistent DFA)
             D2in (consistent DFA)
+            If flatten_states (Boolean), it turns paired states into string
        Out: DFA for language union of D1in, D2in (consistent DFA). 
     """
     assert(is_consistent_dfa(D1in)), "Inconsist. DFA1 in union_dfa"
@@ -268,23 +294,38 @@ def union_dfa(D1in, D2in):
    
     # The states can be anything in the cartesian product
     Q     = set(product(D1["Q"], D2["Q"]))
+    if(flatten_states):
+        Q = set( map(lambda x: flTup(x), Q) )
     
     # Accept if one of the DFAs accepts
     F     = (set(product(D1["F"], D2["Q"])) | 
              set(product(D1["Q"], D2["F"])))
+    if(flatten_states):
+        F = set( map(lambda x: flTup(x), F) )    
     
     # Start a lock-step march from the respective q0
     q0    = (D1["q0"], D2["q0"])
+    if(flatten_states):
+        q0 = flTup(q0)
     
     # The transition function attempts to march both
     # DFAs in lock-step per their own transition functions
-    Delta = { ((q1,q2),ch) : (q1p, q2p) 
-               for q1 in D1["Q"] for q1p in D1["Q"] 
-               for q2 in D2["Q"] for q2p in D2["Q"] 
-               for ch in D1["Sigma"] 
-               if D1["Delta"][(q1,ch)] == q1p and
-                  D2["Delta"][(q2,ch)] == q2p }
-                                                          
+
+    if not(flatten_states):
+        Delta = { ((q1,q2),ch) : (q1p, q2p) 
+                  for q1 in D1["Q"] for q1p in D1["Q"] 
+                  for q2 in D2["Q"] for q2p in D2["Q"] 
+                  for ch in D1["Sigma"] 
+                  if D1["Delta"][(q1,ch)] == q1p and
+                     D2["Delta"][(q2,ch)] == q2p }
+    else:
+        Delta = { (flTup((q1,q2)),ch) : flTup((q1p, q2p)) 
+                  for q1 in D1["Q"] for q1p in D1["Q"] 
+                  for q2 in D2["Q"] for q2p in D2["Q"] 
+                  for ch in D1["Sigma"] 
+                  if D1["Delta"][(q1,ch)] == q1p and
+                     D2["Delta"][(q2,ch)] == q2p }
+        
     return pruneUnreach(
         mk_dfa(Q, D1["Sigma"], Delta, q0, F))
 
