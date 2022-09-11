@@ -345,6 +345,7 @@ def union_dfa(D1in, D2in, flatten_states=False):
 def intersect_dfa(D1in, D2in, flatten_states=False):
     """In : D1in (consistent DFA)
             D2in (consistent DFA)
+            If flatten_states (Boolean), it turns paired states into string    
        Out: DFA for language intersection of D1in, D2in (consistent DFA). 
     """
     assert(is_consistent_dfa(D1in)), "Inconsist. DFA1 in intersect_dfa"
