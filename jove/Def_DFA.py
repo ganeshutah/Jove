@@ -295,7 +295,7 @@ def union_dfa(D1in, D2in, flatten_states=False):
     # The states can be anything in the cartesian product
     Q     = set(product(D1["Q"], D2["Q"]))
     if(flatten_states):
-        Q = set( map(lambda x: flTup(x), Q) )o
+        Q = set( map(lambda x: flTup(x), Q) )
     
     # Accept if one of the DFAs accepts
     F     = (set(product(D1["F"], D2["Q"])) | 
