@@ -295,7 +295,7 @@ def union_dfa(D1in, D2in, flatten_states=False):
     # The states can be anything in the cartesian product
     Q     = set(product(D1["Q"], D2["Q"]))
     if(flatten_states):
-        Q = set( map(lambda x: flTup(x), Q) )
+        Q = set( map(lambda x: flTup(x), Q) )o
     
     # Accept if one of the DFAs accepts
     F     = (set(product(D1["F"], D2["Q"])) | 
@@ -336,7 +336,7 @@ def union_dfa(D1in, D2in, flatten_states=False):
 
 # In[6]:
 
-def intersect_dfa(D1in, D2in):
+def intersect_dfa(D1in, D2in, flatten_states=False):
     """In : D1in (consistent DFA)
             D2in (consistent DFA)
        Out: DFA for language intersection of D1in, D2in (consistent DFA). 
@@ -358,19 +358,34 @@ def intersect_dfa(D1in, D2in):
         D2 = totalize_dfa(D2in)
  
     Q     = set(product(D1["Q"], D2["Q"]))
-    
+    if(flatten_states):
+        Q = set( map(lambda x: flTup(x), Q) )
+        
     # This is the only difference with the union:
     # The final states are those when both DFA accept
     F     = set(product(D1["F"], D2["F"]))
+    if(flatten_states):
+        F = set( map(lambda x: flTup(x), F) )        
            
     q0    = (D1["q0"], D2["q0"])
-    Delta = { ((q1,q2),ch) : (q1p, q2p) 
-               for q1 in D1["Q"] for q1p in D1["Q"] 
-               for q2 in D2["Q"] for q2p in D2["Q"] 
-               for ch in D1["Sigma"] 
-               if D1["Delta"][(q1,ch)] == q1p and
-                  D2["Delta"][(q2,ch)] == q2p }
-                                                          
+    if(flatten_states):
+        q0 = flTup(q0)
+
+    if not(flatten_states):
+        Delta = { ((q1,q2),ch) : (q1p, q2p) 
+                  for q1 in D1["Q"] for q1p in D1["Q"] 
+                  for q2 in D2["Q"] for q2p in D2["Q"] 
+                  for ch in D1["Sigma"] 
+                  if D1["Delta"][(q1,ch)] == q1p and
+                     D2["Delta"][(q2,ch)] == q2p }
+    else:
+        Delta = { (flTup((q1,q2)),ch) : flTup((q1p, q2p)) 
+                  for q1 in D1["Q"] for q1p in D1["Q"] 
+                  for q2 in D2["Q"] for q2p in D2["Q"] 
+                  for ch in D1["Sigma"] 
+                  if D1["Delta"][(q1,ch)] == q1p and
+                     D2["Delta"][(q2,ch)] == q2p }
+        
     return pruneUnreach(
         mk_dfa(Q, D1["Sigma"], Delta, q0, F))
 
