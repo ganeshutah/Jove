@@ -259,7 +259,8 @@ def flTup(arg):
         # print('arg[1:]=',arg[1:])                
         t1 = flTup(arg[0])
         t2 = flTup(arg[1:])
-        return "~"+t1+"_"+t2+"-"
+        # return "~"+t1+"_"+t2+"-"
+        return t1+"_"+t2
     else:
         print("Type of arg unrecognized; outside of flTup's precondition")
         
