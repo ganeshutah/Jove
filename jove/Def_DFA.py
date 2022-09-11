@@ -242,13 +242,15 @@ def comp_dfa(D):
 ## Each leaf tuple (when you hit a ",") is changed to "_" and
 ## Each hierarchical nest (('a','b'),'c') retains a ( or ) in the ID
 ## This matches Def_md2mc.py t_ID conventions
-## Thus (('a','b'),'c') becomes '((a_b)_c)'
-## Thus (('a', (('a','b'),'c'),'d'), 'e') becomes '((a_(((a_b)_c)_d))_e)'
 #  isinstance(obj, tuple)
 #  isinstance(obj, str)
 #  isinstance(obj, int)
 
 def flTup(arg):
+    """Given a nested tuple of strings, flatten it.
+       As examples,
+       (('p','q'),'r') becomes 'aap_qz_rz'. ( -> a; ) -> z; , -> _
+    """
     if isinstance(arg, str):
         return arg # for 'a' etc
     elif len(arg)==1 and isinstance(arg, tuple): # for ('a',) etc
