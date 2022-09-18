@@ -829,15 +829,40 @@ def min_dfa(D, state_name_mode='succinct', chatty=False):  # Default state mode
         # Function state_combos also imparts a -1 for each state pair,
         # initializing the separation distance at -1.  
         ht = dict(state_combos(list(D["Q"])))
-    
+
+        # Mark final and non-final states to be 0-distinguishable.
+        # This is achieved by putting a 0 against those state pairs.
+        if (chatty):
+            print(" The initial Dynamic Programming State Table is:")
+        print('---------')
+        
+        sepFinNonFin(D, ht)
+        
+        Nstates = len(D["Q"])
+        RelevantColRow = list(ht.keys())[0:Nstates-1]
+        #print('RelevantColRow = ', RelevantColRow)
+        ColList = list(map(lambda x: x[1], RelevantColRow))
+        #print('ColList =', ColList)
+        RowFirst = RelevantColRow[0][0]
+
+        RowList = [RowFirst] + ColList[0:Nstates-2]
+
+        if (chatty):
+            #print(" The state pairs are:")
+            #print(" Col:")
+            for k in ColList:
+                print(' ', k)
+            print('    ', " ".join(RowList))
+          
+            print('---------')
+        
         # Mark final and non-final states to be 0-distinguishable.
         # This is achieved by putting a 0 against those state pairs.
         if (chatty):
             print("Separating final and non-final states (marking 0-distinguishable entries).")
             
-        sepFinNonFin(D, ht)
-        
         if (chatty):
+            print("Separating final and non-final states (marking 0-distinguishable entries).")            
             print("   The 0-distinguishable entries are:")
             for k in ht.keys():
                 if (ht[k]==0):
