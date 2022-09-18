@@ -58,4 +58,15 @@ Outcomes: Understand the importance of nondeterminism in computer
    - 7:9/14
      - Run the Notebooks within 07_NFA2RE/
 
+* Week-5 **Reading** Chapter 8, 9.  __Outcomes:__
+  Complete the aforesaid readings.
+
+   - 8:9/19
+     - Review of nfa2dfa, Brzozowski minimization,
+       classical minimization
+     - Run the Notebooks within 08_Min_DFA/
+     
+   - 9:9/21
+     - Study the notes in 09_Reg_PL/
+
 * -------------------------------------------------------
