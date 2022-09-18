@@ -743,8 +743,11 @@ def fixptDist(D, ht, chatty=False):
        Return fixpoint ht. Fixpoint is when ht ceases to change.
        
     """
+    Version = -1 # the Dyn Prog table version
     changed = True
     while changed:
+        Version += 1
+        print_dyn_prog_table(D, ht, Version, chatty)
         changed = False
         for kv in ht.items():              
             s0 = kv[0][0]
@@ -767,7 +770,7 @@ def fixptDist(D, ht, chatty=False):
                     if ht[(s0,s1)] == -1:
                         if ht[(ns0, ns1)] >= 0: 
                             if (chatty):
-                                print("   Found a distinguishable pair!")                 
+                                print("***  Found a distinguishable pair !! ***")     
                             ht[(s0,s1)] = ht[(ns0, ns1)] + 1                
                             if (chatty):
                                 print("      Since ", (ns0,ns1), " are ", ht[(ns0,ns1)], " distinguishable, marking ", (s0,s1), " as ", ht[(s0,s1)], " distinguishable.")
@@ -798,11 +801,46 @@ def fixptDist(D, ht, chatty=False):
                             
                     else:                                              
                         print("ht doesn't cover all reqd state combos. An internal inconsistency!")
+    print("*** The Dyn Prog tables have stabilized at the one below ***")
+    
+    print_dyn_prog_table(D, ht, Version, chatty)
+    
     return ht
 
 
 #----
 
+def print_dyn_prog_table(D, ht, Version, chatty):
+    """Print the version Version of the dyn. prog. table.
+       Note that -1 is printed as '.'
+    """
+    if (chatty):
+        Nstates = len(D["Q"])
+        RelevantColRow = list(ht.keys())[0:Nstates-1]
+        #print('RelevantColRow = ', RelevantColRow)
+        ColList = list(map(lambda x: x[1], RelevantColRow))
+        #print('ColList =', ColList)
+        RowFirst = RelevantColRow[0][0]
+
+        RowList = [RowFirst] + ColList[0:Nstates-2]
+        RowString = " ".join(RowList)
+
+        print('--------------------------------------------- ')
+        print(" Dyn Prog Table Version " + str(Version) + " is :")
+        print('--------------------------------------------- ')
+
+        # for each k in colList, see how many associations in ht
+        # form a list of lists as we sweep thru ColList
+
+        for k in ColList:
+            keyL = list(filter(lambda x: x[1]==k, ht))
+            tvalL = list(map(lambda x: ht[x], keyL)) # could include -1 
+            valL  = list(map(lambda x: "." if x==-1 else x, tvalL)) # change to "."
+            print('\t', k, '\t', "\t".join(list(map(str, valL))) )
+        print("")
+        print('\t\t', "\t".join(RowList))
+        print('--------------------------------------------- ')
+    
 
 def min_dfa(D, state_name_mode='succinct', chatty=False):  # Default state mode
     """
@@ -832,30 +870,10 @@ def min_dfa(D, state_name_mode='succinct', chatty=False):  # Default state mode
 
         # Mark final and non-final states to be 0-distinguishable.
         # This is achieved by putting a 0 against those state pairs.
-        if (chatty):
-            print(" The initial Dynamic Programming State Table is:")
-        print('---------')
-        
+
         sepFinNonFin(D, ht)
-        
-        Nstates = len(D["Q"])
-        RelevantColRow = list(ht.keys())[0:Nstates-1]
-        #print('RelevantColRow = ', RelevantColRow)
-        ColList = list(map(lambda x: x[1], RelevantColRow))
-        #print('ColList =', ColList)
-        RowFirst = RelevantColRow[0][0]
 
-        RowList = [RowFirst] + ColList[0:Nstates-2]
 
-        if (chatty):
-            #print(" The state pairs are:")
-            #print(" Col:")
-            for k in ColList:
-                print(' ', k)
-            print('    ', " ".join(RowList))
-          
-            print('---------')
-        
         # Mark final and non-final states to be 0-distinguishable.
         # This is achieved by putting a 0 against those state pairs.
         if (chatty):
@@ -880,7 +898,6 @@ def min_dfa(D, state_name_mode='succinct', chatty=False):  # Default state mode
         # Pick out equivalent state-pairs, i.e. those that cannot be 
         # distinguished. These are still with a "-1" in ht.
         ht_1 = [ stpair for (stpair, dist) in ht.items() if dist == -1 ]
-    
     
         if (chatty):
                 print("   The equivalent pairs are:")
