@@ -801,7 +801,8 @@ def fixptDist(D, ht, chatty=False):
                             
                     else:                                              
                         print("ht doesn't cover all reqd state combos. An internal inconsistency!")
-    print("*** The Dyn Prog tables have stabilized at the one below ***")
+    if chatty:
+        print("*** The Dyn Prog tables have stabilized at the one below ***")
     
     print_dyn_prog_table(D, ht, Version, chatty)
     
