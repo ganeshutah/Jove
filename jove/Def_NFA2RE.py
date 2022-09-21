@@ -130,7 +130,7 @@ def extend_Delta(Delta, new_edges):
     DeltaOut = copy.deepcopy(Delta)
     for ((a,b),C) in new_edges:
         if (a,b) in Delta:
-            DeltaOut.update ( { (a,b) : C | Delta[(a,b)] })
+            DeltaOut.update ( { (a,b) : (C | Delta[(a,b)]) }) # put paren
         else:
             DeltaOut.update ( { (a,b) : C })
     return DeltaOut
