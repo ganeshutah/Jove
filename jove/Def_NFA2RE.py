@@ -170,6 +170,7 @@ def del_gnfa_states(Gin, DelList=[]):
          final_re_str : the final RE as a string (ready to be fed to  
                         re2nfa for converting back to an NFA)
     """
+
     G = copy.deepcopy(Gin) # To preserve the given GNFA
     
     if DelList==[]:        # User hasn't provided a preferred order
@@ -187,14 +188,21 @@ def del_gnfa_states(Gin, DelList=[]):
         for p in StatesLeft:
             for q in StatesLeft:
                 new_p_q_label = del_one_gnfa_state(G, p, qdel, q)
+                print("new_p_q_label =", new_p_q_label)
+                print("new_p_q_label =", new_p_q_label)
                 if new_p_q_label != "NOPATH": # There is a p-qdel->q path
                     old_p_q_labels = Edges_Exist_Via(G, p, q) # Exist p-qdel->q edges?
+                    print("old_p_q_labels =", old_p_q_labels)
                     if old_p_q_labels != "NOEDGE":            # There are.
-                        combined_label = form_alt_RE( [new_p_q_label] + old_p_q_labels )                   
+                        combined_label = form_alt_RE( [new_p_q_label] + old_p_q_labels )
+                        print("combined_label =", combined_label)
                         New_Edges = extend_Delta(New_Edges, [((p, combined_label), set({q}))])
+                        print("New_Edges 1=", New_Edges)
                     else:
                         # Only new_p_q_label needs to be added
-                        New_Edges = extend_Delta(New_Edges, [((p, new_p_q_label), set({q}))])               
+                        New_Edges = extend_Delta(New_Edges, [((p, new_p_q_label), set({q}))])
+                        print("New_Edges 2=", New_Edges)
+                        
                 #else no new path involving qdel exists for THIS p,q pair
             #-end for
         #-end for
@@ -204,7 +212,8 @@ def del_gnfa_states(Gin, DelList=[]):
         Surviving_Edges = []  # These edges don't get nuked
         for ((q,symb), States) in G["Delta"].items():
             if (q != qdel): # (1) Removing all mappings out of qdel
-                Surviving_Edges += [ ((q,symb), States - { qdel }) ] # (2) Remove from images 
+                Surviving_Edges += [ ((q,symb), States - { qdel }) ] # (2) Remove from images
+                print("Surviving_Edges =", Surviving_Edges)
                  
         # Now bring in the brand new edges
         # When bringing in the new edges, it may clobber an already existing mapping
