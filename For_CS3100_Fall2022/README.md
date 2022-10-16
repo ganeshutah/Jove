@@ -69,4 +69,49 @@ Outcomes: Understand the importance of nondeterminism in computer
    - 9:9/21
      - Study the notes in 09_Reg_PL/
 
+
+* Week-6 **Reading** Chapter 4.6 through 4.8.  __Outcomes:__
+  Understand the limitations of finite automata by
+  studying the regular language Pumping Lemma. Also begin introducing
+  Pushdown Automata.
+  
+   - 12:
+     - Run the Notebooks within 10_PDA/
+
+* Week-7 **Reading** Chapters 11 (except 11.9), 12.  __Outcomes:__
+  More details of pushdown automata followed by an introduction to
+  context-free grammars and languages.  Ambiguity.
+  Consistency and Completeness.
+  
+   - 13:
+     - Run the Notebooks within 11_CFG/
+     - Run the Notebooks within 12_CFG2PDA/
+     
+   - 14:
+     - Conversion of CFG to PDA
+   
+* Week-8 **Reading** Chapters 11 (except 11.9), 12.  __Outcomes:__
+ Designing a calculator.
+ Understand how NFA can be translated into Linear CFGs.
+ The notions of Consistency and Completeness. Demonstration on simple grammars.
+ Chapters 10 (derivatives).
+  
+   - 15:
+     - Run the Notebooks provided within 13_Linearity_Amb/
+     - Run the Notebooks provided within 14_Calculator/
+     
+   - 16: (Tentative)
+     - The basics of derivative-based Pattern Matching.
+     - Run the Notebooks  provided within 15_Derivatives/     
+   
+* Week-9 **Reading** Now read 11.9 (a pumping lemma for
+  context-free languages).  __Outcomes:__
+  Applying the CFL PL for proving that a given language is
+  not context-free.
+  
+   - 17:
+     
+   - 18:
+     - Run the Notebooks within 17_DTMs_and_NDTMs/
+
 * -------------------------------------------------------
