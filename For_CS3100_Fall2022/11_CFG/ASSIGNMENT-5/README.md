@@ -1,0 +1,1 @@
+This assignment is mainly on CFLs, CFGs, and CFG to PDA conversion. It also focuses on ambiguity, derivations, and parse-trees. Finally, it exposes you to two parsers: one for a calculator, and another used inside Jove for parsing regular expressions and building NFAs out of them.
