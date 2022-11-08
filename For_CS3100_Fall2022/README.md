@@ -104,14 +104,14 @@ Outcomes: Understand the importance of nondeterminism in computer
      - The basics of derivative-based Pattern Matching.
      - Run the Notebooks  provided within 15_Derivatives/     
    
-* Week-9 **Reading** Now read 11.9 (a pumping lemma for
-  context-free languages).  __Outcomes:__
-  Applying the CFL PL for proving that a given language is
-  not context-free.
+* Week-9 **Reading** Start reading Chapter 13, TMs
   
-   - 17:
-     
-   - 18:
+   - 17: Ch13, TMs
      - Run the Notebooks within 17_DTMs_and_NDTMs/
+       and 18_More_TM_Exs/
+     
+   - 18: Begin Ch14, Ch15
+     - Run the notebooks in 19_Algo_Proc_PCP/
+
 
 * -------------------------------------------------------
