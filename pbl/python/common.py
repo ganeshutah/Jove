@@ -5,5 +5,5 @@ dot_PATH     =  "/usr/bin/dot"
 dot_ARGS     =  "-Tpng"
 rm           =  "rm"
 
-BDD_VAR_LENGTH = 14
-PBL_VAR_LENGTH = 14
+BDD_VAR_LENGTH = 98
+PBL_VAR_LENGTH = 98
