@@ -10,6 +10,8 @@
   - [Additional coverage of Jove][cacmnote]
      is in a CACM note published in October, 2020.
 
+  - For Binary Decision Diagrams, go into the "pbl" folder and run BDD.ipynb
+
   - Watch https://youtu.be/vhZGUFhm9fY
   - Now go to https://github.com/ganeshutah/Jove.git and go to For_CS3100_Fall2020
   - See my weekly lesson plans for a class I'm teaching
