@@ -824,8 +824,8 @@ def print_dyn_prog_table(D, ht, Version, chatty):
         RowFirst = RelevantColRow[0][0]
 
         RowList = [RowFirst] + ColList[0:Nstates-2]
-        print('RowList = ', RowList)
-        RowString = " ".join(RowList)
+        # print('RowList = ', RowList)
+        RowString = " ".join(map(str,RowList))
 
         print('--------------------------------------------- ')
         print(" Dyn Prog Table Version " + str(Version) + " is :")
@@ -840,7 +840,7 @@ def print_dyn_prog_table(D, ht, Version, chatty):
             valL  = list(map(lambda x: "." if x==-1 else x, tvalL)) # change to "."
             print('\t', k, '\t', "\t".join(list(map(str, valL))) )
         print("")
-        print('\t\t', "\t".join(RowList))
+        print('\t\t', "\t".join(map(str,RowList)))
         print('--------------------------------------------- ')
     
 
