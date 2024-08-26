@@ -824,6 +824,7 @@ def print_dyn_prog_table(D, ht, Version, chatty):
         RowFirst = RelevantColRow[0][0]
 
         RowList = [RowFirst] + ColList[0:Nstates-2]
+        print('RowList = ', RowList)
         RowString = " ".join(RowList)
 
         print('--------------------------------------------- ')
