@@ -90,13 +90,13 @@ def is_consistent_nfa(N):
     fn_range_Check = reduce(lambda x,y: x and y, 
                             [x <= Q for x in fn_range_Delta], True)
 
-    assert( Q       !={} ), "empty states"
-    assert(Sigma != {}), "empty sigma"
-    assert('' not in Sigma), "eps is in sigma"
-    assert( fn_dom_Delta <= set(product(Q, Sigma_w_Eps)) ), "Domain of Delta outside QxSigmaWEps"
-    assert(fn_range_Check), "Sets of range states spills outside allowd range"
-    assert( Q0 <= Q ), "Init states spill out of Q"
-    assert( F <= Q ), "Final states spill out of Q"
+#    assert( Q       !={} ), "empty states"
+#    assert(Sigma != {}), "empty sigma"
+#    assert('' not in Sigma), "eps is in sigma"
+#    assert( fn_dom_Delta <= set(product(Q, Sigma_w_Eps)) ), "Domain of Delta outside QxSigmaWEps"
+#   assert(fn_range_Check), "Sets of range states spills outside allowd range"
+#    assert( Q0 <= Q ), "Init states spill out of Q"
+#    assert( F <= Q ), "Final states spill out of Q"
     
     return (Q != {}          and
             Sigma != {}      and
