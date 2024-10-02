@@ -70,6 +70,8 @@ def is_partially_consistent_dfa(D):
 
 #-- for NFA
 
+# New Version with more checks
+#
 def is_consistent_nfa(N):
     """In : NFA N
        Out: Boolean (Given NFA's traits consistent?)
@@ -87,6 +89,14 @@ def is_consistent_nfa(N):
     # True added to reduce in case fn_range_Delta is empty
     fn_range_Check = reduce(lambda x,y: x and y, 
                             [x <= Q for x in fn_range_Delta], True)
+
+    assert( Q       !={} ), "empty states"
+    assert(Sigma != {}), "empty sigma"
+    assert('' not in Sigma), "eps is in sigma"
+    assert( fn_dom_Delta <= set(product(Q, Sigma_w_Eps)) ), "Domain of Delta outside QxSigmaWEps"
+    assert(fn_range_Check), "Sets of range states spills outside allowd range"
+    assert( Q0 <= Q ), "Init states spill out of Q"
+    assert( F <= Q ), "Final states spill out of Q"
     
     return (Q != {}          and
             Sigma != {}      and
@@ -95,9 +105,35 @@ def is_consistent_nfa(N):
             fn_range_Check   and
             Q0 <= Q          and
             F <= Q)
-    # Notice that Q0 is a subset of Q
-    # This is as per the new defn of NFA starting from
-    # a set of starting states, namely Q0.
+
+#-> def is_consistent_nfa(N):
+#->     """In : NFA N
+#->        Out: Boolean (Given NFA's traits consistent?)
+#->     """
+#->     fn_dom_Delta   = set(fn_dom(N["Delta"]))   # Set of states
+#->     fn_range_Delta = list(fn_range(N["Delta"]))# List of sets of states
+#->     Q     = N["Q"]
+#->     Sigma = N["Sigma"]
+#->     Delta = N["Delta"]
+#->     Q0    = N["Q0"]
+#->     F     = N["F"]
+#->     Sigma_w_Eps = (Sigma | set({""})) # Extended Alphabet
+#-> 
+#->     # Are all NFA transition targets (sets of states) in Q?
+#->     # True added to reduce in case fn_range_Delta is empty
+#->     fn_range_Check = reduce(lambda x,y: x and y, 
+#->                             [x <= Q for x in fn_range_Delta], True)
+#->     
+#->     return (Q != {}          and
+#->             Sigma != {}      and
+#->             "" not in Sigma  and
+#->             fn_dom_Delta <= set(product(Q, Sigma_w_Eps)) and
+#->             fn_range_Check   and
+#->             Q0 <= Q          and
+#->             F <= Q)
+#->     # Notice that Q0 is a subset of Q
+#->     # This is as per the new defn of NFA starting from
+#->     # a set of starting states, namely Q0.
 
 #-- for GNFA
 
