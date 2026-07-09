@@ -32,6 +32,9 @@ def pcp_oslink(OWN_INSTALL):
         elif ('darwin' in platform_name.lower()):
                 print("Detected platform Darwin")
                 src = 'pcpbinaries/pcp_mac'
+        elif ('macos' in platform_name.lower()):
+                print("Detected platform MacOS")
+                src = 'pcpbinaries/pcp_mac'
         else:
                 print("??? Undetected Platform : Compile for your os and")
                 print("Edit pcp_oslink() function to add an elif option for your os")
