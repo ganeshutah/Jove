@@ -168,6 +168,48 @@ effect is not the same as asserting that it had the intended effect.**
 
 The Unicode labels have been reverted; the icons are back as they were.
 
+## The trap that hid the fix: a stale Colab clone
+
+After the library fix was pushed and correct, the toolbar was **still** broken when
+tested — and the giveaway was that the cell printed
+`<jove.AnimateDFA.AnimateDFA at 0x...>`. That echo is impossible with the patched
+library, because `_ipython_display_` suppresses it. So the running Jove was not the
+patched one.
+
+The cause was in the notebook setup cell, inherited from the older notebooks:
+
+```sh
+! if [ ! -d Jove ]; then git clone -q https://github.com/ganeshutah/Jove Jove; fi
+```
+
+**It never updates an existing clone.** A Colab session keeps `/content` across
+notebooks, so once any Jove notebook has run, every later notebook in that session
+silently uses whatever was cloned first — fixes included. Testing a fix repeatedly in
+one session is exactly the workflow that guarantees you never see it.
+
+Two changes:
+
+```sh
+! if [ ! -d Jove ]; then git clone -q ... Jove; else git -C Jove pull -q --ff-only ...; fi
+```
+
+and the setup cell now **self-reports**, so this is answerable from the cell output
+rather than by guesswork:
+
+```
+Jove loaded from /content/Jove/jove
+animation toolbar fix: present
+```
+
+If that second line ever says `MISSING`, the library is stale and nothing downstream
+will behave.
+
+Note `jove` has no `__init__.py` — it is a **namespace package**, so `jove.__file__` is
+`None` and the directory has to come from `jove.__path__`. The first version of the
+self-check used `__file__`, which raised `TypeError` *outside* its own try block and
+would have broken the setup cell outright. The whole check now sits inside the try: a
+diagnostic must never be able to break the thing it is diagnosing.
+
 ## Verification
 
 | Check | Result |
