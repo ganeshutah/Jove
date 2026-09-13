@@ -15,6 +15,11 @@ exercises.
 
 ```
 Jove/
+  Basics/                       <- Appendix A, "A Recap of Discrete Math"
+    README.md
+    Concept-Powerset/
+      Concept-Powerset.ipynb
+    ...
   Chapter1/
     README.md
     Concept-Turing-Machine-Definition/
@@ -39,8 +44,8 @@ Jove/
 
 ## Status
 
-All eighteen chapters of the book are covered: **232 notebooks**, one per concept in
-the workbook's decomposition.
+All eighteen chapters are covered, plus Appendix A: **245 notebooks**, one per
+concept in the workbook's decomposition.
 
 | Chapter | Concepts | With animation |
 |---|---:|---:|
@@ -62,12 +67,21 @@ the workbook's decomposition.
 | 16 &mdash; NP-Completeness | 12 | 0 |
 | 17 &mdash; Binary Decision Diagrams as Minimal DFA | 7 | 1 |
 | 18 &mdash; Computability Using Lambdas | 10 | 0 |
-| **Total** | **232** | **80** |
+| **Basics** &mdash; A Recap of Discrete Math (Appendix A) | 13 | 3 |
+| **Total** | **245** | **83** |
 
-A chapter has few animations when its subject is not a machine. Chapters 2, 3 and 11
+`Basics/` holds Appendix A rather than a chapter, so it is named for what it is
+instead of getting a fictitious chapter number. It is the discrete-maths
+prerequisite material — sets, powersets, equivalence relations, logic and
+quantifiers, relations and functions, trees — and each concept is tied forward to
+where the book uses it: residue classes to the mod-3 DFA, powersets to the subset
+construction, the $b^n$ tree bound to the context-free pumping constant.
+
+A unit has few animations when its subject is not a machine. Chapters 2, 3 and 11
 are about languages and grammars; 15 and 16 are about reductions and complexity;
-18 is about lambda terms. Where there *is* a machine worth stepping through, it is
-animated.
+18 is about lambda terms; the Basics are discrete maths. Where there *is* a machine
+worth stepping through, it is animated — including in three of the Basics notebooks,
+where the maths has a machine behind it.
 
 Some chapters need machinery Jove does not ship, and the notebooks build it
 themselves rather than importing something that is not there:
@@ -89,4 +103,5 @@ still works.
 
 These notebooks are generated, not hand-edited. The generators live in the companion
 workbook repo at `Concepts/tools-concept/nbgen/`, alongside the prose decomposition
-(`Concepts/Chapter-<N>-Concept-<M>.md`) that each notebook illustrates.
+that each notebook illustrates — `Concepts/Chapter-<N>-Concept-<M>.md` for the
+chapters, `Concepts/Basics-Concept-<N>.md` for `Basics/`.
