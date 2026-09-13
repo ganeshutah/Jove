@@ -15,7 +15,7 @@ state does not come along. That is Colab's model; no link can change it.
 So "go to the next concept" and "keep my session" are two different wishes, and they
 need two different mechanisms. `jove/Nav.py` provides both.
 
-## `nav()` — find and follow
+## `nav()` — the search picker, at the end
 
 The last cell of every concept notebook is:
 
@@ -36,6 +36,38 @@ highlighted concept. Clicking opens it in a new tab — and a new runtime.
 
 `here` is baked in at generation time because Colab runs with `cwd=/content` and the
 notebook file is not on disk, so the module cannot work out which concept called it.
+
+## The static strip — mid-notebook, no execution needed
+
+A markdown cell sits in the **middle** of every notebook, just before `## 3. Tests`:
+
+```
+---
+← Ch2 9. Language Concatenation  ·  **Chapter 2** index  ·  Ch2 11. Python Encodings →
+---
+```
+
+Plain links, so they need **no execution at all**. They render the moment the page
+loads — before the setup cell has run — and they work on GitHub's static preview,
+where a widget shows nothing.
+
+Two placement decisions:
+
+* **Middle, not top.** A strip under the title pushes the actual content below the
+  fold. The middle is reachable with little scrolling from either end.
+* **Snapped to a section heading.** Inserting at a raw cell midpoint would sometimes
+  land between a definition and the test that exercises it. Snapping to the nearest
+  `##` heading puts it on a seam that is already there — in practice always just
+  before `## 3. Tests`.
+
+It is injected by a **post-pass**, `nbgen/insert_nav_strip.py`, not by `nbuild`: a
+generator builds one notebook at a time and does not know the global reading order
+across chapters. The post-pass reads `jove.Nav.index()`, so the links are correct by
+construction. It is idempotent — an existing strip is replaced, never stacked.
+
+Verified across all 245: exactly one strip each, **every linked path checked against
+disk**, prev/next matching the index order, and the two chain endpoints correctly
+missing their back and forward arrows.
 
 ## `load_here()` — stay in this session
 
