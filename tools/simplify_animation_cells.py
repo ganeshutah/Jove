@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Drop the now-redundant font-awesome line from animation cells.
 
-Run tools/drop_fontawesome_dependency.py FIRST.  Once the Animate* classes no
-longer use font-awesome icons and no longer echo their repr, the trailing
+Run tools/fix_animation_toolbar.py FIRST.  Once Animate*.__init__ loads the
+font-awesome stylesheet itself and no longer echoes its repr, the trailing
 
     display(HTML('<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/
                   font-awesome/4.7.0/css/font-awesome.min.css"/>'))
@@ -13,7 +13,7 @@ serves no purpose and can be deleted, leaving
     AnimateDFA(myDFA, FuseEdges=True)
 
 Removing it is SAFE but not required: with the library patched, leaving the
-line in place is merely a redundant stylesheet fetch.
+line in place merely loads the stylesheet twice, which is harmless.
 
 Only cells that actually call an Animate* constructor are touched, and only
 the font-awesome display line within them.  Use --scope to limit which tree

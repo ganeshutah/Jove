@@ -46,18 +46,16 @@ Worth running after any bulk notebook edit, and before publishing links students
 will click.
 
 
-## `drop_fontawesome_dependency.py`
+## `fix_animation_toolbar.py`
 
-Removes Jove's font-awesome dependency at the source, so animation cells no
-longer need the per-cell stylesheet line at all.
+Makes the animation toolbar work with no per-cell boilerplate.
 
 ```sh
-python3 tools/drop_fontawesome_dependency.py           # dry run
-python3 tools/drop_fontawesome_dependency.py --write   # apply
-python3 tools/drop_fontawesome_dependency.py --write --ascii   # '<<' / '>>' labels
+python3 tools/fix_animation_toolbar.py           # dry run
+python3 tools/fix_animation_toolbar.py --write   # apply
 ```
 
-### What the old boilerplate was actually for
+### What the old boilerplate was for
 
 ```python
 from jove.AnimateDFA import *
@@ -65,36 +63,37 @@ AnimateDFA(myDFA, FuseEdges=True)
 display(HTML('<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>'))
 ```
 
-That one line did **two unrelated jobs**, which is why it could not simply be
-hoisted to the top of the notebook:
+Two unrelated jobs in one line:
 
-1. **It loaded the stylesheet.** It had to repeat per cell because Colab renders
-   each cell's output in its own sandboxed iframe, so a `<link>` injected by one
-   cell does not reach another cell's output.
-2. **It returned `None`.** `Animate*.__init__` already calls `display()` on the
-   widget, so a cell *ending* in the constructor also printed
-   `<jove.AnimateDFA.AnimateDFA at 0x...>` over the toolbar.
+1. **Loading font-awesome**, which the toolbar glyphs need. It could not be hoisted to
+   the top of the notebook because **Colab renders each cell's output in its own
+   sandboxed iframe** — a `<link>` from one cell never reaches another cell's output.
+2. **Returning `None`.** `Animate*.__init__` already `display()`s the widget, so a cell
+   *ending* in the constructor also echoed `<jove.AnimateDFA.AnimateDFA at 0x...>`.
+   That is why the line had to come **last**.
 
-### What the script changes
+### Which buttons need font-awesome
 
-**The icons.** The only font-awesome consumers in the whole library were two
-buttons per Animate class — `Button(icon='step-backward')` and
-`Button(icon='step-forward')`, eight lines in total. ipywidgets renders `icon=`
-as `<i class="fa fa-step-forward">`, which is empty without the stylesheet.
-They become Unicode `description=` labels (`|◀`, `▶|`), so there is no CDN
-dependency left and the toolbar works offline.
+All of them, and font-awesome cannot be designed away:
 
-The `Play` widget needed nothing — under ipywidgets 8 it draws its own
-controls — so it was never the reason for the link.
+| Button | Rendered by | Needs fa |
+|---|---|---|
+| step-backward, step-forward | Jove, `Button(icon='step-…')` | yes |
+| play, pause, stop | **the ipywidgets frontend, in JS** (`fa-play`, `fa-pause`, `fa-stop`) | yes |
+| "Animate" | Jove, `Button(description=...)` | no |
 
-**The echo.** A no-op `_ipython_display_` is added to each Animate class.
-IPython then produces an **empty mimebundle** for the object and emits no
-`Out[n]` at all. (`__repr__` returning `''` does *not* do this: it still emits a
+The `Play` buttons are built in JavaScript; no Python-side change reaches them, and
+`Play` has no `icon` trait at all.
+
+### The fix
+
+**Load the stylesheet from inside `__init__`.** It runs in the cell that creates the
+widget, so the `<link>` lands in that cell's output area — the same iframe as the
+widget. Every animation cell gets it with nothing written by hand.
+
+A no-op `_ipython_display_` handles the echo: IPython then emits an **empty
+mimebundle**. (`__repr__` returning `''` does *not* work — it still emits a
 `text/plain` of `''`, leaving a blank output area.)
-
-This is **backward compatible**. Existing notebooks end the cell with the
-font-awesome line, so the constructor's value is never echoed and the hook is
-never reached; the widget still comes from `__init__` exactly as before.
 
 ### After
 
@@ -105,23 +104,26 @@ AnimateDFA(myDFA, FuseEdges=True)
 
 ### Not covered
 
-`jove/JoveEditor.py` is a separate component with its own `icon=` button and its
-own font-awesome line. It is untouched.
+`jove/JoveEditor.py` is a separate component with its own `icon=` button and its own
+font-awesome line. It is untouched.
+
+See `Fixes_md/Font_awesome_fix.md` for the full write-up, including a first attempt
+that was wrong and why.
 
 ---
 
 ## `simplify_animation_cells.py`
 
 Deletes the now-redundant font-awesome line from animation cells. Run
-`drop_fontawesome_dependency.py` first.
+`fix_animation_toolbar.py` first.
 
 ```sh
 python3 tools/simplify_animation_cells.py --scope 'Chapter*/*/*.ipynb'
 python3 tools/simplify_animation_cells.py --scope 'Chapter*/*/*.ipynb' --write
 ```
 
-Removing the line is **safe but optional** — with the library patched, leaving it
-in place is merely a redundant stylesheet fetch. Only cells that actually call an
+Removing the line is **safe but optional** — with the library patched, leaving it in
+place merely loads the stylesheet twice, which is harmless. Only cells that actually call an
 `Animate*` constructor are touched.
 
 ---
@@ -139,10 +141,12 @@ python3 tools/fix_animation_fontawesome.py           # report, exits 1 if any
 python3 tools/fix_animation_fontawesome.py --write   # fix in place
 ```
 
-> **Superseded by `drop_fontawesome_dependency.py`.** Once the library no longer
-> uses font-awesome icons, the ordering rule below no longer has anything to
-> enforce. The script is kept because it documents the failure it was written
-> for, and because it still reports correctly on notebooks that retain the line.
+> **Superseded by `fix_animation_toolbar.py`.** Once `Animate*.__init__` loads the
+> stylesheet itself, the per-cell line is redundant and the ordering rule below has
+> nothing left to enforce. The script is guarded so that `--write` cannot add the
+> lines back; note the guard keys off **the loader in `__init__`, not off the icons**,
+> because the icons are still there. It is kept because it documents the failure it
+> was written for.
 
 ### The rule it enforces
 

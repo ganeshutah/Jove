@@ -18,8 +18,8 @@ display(HTML('<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awe
 
 Leave the third line out and one of two things went wrong:
 
-* the toolbar's **step buttons were invisible** — the play/pause control appeared,
-  but the two stepping buttons next to it were blank; or
+* the toolbar's **buttons were invisible** — play, pause, stop, step-back and
+  step-forward all rendered as blank space; or
 * the cell printed **`<jove.AnimateDFA.AnimateDFA at 0x7853472c5e50>`** where the
   toolbar should have been.
 
@@ -29,85 +29,84 @@ the `Animate*` call. Put it first and the animation broke again.
 ## Why the obvious fixes don't work
 
 The natural reaction is "load the stylesheet once at the top of the notebook". That
-fails, and the reason is worth knowing:
+fails, and the reason is the crux of the whole problem:
 
 > **Colab renders each cell's output inside its own sandboxed iframe.**
 
 A `<link>` injected into cell 3's output area is in a *different document* from cell
-9's output area. The stylesheet genuinely has to be re-injected per cell — so long as
-the toolbar depends on it at all.
-
-That rules out every notebook-level workaround: a setup-cell `display(HTML(...))`, a
-`%%html` cell, a custom.css, an `IPython.display` hook at import time. All of them fix
-the local Jupyter case and none of them fix Colab.
-
-Which points at the real answer: **stop depending on the stylesheet.**
+9's output area. So a setup-cell `display(HTML(...))`, a `%%html` cell, a `custom.css`,
+an import-time hook — all of them fix the local Jupyter case and none of them fix
+Colab. The stylesheet has to reach **the output area of the cell that draws the
+toolbar**.
 
 ## Diagnosis: one line doing two unrelated jobs
 
 The reason the line resisted tidying is that it was two fixes stapled together.
 
-**Job 1 — load the CSS.** `ipywidgets` renders `Button(icon='step-forward')` as
-`<i class="fa fa-step-forward">`. That element is *empty* unless font-awesome is
-loaded; hence invisible buttons. (Under ipywidgets 7 the classic notebook shipped
-font-awesome itself, so this used to work by accident. JupyterLab and Colab do not.)
+**Job 1 — load the CSS.** Font-awesome supplies the toolbar glyphs. Per the above, it
+has to be loaded per cell.
 
 **Job 2 — return `None`.** `Animate*.__init__` already calls `display()` on the widget
 it builds. So a cell whose **last expression** is the constructor gets the widget *and*
 Jupyter's echo of the returned object's `repr`. `display(...)` returns `None`, and a
 cell ending in `None` echoes nothing — so the line was accidentally suppressing the
-repr as well. That is the whole explanation for "it must come last".
+repr as well. That is the entire explanation for "it must come last".
 
-Each job needed its own fix.
+## Which buttons need font-awesome, and why you cannot design it away
 
-## Fix 1 — the icons
+All of them — and not for the reason the Python source suggests.
 
-The entire font-awesome dependency in Jove turned out to be **eight lines**: two
-buttons in each of the four Animate classes.
+| Button | Rendered by | Needs font-awesome |
+|---|---|---|
+| step-backward, step-forward | Jove, `Button(icon='step-…')` | yes — becomes `<i class="fa fa-step-forward">` |
+| play, pause, stop | **the ipywidgets frontend, in JavaScript** | yes — it emits `fa-play`, `fa-pause`, `fa-stop` |
+| "Animate" | Jove, `Button(description='Animate')` | no — plain text |
+
+The `Play` widget is the decisive one. Its buttons are constructed by the ipywidgets
+**frontend**, not by Jove's Python:
 
 ```
-jove/AnimateDFA.py:109   Button(icon='step-backward', ...)
-jove/AnimateDFA.py:113   Button(icon='step-forward',  ...)
-jove/AnimateNFA.py:105   ... and the same pair in NFA, PDA, TM
+$ grep -l 'fa-play\|fa-pause\|fa-stop' $(python -c "…")/widgetsnbextension/static/extension.js
+widgetsnbextension/static/extension.js
 ```
 
-They are now Unicode labels:
-
-```python
-self.backward = widgets.Button(description='|◀', layout=Layout(width='45px'), ...)
-self.forward  = widgets.Button(description='▶|', layout=Layout(width='45px'), ...)
-```
-
-`U+25C0` and `U+25B6` are BMP **geometric shapes**, present in essentially every system
-font — deliberately not the `U+23EE`/`U+23ED` media glyphs, which need an emoji font
-and box-render without one. The button width went from 40px to 45px to fit a
-two-character label instead of an icon square.
-
-The `Play` widget needed nothing. Under ipywidgets 8 it draws its own controls and has
-no `icon` trait at all:
+No Python-side change can reach them. `Play` does not even expose an `icon` trait:
 
 ```
 >>> [t for t in widgets.Play(...).trait_names() if 'icon' in t]
 []
 ```
 
-So it was never the reason for the stylesheet.
+**So font-awesome cannot be removed. It has to be loaded.** The only question is *by
+whom*.
 
-**Result: no CDN dependency at all.** The toolbar now works offline, on a plane, and
-behind a firewall that blocks `stackpath.bootstrapcdn.com`.
+## The fix
 
-## Fix 2 — the echo
+**Load it from inside `__init__`.**
 
-Each Animate class gained a no-op display hook:
+`__init__` runs in the very cell that creates the widget, so a `display(HTML(...))`
+there lands in **that cell's output area** — the same iframe the widget goes into, on
+Colab and everywhere else. Every animation cell therefore gets the stylesheet
+automatically, with nothing written by hand.
+
+```python
+def __init__(self, m_desc, FuseEdges=False, ...):
+    # ---- toolbar stylesheet ----
+    # ... runs in the cell that creates the widget, so the stylesheet lands
+    # in that cell's output area -- which matters on Colab, where each cell's
+    # output is a separate sandboxed iframe.
+    display(HTML('<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>'))
+```
+
+And a no-op display hook handles job 2:
 
 ```python
 def _ipython_display_(self):
     return None
 ```
 
-IPython honours `_ipython_display_` by handing the object's display over to it
-entirely. Returning nothing produces an **empty mimebundle**, so no `Out[n]` is
-emitted at all:
+IPython honours `_ipython_display_` by handing display over to it entirely. Returning
+nothing produces an **empty mimebundle**, so no `Out[n]` is emitted:
 
 ```
 class                mimebundle keys
@@ -128,6 +127,8 @@ from jove.AnimateDFA import *
 AnimateDFA(has01, FuseEdges=True)
 ```
 
+Every button appears: play, pause, stop, step-back, step-forward.
+
 ## Backward compatibility
 
 No existing notebook needed changing, and none broke.
@@ -137,90 +138,112 @@ An existing cell ends with the font-awesome line, so:
 * the widget is displayed by `__init__`, exactly as before;
 * the constructor's value is **not** the cell's last expression, so it is never echoed,
   so the new `_ipython_display_` hook is never reached;
-* the now-pointless `<link>` is still fetched — harmless, just wasted.
+* the stylesheet is now loaded twice — once by `__init__`, once by the old line. A
+  duplicate `<link>` is harmless.
 
 Only cells that *end* with the constructor are affected, which is precisely the
 simplified form the change enables.
+
+## What I got wrong on the first attempt
+
+Worth recording, because the wrong version was committed and pushed before it was
+caught by actually running it.
+
+**I concluded that `Play` did not need font-awesome.** The evidence I used was that
+`Play` has no `icon` trait — from which I inferred it "draws its own controls". That
+inference does not follow: a trait describes the Python-side API, and says nothing
+about what the frontend renders. `Play`'s buttons are emitted as `fa-play` /
+`fa-pause` / `fa-stop` by the ipywidgets JavaScript.
+
+On that false premise I replaced Jove's two `Button(icon='step-…')` with Unicode
+labels (`|◀`, `▶|`) and declared the dependency gone — "works offline, on a plane,
+behind a firewall". **That was wrong.** It fixed exactly the two buttons Jove controls
+and left play, pause and stop invisible, which is worse than before: the toolbar looked
+half-broken rather than obviously broken.
+
+The check I should have run was the one that eventually found it — open a notebook and
+look at the toolbar. A widget-model assertion (`icon == ''`) confirmed only that my
+edit had been applied, not that the toolbar worked. **Asserting that a change took
+effect is not the same as asserting that it had the intended effect.**
+
+The Unicode labels have been reverted; the icons are back as they were.
 
 ## Verification
 
 | Check | Result |
 |---|---|
 | All four Animate modules parse and import | pass |
-| `AnimateDFA` constructs against a real DFA; buttons carry `description`, `icon=''` | pass |
-| No `icon=` remains in any Animate class | pass |
-| `_ipython_display_` yields an empty mimebundle for all four classes | pass |
-| Old 3-line form and new 2-line form both display the widget exactly once | pass |
+| `__init__`'s **first** `display()` call is the font-awesome `<link>` | pass |
+| The widget is displayed after it, in the same cell | pass |
+| All four modules carry the loader, the hook, and both icons | pass |
+| `_ipython_display_` yields an empty mimebundle | pass |
 | Chapter 4 (22 notebooks) executes cleanly after simplification | pass |
-| Chapter 4 notebooks structurally valid | pass |
 | `metadata.widgets` invariant across 633 notebooks | 0 violations |
 
-**Not verified here:** the glyphs were not eyeballed in a browser. The widget model is
-correct and carries no `fa-` class, but whether `|◀` / `▶|` *look* right at 45px is a
-visual judgement that needs a human. `tools/drop_fontawesome_dependency.py --write
---ascii` swaps them for `<<` / `>>` if they do not.
+**Still not verified here:** whether the toolbar *looks* right in a browser. That needs
+a human with the notebook open, which is how the first attempt's flaw surfaced.
 
 ## The tools
 
 | Tool | Does |
 |---|---|
-| `tools/drop_fontawesome_dependency.py` | Patches the library: icons → Unicode labels, adds the display hook, rewrites the class docstrings. Idempotent. `--ascii` for ASCII labels. |
-| `tools/simplify_animation_cells.py` | Deletes the redundant line from notebooks. `--scope` limits the tree. Optional — leaving the line in place is merely a wasted fetch. |
-| `tools/fix_animation_fontawesome.py` | **Superseded.** Now guarded (see below). |
+| `tools/fix_animation_toolbar.py` | Patches the library: adds the stylesheet loader to `__init__`, adds the display hook, rewrites the class docstrings. Idempotent. |
+| `tools/simplify_animation_cells.py` | Deletes the now-redundant line from notebooks. `--scope` limits the tree. Optional — leaving it is merely a duplicate `<link>`. |
+| `tools/fix_animation_fontawesome.py` | **Superseded**, and guarded (below). |
 
-Both new tools dry-run by default and need `--write` to act. Git is the revert path.
+Both active tools dry-run by default and need `--write`. Git is the revert path.
 
-## Two things that went wrong on the way
+## Two traps found on the way
 
-**The old tool became a foot-gun.** `fix_animation_fontawesome.py` existed to enforce
-"the font-awesome line must come last in every animation cell". With the library fixed,
-running it would have **added the line back** into the very cells it had just been
-removed from. It now checks whether the library still uses font-awesome icons and, if
-not, exits without proposing anything:
+**The old checker became a foot-gun.** `fix_animation_fontawesome.py` existed to
+enforce "the font-awesome line must come last in every animation cell". With the
+library fixed, running it would **add the line back** into the cells it had just been
+removed from. It is now guarded — and note that the guard has to key off **the loader
+in `__init__`, not off the icons**, because the icons are still there:
 
 ```
 $ python3 tools/fix_animation_fontawesome.py
-The Animate* classes no longer use font-awesome icons
-(see tools/drop_fontawesome_dependency.py), so the font-awesome line
-is obsolete and this check has nothing to enforce. Nothing to do.
+Animate*.__init__ now loads the font-awesome stylesheet itself
+(see tools/fix_animation_toolbar.py), so the per-cell line is
+redundant and this check has nothing to enforce. Nothing to do.
 ```
 
 **The remover missed 30 cells.** There are **two quoting variants** of the same line in
-this repo. The generated notebooks store it as
+this repo. Generated notebooks store it as
 
 ```python
 display(HTML('<link rel="stylesheet" ... />'))
 ```
 
-while the older hand-written ones store it with **literal backslash-escaped quotes**:
+while older hand-written ones store it with **literal backslash-escaped quotes**:
 
 ```python
 display(HTML('<link rel=\"stylesheet\" ... />'))
 ```
 
 The first version of `simplify_animation_cells.py` matched the exact inner markup and
-therefore only saw the first variant, silently skipping 30 cells — 268 of 298
-repo-wide, and 43 of 54 in `For_CS3100_Fall2024/`. It now matches the *shape* of the
-call (a lone `display(HTML(...))` mentioning font-awesome) rather than its markup, and
-covers all 298 while still rejecting unrelated `display(HTML(...))` calls and the
-`Animate*` call itself.
+so saw only the first variant, silently skipping 30 cells — 268 of 298 repo-wide, and
+43 of 54 in `For_CS3100_Fall2024/`. It now matches the *shape* of the call (a lone
+`display(HTML(...))` mentioning font-awesome) rather than its markup, covering all 298
+while still rejecting unrelated `display(HTML(...))` calls and the `Animate*` call
+itself.
 
 ## Rollout status
 
-| Tree | Animation cells | Simplified |
+| Tree | Cells still carrying the line | Simplified |
 |---|---:|---|
-| `Chapter4/` | 6 | **yes** (trial) |
+| `Chapter4/` | 0 | **yes** |
 | `Chapter1–3, 5–18/` | 72 | not yet |
 | `Basics/` | 3 | not yet |
 | `For_CS3100_Fall2024/` | 54 | **no** — live Colab links, held back deliberately |
 | rest of the repo | 169 | not yet |
 
-72 + 3 + 54 + 169 = 298, the repo-wide total of cells still carrying the line.
-(There are 319 animation cells in all; the other 21 never had one, including the
-6 in Chapter 4 that have now been simplified.)
+72 + 3 + 54 + 169 = 298, the repo-wide total. (There are 319 animation cells in all;
+the other 21 never had the line, including Chapter 4's 6.)
 
-The library fix is repo-wide and already in effect; the table is only about deleting
-the redundant line from notebook sources. Everything keeps working either way.
+The library fix is repo-wide and already in effect — **every** animation cell in the
+repo now gets its stylesheet from `__init__`, whether or not it still carries the old
+line. The table is only about deleting the redundant text.
 
 ## Not covered
 
@@ -230,14 +253,14 @@ font-awesome line. It was left alone.
 ## Reverting
 
 ```sh
-git revert <commit>          # the library patch, the Ch4 sweep, or both
+git revert <commit>
 ```
 
-or, to go back to font-awesome icons by hand, restore the eight `icon='step-…'`
-arguments and delete the four `_ipython_display_` methods.
+or by hand: delete the stylesheet block from each `__init__` and the four
+`_ipython_display_` methods, and restore the per-cell line in notebooks.
 
 ## Environment tested
 
-`ipywidgets 8.1.3`, `IPython 8.24.0`, Python 3.12, macOS arm64.
-The change should be safe under ipywidgets 7 as well — `description=` and
-`_ipython_display_` both predate 8 — but that was not exercised here.
+`ipywidgets 8.1.3`, `IPython 8.24.0`, Python 3.12, macOS arm64. Colab pins its own
+ipywidgets version, which is a further reason the fix must not depend on frontend
+behaviour: loading the stylesheet works whatever the frontend renders.

@@ -21,9 +21,10 @@ class AnimateNFA:
     to draw the NFA with edges either fused or not.
     Just call it; nothing else is needed:
 
-    AnimateDFA(myDFA, FuseEdges='True/False')
+    AnimateNFA(myMachine, FuseEdges='True/False')
 
-    The toolbar no longer depends on the font-awesome stylesheet,
+    The font-awesome stylesheet the toolbar glyphs need is loaded by
+    __init__ itself, into the same cell output the widget goes into,
     so the old per-cell display(HTML(...)) line is unnecessary.
     '''
     
@@ -34,6 +35,17 @@ class AnimateNFA:
                  accept_color='chartreuse3',
                  reject_color='red',
                  neutral_color='dodgerblue2'):
+        # ---- toolbar stylesheet -------------------------------------
+        # The toolbar glyphs are font-awesome icons: Jove's own step buttons
+        # via Button(icon=...), and the Play widget's play/pause/stop buttons
+        # via the ipywidgets frontend, which emits fa-play/fa-pause/fa-stop.
+        #
+        # This runs in the cell that creates the widget, so the stylesheet
+        # lands in that cell's output area -- which matters on Colab, where
+        # each cell's output is a separate sandboxed iframe and a link loaded
+        # by one cell cannot reach another.  Doing it here is what lets the
+        # notebook drop the old per-cell display(HTML(...)) line.
+        display(HTML('<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>'))
         # Options
         self.color_accept = accept_color
         self.color_reject = reject_color
@@ -100,12 +112,12 @@ class AnimateNFA:
         self.speed_control.observe(self.on_speed_change, names='value')
                 
         # Create the controls for stepping through the animation
-        self.backward = widgets.Button(description='|◀', 
-                                       layout=Layout(width='45px'), 
+        self.backward = widgets.Button(icon='step-backward', 
+                                       layout=Layout(width='40px'), 
                                        disabled=True
                                        )
-        self.forward = widgets.Button(description='▶|', 
-                                      layout=Layout(width='45px'),
+        self.forward = widgets.Button(icon='step-forward', 
+                                      layout=Layout(width='40px'),
                                       disabled=True
                                       )
         self.backward.on_click(self.on_backward_click)
@@ -138,9 +150,11 @@ class AnimateNFA:
 
         __init__ has already called display() on the widget, so there is
         nothing left to show.  Defining this hook makes IPython produce an
-        empty mimebundle, which suppresses the `<jove.AnimateDFA.AnimateDFA
-        at 0x...>` echo when a cell ends with the constructor -- the job the
-        trailing display(HTML(...)) line used to do by accident.
+        empty mimebundle, which suppresses the
+        `<jove.AnimateDFA.AnimateDFA at 0x...>` echo when a cell ends with the
+        constructor -- the job the trailing display(HTML(...)) line used to do
+        by accident.  (__repr__ returning '' does not work: it still emits a
+        text/plain part, leaving a blank output area.)
         """
         return None
 

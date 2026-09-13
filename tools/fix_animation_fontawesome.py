@@ -78,25 +78,34 @@ def to_source(lines):
     return [l + '\n' for l in lines[:-1]] + [lines[-1]]
 
 
-def _library_still_needs_fontawesome():
-    """True only if the Animate* classes still render font-awesome icons.
+def _notebook_must_load_fontawesome():
+    """True only if the NOTEBOOK is still responsible for loading the CSS.
 
-    drop_fontawesome_dependency.py replaces those icons with Unicode labels.
-    Once that has been applied, the ordering rule this script enforces has
-    nothing left to enforce -- and running it with --write would ADD BACK the
-    very lines that were just removed.  So bail out instead.
+    The toolbar does need font-awesome -- Jove's step buttons via
+    Button(icon=...), and the Play widget's play/pause/stop buttons via the
+    ipywidgets frontend, which emits fa-play/fa-pause/fa-stop.  What changed
+    is WHO loads it: fix_animation_toolbar.py moves the load into
+    Animate*.__init__, which runs in the cell that creates the widget and so
+    reaches that cell's output area (the unit that matters on Colab).
+
+    Once that is in place the per-cell line is redundant, and running this
+    script with --write would ADD BACK the very lines that were removed.  So
+    key off the loader, not off the icons -- the icons are still there.
     """
     import glob as _glob, os as _os
     here = _os.path.dirname(_os.path.abspath(__file__))
     mods = _glob.glob(_os.path.join(here, '..', 'jove', 'Animate*.py'))
-    return any("icon='step-" in open(m, encoding='utf-8').read() for m in mods)
+    if not mods:
+        return True
+    return not all('toolbar stylesheet' in open(m, encoding='utf-8').read()
+                   for m in mods)
 
 
 def main(argv):
-    if not _library_still_needs_fontawesome():
-        print("The Animate* classes no longer use font-awesome icons")
-        print("(see tools/drop_fontawesome_dependency.py), so the font-awesome line")
-        print("is obsolete and this check has nothing to enforce. Nothing to do.")
+    if not _notebook_must_load_fontawesome():
+        print("Animate*.__init__ now loads the font-awesome stylesheet itself")
+        print("(see tools/fix_animation_toolbar.py), so the per-cell line is")
+        print("redundant and this check has nothing to enforce. Nothing to do.")
         return 0
     write = '--write' in argv
     paths = [a for a in argv[1:] if not a.startswith('--')]
