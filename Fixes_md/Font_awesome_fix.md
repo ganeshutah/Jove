@@ -198,17 +198,58 @@ rather than by guesswork:
 
 ```
 Jove loaded from /content/Jove/jove
-animation toolbar fix: present
+animation toolbar: ready
 ```
 
-If that second line ever says `MISSING`, the library is stale and nothing downstream
-will behave.
+If that second line ever says `STALE`, the *loaded* library is old and nothing
+downstream will behave — restart the runtime.
 
 Note `jove` has no `__init__.py` — it is a **namespace package**, so `jove.__file__` is
 `None` and the directory has to come from `jove.__path__`. The first version of the
 self-check used `__file__`, which raised `TypeError` *outside* its own try block and
 would have broken the setup cell outright. The whole check now sits inside the try: a
 diagnostic must never be able to break the thing it is diagnosing.
+
+## The trap that hid it a second time: a cached module
+
+With the library fixed *and* the clone pulling correctly, the toolbar was **still**
+broken — same `<jove.AnimateDFA.AnimateDFA at 0x...>` echo, same missing buttons — even
+though the setup cell printed `Jove: PULLED`.
+
+`PULLED` describes the **files on disk**. It says nothing about what is **loaded**.
+Python caches imported modules in `sys.modules`, so in a session that had already
+imported the old `jove.AnimateDFA`, the pull updated the files and the subsequent
+`import` handed back the stale module object anyway:
+
+```
+1. imported OLD module. has _ipython_display_?  False
+2. pulled. does the FILE on disk have the fix?  True
+3. re-imported. has _ipython_display_?          False   <-- the bug
+4. after purging sys.modules:                   True
+```
+
+One cause, both symptoms: the cached class neither suppresses the repr nor loads the
+stylesheet.
+
+The setup cell now drops them before importing:
+
+```python
+for _m in [k for k in list(sys.modules) if k == 'jove' or k.startswith('jove.')]:
+    del sys.modules[_m]
+```
+
+and the self-check was moved off the **file** and onto the **loaded class**, which is
+the distinction that matters:
+
+```python
+import jove.AnimateDFA as _a; print('animation toolbar:',
+      'ready' if hasattr(_a.AnimateDFA, '_ipython_display_')
+      else 'STALE -- restart the runtime, then re-run')
+```
+
+Checking the file was checking the wrong thing — it was green throughout the period
+when the loaded module was stale. **Verify the object you are about to use, not the
+bytes it was built from.**
 
 ## Verification
 
