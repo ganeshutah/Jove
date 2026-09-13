@@ -78,7 +78,26 @@ def to_source(lines):
     return [l + '\n' for l in lines[:-1]] + [lines[-1]]
 
 
+def _library_still_needs_fontawesome():
+    """True only if the Animate* classes still render font-awesome icons.
+
+    drop_fontawesome_dependency.py replaces those icons with Unicode labels.
+    Once that has been applied, the ordering rule this script enforces has
+    nothing left to enforce -- and running it with --write would ADD BACK the
+    very lines that were just removed.  So bail out instead.
+    """
+    import glob as _glob, os as _os
+    here = _os.path.dirname(_os.path.abspath(__file__))
+    mods = _glob.glob(_os.path.join(here, '..', 'jove', 'Animate*.py'))
+    return any("icon='step-" in open(m, encoding='utf-8').read() for m in mods)
+
+
 def main(argv):
+    if not _library_still_needs_fontawesome():
+        print("The Animate* classes no longer use font-awesome icons")
+        print("(see tools/drop_fontawesome_dependency.py), so the font-awesome line")
+        print("is obsolete and this check has nothing to enforce. Nothing to do.")
+        return 0
     write = '--write' in argv
     paths = [a for a in argv[1:] if not a.startswith('--')]
     if not paths:
