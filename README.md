@@ -14,7 +14,56 @@
 
   - Watch bit.ly/TeachJoveAutomata
   - Now go to https://github.com/ganeshutah/Jove.git and go to For_CS3100_Fall2024
-  
+
+  - **Every chapter of the book now has a folder of concept notebooks:**
+    `Chapter1/` through `Chapter18/`, plus `Basics/` for Appendix A.
+    **245 notebooks, one per concept**, all of them auto-generated and all of
+    them runnable on Colab with no installation. See just below.
+
+* ***CONCEPT NOTEBOOKS, ONE PER IDEA*** (`Chapter1/` ... `Chapter18/`, `Basics/`)
+
+  - Each chapter folder holds one directory per *concept*, and each of those
+    holds a notebook:
+
+    ```
+    Chapter4/Concept-Pumping-Lemma-Predicate-Logic/
+             Concept-Pumping-Lemma-Predicate-Logic.ipynb
+    ```
+
+    All eighteen chapters are covered, plus Appendix A under `Basics/`:
+    **245 notebooks**, **81** of which animate a machine you can step through
+    (`AnimateDFA`, `AnimateNFA`, `AnimatePDA`, `AnimateTM`).
+
+  - **They run on Colab with nothing installed.** The first cell clones Jove on
+    its first run and pulls on every run after that, and tells you which of the
+    two it did. Open any notebook on GitHub and hit the Colab extension, or go
+    straight there:
+
+    ```
+    https://colab.research.google.com/github/ganeshutah/Jove/blob/master/
+        Chapter4/Concept-Designing-A-DFA/Concept-Designing-A-DFA.ipynb
+    ```
+
+    They run just as well on a local checkout --- the same cell detects that
+    case and uses the checkout it is sitting in.
+
+  - Every notebook has the same five parts: **the idea**, the **definitions**,
+    **tests** that exercise them, an **animation** where there is a machine to
+    step through, and **exercises**. A previous/index/next link strip sits in
+    the middle of each one, so you can read straight through all 245 in order.
+
+  - Folders are named for the *idea*, not for a lecture number or a course
+    year, so they stay correct when the course is renumbered or re-run.
+    [Chapters-README.md](Chapters-README.md) has the full layout and a
+    per-chapter table.
+
+  - **These notebooks are generated, not hand-maintained.** The generators live
+    in the companion workbook repo, under
+    `Concepts/tools-concept/nbgen/` (`ch1_nb.py` ... `ch18_nb.py`,
+    `appA_nb.py`). To change a notebook, change its generator and regenerate.
+    Editing the `.ipynb` by hand works until the next regeneration overwrites
+    it.
+
 * ***NOW FOR THE LONGER VERSION***
 
 * Jove helps you learn about various Models of Computation as well as what is usually called ``Automata Theory''
