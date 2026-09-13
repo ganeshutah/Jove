@@ -56,7 +56,7 @@ concept in the workbook's decomposition.
 | 5 &mdash; Designing DFA | 14 | 9 |
 | 6 &mdash; Operations on DFA | 12 | 6 |
 | 7 &mdash; Nondeterministic Finite Automata | 12 | 11 |
-| 8 &mdash; Regular Expressions and NFA | 12 | 12 |
+| 8 &mdash; Regular Expressions and NFA | 12 | 10 |
 | 9 &mdash; NFA to RE Conversion | 8 | 5 |
 | 10 &mdash; Derivative-Based Regular Expression Matching | 8 | 2 |
 | 11 &mdash; Context-Free Languages and Grammars | 21 | 3 |
@@ -68,7 +68,7 @@ concept in the workbook's decomposition.
 | 17 &mdash; Binary Decision Diagrams as Minimal DFA | 7 | 1 |
 | 18 &mdash; Computability Using Lambdas | 10 | 0 |
 | **Basics** &mdash; A Recap of Discrete Math (Appendix A) | 13 | 3 |
-| **Total** | **245** | **83** |
+| **Total** | **245** | **81** |
 
 `Basics/` holds Appendix A rather than a chapter, so it is named for what it is
 instead of getting a fictitious chapter number. It is the discrete-maths

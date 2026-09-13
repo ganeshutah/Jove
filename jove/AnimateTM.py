@@ -20,14 +20,12 @@ class AnimateTM:
     This is the TM animation class.
     Call it with the TM to be animated, and also FuseEdges=True/False
     to draw the TM with edges either fused or not.
-    For producing drawings in Colab, it is important to have these in
-    every cell that calls animation.
-    
-    AnimateTM(myTM, FuseEdges='True/False')
-    followed by
-    display(HTML('<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>'))
+    Just call it; nothing else is needed:
 
-    Then the animation works in one's own install or Colab.
+    AnimateDFA(myDFA, FuseEdges='True/False')
+
+    The toolbar no longer depends on the font-awesome stylesheet,
+    so the old per-cell display(HTML(...)) line is unnecessary.
     '''
    
     def __init__(self, m_desc,
@@ -106,12 +104,12 @@ class AnimateTM:
         self.speed_control.observe(self.on_speed_change, names='value')
                 
         # Create the controls for stepping through the animation
-        self.backward = widgets.Button(icon='step-backward', 
-                                       layout=Layout(width='40px'), 
+        self.backward = widgets.Button(description='|◀', 
+                                       layout=Layout(width='45px'), 
                                        disabled=True
                                        )
-        self.forward = widgets.Button(icon='step-forward', 
-                                      layout=Layout(width='40px'),
+        self.forward = widgets.Button(description='▶|', 
+                                      layout=Layout(width='45px'),
                                       disabled=True
                                       )
         self.backward.on_click(self.on_backward_click)
@@ -156,6 +154,18 @@ class AnimateTM:
         self.forward.disabled = True
         self.backward.disabled = True
         self.speed_control.disabled = True
+
+
+    def _ipython_display_(self):
+        """Take over display and emit nothing.
+
+        __init__ has already called display() on the widget, so there is
+        nothing left to show.  Defining this hook makes IPython produce an
+        empty mimebundle, which suppresses the `<jove.AnimateDFA.AnimateDFA
+        at 0x...>` echo when a cell ends with the constructor -- the job the
+        trailing display(HTML(...)) line used to do by accident.
+        """
+        return None
 
     def on_speed_change(self, change):
         self.play_controls.interval = 1000 - 50 * change['new']
