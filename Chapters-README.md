@@ -39,15 +39,48 @@ Jove/
 
 ## Status
 
-| Chapter | Concepts | Notebooks | With animation |
-|---|---:|---:|---:|
-| 1 &mdash; What Machines Think | 17 | 17 | 7 |
-| 2 &mdash; Defining Languages | 16 | 16 | 0 |
-| 3 &mdash; Kleene Star | 16 | 16 | 2 |
+All eighteen chapters of the book are covered: **232 notebooks**, one per concept in
+the workbook's decomposition.
 
-Chapters 2 and 3 are about **language operations** rather than machines, so most of
-their notebooks have nothing to animate; the two that do (the $\Sigma^*$ machine and
-DFA complementation) are animated.
+| Chapter | Concepts | With animation |
+|---|---:|---:|
+| 1 &mdash; What Machines Think | 17 | 7 |
+| 2 &mdash; Defining Languages: Patterns in Sets of Strings | 16 | 0 |
+| 3 &mdash; Kleene Star: Basic Method of Defining Repetitious Patterns | 16 | 2 |
+| 4 &mdash; Basics of DFA | 22 | 6 |
+| 5 &mdash; Designing DFA | 14 | 9 |
+| 6 &mdash; Operations on DFA | 12 | 6 |
+| 7 &mdash; Nondeterministic Finite Automata | 12 | 11 |
+| 8 &mdash; Regular Expressions and NFA | 12 | 12 |
+| 9 &mdash; NFA to RE Conversion | 8 | 5 |
+| 10 &mdash; Derivative-Based Regular Expression Matching | 8 | 2 |
+| 11 &mdash; Context-Free Languages and Grammars | 21 | 3 |
+| 12 &mdash; Pushdown Automata | 11 | 7 |
+| 13 &mdash; Turing Machines | 13 | 6 |
+| 14 &mdash; Interplay between Formal Languages | 12 | 3 |
+| 15 &mdash; Post Correspondence, and Other Undecidability Proofs | 9 | 0 |
+| 16 &mdash; NP-Completeness | 12 | 0 |
+| 17 &mdash; Binary Decision Diagrams as Minimal DFA | 7 | 1 |
+| 18 &mdash; Computability Using Lambdas | 10 | 0 |
+| **Total** | **232** | **80** |
+
+A chapter has few animations when its subject is not a machine. Chapters 2, 3 and 11
+are about languages and grammars; 15 and 16 are about reductions and complexity;
+18 is about lambda terms. Where there *is* a machine worth stepping through, it is
+animated.
+
+Some chapters need machinery Jove does not ship, and the notebooks build it
+themselves rather than importing something that is not there:
+
+* **Chapter 11** &mdash; a small CFG toolkit (grammar constructor, bounded language
+  generator, parse-tree enumerator, leftmost derivations);
+* **Chapter 15** &mdash; a bounded Post-correspondence solver;
+* **Chapter 16** &mdash; a CNF/DIMACS toolkit, a DPLL solver, and a Tseitin encoder;
+* **Chapter 17** &mdash; a hash-consed BDD package;
+* **Chapter 18** &mdash; Church encodings and fixpoint combinators.
+
+Each such toolkit is inlined into the notebooks that use it, so every notebook still
+stands alone on Colab.
 
 The old `For_CS3100_Fall2024/` tree is **untouched** &mdash; every existing Colab link
 still works.
