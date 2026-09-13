@@ -375,30 +375,29 @@ the harness than the subject.
 
 Two independent rollouts are in flight. Keep them apart:
 
-**(a) The setup-cell fix** — clone-or-pull, plus the cleanup above. **Done for all 245
-generated notebooks** (`Chapter1–18/`, `Basics/`). Applied in place by
-`Concepts/tools-concept/nbgen/update_setup_cells.py` in the workbook repo, which
-rebuilds *only* cell 2 using the same `nbuild.header_cell()` the generators use — so
-it does not drag in the font-awesome change, which is still pending review.
+**(a) The setup-cell fix** — clone-or-pull, the cleanup, the clone/pull report, and
+dropping cached `jove.*` from `sys.modules`. **Done for all 245 generated notebooks**
+(`Chapter1–18/`, `Basics/`).
 
-`For_CS3100_Fall2024/` and the other legacy trees still have the clone-only guard.
+**(b) Deleting the redundant font-awesome line** — **done for all 245**, after the
+Chapter 4 trial was confirmed working by hand.
 
-**(b) Deleting the redundant font-awesome line** — pending verification of Chapter 4.
+| Tree | Animation cells | Carrying the line |
+|---|---:|---:|
+| `Chapter1–18/` | 78 | 0 |
+| `Basics/` | 3 | 0 |
+| `For_CS3100_Fall2024/` | 58 | 54 — **held back**, live Colab links |
+| rest of the repo | — | 169 |
 
-| Tree | Cells still carrying the line | Simplified |
-|---|---:|---|
-| `Chapter4/` | 0 | **yes** |
-| `Chapter1–3, 5–18/` | 72 | not yet |
-| `Basics/` | 3 | not yet |
-| `For_CS3100_Fall2024/` | 54 | **no** — live Colab links, held back deliberately |
-| rest of the repo | 169 | not yet |
+The library fix is repo-wide and already in effect: **every** animation cell in the
+repo, including the untouched legacy trees, gets its stylesheet from
+`Animate*.__init__`. The table is only about deleting the now-redundant text. Cells
+that still carry the line work fine; they merely fetch the stylesheet twice.
 
-72 + 3 + 54 + 169 = 298, the repo-wide total. (There are 319 animation cells in all;
-the other 21 never had the line, including Chapter 4's 6.)
-
-The library fix is repo-wide and already in effect — **every** animation cell in the
-repo now gets its stylesheet from `__init__`, whether or not it still carries the old
-line. The table is only about deleting the redundant text.
+The generated notebooks were brought over by **regenerating** them, not by patching in
+place, so they match their generators exactly. Verified that regeneration left the
+setup cells byte-identical — the diff is confined to the animation cells and the stale
+markdown note that used to explain why the line had to come last.
 
 ## Not covered
 
