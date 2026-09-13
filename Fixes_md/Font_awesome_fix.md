@@ -285,11 +285,60 @@ Lesson: **commit one change before using git to inspect the next.** An uncommitt
 working tree makes `git diff` useless as a differential test, and `git checkout` a
 destructive one.
 
+## The setup cell, cleaned up
+
+The clone-or-pull fix left the setup cell at 38 lines of defensive clutter, which is a
+poor first thing for a reader to meet. It is now 21, and two pieces of that clutter
+turned out to be simply wrong:
+
+* the seven-entry local `sys.path` list named a **`3rdparty/` directory that does not
+  exist** in this repo;
+* only one entry is actually needed — the directory *containing* `jove/`. Verified by
+  importing `jove.Def_RE2NFA` (the heaviest importer, and the one whose `yacc.py` does
+  a bare `import lex`) with the root alone on the path.
+
+```python
+# Run me first.  Works on Colab and on a local Jove checkout.
+import os, sys
+
+try:                       # ---- Colab: clone once, pull thereafter ----
+    import google.colab
+    ! if [ -d Jove ]; then git -C Jove pull -q --ff-only; else git clone -q https://github.com/ganeshutah/Jove Jove; fi
+    JOVE = 'Jove'
+except ImportError:        # ---- local: the checkout above Chapter<N>/ ----
+    JOVE = next((p for p in ('../..', '../../..', '..', '.')
+                 if os.path.isdir(os.path.join(p, 'jove'))), '../..')
+sys.path.insert(0, JOVE)
+
+from jove.Def_md2mc      import *
+...
+
+import jove; print('Jove loaded from', list(jove.__path__)[0])
+```
+
+The local branch now *searches* for the Jove root instead of guessing a fixed depth,
+and the closing line still reports which copy was loaded — the diagnostic that made
+the stale-clone problem visible, reduced to one line.
+
+**The same trap, twice, in two different tools.** Both located the setup cell by a
+string the cleanup removed:
+
+* `update_setup_cells.py` keyed on `OWN_INSTALL`. It stopped recognising cells it had
+  itself just rewritten, and silently reported all 245 as "skipped".
+* the notebook-execution harness keyed on the `#~~~~` banner the cell used to open
+  with. It then tried to `exec` the `!` shell line as Python, and **all 245 notebooks
+  "failed"** with `SyntaxError` — a full-red test run caused entirely by the test rig.
+
+Both now key on `import google.colab`, the one line the Colab detection cannot do
+without. **A tool that rewrites something must not key on a string its own rewrite
+removes** — and a sudden *uniform* failure across every target is far more likely to be
+the harness than the subject.
+
 ## Rollout status
 
 Two independent rollouts are in flight. Keep them apart:
 
-**(a) The setup-cell fix** — clone-or-pull plus the self-check. **Done for all 245
+**(a) The setup-cell fix** — clone-or-pull, plus the cleanup above. **Done for all 245
 generated notebooks** (`Chapter1–18/`, `Basics/`). Applied in place by
 `Concepts/tools-concept/nbgen/update_setup_cells.py` in the workbook repo, which
 rebuilds *only* cell 2 using the same `nbuild.header_cell()` the generators use — so
