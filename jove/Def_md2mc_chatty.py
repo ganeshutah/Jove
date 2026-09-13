@@ -757,16 +757,9 @@ def md2mc(src="None", fname="None"):
 
 # In[5]:
 
-print('''You may use any of these help commands:
-help(md2mc)
-.. and if you want to dig more, then ..
-help(default_line_attr)
-help(length_ok_input_items)
-help(union_line_attr_list_fld)
-help(extend_rsltdict)
-help(form_delta)
-help(get_machine_components)
-''')
+print("help(<fn>) is available for: md2mc; internals: default_line_attr,\n"
+      "    length_ok_input_items, union_line_attr_list_fld, extend_rsltdict,\n"
+      "    form_delta, get_machine_components")
 
 
 # This finishes our description of the md2mc module.

@@ -240,8 +240,5 @@ def drawPT(nl, el, comment="PT"):
 # In[ ]:
 
 
-print('''You may use any of these help commands:
-help(re2ast)
-help(drawPT)
-''')
+print("help(<fn>) is available for: re2ast, drawPT")
 

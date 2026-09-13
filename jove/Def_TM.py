@@ -234,9 +234,5 @@ def explore_tm(T, tape, nsteps):
 
 # In[5]:
 
-print('''You may use any of these help commands:
-help(step_tm)
-help(run_tm)
-help(explore_tm)
-''')
+print("help(<fn>) is available for: step_tm, run_tm, explore_tm")
 

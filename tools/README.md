@@ -46,6 +46,59 @@ Worth running after any bulk notebook edit, and before publishing links students
 will click.
 
 
+## `compact_help_banners.py`
+
+Collapses the multi-line "help commands" banners the modules print on import.
+
+```sh
+python3 tools/compact_help_banners.py           # dry run
+python3 tools/compact_help_banners.py --write   # apply
+```
+
+Twelve modules each opened with
+
+```python
+print('''You may use any of these help commands:
+help(mk_dfa)
+help(totalize_dfa)
+... one line per function ...
+''')
+```
+
+— **125 printed lines across the library**, all saying the same thing: help exists.
+A typical notebook's four imports produced **47 lines of banner before it did
+anything**. Each block becomes one statement naming the same functions:
+
+```
+help(<fn>) is available for: mkp_dfa, mk_dfa, totalize_dfa,
+    addtosigma_dfa, step_dfa, run_dfa, accepts_dfa, comp_dfa, ...
+```
+
+125 lines → 29; the sample notebook's 47 → 11. Wrapping is done at patch time and
+baked in as a string literal, so the modules gain no runtime import and the output
+never wraps mid-name.
+
+`Def_md2mc` splits its list with `.. and if you want to dig more, then ..`,
+separating the function you call from the internals; that becomes `; internals: ...`.
+
+The `Animate*` and `JoveEditor` modules print a one-line help *sentence* rather than a
+list. They are already short and are left alone.
+
+### It found two bugs
+
+The banners advertised two functions that **do not exist**, so `help()` on them would
+fail:
+
+| advertised | actual |
+|---|---|
+| `help(addtosigma_delta)` | `addtosigma_dfa` |
+| `help(suvivor_id)` | `survivor_id` |
+
+Both were pre-existing typos in Jove's own banners. Fixed, and the tool now warns if a
+banner names something the module does not define.
+
+---
+
 ## `fix_animation_toolbar.py`
 
 Makes the animation toolbar work with no per-cell boilerplate.

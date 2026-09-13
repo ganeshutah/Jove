@@ -274,9 +274,7 @@ def re2nfa(s, stno = 0):
 
 # In[4]:
 
-print('''You may use any of these help commands:
-help(re2nfa)
-''')
+print("help(<fn>) is available for: re2nfa")
 
 
 # In[ ]:

@@ -490,20 +490,7 @@ def is_final_id(id_path, pda, acceptance):
 # In[ ]:
 
 
-print('''You may use any of these help commands:
-help(explore_pda)
-help(run_pda)
-help(classify_l_id_path)
-help(h_run_pda)
-help(interpret_w_eps)
-help(step_pda)
-help(suvivor_id)
-help(term_id)
-help(final_id)
-help(cvt_str_to_sym)
-help(is_surv_id)
-help(subsumed)
-help(is_term_id)
-help(is_final_id)
-''')
+print("help(<fn>) is available for: explore_pda, run_pda, classify_l_id_path,\n"
+      "    h_run_pda, interpret_w_eps, step_pda, survivor_id, term_id, final_id,\n"
+      "    cvt_str_to_sym, is_surv_id, subsumed, is_term_id, is_final_id")
 

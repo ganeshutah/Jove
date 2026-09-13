@@ -458,19 +458,7 @@ def min_dfa_brz(D):
 # In[ ]:
 
 
-print('''You may use any of these help commands:
-help(mk_nfa)
-help(totalize_nfa)
-help(step_nfa)
-help(run_nfa)
-help(ec_step_nfa)
-help(Eclosure)
-help(Echelp)
-help(accepts_nfa)
-help(nfa2dfa)
-help(n2d)
-help(inSets)
-help(rev_dfa)
-help(min_dfa_brz)
-''')
+print("help(<fn>) is available for: mk_nfa, totalize_nfa, step_nfa, run_nfa,\n"
+      "    ec_step_nfa, Eclosure, Echelp, accepts_nfa, nfa2dfa, n2d, inSets,\n"
+      "    rev_dfa, min_dfa_brz")
 

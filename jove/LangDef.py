@@ -200,24 +200,6 @@ def nthnumeric(N, S=['a','b']):
 #--end
 
 
-print('''You may use any of these help commands:
-help(lphi)
-help(lunit)
-help(lcat)
-help(lexp)
-help(lunion)
-help(lstar)
-help(srev)
-help(lrev)
-help(shomo)
-help(lhomo)
-help(powset)
-help(lint)
-help(lsymdiff)
-help(lminus)
-help(lissubset)
-help(lissuperset)
-help(lcomplem)
-help(product)
-help(nthnumeric)
-''')
+print("help(<fn>) is available for: lphi, lunit, lcat, lexp, lunion, lstar, srev,\n"
+      "    lrev, shomo, lhomo, powset, lint, lsymdiff, lminus, lissubset,\n"
+      "    lissuperset, lcomplem, product, nthnumeric")

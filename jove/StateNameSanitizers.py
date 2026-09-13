@@ -71,8 +71,5 @@ def isNotBH(q):
 
 # In[ ]:
 
-print('''You may use any of these help commands:
-help(ResetStNum)
-help(NxtStateStr)
-''')
+print("help(<fn>) is available for: ResetStNum, NxtStateStr")
 

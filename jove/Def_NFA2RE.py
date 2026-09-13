@@ -346,18 +346,7 @@ def form_kleene_RE(re):
 
 # In[5]:
 
-print('''You may use any of these help commands:
-help(RE2Str)
-help(mk_gnfa)
-help(mk_gnfa_from_D)
-help(dfa2nfa)
-help(del_gnfa_states)
-help(gnfa_w_REStr)
-help(del_one_gnfa_state)
-help(Edges_Exist_Via)
-help(choose_state_to_del)
-help(form_alt_RE)
-help(form_concat_RE)
-help(form_kleene_RE)
-''')
+print("help(<fn>) is available for: RE2Str, mk_gnfa, mk_gnfa_from_D, dfa2nfa,\n"
+      "    del_gnfa_states, gnfa_w_REStr, del_one_gnfa_state, Edges_Exist_Via,\n"
+      "    choose_state_to_del, form_alt_RE, form_concat_RE, form_kleene_RE")
 

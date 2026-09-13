@@ -1422,38 +1422,12 @@ def mk_state_eqc_name(L):
 
 # In[24]:
 
-print('''You may use any of these help commands:
-help(mkp_dfa)
-help(mk_dfa)
-help(totalize_dfa)
-help(addtosigma_delta)
-help(step_dfa)
-help(run_dfa)
-help(accepts_dfa)
-help(comp_dfa)
-help(flTup)
-help(union_dfa)
-help(intersect_dfa)
-help(pruneUnreach)
-help(iso_dfa)
-help(langeq_dfa)
-help(same_status)
-help(h_langeq_dfa)
-help(fixptDist)
-help(min_dfa)
-help(pairFR)
-help(state_combos)
-help(sepFinNonFin)
-help(bash_eql_classes)
-help(listminus)
-help(bash_1)
-help(mk_rep_eqc)
-help(F_of)
-help(rep_of_s)
-help(q0_of)
-help(Delta_of)
-help(mk_state_eqc_name)
-''')
+print("help(<fn>) is available for: mkp_dfa, mk_dfa, totalize_dfa,\n"
+      "    addtosigma_dfa, step_dfa, run_dfa, accepts_dfa, comp_dfa, flTup,\n"
+      "    union_dfa, intersect_dfa, pruneUnreach, iso_dfa, langeq_dfa,\n"
+      "    same_status, h_langeq_dfa, fixptDist, min_dfa, pairFR, state_combos,\n"
+      "    sepFinNonFin, bash_eql_classes, listminus, bash_1, mk_rep_eqc, F_of,\n"
+      "    rep_of_s, q0_of, Delta_of, mk_state_eqc_name")
 
 
 # In[ ]:
