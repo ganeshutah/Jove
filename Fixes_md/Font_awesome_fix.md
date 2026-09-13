@@ -285,43 +285,39 @@ Lesson: **commit one change before using git to inspect the next.** An uncommitt
 working tree makes `git diff` useless as a differential test, and `git checkout` a
 destructive one.
 
-## The setup cell, cleaned up
+## The setup cell, cleaned up and made to say what it did
 
-The clone-or-pull fix left the setup cell at 38 lines of defensive clutter, which is a
-poor first thing for a reader to meet. It is now 21, and two pieces of that clutter
-turned out to be simply wrong:
+The clone-or-pull fix left the cell at 38 lines of defensive clutter, and two pieces of
+that clutter were simply wrong:
 
 * the seven-entry local `sys.path` list named a **`3rdparty/` directory that does not
   exist** in this repo;
-* only one entry is actually needed — the directory *containing* `jove/`. Verified by
-  importing `jove.Def_RE2NFA` (the heaviest importer, and the one whose `yacc.py` does
-  a bare `import lex`) with the root alone on the path.
+* only one entry is needed — the directory *containing* `jove/`. Verified by importing
+  `jove.Def_RE2NFA` (the heaviest importer, and the one whose `yacc.py` does a bare
+  `import lex`) with the root alone on the path.
 
-```python
-# Run me first.  Works on Colab and on a local Jove checkout.
-import os, sys
+It also now **reports which Jove you got**, because guessing that has cost real
+debugging time. Four outcomes, all exercised:
 
-try:                       # ---- Colab: clone once, pull thereafter ----
-    import google.colab
-    ! if [ -d Jove ]; then git -C Jove pull -q --ff-only; else git clone -q https://github.com/ganeshutah/Jove Jove; fi
-    JOVE = 'Jove'
-except ImportError:        # ---- local: the checkout above Chapter<N>/ ----
-    JOVE = next((p for p in ('../..', '../../..', '..', '.')
-                 if os.path.isdir(os.path.join(p, 'jove'))), '../..')
-sys.path.insert(0, JOVE)
-
-from jove.Def_md2mc      import *
-...
-
-import jove; print('Jove loaded from', list(jove.__path__)[0])
+```
+Jove: CLONED  at 8dd18ea
+Jove: PULLED  already current at 8dd18ea
+Jove: PULLED  e102c1d -> 8dd18ea
+8dd18ea Clean up the setup cell; confirm Chapter 4's toolbar fix
+f08976b All 245 generated notebooks: clone-or-pull in the setup cell
+Jove: WARNING ./Jove exists but is not a git checkout -- left as is
 ```
 
-The local branch now *searches* for the Jove root instead of guessing a fixed depth,
-and the closing line still reports which copy was loaded — the diagnostic that made
-the stale-clone problem visible, reduced to one line.
+plus `Jove: LOCAL   checkout at <sha>` off Colab. When a pull brings something new, the
+new commits are listed — so a changed library announces itself instead of being
+inferred from behaviour.
+
+The git work is done with `subprocess`, not the `!` shell magic. That is not cosmetic:
+the cell is now **plain Python**, so it parses, and the test harness can execute it
+instead of special-casing a line it cannot compile.
 
 **The same trap, twice, in two different tools.** Both located the setup cell by a
-string the cleanup removed:
+string the rewrite removed:
 
 * `update_setup_cells.py` keyed on `OWN_INSTALL`. It stopped recognising cells it had
   itself just rewritten, and silently reported all 245 as "skipped".
