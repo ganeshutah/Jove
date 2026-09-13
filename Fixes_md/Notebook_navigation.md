@@ -85,6 +85,48 @@ lines, so pulling a Chapter 12 PDA concept into a Chapter 2 session works even t
 that session never imported `Def_PDA`. Without that, it failed with a bare
 `NameError: name 'md2mc' is not defined` — which names the symptom and hides the cause.
 
+## The nav cell has to stand on its own
+
+First version of the picker cell opened with a bare
+
+```python
+from jove.Nav import nav, load_here
+```
+
+which threw `ModuleNotFoundError: No module named 'jove'` at anyone who ran it without
+having run the Setup cell in that session — exactly what someone testing navigation
+does: land on a notebook, scroll to the end, run the last cell.
+
+A cell that depends on an earlier cell must either recover or say so. It now does both:
+
+```python
+import os, sys
+try:                       # usually already done by the Setup cell
+    import jove
+except ModuleNotFoundError:
+    _p = next((p for p in ('Jove', '../..', '../../..', '..', '.')
+               if os.path.isdir(os.path.join(p, 'jove'))), None)
+    if _p:
+        sys.path.insert(0, _p)
+try:
+    from jove.Nav import nav, load_here
+    nav(here='...')
+except ModuleNotFoundError:
+    print('Jove is not on the path yet.')
+    print('Run the Setup cell at the top of this notebook, then re-run this one.')
+```
+
+Three situations, all exercised:
+
+| Situation | Result |
+|---|---|
+| Colab-style: `Jove/` cloned in cwd, Setup never run | finds it, widget builds |
+| local: run from inside the concept folder, Setup never run | finds it, widget builds |
+| no Jove anywhere | **advises**, does not raise |
+
+> **Lesson.** A generated cell inherits none of the context its author had in mind.
+> Anything that can be run out of order eventually will be.
+
 ## The index
 
 Built by reading the notebooks in the checkout — chapter, concept number and title come
