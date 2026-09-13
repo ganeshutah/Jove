@@ -270,7 +270,34 @@ so saw only the first variant, silently skipping 30 cells — 268 of 298 repo-wi
 while still rejecting unrelated `display(HTML(...))` calls and the `Animate*` call
 itself.
 
+## A third trap: `git diff` against an uncommitted change
+
+While checking that the in-place setup-cell update matched what a full regeneration
+would produce, I regenerated one chapter and read `git diff`. The diff showed the
+setup cell changing — which looked like the in-place update had not worked.
+
+It had. `git diff` compares against **HEAD**, and the in-place update was still
+uncommitted, so the diff showed *both* pending changes at once and the comparison
+proved nothing. Worse, the `git checkout -- Chapter17` used to undo the test also
+reverted the uncommitted setup-cell update for those seven notebooks.
+
+Lesson: **commit one change before using git to inspect the next.** An uncommitted
+working tree makes `git diff` useless as a differential test, and `git checkout` a
+destructive one.
+
 ## Rollout status
+
+Two independent rollouts are in flight. Keep them apart:
+
+**(a) The setup-cell fix** — clone-or-pull plus the self-check. **Done for all 245
+generated notebooks** (`Chapter1–18/`, `Basics/`). Applied in place by
+`Concepts/tools-concept/nbgen/update_setup_cells.py` in the workbook repo, which
+rebuilds *only* cell 2 using the same `nbuild.header_cell()` the generators use — so
+it does not drag in the font-awesome change, which is still pending review.
+
+`For_CS3100_Fall2024/` and the other legacy trees still have the clone-only guard.
+
+**(b) Deleting the redundant font-awesome line** — pending verification of Chapter 4.
 
 | Tree | Cells still carrying the line | Simplified |
 |---|---:|---|
