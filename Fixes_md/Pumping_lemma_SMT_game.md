@@ -1,112 +1,133 @@
-# Rebuilding the Pumping Lemma notebook around a solver
+# Rebuilding the Pumping Lemma notebook
 
-**Date:** 2026-09-13
-**Replaces:** `Chapter4/Concept-Pumping-Lemma-Predicate-Logic/` in full.
-Only the predicate-logic statement of the lemma survives from the old version.
+`Chapter4/Concept-Pumping-Lemma-Predicate-Logic` (concept 22) was rewritten
+twice.  This note records both designs, because the first one failed for a
+reason worth keeping.
 
----
+Only one thing survives from the original notebook: the statement of
+`Cond(L)` and its negation in predicate logic.  Every worked split, the
+general-lemma window machinery, `in_Lif` and the JFLAP line-up are gone.
 
-## Why it was rewritten
+## The problem
 
-The old notebook enumerated splits and showed a few of them breaking. That is exactly
-the habit the lemma punishes: try three splits, watch them break, declare victory —
-when a *regular* language would have survived those same three. Worked examples teach
-the ritual instead of the argument, and students then reproduce the ritual on exams.
+The old notebook enumerated splits and showed a few of them breaking.  That
+is the habit the lemma punishes: try three splits, watch them break, declare
+victory --- when a *regular* language would have survived those same three.
+Worked examples teach the ritual instead of the argument, and a student can
+lift one wholesale without ever meeting the quantifier.
 
-The faked step is always the same one:
+The faked step is always the same one: the `forall` over splits.
 
-$$\neg Cond(L) \equiv \forall N : \exists w \in L : |w|\ge N \wedge \underbrace{\forall x,y,z}_{\text{this}} : [\ldots \Rightarrow \exists i : xy^iz\notin L]$$
+## Attempt 1: hand the whole thing to a string solver
 
-So the $\forall x,y,z$ goes to **z3**. A split becomes a symbolic $(x,y,z)$ and the
-solver answers for all of them at once. **UNSAT** means no split survives — and
-nothing can be cherry-picked, because nothing was picked.
+The first rewrite made a split a symbolic `(x, y, z)` of z3 `String` sort and
+asked the solver to answer the `forall` in one shot.  `0^n 1^n` is not
+regular, so no regex states it; the trick was to split the job --- the shape
+`0*1*` *is* a regex z3 takes directly, and under that shape `#0s` is the
+index of the first `1`, so counting becomes a subtraction.
 
-## Expressing a non-regular language to a string solver
+It worked, and it was the wrong notebook.
 
-z3 has a theory of strings with regexes, but $0^n1^n$ is not regular, so no regex
-states it. The way through is to split the job:
+The student now supplies `N` and `w` and a list of y-shapes, and the solver
+does the rest.  Nothing that made the proof a *proof* --- choosing `w` so the
+cases collapse, splitting into cases, doing the pumping arithmetic --- was
+left in the student's hands.  It replaced one oracle with another.  It was
+also fragile: the solver went `unknown` on languages only slightly harder
+than the stock one, and a three-letter alphabet was out of reach entirely.
 
-```python
-def zeros_then_ones(f):          # f is a condition on (#0s, #1s)
-    def P(s):
-        shape = InRe(s, Concat(Star(Re(StringVal("0"))), Star(Re(StringVal("1")))))
-        i = IndexOf(s, StringVal("1"), IntVal(0))
-        a = If(i == -1, Length(s), i)          # under 0*1*, #0s is the index of the first 1
-        return And(shape, f(a, Length(s) - a))
-    return P
+## Attempt 2: the student writes the proof, the solver closes it
 
-P_anbn = zeros_then_ones(lambda a, b: a == b)
-```
+The shipped design walks the refutation the way the chapter does on paper,
+and the student supplies every step as a **parametric string**.
 
-The **shape** is a regex, which z3 takes directly; the **counting** rides on top of it.
-That is what lets a theory whose regexes cannot express $0^n1^n$ nevertheless decide
-membership in it. Students write their own languages by passing a different `f`.
+    w = 0^M 1^M        the student's choice, with a constant of their own
+    x = 0^X            X = |x| and Y = |y| ARE the split
+    y = 0^Y
+    z = 0^(M-X-Y) 1^M
+    xy^2z = 0^(M+Y) 1^M     written out by the student, not computed for them
 
-## The game
+Every one of those steps is arithmetic over the constants the student
+introduced.  `Lin` is a linear expression (a constant plus integer multiples
+of named constants); `PStr` is a list of runs, each with a `Lin` exponent.
+Concatenation adds, `y^i` repeats, and two parametric strings are equal
+exactly when they are equal for every value of the constants.  So:
 
-```python
-game = PumpGame(P_anbn, '0^n 1^n')
-game.adversary(4)                  # the adversary fixes N
-game.choose_w('0000' + '1111')     # your move -- checked for membership and length
-game.y_shapes(['all 0s'])          # claim the cases; the solver marks your work
-game.refute(2)                     # the discharge: the whole quantifier at once
-```
+* `x y z == w` is checked by normalising both sides --- instantly, exactly,
+  with no solver;
+* `xy^i z` is recomputed and compared against what the student wrote;
+* `|x| == X` and `|y| == Y` are checked the same way.
 
-Each step pushes back:
+That last check is the load-bearing one.  A case written with lengths of its
+own (`x = 0^(X+1)`) is a case standing for *some* splits; a case written in
+terms of the split point stands for *all* of them.  Rejecting the first is
+what keeps "case" from silently meaning "example".
 
-| Move | The solver's answer |
-|---|---|
-| `choose_w('0001')` | REJECTED — not in the language; the lemma constrains only members |
-| `choose_w('01')` with N=6 | REJECTED — `\|w\| < N`; the lemma says nothing about short strings |
-| `y_shapes(['all 0s'])` on `w='0000'+'1111'` | COMPLETE — the other two shapes are *impossible* under `\|xy\| ≤ N` |
-| `y_shapes(['all 0s'])` on `w='0011'` | **MISSED: all 1s, straddles** — a short `w` leaves three cases |
-| `refute(2)` | UNSAT — no split survives; ¬Cond, not regular, QED |
+**`qed()` asks the solver exactly one question.**  Everything the walk
+recorded becomes an obligation, each paired with the formula that would break
+it, each flagged:
 
-That fourth row is the point of choosing $w$ well, and the student discovers it rather
-than being told: the good $w$ collapses the case analysis to one case, the careless one
-leaves three.
+    w is a member of L
+    |w| >= N, whichever N the adversary meant
+    your k cases cover EVERY admissible split
+    case k: xy^i z falls OUTSIDE L
 
-## Two things the design had to get right
+with `flag_j == And(base, breaks_j)` and `Or(flag_1 ... flag_n)` added to a
+single solver.  One `check()`.  UNSAT means not one obligation can be broken
+--- and since the flags track their conditions exactly, a SAT model names
+which one broke and hands back a concrete counterexample.
 
-**`unknown` is not `unsat`.** z3's string theory can give up. Reporting that as "no
-split survives" would manufacture a proof out of a timeout — precisely the sin the
-notebook exists to prevent. `_ask()` is three-valued and every caller distinguishes the
-three.
+Keeping it to one call required making every obligation quantifier-free.
+The first cut used `Exists` for the per-case locals and a nested
+`Exists`-under-`Not` for coverage; z3 then returned a model in which the
+coverage flag evaluated to *an unreduced quantified formula* rather than to
+`True` or `False`, so the report silently listed nothing as broken.  Pinning
+`X = |x|` and `Y = |y|` removed every quantifier, which is why that check
+earns its place twice over.
 
-**The lemma lets each split choose its own $i$.** So checking one fixed $i$ against
-every split is *sufficient* to refute but not *necessary*. `refute(K)` asks the honest
-question — "is there a split surviving **every** $i \le K$?" — while `pump(i)` remains
-as a single-$i$ probe, labelled as such.
+A related detail: `X >= 0, Y >= 1, X + Y <= N` live in the shared `base`
+rather than in the individual obligations.  They constrain nothing else (`X`
+and `Y` appear nowhere else in `base`), but without them the solver was free
+to report a witness like `X = -1, Y = 0` for an obligation that does not
+mention the split --- values no split could ever take, in a message whose
+whole job is to be believed.
 
-I had the second one wrong at first and the difference is not cosmetic: for
-$\{0^n1^m : n \ne m\}$ each split needs a *different* $i$, so a single-$i$ check reports
-a survivor where none exists.
+## What the notebook demonstrates
 
-## The solver's limits are part of the lesson
+Both directions, because only showing success proves nothing about the tool:
 
-The last cell runs a query z3 cannot decide and prints
+* the book's walk, pumping **up**, and the same walk pumping **down** --- UNSAT;
+* three ways to get it wrong: bad concatenation and a mis-sized `x`, both
+  caught by algebra before any solver runs, and a `w` never tied to `N`,
+  which needs the query to expose;
+* **why `w` must be chosen well**: declare `2M >= N` instead of `M >= N` and
+  `|w| >= N` still holds, but `y` is no longer trapped in the `0`s.  One case
+  becomes a hole and the solver hands back the split left out.  Supplying all
+  three cases closes it --- and the cost of the sloppy `w` is now visible
+  rather than asserted;
+* the control that matters: **the identical walk on a regular language**,
+  `0*1*`.  It comes back SAT.  If the machinery said QED here it would be
+  worthless.
 
-```
-UNKNOWN -- the solver gave up. That is NOT a proof.
-```
+## Testing
 
-$\{0^n1^m : n\ne m\}$ *is* non-regular, but the $w$ chosen for it is poor — pumping the
-0s keeps the counts unequal — and a $w$ that works needs $(\#1 - \#0)$ divisible by
-every possible $|y|$, the classic $N!$ trick. The solver will not invent that.
+The notebook runs end to end against z3 5.1.0 in about a tenth of a second,
+with every branch above exercised.  `z3-solver` is not a Jove dependency, so
+the notebook pip-installs it on first use.
 
-This is Chapter 4 Concept 19's lesson — *failing to falsify proves nothing* — now
-observable rather than asserted, and it doubles as an honest statement about what an
-SMT solver is.
+The harness on this machine skips the notebook **whole** and says so, because
+the system z3 here is an x86_64 build on an arm64 Mac and cannot load.
+Skipping only the cells that mention z3 drops the *definitions* and leaves
+the cells that use them, which then fail with `NameError` and look like real
+bugs --- that is what the first version of the skip did.
 
-## Verification
+## One thing that bit twice
 
-The whole notebook executes end to end against z3 5.1.0 in **3.2 seconds**, with every
-branch exercised: membership, both rejections, the complete and the incomplete case
-analysis, `refute` reaching UNSAT, `pump` at $i=2$ and $i=0$, and the `unknown` demo.
+`build()` writes each notebook from scratch, so anything a **post-pass**
+added is gone after a regeneration.  The nav strip is such a post-pass, and
+losing it is silent: the notebook still runs, it just loses its prev/next
+links.  Regenerating Chapter 4 for this rewrite dropped the strip from all 22
+of its notebooks, and the first commit of this work shipped that way.
 
-`z3-solver` is not a Jove dependency; the notebook pip-installs it on first use.
-
-**Note for this machine:** the system z3 here is an x86_64 build on an arm64 Mac and
-cannot load — the same pre-existing breakage as `rpds`. The main notebook harness
-therefore skips z3 cells, and this notebook is verified separately against a working
-z3 in a venv.
+Both the generator and `nbgen/README.md` now say so out loud: every
+regeneration prints a reminder, and the documented recipe ends with
+`insert_nav_strip.py --write`.
