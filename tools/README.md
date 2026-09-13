@@ -44,3 +44,47 @@ jupyter nbconvert --to html --stdout NOTEBOOK.ipynb > /dev/null
 
 Worth running after any bulk notebook edit, and before publishing links students
 will click.
+
+
+## `fix_animation_fontawesome.py`
+
+Makes every `Animate*` cell actually show its toolbar instead of ending with
+
+```
+<jove.AnimateDFA.AnimateDFA at 0x7853472c5e50>
+```
+
+```sh
+python3 tools/fix_animation_fontawesome.py           # report, exits 1 if any
+python3 tools/fix_animation_fontawesome.py --write   # fix in place
+```
+
+### The rule it enforces
+
+An **active** font-awesome `display(HTML(...))` line must be the **last statement of
+the cell**, i.e. it must *follow* the `Animate*` call:
+
+```python
+AnimateNFA(ThirdLastIs1NFAalt, FuseEdges=True)
+display(HTML('<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>'))
+```
+
+Position matters, not just presence. Two separate things go wrong otherwise:
+
+* the toolbar glyphs **are** font-awesome icons, so no controls render; and
+* `Animate*.__init__` already calls `display()` on the widget, so if the constructor
+  is the cell's last expression Jupyter *additionally* echoes the object's repr.
+  Putting the `display(HTML(...))` call last returns `None` and suppresses that.
+
+### What it found
+
+Of 231 animation cells in this repo, **38 were wrong** in three ways:
+
+| | Count | Problem |
+|---|---:|---|
+| `appended` | 22 | no font-awesome line at all |
+| `moved` | 10 | line present but **before** the call, so the repr still showed |
+| `uncommented+moved` | 6 | line commented out **and** in the wrong place |
+
+The `moved` category is the easy one to miss: those cells *look* right in a grep for
+`font-awesome`, but the ordering defeats them.
