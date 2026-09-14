@@ -19,6 +19,12 @@ a machine to show) an animation.
 | 10. NP-Hard Can Be Undecidable: the Diophantine Pitfall | `Concept-NP-Hard-Can-Be-Undecidable/` | [Concept-NP-Hard-Can-Be-Undecidable.ipynb](Concept-NP-Hard-Can-Be-Undecidable/Concept-NP-Hard-Can-Be-Undecidable.ipynb) |
 | 11. Co-NP and Co-NPC: Primes versus Composites | `Concept-Co-NP-And-Primes/` | [Concept-Co-NP-And-Primes.ipynb](Concept-Co-NP-And-Primes/Concept-Co-NP-And-Primes.ipynb) |
 | 12. SAT in Practice: Solvers, DIMACS, and Equisatisfiability | `Concept-SAT-In-Practice/` | [Concept-SAT-In-Practice.ipynb](Concept-SAT-In-Practice/Concept-SAT-In-Practice.ipynb) |
+| 13. A BDD Decides SAT by Being Built | `Concept-BDD-Decides-SAT/` | [Concept-BDD-Decides-SAT.ipynb](Concept-BDD-Decides-SAT/Concept-BDD-Decides-SAT.ipynb) |
+| 14. Both Normal Forms, Read Off One Diagram | `Concept-Normal-Forms-From-BDD/` | [Concept-Normal-Forms-From-BDD.ipynb](Concept-Normal-Forms-From-BDD/Concept-Normal-Forms-From-BDD.ipynb) |
+| 15. Why Converting CNF to DNF Is Not a Free Lunch | `Concept-CNF-To-DNF-Is-No-Free-Lunch/` | [Concept-CNF-To-DNF-Is-No-Free-Lunch.ipynb](Concept-CNF-To-DNF-Is-No-Free-Lunch/Concept-CNF-To-DNF-Is-No-Free-Lunch.ipynb) |
+| 16. Counting Solutions: a BDD Does #SAT in One Pass | `Concept-Counting-Solutions-Sharp-SAT/` | [Concept-Counting-Solutions-Sharp-SAT.ipynb](Concept-Counting-Solutions-Sharp-SAT/Concept-Counting-Solutions-Sharp-SAT.ipynb) |
+| 17. Graph Colouring as a Boolean Formula | `Concept-Graph-Colouring-As-A-Formula/` | [Concept-Graph-Colouring-As-A-Formula.ipynb](Concept-Graph-Colouring-As-A-Formula/Concept-Graph-Colouring-As-A-Formula.ipynb) |
+| 18. Variable Ordering, and What BDDs Do Not Settle | `Concept-Variable-Ordering-And-P-Versus-NP/` | [Concept-Variable-Ordering-And-P-Versus-NP.ipynb](Concept-Variable-Ordering-And-P-Versus-NP/Concept-Variable-Ordering-And-P-Versus-NP.ipynb) |
 
 The prose for each concept lives in the companion workbook repo,
 as `Concepts/Chapter-16-Concept-<N>.md`.
