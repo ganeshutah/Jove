@@ -25,7 +25,8 @@ import io
 import os
 import sys
 
-__all__ = ['bdd', 'Bdd', 'BDD_PATHS', 'cnf', 'dnf', 'paths']
+__all__ = ['bdd', 'Bdd', 'BDD_PATHS', 'cnf', 'dnf', 'paths',
+           'side_by_side', 'decision_tree', 'tree_vs_bdd']
 
 
 def _paths():
@@ -259,3 +260,80 @@ def cnf(b):
     return ' & '.join(neg(p[0]) if len(p) == 1
                       else '(%s)' % ' | '.join(neg(l) for l in p)
                       for p in ps)
+
+
+# ---- pictures that make a point ---------------------------------------
+
+_STYLE = ('  fontsize=12;\n  node [fontname="Helvetica"];\n'
+          '  edge [fontname="Helvetica"];\n')
+
+
+def _body(dot):
+    """The Node/edge lines of a dot file, without its wrapper."""
+    return [l.strip() for l in dot.splitlines()
+            if l.strip().startswith('Node')]
+
+
+def side_by_side(*labelled, **kw):
+    """Several diagrams in one picture, each in its own captioned box.
+
+    Pass ``(label, Bdd)`` pairs.  Comparing two diagrams is the whole point
+    of half the BDD material -- two orders, or a tree against its reduction
+    -- and a comparison the reader has to make by scrolling is a comparison
+    the reader does not make.
+    """
+    import graphviz
+    import re
+    out = ['digraph G {', _STYLE, '  rankdir=TB;', '  compound=true;']
+    for i, (label, b) in enumerate(labelled):
+        src = b if isinstance(b, str) else b.dot
+        out.append('  subgraph cluster_%d {' % i)
+        out.append('    label="%s";' % label)
+        out.append('    labelloc=t; fontsize=14; color=gray70;')
+        for line in _body(src):
+            out.append('    ' + re.sub(r'\bNode(\d+)', r'g%d_Node\1' % i, line))
+        out.append('  }')
+    out.append('}')
+    return graphviz.Source('\n'.join(out))
+
+
+def decision_tree(b, dot_only=False):
+    """The UNREDUCED decision tree for the same function.
+
+    One node per prefix of the variable order, $2^n$ leaves, nothing
+    shared.  This is what a BDD would be without reduction, and putting it
+    beside the BDD is the clearest possible statement of what reduction
+    does.  Keep it to five or six variables.
+    """
+    vs = b.vars
+    truth = {tuple(m[v] for v in vs) for m in b.models}
+    lines, nid = [], [0]
+
+    def emit(prefix):
+        me = nid[0]
+        nid[0] += 1
+        if len(prefix) == len(vs):
+            val = 1 if tuple(prefix) in truth else 0
+            lines.append('Node%d [label=%d, shape=box, peripheries=2, '
+                         'color=%s]' % (me, val, 'Blue' if val else 'Red'))
+            return me
+        lines.append('Node%d [label=%s, shape=circle]' % (me, vs[len(prefix)]))
+        for bit in (0, 1):
+            kid = emit(prefix + [bit])
+            lines.append('Node%d->Node%d [label="%d", color=%s]'
+                         % (me, kid, bit, 'blue' if bit else 'red'))
+        return me
+
+    emit([])
+    src = 'digraph G {\n' + _STYLE + '\n'.join('  ' + l for l in lines) + '\n}'
+    if dot_only:
+        return src
+    import graphviz
+    return graphviz.Source(src)
+
+
+def tree_vs_bdd(b):
+    """The decision tree and the BDD, side by side.  Reduction, in one look."""
+    return side_by_side(('decision tree: %d nodes' % (2 ** (len(b.vars) + 1) - 1),
+                         decision_tree(b, dot_only=True)),
+                        ('reduced BDD: %d nodes' % b.nodes, b.dot))
