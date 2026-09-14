@@ -323,14 +323,28 @@ class JoveEditor:
     and also the major animation commands contained in specialized animation
     widgets such as AnimateDFA, AnimateNFA, AnimatePDA, and AnimateTM.
 
-    Include these lines:
+    Just call it; nothing else is needed:
 
     JoveEditor(examples=False/True)
-    display(HTML('<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>'))
 
-    Then the animation works in one's own install or Colab.
+    The font-awesome stylesheet the panel's glyphs need is loaded by
+    __init__ itself, into the same cell output the panel goes into, so
+    the old trailing display(HTML(...)) line is unnecessary.
     '''
     def __init__(self, machine=None, examples=False):
+        # ---- toolbar stylesheet -------------------------------------
+        # The panel's glyphs are font-awesome icons: its own Button(icon=...)
+        # controls, and the Play widget's play/pause/stop, which the
+        # ipywidgets frontend emits as fa-play/fa-pause/fa-stop.
+        #
+        # Nothing in this module used to load that stylesheet: the docstring
+        # told the caller to add a trailing display(HTML(...)) line to the
+        # notebook cell, and that line was doing the work.  Loading it here
+        # puts it in the same output area as the panel, every time -- which
+        # matters on Colab, where each cell's output is its own sandboxed
+        # iframe and a link loaded by one cell cannot reach another.  This is
+        # what lets a notebook drop the trailing line.
+        display(HTML('<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>'))
         # added to force using font-family monospace for user input Textarea and Text widgets
         display(HTML("<style>textarea, input { font-family: monospace; }</style>"))
         # Editing textboxes and toggle buttons
@@ -559,6 +573,19 @@ class JoveEditor:
                 self.editor_tabs.selected_index = 0
 
         display(self.editor_tabs)
+
+    def _ipython_display_(self):
+        """Take over display and emit nothing.
+
+        __init__ has already called display() on the panel, so there is
+        nothing left to show.  Defining this hook makes IPython produce an
+        empty mimebundle, which suppresses the
+        `<jove.JoveEditor.JoveEditor at 0x...>` echo when a cell ends with the
+        constructor -- the job the trailing display(HTML(...)) line used to do
+        by accident.  (__repr__ returning '' does not work: it still emits a
+        text/plain part, leaving a blank output area.)
+        """
+        return None
 
     def on_machine_select(self, change):
         # save button

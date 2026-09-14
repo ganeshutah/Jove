@@ -44,12 +44,12 @@ Jove/
 
 ## Status
 
-All eighteen chapters are covered, plus Appendix A: **245 notebooks**, one per
+All eighteen chapters are covered, plus Appendix A: **246 notebooks**, one per
 concept in the workbook's decomposition.
 
 | Chapter | Concepts | With animation |
 |---|---:|---:|
-| 1 &mdash; What Machines Think | 17 | 7 |
+| 1 &mdash; What Machines Think | 18 | 8 |
 | 2 &mdash; Defining Languages: Patterns in Sets of Strings | 16 | 0 |
 | 3 &mdash; Kleene Star: Basic Method of Defining Repetitious Patterns | 16 | 2 |
 | 4 &mdash; Basics of DFA | 22 | 6 |
@@ -68,7 +68,7 @@ concept in the workbook's decomposition.
 | 17 &mdash; Binary Decision Diagrams as Minimal DFA | 7 | 1 |
 | 18 &mdash; Computability Using Lambdas | 10 | 0 |
 | **Basics** &mdash; A Recap of Discrete Math (Appendix A) | 13 | 3 |
-| **Total** | **245** | **81** |
+| **Total** | **246** | **82** |
 
 `Basics/` holds Appendix A rather than a chapter, so it is named for what it is
 instead of getting a fictitious chapter number. It is the discrete-maths
