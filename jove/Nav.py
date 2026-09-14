@@ -84,8 +84,14 @@ def chapter_titles():
     try:
         txt = open(os.path.join(_root(), 'Chapters-README.md'),
                    encoding='utf-8').read()
-        for n, title in re.findall(r'^\|\s*(\d+)\s*&mdash;\s*([^|]+?)\s*\|',
-                                   txt, re.M):
+        # Tolerate an optional leading cell: the table gained a `Folder`
+        # column when the chapter directories were renamed to carry a topic
+        # tag, and an anchored `^\|\s*(\d+)` stopped matching every row.
+        # It failed SILENTLY -- see the except below -- and the only symptom
+        # was that "ch3 kleene" quietly stopped finding anything.
+        for n, title in re.findall(
+                r'^\|(?:[^|]*\|)?\s*(\d+)\s*&mdash;\s*([^|]+?)\s*\|',
+                txt, re.M):
             _TITLES['Chapter %s' % n] = title.strip()
     except Exception:
         pass
@@ -128,7 +134,7 @@ def _url(rel):
 
 
 def _neighbours(here):
-    """(previous, next) rows around `here`, a 'Chapter2/Concept-Foo' prefix."""
+    """(previous, next) rows around `here`, a 'Chapter2-Lang/Concept-Foo' prefix."""
     rows = index()
     if not here:
         return None, None
@@ -234,7 +240,7 @@ def nav(query='', here=None, rows=10):
 def load_here(query, quiet=False, _depth=1):
     """Run another concept's code in THIS kernel -- no new runtime.
 
-        load_here('Chapter7/Concept-Subset-Construction')
+        load_here('Chapter7-NFA/Concept-Subset-Construction')
         load_here('subset construction')
 
     Its definitions land in your namespace, so its machines are available
