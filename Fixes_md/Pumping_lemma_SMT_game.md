@@ -1,6 +1,6 @@
 # Rebuilding the Pumping Lemma notebook
 
-`Chapter4/Concept-Pumping-Lemma-Predicate-Logic` (concept 22) was rewritten
+`Chapter4-DFA/Concept-Pumping-Lemma-Predicate-Logic` (concept 22) was rewritten
 twice.  This note records both designs, because the first one failed for a
 reason worth keeping.
 

@@ -21,7 +21,7 @@ The last cell of every concept notebook is:
 
 ```python
 from jove.Nav import nav, load_here
-nav(here='Chapter2/Concept-Zero-And-One-For-Languages')
+nav(here='Chapter2-Lang/Concept-Zero-And-One-For-Languages')
 ```
 
 which renders:
@@ -72,7 +72,7 @@ missing their back and forward arrows.
 ## `load_here()` — stay in this session
 
 ```python
-load_here('Chapter7/Concept-Subset-Construction')
+load_here('Chapter7-NFA/Concept-Subset-Construction')
 load_here('subset construction')          # search terms work too
 ```
 

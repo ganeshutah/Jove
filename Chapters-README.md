@@ -20,15 +20,15 @@ Jove/
     Concept-Powerset/
       Concept-Powerset.ipynb
     ...
-  Chapter1/
+  Chapter1-Intro/
     README.md
     Concept-Turing-Machine-Definition/
       Concept-Turing-Machine-Definition.ipynb
     Concept-Context-Free-Patterns/
       Concept-Context-Free-Patterns.ipynb
     ...
-  Chapter2/  ...
-  Chapter3/  ...
+  Chapter2-Lang/  ...
+  Chapter3-Star/  ...
 ```
 
 ## What is in each notebook
@@ -47,28 +47,28 @@ Jove/
 All eighteen chapters are covered, plus Appendix A: **252 notebooks**, one per
 concept in the workbook's decomposition.
 
-| Chapter | Concepts | With animation |
-|---|---:|---:|
-| 1 &mdash; What Machines Think | 18 | 8 |
-| 2 &mdash; Defining Languages: Patterns in Sets of Strings | 16 | 0 |
-| 3 &mdash; Kleene Star: Basic Method of Defining Repetitious Patterns | 16 | 2 |
-| 4 &mdash; Basics of DFA | 22 | 6 |
-| 5 &mdash; Designing DFA | 14 | 9 |
-| 6 &mdash; Operations on DFA | 12 | 6 |
-| 7 &mdash; Nondeterministic Finite Automata | 12 | 11 |
-| 8 &mdash; Regular Expressions and NFA | 12 | 10 |
-| 9 &mdash; NFA to RE Conversion | 8 | 5 |
-| 10 &mdash; Derivative-Based Regular Expression Matching | 8 | 2 |
-| 11 &mdash; Context-Free Languages and Grammars | 21 | 3 |
-| 12 &mdash; Pushdown Automata | 11 | 7 |
-| 13 &mdash; Turing Machines | 13 | 6 |
-| 14 &mdash; Interplay between Formal Languages | 12 | 3 |
-| 15 &mdash; Post Correspondence, and Other Undecidability Proofs | 9 | 0 |
-| 16 &mdash; NP-Completeness | 18 | 0 |
-| 17 &mdash; Binary Decision Diagrams as Minimal DFA | 7 | 1 |
-| 18 &mdash; Computability Using Lambdas | 10 | 0 |
-| **Basics** &mdash; A Recap of Discrete Math (Appendix A) | 13 | 3 |
-| **Total** | **252** | **82** |
+| Folder | Chapter | Concepts | With animation |
+|---|---|---:|---:|
+| `Chapter1-Intro` | 1 &mdash; What Machines Think | 18 | 8 |
+| `Chapter2-Lang` | 2 &mdash; Defining Languages: Patterns in Sets of Strings | 16 | 0 |
+| `Chapter3-Star` | 3 &mdash; Kleene Star: Basic Method of Defining Repetitious Patterns | 16 | 2 |
+| `Chapter4-DFA` | 4 &mdash; Basics of DFA | 22 | 6 |
+| `Chapter5-DFADsg` | 5 &mdash; Designing DFA | 14 | 9 |
+| `Chapter6-DFAOps` | 6 &mdash; Operations on DFA | 12 | 6 |
+| `Chapter7-NFA` | 7 &mdash; Nondeterministic Finite Automata | 12 | 11 |
+| `Chapter8-RE` | 8 &mdash; Regular Expressions and NFA | 12 | 10 |
+| `Chapter9-NFA2RE` | 9 &mdash; NFA to RE Conversion | 8 | 5 |
+| `Chapter10-Deriv` | 10 &mdash; Derivative-Based Regular Expression Matching | 8 | 2 |
+| `Chapter11-CFG` | 11 &mdash; Context-Free Languages and Grammars | 21 | 3 |
+| `Chapter12-PDA` | 12 &mdash; Pushdown Automata | 11 | 7 |
+| `Chapter13-TM` | 13 &mdash; Turing Machines | 13 | 6 |
+| `Chapter14-Interp` | 14 &mdash; Interplay between Formal Languages | 12 | 3 |
+| `Chapter15-PCP` | 15 &mdash; Post Correspondence, and Other Undecidability Proofs | 9 | 0 |
+| `Chapter16-NPC` | 16 &mdash; NP-Completeness | 18 | 0 |
+| `Chapter17-BDD` | 17 &mdash; Binary Decision Diagrams as Minimal DFA | 7 | 1 |
+| `Chapter18-Lambda` | 18 &mdash; Computability Using Lambdas | 10 | 0 |
+| `Basics` | **Basics** &mdash; A Recap of Discrete Math (Appendix A) | 13 | 3 |
+| | **Total** | **252** | **82** |
 
 `Basics/` holds Appendix A rather than a chapter, so it is named for what it is
 instead of getting a fictitious chapter number. It is the discrete-maths
