@@ -44,7 +44,7 @@ Jove/
 
 ## Status
 
-All eighteen chapters are covered, plus Appendix A: **246 notebooks**, one per
+All eighteen chapters are covered, plus Appendix A: **252 notebooks**, one per
 concept in the workbook's decomposition.
 
 | Chapter | Concepts | With animation |
@@ -64,11 +64,11 @@ concept in the workbook's decomposition.
 | 13 &mdash; Turing Machines | 13 | 6 |
 | 14 &mdash; Interplay between Formal Languages | 12 | 3 |
 | 15 &mdash; Post Correspondence, and Other Undecidability Proofs | 9 | 0 |
-| 16 &mdash; NP-Completeness | 12 | 0 |
+| 16 &mdash; NP-Completeness | 18 | 0 |
 | 17 &mdash; Binary Decision Diagrams as Minimal DFA | 7 | 1 |
 | 18 &mdash; Computability Using Lambdas | 10 | 0 |
 | **Basics** &mdash; A Recap of Discrete Math (Appendix A) | 13 | 3 |
-| **Total** | **246** | **82** |
+| **Total** | **252** | **82** |
 
 `Basics/` holds Appendix A rather than a chapter, so it is named for what it is
 instead of getting a fictitious chapter number. It is the discrete-maths
