@@ -69,9 +69,10 @@ text get replaced".
 
 ## Not changed
 
-`jove/PcpJupyter.py` does not parse at all — `TabError: inconsistent use of tabs and
-spaces`. That is pre-existing (the committed version fails identically) and unrelated
-to this work, so it was left alone. Worth a separate look.
+`jove/PcpJupyter.py` did not parse at all — `TabError: inconsistent use of tabs and
+spaces`, line 40 — and nothing imported it, so nobody noticed. It is gone, along with
+`old-PcpJupyter.py`; `jove/Pcp.py` replaces both. `PcpJupyterNew.py` stays, because the
+archived `OlderYears/` notebooks import it.
 
 ## Reverting
 
