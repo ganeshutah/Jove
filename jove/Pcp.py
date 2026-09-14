@@ -32,6 +32,8 @@ import tempfile
 
 __all__ = ['pcp', 'PcpResult', 'pcp_binary', 'pcp_available']
 
+# The solver accepts only 0 and 1; other alphabets are recoded (see _encode).
+
 _BIN = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                     'pcpbinaries', 'pcp_linux')
 
@@ -126,6 +128,32 @@ class PcpResult:
 
 # ----------------------------------------------------------------- driver ---
 
+def _encode(tiles):
+    """Recode the tiles over {0,1}, which is all the solver accepts.
+
+    Ling Zhao's solver is binary only: hand it dominoes over a, b, c and it
+    reports `unsolved` for instances that plainly have a solution.  Chapter
+    15's own examples use letters, so encoding here is what makes the
+    module usable with the material it is for.
+
+    Each symbol becomes a FIXED-WIDTH binary code.  Fixed width matters: a
+    variable-length code could let two different letter strings encode to
+    the same bits and manufacture a match that is not there.  A fixed-width
+    injective coding is a homomorphism applied to both rows, so it
+    preserves solutions in both directions -- and the tile ORDER is
+    untouched by it, which is why the answer needs no decoding.  The
+    verification in _read_order() runs against the ORIGINAL tiles, so a
+    mistake here cannot slip through.
+    """
+    alpha = sorted({ch for t, b in tiles for ch in t + b})
+    if set(alpha) <= {'0', '1'}:
+        return tiles, None
+    width = max(1, (len(alpha) - 1).bit_length())
+    code = {ch: format(i, '0%db' % width) for i, ch in enumerate(alpha)}
+    enc = lambda s: ''.join(code[ch] for ch in s)
+    return [(enc(t), enc(b)) for t, b in tiles], code
+
+
 def _instance_text(tiles):
     widest = max(max(len(t), len(b)) for t, b in tiles)
     return ('%d %d\n%s\n%s\n'
@@ -144,7 +172,12 @@ def _read_order(sol_text, tiles):
     the tiles both ways and keep whichever actually matches.  If neither
     does, say so instead of returning a sequence that does not work.
     """
-    m = re.search(r'Find the solution in depth:.*?\n\s*([\d ]+?)\s*\n', sol_text)
+    # The sequence WRAPS: twenty indices to a line, for as many lines as it
+    # takes.  A solution of 66 tiles arrives as four lines, and reading only
+    # the first yields a prefix that concatenates to nothing -- which is
+    # what the verification below caught.
+    m = re.search(r'Find the solution in depth:[^\n]*\n'
+                  r'((?:[ \t]*\d+(?:[ \t]+\d+)*[ \t]*\n)+)', sol_text)
     if not m:
         return None, 'solver reported a solution but printed no tile order'
     seq = [int(x) - 1 for x in m.group(1).split()]
@@ -179,9 +212,10 @@ def pcp(tiles, depth=None, increment=None, runs=None, quiet=True):
     # Run inside a temporary directory: the solver writes sol.txt,
     # nosol.txt and unsol.txt into the CURRENT directory, which on Colab
     # is the one the student is working in.
+    coded, code = _encode(tiles)
     with tempfile.TemporaryDirectory() as tmp:
         with open(os.path.join(tmp, 'in.txt'), 'w') as fh:
-            fh.write(_instance_text(tiles))
+            fh.write(_instance_text(coded))
         cmd = [pcp_binary(), '-i', 'in.txt']
         for flag, val in (('-d', depth), ('-di', increment), ('-r', runs)):
             if val is not None:
@@ -209,6 +243,8 @@ def pcp(tiles, depth=None, increment=None, runs=None, quiet=True):
 
     if 'Solvable!' in sol:
         order, note = _read_order(sol, tiles)
+        if code and not note:
+            note = 'alphabet %s recoded to binary for the solver' % ''.join(sorted(code))
         status = 'solvable' if order else 'unverified'
         r = PcpResult(tiles, status, order, nodes, secs, sol, note)
     elif 'Unsolvable!' in nosol:
