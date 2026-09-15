@@ -44,7 +44,7 @@ Jove/
 
 ## Status
 
-All eighteen chapters are covered, plus Appendix A: **254 notebooks**, one per
+All eighteen chapters are covered, plus Appendix A: **255 notebooks**, one per
 concept in the workbook's decomposition.
 
 | Folder | Chapter | Concepts | With animation |
@@ -66,9 +66,9 @@ concept in the workbook's decomposition.
 | `Chapter15-PCP` | 15 &mdash; Post Correspondence, and Other Undecidability Proofs | 9 | 0 |
 | `Chapter16-NPC` | 16 &mdash; NP-Completeness | 18 | 0 |
 | `Chapter17-BDD` | 17 &mdash; Binary Decision Diagrams as Minimal DFA | 7 | 1 |
-| `Chapter18-Lambda` | 18 &mdash; Computability Using Lambdas | 11 | 1 |
+| `Chapter18-Lambda` | 18 &mdash; Computability Using Lambdas | 12 | 2 |
 | `Basics` | **Basics** &mdash; A Recap of Discrete Math (Appendix A) | 13 | 3 |
-| | **Total** | **254** | **84** |
+| | **Total** | **255** | **85** |
 
 `Basics/` holds Appendix A rather than a chapter, so it is named for what it is
 instead of getting a fictitious chapter number. It is the discrete-maths

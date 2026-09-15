@@ -18,6 +18,7 @@ a machine to show) an animation.
 | 9. Using Fixpoint Combinators: Factorial and Fibonacci in Python | `Concept-Factorial-And-Fibonacci/` | [Concept-Factorial-And-Fibonacci.ipynb](Concept-Factorial-And-Fibonacci/Concept-Factorial-And-Fibonacci.ipynb) |
 | 10. Combinators, and the Universality of $S$ and $K$ | `Concept-Combinators-S-And-K/` | [Concept-Combinators-S-And-K.ipynb](Concept-Combinators-S-And-K/Concept-Combinators-S-And-K.ipynb) |
 | 11. S and K, Actually Running: Arithmetic and Recursion in SKI | `Concept-SKI-Actually-Running/` | [Concept-SKI-Actually-Running.ipynb](Concept-SKI-Actually-Running/Concept-SKI-Actually-Running.ipynb) |
+| 12. Beta Reduction, Watched: Substitution and the Capture It Avoids | `Concept-Beta-Reduction-Watched/` | [Concept-Beta-Reduction-Watched.ipynb](Concept-Beta-Reduction-Watched/Concept-Beta-Reduction-Watched.ipynb) |
 
 The prose for each concept lives in the companion workbook repo,
 as `Concepts/Chapter-18-Concept-<N>.md`.
