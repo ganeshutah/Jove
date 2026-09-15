@@ -23,6 +23,7 @@ a machine to show) an animation.
 | 14. Language Union and Intersection | `Concept-Union-And-Intersection/` | [Concept-Union-And-Intersection.ipynb](Concept-Union-And-Intersection/Concept-Union-And-Intersection.ipynb) |
 | 15. Star Previewed as a Finite Union of Exponents | `Concept-Star-Previewed/` | [Concept-Star-Previewed.ipynb](Concept-Star-Previewed/Concept-Star-Previewed.ipynb) |
 | 16. Slippery Roads: Telling Look-Alike Language Definitions Apart | `Concept-Slippery-Roads/` | [Concept-Slippery-Roads.ipynb](Concept-Slippery-Roads/Concept-Slippery-Roads.ipynb) |
+| 17. The Language Operations, Animated | `Concept-Language-Operations-Animated/` | [Concept-Language-Operations-Animated.ipynb](Concept-Language-Operations-Animated/Concept-Language-Operations-Animated.ipynb) |
 
 The prose for each concept lives in the companion workbook repo,
 as `Concepts/Chapter-2-Concept-<N>.md`.
