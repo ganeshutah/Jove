@@ -44,13 +44,13 @@ Jove/
 
 ## Status
 
-All eighteen chapters are covered, plus Appendix A: **252 notebooks**, one per
+All eighteen chapters are covered, plus Appendix A: **253 notebooks**, one per
 concept in the workbook's decomposition.
 
 | Folder | Chapter | Concepts | With animation |
 |---|---|---:|---:|
 | `Chapter1-Intro` | 1 &mdash; What Machines Think | 18 | 8 |
-| `Chapter2-Lang` | 2 &mdash; Defining Languages: Patterns in Sets of Strings | 16 | 0 |
+| `Chapter2-Lang` | 2 &mdash; Defining Languages: Patterns in Sets of Strings | 17 | 1 |
 | `Chapter3-Star` | 3 &mdash; Kleene Star: Basic Method of Defining Repetitious Patterns | 16 | 2 |
 | `Chapter4-DFA` | 4 &mdash; Basics of DFA | 22 | 6 |
 | `Chapter5-DFADsg` | 5 &mdash; Designing DFA | 14 | 9 |
@@ -68,7 +68,7 @@ concept in the workbook's decomposition.
 | `Chapter17-BDD` | 17 &mdash; Binary Decision Diagrams as Minimal DFA | 7 | 1 |
 | `Chapter18-Lambda` | 18 &mdash; Computability Using Lambdas | 10 | 0 |
 | `Basics` | **Basics** &mdash; A Recap of Discrete Math (Appendix A) | 13 | 3 |
-| | **Total** | **252** | **82** |
+| | **Total** | **253** | **83** |
 
 `Basics/` holds Appendix A rather than a chapter, so it is named for what it is
 instead of getting a fictitious chapter number. It is the discrete-maths
