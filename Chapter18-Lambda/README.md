@@ -17,6 +17,7 @@ a machine to show) an animation.
 | 8. Eager versus Lazy Evaluation, and the Combinator $Y_e$ | `Concept-Eager-Versus-Lazy/` | [Concept-Eager-Versus-Lazy.ipynb](Concept-Eager-Versus-Lazy/Concept-Eager-Versus-Lazy.ipynb) |
 | 9. Using Fixpoint Combinators: Factorial and Fibonacci in Python | `Concept-Factorial-And-Fibonacci/` | [Concept-Factorial-And-Fibonacci.ipynb](Concept-Factorial-And-Fibonacci/Concept-Factorial-And-Fibonacci.ipynb) |
 | 10. Combinators, and the Universality of $S$ and $K$ | `Concept-Combinators-S-And-K/` | [Concept-Combinators-S-And-K.ipynb](Concept-Combinators-S-And-K/Concept-Combinators-S-And-K.ipynb) |
+| 11. S and K, Actually Running: Arithmetic and Recursion in SKI | `Concept-SKI-Actually-Running/` | [Concept-SKI-Actually-Running.ipynb](Concept-SKI-Actually-Running/Concept-SKI-Actually-Running.ipynb) |
 
 The prose for each concept lives in the companion workbook repo,
 as `Concepts/Chapter-18-Concept-<N>.md`.
