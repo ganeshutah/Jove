@@ -17,7 +17,7 @@
 
   - **Every chapter of the book now has a folder of concept notebooks:**
     `Chapter1-Intro/` through `Chapter18-Lambda/`, plus `Basics/` for Appendix A.
-    **255 notebooks, one per concept**, all of them auto-generated and all of
+    **258 notebooks, one per concept**, all of them auto-generated and all of
     them runnable on Colab with no installation. See just below.
 
 * ***CONCEPT NOTEBOOKS, ONE PER IDEA*** (`Chapter1-Intro/` ... `Chapter18-Lambda/`, `Basics/`)
@@ -31,7 +31,7 @@
     ```
 
     All eighteen chapters are covered, plus Appendix A under `Basics/`:
-    **255 notebooks**, **85** of which animate a machine you can step through
+    **258 notebooks**, **85** of which animate a machine you can step through
     (`AnimateDFA`, `AnimateNFA`, `AnimatePDA`, `AnimateTM`).
 
   - **They run on Colab with nothing installed.** The first cell clones Jove on
@@ -50,7 +50,7 @@
   - Every notebook has the same five parts: **the idea**, the **definitions**,
     **tests** that exercise them, an **animation** where there is a machine to
     step through, and **exercises**. A previous/index/next link strip sits in
-    the middle of each one, so you can read straight through all 255 in order.
+    the middle of each one, so you can read straight through all 258 in order.
 
   - Folders are named for the *idea*, not for a lecture number or a course
     year, so they stay correct when the course is renumbered or re-run.

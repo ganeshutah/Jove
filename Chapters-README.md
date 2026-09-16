@@ -44,7 +44,7 @@ Jove/
 
 ## Status
 
-All eighteen chapters are covered, plus Appendix A: **255 notebooks**, one per
+All eighteen chapters are covered, plus Appendix A: **258 notebooks**, one per
 concept in the workbook's decomposition.
 
 | Folder | Chapter | Concepts | With animation |
@@ -54,7 +54,7 @@ concept in the workbook's decomposition.
 | `Chapter3-Star` | 3 &mdash; Kleene Star: Basic Method of Defining Repetitious Patterns | 16 | 2 |
 | `Chapter4-DFA` | 4 &mdash; Basics of DFA | 22 | 6 |
 | `Chapter5-DFADsg` | 5 &mdash; Designing DFA | 14 | 9 |
-| `Chapter6-DFAOps` | 6 &mdash; Operations on DFA | 12 | 6 |
+| `Chapter6-DFAOps` | 6 &mdash; Operations on DFA | 15 | 6 |
 | `Chapter7-NFA` | 7 &mdash; Nondeterministic Finite Automata | 12 | 11 |
 | `Chapter8-RE` | 8 &mdash; Regular Expressions and NFA | 12 | 10 |
 | `Chapter9-NFA2RE` | 9 &mdash; NFA to RE Conversion | 8 | 5 |
@@ -68,7 +68,7 @@ concept in the workbook's decomposition.
 | `Chapter17-BDD` | 17 &mdash; Binary Decision Diagrams as Minimal DFA | 7 | 1 |
 | `Chapter18-Lambda` | 18 &mdash; Computability Using Lambdas | 12 | 2 |
 | `Basics` | **Basics** &mdash; A Recap of Discrete Math (Appendix A) | 13 | 3 |
-| | **Total** | **255** | **85** |
+| | **Total** | **258** | **85** |
 
 `Basics/` holds Appendix A rather than a chapter, so it is named for what it is
 instead of getting a fictitious chapter number. It is the discrete-maths
