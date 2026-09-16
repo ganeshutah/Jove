@@ -19,9 +19,9 @@ a machine to show) an animation.
 | 10. Minimization as a Fixed-Point Computation: `fixptDist` | `Concept-Fixed-Point-Minimization/` | [Concept-Fixed-Point-Minimization.ipynb](Concept-Fixed-Point-Minimization/Concept-Fixed-Point-Minimization.ipynb) |
 | 11. Worked Example: Union, Minimization, and the Two Comparison Predicates | `Concept-Worked-Union-Minimization/` | [Concept-Worked-Union-Minimization.ipynb](Concept-Worked-Union-Minimization/Concept-Worked-Union-Minimization.ipynb) |
 | 12. DeMorgan's Law for DFA, Verified by Isomorphism | `Concept-DeMorgan-For-DFA/` | [Concept-DeMorgan-For-DFA.ipynb](Concept-DeMorgan-For-DFA/Concept-DeMorgan-For-DFA.ipynb) |
-| 13. A Transformer with Context $k$ is a Finite-State Machine | `Concept-Transformer-Is-Finite-State/` | [Concept-Transformer-Is-Finite-State.ipynb](Concept-Transformer-Is-Finite-State/Concept-Transformer-Is-Finite-State.ipynb) |
-| 14. Which DFAs a $k$-Window Can Learn: Myhill-Nerode Against a Window | `Concept-Which-DFAs-A-Window-Can-Learn/` | [Concept-Which-DFAs-A-Window-Can-Learn.ipynb](Concept-Which-DFAs-A-Window-Can-Learn/Concept-Which-DFAs-A-Window-Can-Learn.ipynb) |
-| 15. Watching It Fail: Parity, and What Hedging Looks Like | `Concept-Watching-It-Fail-Parity/` | [Concept-Watching-It-Fail-Parity.ipynb](Concept-Watching-It-Fail-Parity/Concept-Watching-It-Fail-Parity.ipynb) |
+| 13. Karpathy's GPT as a Markov Chain, Learning a Jove DFA | `Concept-Karpathy-GPT-On-A-Jove-DFA/` | [Concept-Karpathy-GPT-On-A-Jove-DFA.ipynb](Concept-Karpathy-GPT-On-A-Jove-DFA/Concept-Karpathy-GPT-On-A-Jove-DFA.ipynb) |
+| 14. Changing the Language: Which Ones Does It Pick Up? | `Concept-Changing-The-Language/` | [Concept-Changing-The-Language.ipynb](Concept-Changing-The-Language/Concept-Changing-The-Language.ipynb) |
+| 15. Changing the Model: Context, Width, and How Long You Train | `Concept-Changing-The-Model/` | [Concept-Changing-The-Model.ipynb](Concept-Changing-The-Model/Concept-Changing-The-Model.ipynb) |
 
 The prose for each concept lives in the companion workbook repo,
 as `Concepts/Chapter-6-Concept-<N>.md`.
