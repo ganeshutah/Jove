@@ -34,9 +34,11 @@ says so rather than failing obscurely.
 """
 
 import itertools
+import math
 
 __all__ = ['END', 'corpus', 'train', 'dist', 'report', 'k_local',
-           'colliding_prefixes', 'torch_available', 'windows_seen']
+           'colliding_prefixes', 'torch_available', 'windows_seen',
+           'plot_chain', 'plot_loss']
 
 END = 2                      # the third token: "the string ends here"
 
@@ -220,8 +222,18 @@ def corpus(D, upto=400, alphabet=('0', '1')):
     return acc, seq
 
 
-def train(seq, k=3, iters=400, seed=1337, n_embd=32, lr=3e-3, quiet=True):
-    """Train the baby GPT to predict the next token from the last k."""
+def train(seq, k=3, iters=400, seed=1337, n_embd=32, lr=3e-3,
+          report_every=0, quiet=True):
+    """Train the baby GPT to predict the next token from the last k.
+
+    `iters=0` returns the model UNTRAINED, which is worth looking at: the
+    chain it induces is already a complete finite-state machine, with every
+    arrow near 1/v because the weights are still random.  Training moves
+    the arrows; it does not create the states.
+
+    `report_every=n` prints the loss every n iterations, so the descent is
+    visible rather than asserted.
+    """
     import contextlib
     import io
     t = _load()
@@ -236,16 +248,62 @@ def train(seq, k=3, iters=400, seed=1337, n_embd=32, lr=3e-3, quiet=True):
     with contextlib.redirect_stdout(io.StringIO()):
         g = t['GPT'](cfg)                    # it prints its parameter count
     opt = torch.optim.AdamW(g.parameters(), lr=lr, weight_decay=1e-1)
-    for _ in range(iters):
+    loss = F.cross_entropy(g(X), Y)          # the loss before any step
+    hist = [(0, loss.item())]
+    if report_every:
+        print('%6s  %9s' % ('iter', 'loss'))
+        print('%6d  %9.4f   <- before training' % (0, hist[0][1]))
+    for i in range(1, iters + 1):
         loss = F.cross_entropy(g(X), Y)
         loss.backward()
         opt.step()
         opt.zero_grad()
+        hist.append((i, loss.item()))
+        if report_every and (i % report_every == 0 or i == iters):
+            print('%6d  %9.4f' % (i, loss.item()))
+    g.history = hist
     g.final_loss = loss.item()
     g.examples = len(X)
+    g.k = k
     if not quiet:
         print('%d examples, final loss %.4f' % (len(X), g.final_loss))
     return g
+
+
+def plot_loss(g, ax=None):
+    """The training curve, with log 2 marked.  Returns the figure.
+
+    log 2 = 0.693 is what a fair coin over two symbols costs.  It is not a
+    floor here -- the corpus carries a third token, END -- but it is the
+    number to have in mind: a model that has learned nothing about the
+    language pays about that, and the interesting part of the curve is
+    everything below where it starts.
+    """
+    import math as _m
+    import matplotlib.pyplot as plt
+    if not getattr(g, 'history', None):
+        raise ValueError('no history: train() records it, iters must be > 0')
+    xs = [i for i, _ in g.history]
+    ys = [v for _, v in g.history]
+    if ax is None:
+        _, ax = plt.subplots(figsize=(6.2, 3.4))
+    ax.plot(xs, ys, color='#1a53c0', lw=1.8)
+    ax.axhline(_m.log(2.0), color='#b3251f', ls='--', lw=1,
+               label='log 2 = %.3f' % _m.log(2.0))
+    ax.scatter([xs[0]], [ys[0]], color='#1a53c0', zorder=3)
+    ax.annotate('before training\n%.3f' % ys[0], (xs[0], ys[0]),
+                textcoords='offset points', xytext=(12, 2), fontsize=8,
+                color='#333')
+    ax.annotate('%.3f' % ys[-1], (xs[-1], ys[-1]), textcoords='offset points',
+                xytext=(-34, 8), fontsize=8, color='#333')
+    ax.set_xlabel('training iteration')
+    ax.set_ylabel('cross-entropy loss')
+    ax.set_title('what the model learned, and how fast', fontsize=10)
+    ax.legend(fontsize=8, frameon=False)
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    plt.tight_layout()
+    return ax.figure
 
 
 def dist(g, window):
@@ -327,6 +385,43 @@ def report(g, D, k=3, show=True, seen=None):
             print('P(END) recovers the language.  The model cannot tell these')
             print('windows apart.')
     return sep, margin, rows
+
+
+def plot_chain(g, k=None, engine='circo', end_node=True, thresh=0.01):
+    """The model AS a finite-state machine, drawn the way Karpathy drew it.
+
+    One node per window of k symbols, and an arrow for each token showing
+    the probability the model assigns to it -- so an untrained model is a
+    complete graph of 50/50 arrows, and a trained one has most of its mass
+    on the transitions the language allows.
+
+    The END token gets its own node rather than an arrow back into the
+    ring: END is where a string STOPS, and drawing it as a shift would say
+    the opposite.  Arrows below `thresh` are dropped so the trained picture
+    is readable; that is a drawing decision, and the numbers in report()
+    are the ones to quote.
+    """
+    import graphviz
+    k = k or getattr(g, 'k', 3)
+    dot = graphviz.Digraph(comment='baby GPT as a Markov chain', engine=engine)
+    dot.attr('node', shape='circle', fontname='Helvetica', fontsize='11')
+    dot.attr('edge', fontname='Helvetica', fontsize='9')
+    if end_node:
+        dot.node('END', shape='doublecircle', color='#0f8a4a',
+                 fontcolor='#0f8a4a')
+    for w in itertools.product((0, 1), repeat=k):
+        here = ''.join(map(str, w))
+        dot.node(here)
+        p = dist(g, w)
+        for tok in (0, 1):
+            nxt = ''.join(map(str, w[1:] + (tok,)))
+            if p[tok] >= thresh:
+                dot.edge(here, nxt, label='%d (%.0f%%)' % (tok, 100 * p[tok]),
+                         color='#1a53c0' if tok else '#b3251f')
+        if end_node and p[2] >= thresh:
+            dot.edge(here, 'END', label='END (%.0f%%)' % (100 * p[2]),
+                     color='#0f8a4a', style='dashed')
+    return dot
 
 
 # ---- the automata half: no torch, no training --------------------------
