@@ -44,7 +44,7 @@ Jove/
 
 ## Status
 
-All eighteen chapters are covered, plus Appendix A: **258 notebooks**, one per
+All eighteen chapters are covered, plus Appendix A: **264 notebooks**, one per
 concept in the workbook's decomposition.
 
 | Folder | Chapter | Concepts | With animation |
@@ -60,15 +60,15 @@ concept in the workbook's decomposition.
 | `Chapter9-NFA2RE` | 9 &mdash; NFA to RE Conversion | 8 | 5 |
 | `Chapter10-Deriv` | 10 &mdash; Derivative-Based Regular Expression Matching | 8 | 2 |
 | `Chapter11-CFG` | 11 &mdash; Context-Free Languages and Grammars | 21 | 3 |
-| `Chapter12-PDA` | 12 &mdash; Pushdown Automata | 11 | 7 |
-| `Chapter13-TM` | 13 &mdash; Turing Machines | 13 | 6 |
+| `Chapter12-PDA` | 12 &mdash; Pushdown Automata | 14 | 9 |
+| `Chapter13-TM` | 13 &mdash; Turing Machines | 16 | 7 |
 | `Chapter14-Interp` | 14 &mdash; Interplay between Formal Languages | 12 | 3 |
 | `Chapter15-PCP` | 15 &mdash; Post Correspondence, and Other Undecidability Proofs | 9 | 0 |
 | `Chapter16-NPC` | 16 &mdash; NP-Completeness | 18 | 0 |
 | `Chapter17-BDD` | 17 &mdash; Binary Decision Diagrams as Minimal DFA | 7 | 1 |
 | `Chapter18-Lambda` | 18 &mdash; Computability Using Lambdas | 12 | 2 |
 | `Basics` | **Basics** &mdash; A Recap of Discrete Math (Appendix A) | 13 | 3 |
-| | **Total** | **258** | **85** |
+| | **Total** | **264** | **88** |
 
 `Basics/` holds Appendix A rather than a chapter, so it is named for what it is
 instead of getting a fictitious chapter number. It is the discrete-maths

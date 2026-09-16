@@ -18,6 +18,9 @@ a machine to show) an animation.
 | 9. CFG to PDA Conversion: the Goal/Subgoal Stack Machine | `Concept-CFG-To-PDA/` | [Concept-CFG-To-PDA.ipynb](Concept-CFG-To-PDA/Concept-CFG-To-PDA.ipynb) |
 | 10. Disambiguation Measured: 1 Parse versus 36 | `Concept-Disambiguation-Measured/` | [Concept-Disambiguation-Measured.ipynb](Concept-Disambiguation-Measured/Concept-Disambiguation-Measured.ipynb) |
 | 11. A Tale of Three Parsers, and Why Textual Syntax Still Rules | `Concept-Tale-Of-Three-Parsers/` | [Concept-Tale-Of-Three-Parsers.ipynb](Concept-Tale-Of-Three-Parsers/Concept-Tale-Of-Three-Parsers.ipynb) |
+| 12. A Transformer on a Language That Needs a Stack | `Concept-Karpathy-GPT-On-A-Jove-PDA/` | [Concept-Karpathy-GPT-On-A-Jove-PDA.ipynb](Concept-Karpathy-GPT-On-A-Jove-PDA/Concept-Karpathy-GPT-On-A-Jove-PDA.ipynb) |
+| 13. More Context Is Not a Stack | `Concept-More-Context-Is-Not-A-Stack/` | [Concept-More-Context-Is-Not-A-Stack.ipynb](Concept-More-Context-Is-Not-A-Stack/Concept-More-Context-Is-Not-A-Stack.ipynb) |
+| 14. Bound the Stack and the Model Learns It | `Concept-Bounding-The-Stack/` | [Concept-Bounding-The-Stack.ipynb](Concept-Bounding-The-Stack/Concept-Bounding-The-Stack.ipynb) |
 
 The prose for each concept lives in the companion workbook repo,
 as `Concepts/Chapter-12-Concept-<N>.md`.

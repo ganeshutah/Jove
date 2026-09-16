@@ -20,6 +20,9 @@ a machine to show) an animation.
 | 11. The Chomsky Hierarchy: Machines, Languages, and Grammars Unified | `Concept-Chomsky-Hierarchy/` | [Concept-Chomsky-Hierarchy.ipynb](Concept-Chomsky-Hierarchy/Concept-Chomsky-Hierarchy.ipynb) |
 | 12. Recursively Enumerable versus Recursive Languages | `Concept-RE-Versus-Recursive/` | [Concept-RE-Versus-Recursive.ipynb](Concept-RE-Versus-Recursive/Concept-RE-Versus-Recursive.ipynb) |
 | 13. The Compact ID Notation $aqb$ | `Concept-Compact-ID-Notation/` | [Concept-Compact-ID-Notation.ipynb](Concept-Compact-ID-Notation/Concept-Compact-ID-Notation.ipynb) |
+| 14. A Transformer on a Language That Needs a Tape | `Concept-Karpathy-GPT-On-A-Jove-TM/` | [Concept-Karpathy-GPT-On-A-Jove-TM.ipynb](Concept-Karpathy-GPT-On-A-Jove-TM/Concept-Karpathy-GPT-On-A-Jove-TM.ipynb) |
+| 15. The Context Window Is the Memory | `Concept-Context-Window-Is-The-Memory/` | [Concept-Context-Window-Is-The-Memory.ipynb](Concept-Context-Window-Is-The-Memory/Concept-Context-Window-Is-The-Memory.ipynb) |
+| 16. Copy Versus Mirror: the Hierarchy Reversed | `Concept-Copy-Versus-Mirror/` | [Concept-Copy-Versus-Mirror.ipynb](Concept-Copy-Versus-Mirror/Concept-Copy-Versus-Mirror.ipynb) |
 
 The prose for each concept lives in the companion workbook repo,
 as `Concepts/Chapter-13-Concept-<N>.md`.
