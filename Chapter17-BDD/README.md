@@ -14,6 +14,8 @@ a machine to show) an animation.
 | 5. From Decision Tree to BDD: What the Construction Actually Does | `Concept-From-Decision-Tree-To-BDD/` | [Concept-From-Decision-Tree-To-BDD.ipynb](Concept-From-Decision-Tree-To-BDD/Concept-From-Decision-Tree-To-BDD.ipynb) |
 | 6. Canonicity via Myhill–Nerode, Hash Consing, and the Apply Operation | `Concept-Canonicity-And-Apply/` | [Concept-Canonicity-And-Apply.ipynb](Concept-Canonicity-And-Apply/Concept-Canonicity-And-Apply.ipynb) |
 | 7. BDD Sizes, Dynamic Reordering, and the NP-Completeness of Ordering | `Concept-BDD-Sizes-And-Reordering/` | [Concept-BDD-Sizes-And-Reordering.ipynb](Concept-BDD-Sizes-And-Reordering/Concept-BDD-Sizes-And-Reordering.ipynb) |
+| 8. Lewis Carroll's Babies and Crocodiles, Decided by a Diagram | `Concept-Carroll-Babies-And-Crocodiles/` | [Concept-Carroll-Babies-And-Crocodiles.ipynb](Concept-Carroll-Babies-And-Crocodiles/Concept-Carroll-Babies-And-Crocodiles.ipynb) |
+| 9. Carroll's Wise Young Pigs, and Why Every Premise Earns Its Place | `Concept-Carroll-Wise-Young-Pigs/` | [Concept-Carroll-Wise-Young-Pigs.ipynb](Concept-Carroll-Wise-Young-Pigs/Concept-Carroll-Wise-Young-Pigs.ipynb) |
 
 The prose for each concept lives in the companion workbook repo,
 as `Concepts/Chapter-17-Concept-<N>.md`.
