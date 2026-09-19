@@ -15,22 +15,24 @@
   - Watch bit.ly/TeachJoveAutomata
   - Now go to https://github.com/ganeshutah/Jove.git and go to For_CS3100_Fall2024
 
-  - **Every chapter of the book now has a folder of concept notebooks:**
-    `Chapter1-Intro/` through `Chapter18-Lambda/`, plus `Basics/` for Appendix A.
+  - **Every chapter of the book now has a folder of concept notebooks**, all
+    of them under **`Concept-Notebooks/`**: `Chapter1-Intro/` through
+    `Chapter18-Lambda/`, plus `Basics/` for Appendix A.
     **266 notebooks, one per concept**, all of them auto-generated and all of
     them runnable on Colab with no installation. See just below.
 
-* ***CONCEPT NOTEBOOKS, ONE PER IDEA*** (`Chapter1-Intro/` ... `Chapter18-Lambda/`, `Basics/`)
+* ***CONCEPT NOTEBOOKS, ONE PER IDEA*** (`Concept-Notebooks/`)
 
   - Each chapter folder holds one directory per *concept*, and each of those
     holds a notebook:
 
     ```
-    Chapter4-DFA/Concept-Pumping-Lemma-Predicate-Logic/
-             Concept-Pumping-Lemma-Predicate-Logic.ipynb
+    Concept-Notebooks/Chapter4-DFA/Concept-Pumping-Lemma-Predicate-Logic/
+                          Concept-Pumping-Lemma-Predicate-Logic.ipynb
     ```
 
-    All eighteen chapters are covered, plus Appendix A under `Basics/`:
+    All eighteen chapters are covered, plus Appendix A under
+    `Concept-Notebooks/Basics/`:
     **266 notebooks**, **88** of which animate a machine you can step through
     (`AnimateDFA`, `AnimateNFA`, `AnimatePDA`, `AnimateTM`).
 
@@ -41,7 +43,7 @@
 
     ```
     https://colab.research.google.com/github/ganeshutah/Jove/blob/master/
-        Chapter4-DFA/Concept-Designing-A-DFA/Concept-Designing-A-DFA.ipynb
+        Concept-Notebooks/Chapter4-DFA/Concept-Designing-A-DFA/Concept-Designing-A-DFA.ipynb
     ```
 
     They run just as well on a local checkout --- the same cell detects that

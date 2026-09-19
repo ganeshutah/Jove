@@ -7,21 +7,32 @@
 #
 # The fingerprint of a sweep is a file whose ENTIRE change is one line
 # replaced by one line.  A handful of those is normal.  Two hundred of
-# them next to a dozen real files is a feature commit with a
-# repo-wide renumbering hidden inside it.
+# them next to a dozen real files is a feature commit with a repo-wide
+# renumbering hidden inside it.
+#
+# Renames are detected (-M) and excluded from the count: moving a tree
+# and fixing the references the move broke is ONE change, and splitting
+# it would leave a commit in between where nothing works.
 
 set -e
-stat=$(git diff --cached --numstat)
-[ -n "$stat" ] || { echo "nothing staged"; exit 0; }
+all=$(git diff --cached --numstat -M)
+[ -n "$all" ] || { echo "nothing staged"; exit 0; }
+
+renamed=$(printf '%s\n' "$all" | grep -c ' => ' || true)
+stat=$(printf '%s\n' "$all" | grep -v ' => ' || true)
+
+if [ -z "$stat" ]; then
+    printf 'staged: %d files, all of them renames -- one change\n' "$renamed"
+    exit 0
+fi
 
 total=$(printf '%s\n' "$stat" | grep -c .)
 sweep=$(printf '%s\n' "$stat" | awk '$1==1 && $2==1' | grep -c . || true)
 real=$((total - sweep))
 
-printf 'staged: %d files  (%d one-line, %d substantive)\n' "$total" "$sweep" "$real"
+printf 'staged: %d renamed, %d other (%d one-line, %d substantive)\n' \
+       "$renamed" "$total" "$sweep" "$real"
 
-# A sweep is only a problem when it DOMINATES and there is other work
-# it could be hiding behind.
 if [ "$sweep" -ge 20 ] && [ "$sweep" -gt "$real" ]; then
     echo
     echo "STOP -- this looks like two commits:"

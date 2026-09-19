@@ -15,20 +15,21 @@ exercises.
 
 ```
 Jove/
-  Basics/                       <- Appendix A, "A Recap of Discrete Math"
-    README.md
-    Concept-Powerset/
-      Concept-Powerset.ipynb
-    ...
-  Chapter1-Intro/
-    README.md
-    Concept-Turing-Machine-Definition/
-      Concept-Turing-Machine-Definition.ipynb
-    Concept-Context-Free-Patterns/
-      Concept-Context-Free-Patterns.ipynb
-    ...
-  Chapter2-Lang/  ...
-  Chapter3-Star/  ...
+  Concept-Notebooks/
+    Basics/                     <- Appendix A, "A Recap of Discrete Math"
+      README.md
+      Concept-Powerset/
+        Concept-Powerset.ipynb
+      ...
+    Chapter1-Intro/
+      README.md
+      Concept-Turing-Machine-Definition/
+        Concept-Turing-Machine-Definition.ipynb
+      Concept-Context-Free-Patterns/
+        Concept-Context-Free-Patterns.ipynb
+      ...
+    Chapter2-Lang/  ...
+    Chapter3-Star/  ...
 ```
 
 ## What is in each notebook
@@ -46,6 +47,8 @@ Jove/
 
 All eighteen chapters are covered, plus Appendix A: **266 notebooks**, one per
 concept in the workbook's decomposition.
+
+Folder names below are relative to `Concept-Notebooks/`.
 
 | Folder | Chapter | Concepts | With animation |
 |---|---|---:|---:|

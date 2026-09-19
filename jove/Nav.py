@@ -35,9 +35,22 @@ _HEADER = re.compile(
 _CACHE = None
 
 
+# The concept notebooks live under this one directory of the checkout.
+# Paths handed to nav(here=...) and load_here() stay RELATIVE TO IT --
+# 'Chapter7-NFA/Concept-Subset-Construction', not the full path -- so that
+# moving the notebooks did not have to rewrite a string in all 266 of them,
+# and so that anything a reader has typed before still works.
+NBDIR = 'Concept-Notebooks'
+
+
 def _root():
     """The directory holding jove/ -- i.e. the Jove checkout."""
     return os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+def _nbroot():
+    """The directory holding the concept notebooks."""
+    return os.path.join(_root(), NBDIR)
 
 
 def _unit_key(unit):
@@ -51,7 +64,7 @@ def index(refresh=False):
     global _CACHE
     if _CACHE is not None and not refresh:
         return _CACHE
-    root, rows = _root(), []
+    root, rows = _nbroot(), []
     for f in glob.glob(os.path.join(root, 'Chapter*', 'Concept-*', '*.ipynb')) + \
              glob.glob(os.path.join(root, 'Basics', 'Concept-*', '*.ipynb')):
         try:
@@ -130,7 +143,8 @@ def search(query):
 
 
 def _url(rel):
-    return '%s/%s' % (COLAB, rel)
+    # `rel` is relative to NBDIR; the Colab link needs the full repo path.
+    return '%s/%s/%s' % (COLAB, NBDIR, rel)
 
 
 def _neighbours(here):
@@ -193,7 +207,7 @@ def nav(query='', here=None, rows=10):
 
     all_rows = index()
     if not all_rows:
-        display(HTML('<i>No concept notebooks found under %s</i>' % _root()))
+        display(HTML('<i>No concept notebooks found under %s</i>' % _nbroot()))
         return
 
     box = W.Text(value=query, placeholder='Chapter7   ch2 kleene   pumping ...',
@@ -259,7 +273,7 @@ def load_here(query, quiet=False, _depth=1):
             print('   ', _label(r))
         return
     row = hits[0]
-    path = os.path.join(_root(), row[3])
+    path = os.path.join(_nbroot(), row[3])
     g = sys._getframe(_depth).f_globals
     ran = 0
     for c in json.load(open(path, encoding='utf-8'))['cells']:
