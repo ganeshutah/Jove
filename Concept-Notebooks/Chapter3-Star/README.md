@@ -5,8 +5,15 @@ lecture number or a course year. Each folder holds a notebook that
 illustrates the concept, with definitions, tests and (where there is
 a machine to show) an animation.
 
+**Start here:** [Concept-START-HERE.ipynb](Concept-START-HERE/Concept-START-HERE.ipynb)
+&mdash; the catch-all notebook for the chapter. It defines every language
+builder (`lphi`, `lunit`, `lcat`, `lexp`, `lstar`, `lrev`, `lhomo`, `lcomplem`,
+`nthnumeric`, ...) in full, with experiments, and links out to the concept
+notebooks below.
+
 | Concept | Folder | Notebook |
 |---|---|---|
+| 0. **Start Here:** the Language Toolkit, from Zero and Unit to Star | `Concept-START-HERE/` | [Concept-START-HERE.ipynb](Concept-START-HERE/Concept-START-HERE.ipynb) |
 | 1. Star: Three Equivalent Definitions | `Concept-Star-Three-Definitions/` | [Concept-Star-Three-Definitions.ipynb](Concept-Star-Three-Definitions/Concept-Star-Three-Definitions.ipynb) |
 | 2. The Two Roles of Star: Repetition, and the Universal Language $\Sigma^*$ | `Concept-Sigma-Star-Universal-Language/` | [Concept-Sigma-Star-Universal-Language.ipynb](Concept-Sigma-Star-Universal-Language/Concept-Sigma-Star-Universal-Language.ipynb) |
 | 3. Star Bounded at $n$ ($L^*_n$) and its Jove Encoding `lstar` | `Concept-Lstar-Bounded/` | [Concept-Lstar-Bounded.ipynb](Concept-Lstar-Bounded/Concept-Lstar-Bounded.ipynb) |
